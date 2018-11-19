@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url> <loc>https://libspectrum.io/help</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://libspectrum.io/en/help" /> </url>
+<url> <loc>https://libspectrum.io/index</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://libspectrum.io/en/index" /> </url>
+<url> <loc>https://libspectrum.io/users</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://libspectrum.io/en/users" /> </url>
+<url> <loc>https://libspectrum.io/docs/about_spectrum</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://libspectrum.io/docs/about_spectrum" /> </url>
+<url> <loc>https://libspectrum.io/docs/contributing_android</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://libspectrum.io/docs/contributing_android" /> </url>
+<url> <loc>https://libspectrum.io/docs/contributing_ios</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://libspectrum.io/docs/contributing_ios" /> </url>
+<url> <loc>https://libspectrum.io/docs/cropping_images</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://libspectrum.io/docs/cropping_images" /> </url>
+<url> <loc>https://libspectrum.io/docs/encoding_images</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://libspectrum.io/docs/encoding_images" /> </url>
+<url> <loc>https://libspectrum.io/docs/faq</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://libspectrum.io/docs/faq" /> </url>
+<url> <loc>https://libspectrum.io/docs/getting_started_android</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://libspectrum.io/docs/getting_started_android" /> </url>
+<url> <loc>https://libspectrum.io/docs/getting_started_ios</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://libspectrum.io/docs/getting_started_ios" /> </url>
+<url> <loc>https://libspectrum.io/docs/project_structure</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://libspectrum.io/docs/project_structure" /> </url>
+<url> <loc>https://libspectrum.io/docs/resizing_images</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://libspectrum.io/docs/resizing_images" /> </url>
+<url> <loc>https://libspectrum.io/docs/rotating_images</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://libspectrum.io/docs/rotating_images" /> </url>
+<url> <loc>https://libspectrum.io/docs/sample_apps</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://libspectrum.io/docs/sample_apps" /> </url>
+<url> <loc>https://libspectrum.io/docs/supported_image_flows</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://libspectrum.io/docs/supported_image_flows" /> </url>
+<url> <loc>https://libspectrum.io/docs/supported_image_formats</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://libspectrum.io/docs/supported_image_formats" /> </url>
+<url> <loc>https://libspectrum.io/docs/transcoding_images_for_upload</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://libspectrum.io/docs/transcoding_images_for_upload" /> </url>
+</urlset>
