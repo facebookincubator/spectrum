@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" description="Displayed name of the app">Spectrum</string>
+    <string name="label_source_image">Source Image</string>
+    <string name="label_input_type">Input Type</string>
+    <string name="label_output_type">Output Type</string>
+    <string name="label_input_file">Input File</string>
+    <string name="label_output_format">Output Format</string>
+    <string name="label_lossless">Force lossless</string>
+    <string name="label_must_transcode">Force transcode</string>
+    <string name="label_quality_level">Quality Level</string>
+    <string name="label_orientation">Orientation</string>
+    <string name="label_rotate">Rotate</string>
+    <string name="label_resize">Scale</string>
+    <string name="label_crop">Crop</string>
+    <string name="button_select_file">Select File</string>
+    <string name="button_run_transcode">Transcode</string>
+    <string name="button_save_configuration">Save Configuration</string>
+    <string name="button_transcoding">Transcoding…</string>
+    <string name="empty">…</string>
+    <string name="hint_edittext_quality_level">1–100</string>
+    <string name="label_encode_mode">Encode Mode</string>
+    <string name="label_configuration">Configuration</string>
+    <string name="button_edit_configuration">Edit configuration</string>
+</resources>

@@ -1,0 +1,214 @@
+// Copyright (c) Facebook, Inc. and its affiliates.
+//
+// This source code is licensed under the MIT license found in the
+// LICENSE file in the root directory of this source tree.
+
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext {
+        minSdkVersion = 15
+        targetSdkVersion = 28
+        compileSdkVersion = 28
+        kotlinVersion = '1.2.71'
+        buildToolsVersion = '27.0.3'
+        sourceCompatibilityVersion = JavaVersion.VERSION_1_7
+        targetCompatibilityVersion = JavaVersion.VERSION_1_7
+    }
+    repositories {
+        google()
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.3'
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:${GRADLE_BINTRAY_PLUGIN_VERSION}"
+        classpath "com.github.dcendents:android-maven-gradle-plugin:${ANDROID_MAVEN_GRADLE_PLUGIN_VERSION}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    }
+}
+
+plugins {
+    id 'de.undercouch.download' version '3.4.3'
+}
+
+subprojects {
+    repositories {
+        google()
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+    }
+}
+
+ext.isRelease = { ['uploadArchives', 'bintrayUpload'].any { gradle.startParameter.taskNames.contains(it) } }
+
+ext.deps = [
+        // Android Support Libraries
+        supportAppCompat: 'androidx.appcompat:appcompat:1.0.0',
+        supportTestRunner: 'androidx.test:runner:1.1.0',
+        supportMultidex: 'androidx.multidex:multidex:2.0.0',
+
+        // Annotations
+        jsr305: 'com.google.code.findbugs:jsr305:3.0.1',
+
+        // First-party
+        soloader: 'com.facebook.soloader:soloader:0.5.1',
+
+        // Third-party
+        festAssert: 'org.easytesting:fest-assert-core:2.0M10',
+        junit: 'junit:junit:4.12',
+        kotlinAndroidKtx: 'androidx.core:core-ktx:1.0.0',
+        kotlinJdk: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
+        mockitoCore: 'org.mockito:mockito-core:1.10.19',
+        robolectric: 'org.robolectric:robolectric:3.0',
+]
+
+//
+// Custom plugin to download external native libraries and merge them with our
+// overrides and custom configurations.
+//
+
+apply plugin: 'de.undercouch.download'
+import de.undercouch.gradle.tasks.download.Download;
+
+class SpectrumDownloadAndMergeExtension {
+    String externalSourceUri
+    String externalSourceInclude
+    String overrideInclude
+
+    // The files matching pattern and action are used for replacing tokens
+    // in the imported third-party files. E.g. to emulate an "./configure" call
+    String filesMatchingPattern
+    Action<? super FileCopyDetails> filesMatchingAction
+
+    /**
+     * The cache revision is used to avoid invalidating the gradle cache information
+     * of external files copied from other destinations. Such invalidation (e.g.
+     * updating the timestamp causes the entire native code to be rebuild). And
+     * we care about developer experience.
+     *
+     * As a consequence, the cache revision needs to be updated when there's any
+     * change regarding the external dependency (either the downloaded version
+     * of the override)
+     */
+    Integer cacheRevision
+}
+
+class SpectrumDownloadAndMergePlugin implements Plugin<Project> {
+
+    final def getDownloadFileName = { final URL src ->
+        final def i = src.file.lastIndexOf('/')
+        return src.file.substring(i + 1)
+    }
+
+    boolean isCacheOutOfDate(
+            final File revisionFile,
+            final Integer revisionNumber,
+            final String projectName = null) {
+        boolean outOfDate = false;
+        if (revisionNumber == null || !revisionFile.exists()) {
+            outOfDate = true;
+        } else {
+            final def content = revisionFile.text
+            outOfDate = !content.isInteger() || content as Integer != revisionNumber
+        }
+
+        if (projectName != null) {
+            println "External library '${projectName}' is " +
+                    (outOfDate ? "out-of-date, preparing..." : "up-to-date")
+        }
+        return outOfDate;
+    }
+
+    void apply(Project project) {
+        final def extension = project.extensions.create(
+            'downloadAndMergeNativeLibrary',
+            SpectrumDownloadAndMergeExtension)
+
+        final def downloadDir = new File("${project.getBuildDir()}/download")
+        final def extractionDir = new File("${project.getBuildDir()}/downloadExtracted")
+        final def mergeDir = new File("${project.getProjectDir()}/merge/${project.name}")
+        final def overrideDir = new File("${project.getProjectDir()}/override")
+        final def revisionFile = new File("${project.getBuildDir()}/spectrum_cache_revision.txt")
+
+        // extensions are only properly instantiated after evaluation
+        project.afterEvaluate {
+            project.task('createNativeDepsDirectories') {
+                downloadDir.mkdirs()
+                extractionDir.mkdirs()
+                mergeDir.mkdirs()
+            }
+
+            project.task('cleanNativeLibrary', type: Delete) {
+                delete mergeDir
+                delete extractionDir
+            }
+
+            project.task(
+                    'downloadNativeLibrarySource',
+                    dependsOn: 'createNativeDepsDirectories',
+                    type: Download) {
+                src extension.externalSourceUri
+                onlyIfNewer true
+                overwrite false
+                dest new File(downloadDir, getDownloadFileName(src))
+            }
+
+            project.task(
+                    'extractNativeLibrarySource',
+                    dependsOn: 'downloadNativeLibrarySource',
+                    type: Copy) {
+                from project.tarTree(
+                    project.tasks.getByName('downloadNativeLibrarySource').dest)
+                include '**'
+                includeEmptyDirs = false
+                into extractionDir
+            }
+
+            project.task(
+                    'copyExternalSources',
+                    dependsOn: 'extractNativeLibrarySource',
+                    type: Copy) {
+                onlyIf {
+                  isCacheOutOfDate(revisionFile, extension.cacheRevision)
+                }
+                from extractionDir
+                include extension.externalSourceInclude
+                includeEmptyDirs = false
+                if (extension.filesMatchingPattern != null) {
+                    filesMatching(extension.filesMatchingPattern, extension.filesMatchingAction)
+                }
+                into mergeDir
+            }
+
+            project.task(
+                    'copyOverrideSources',
+                    dependsOn: 'copyExternalSources',
+                    type: Copy) {
+                onlyIf {
+                  isCacheOutOfDate(revisionFile, extension.cacheRevision)
+                }
+                from overrideDir
+                include extension.overrideInclude
+                includeEmptyDirs = false
+                into mergeDir
+            }
+
+            project.task(
+                    'prepareNativeLibrary',
+                    dependsOn: 'copyOverrideSources') {
+                onlyIf {
+                  isCacheOutOfDate(revisionFile, extension.cacheRevision, project.name)
+                }
+                doLast {
+                  println "Prepared library '${project.name}' in folder ${mergeDir}"
+                  revisionFile.text = extension.cacheRevision.toString()
+                }
+            }
+        }
+    }
+}
+
+ext.SpectrumDownloadAndMergePlugin = SpectrumDownloadAndMergePlugin

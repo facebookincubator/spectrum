@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        buildConfigField "boolean", "IS_INTERNAL_BUILD", 'true'
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile './ApplicationManifest.xml'
+        }
+    }
+}
+
+apply plugin: SpectrumDownloadAndMergePlugin
+import org.apache.tools.ant.filters.ReplaceTokens
+
+downloadAndMergeNativeLibrary {
+  externalSourceUri 'https://github.com/glennrp/libpng/archive/v1.6.35.tar.gz'
+  externalSourceInclude 'libpng-1.6.35/**'
+  overrideInclude '**'
+  filesMatchingPattern '**'
+  filesMatchingAction {
+      it.path = it.path - "libpng-1.6.35"
+  }
+  cacheRevision = 1
+}
+
+preBuild.dependsOn {
+    prepareNativeLibrary
+}
+
+clean.dependsOn {
+    cleanNativeLibrary
+}

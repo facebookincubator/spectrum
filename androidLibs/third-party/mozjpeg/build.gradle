@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        buildConfigField "boolean", "IS_INTERNAL_BUILD", 'true'
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile './ApplicationManifest.xml'
+        }
+    }
+}
+
+apply plugin: SpectrumDownloadAndMergePlugin
+import org.apache.tools.ant.filters.ReplaceTokens
+
+downloadAndMergeNativeLibrary {
+  externalSourceUri 'https://github.com/mozilla/mozjpeg/archive/v3.3.1.tar.gz'
+  externalSourceInclude 'mozjpeg-3.3.1/**'
+  overrideInclude '**'
+  filesMatchingPattern '**'
+  filesMatchingAction {
+      it.path = it.path - "mozjpeg-3.3.1"
+  }
+  cacheRevision = 1
+}
+
+preBuild.dependsOn {
+    prepareNativeLibrary
+}
+
+clean.dependsOn {
+    cleanNativeLibrary
+}

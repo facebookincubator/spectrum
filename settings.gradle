@@ -1,0 +1,25 @@
+// Copyright (c) Facebook, Inc. and its affiliates.
+//
+// This source code is licensed under the MIT license found in the
+// LICENSE file in the root directory of this source tree.
+
+include ':android'
+include ':android:sample'
+include ':android:spectrumdefault'
+include ':android:spectrumpluginjpeg'
+include ':android:spectrumpluginpng'
+include ':android:spectrumpluginwebp'
+include ':cpp'
+include ':fbjni'
+include ':folly'
+include ':glog'
+include ':libpng'
+include ':libwebp'
+include ':mozjpeg'
+
+project(':fbjni').projectDir = file('androidLibs/fbjni')
+project(':folly').projectDir = file('androidLibs/third-party/folly')
+project(':glog').projectDir = file('androidLibs/third-party/glog')
+project(':libpng').projectDir = file('androidLibs/third-party/libpng')
+project(':libwebp').projectDir = file('androidLibs/third-party/libwebp')
+project(':mozjpeg').projectDir = file('androidLibs/third-party/mozjpeg')

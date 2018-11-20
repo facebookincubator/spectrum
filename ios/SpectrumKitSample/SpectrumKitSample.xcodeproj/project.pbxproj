@@ -1,0 +1,468 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1BF6C7FD42BB7B411AFC5695 /* libPods-SpectrumKitSample-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB4D5F0B8F9D74D6E064A896 /* libPods-SpectrumKitSample-iOS.a */; };
+		D4EEC6FF2194B1D7003BB159 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4EEC6FD2194B1D7003BB159 /* Main.storyboard */; };
+		D4EEC7012194B1D8003BB159 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4EEC7002194B1D8003BB159 /* Assets.xcassets */; };
+		D4EEC7042194B1D8003BB159 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4EEC7022194B1D8003BB159 /* LaunchScreen.storyboard */; };
+		D4EEC7222194B211003BB159 /* ImageDifferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEC70C2194B211003BB159 /* ImageDifferenceView.swift */; };
+		D4EEC7232194B211003BB159 /* panda.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D4EEC70D2194B211003BB159 /* panda.jpg */; };
+		D4EEC7242194B211003BB159 /* ImageDifferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEC70E2194B211003BB159 /* ImageDifferenceViewController.swift */; };
+		D4EEC7262194B211003BB159 /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEC7102194B211003BB159 /* PickerButton.swift */; };
+		D4EEC7272194B211003BB159 /* SpectrumViewModel+ImageOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEC7112194B211003BB159 /* SpectrumViewModel+ImageOptions.swift */; };
+		D4EEC7282194B211003BB159 /* SpectrumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEC7122194B211003BB159 /* SpectrumViewController.swift */; };
+		D4EEC7292194B211003BB159 /* ConfigurationViewModel+Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEC7132194B211003BB159 /* ConfigurationViewModel+Options.swift */; };
+		D4EEC72A2194B211003BB159 /* ImageDifferenceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEC7142194B211003BB159 /* ImageDifferenceViewModel.swift */; };
+		D4EEC72B2194B211003BB159 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEC7152194B211003BB159 /* Alerts.swift */; };
+		D4EEC72C2194B211003BB159 /* SpectrumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEC7162194B211003BB159 /* SpectrumViewModel.swift */; };
+		D4EEC72D2194B211003BB159 /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEC7172194B211003BB159 /* Misc.swift */; };
+		D4EEC72E2194B211003BB159 /* ZoomableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEC7192194B211003BB159 /* ZoomableScrollView.swift */; };
+		D4EEC7302194B211003BB159 /* ConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEC71B2194B211003BB159 /* ConfigurationViewModel.swift */; };
+		D4EEC7312194B211003BB159 /* ImagePickerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEC71C2194B211003BB159 /* ImagePickerCoordinator.swift */; };
+		D4EEC7322194B211003BB159 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEC71D2194B211003BB159 /* ConfigurationViewController.swift */; };
+		D4EEC7332194B211003BB159 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEC71E2194B211003BB159 /* AppDelegate.swift */; };
+		D4EEC7342194B211003BB159 /* XibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEC71F2194B211003BB159 /* XibLoadable.swift */; };
+		D4EEC7352194B211003BB159 /* SpectrumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEC7202194B211003BB159 /* SpectrumController.swift */; };
+		D4EEC7362194B211003BB159 /* SpectrumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEC7212194B211003BB159 /* SpectrumView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7A5F2F5F90E2E6A30DB8D495 /* Pods-SpectrumKitSample-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpectrumKitSample-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpectrumKitSample-iOS/Pods-SpectrumKitSample-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		D4EEC6F52194B1D7003BB159 /* SpectrumKitSample-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SpectrumKitSample-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4EEC6FE2194B1D7003BB159 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D4EEC7002194B1D8003BB159 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D4EEC7032194B1D8003BB159 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D4EEC7052194B1D8003BB159 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4EEC70C2194B211003BB159 /* ImageDifferenceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDifferenceView.swift; sourceTree = "<group>"; };
+		D4EEC70D2194B211003BB159 /* panda.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = panda.jpg; sourceTree = "<group>"; };
+		D4EEC70E2194B211003BB159 /* ImageDifferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDifferenceViewController.swift; sourceTree = "<group>"; };
+		D4EEC7102194B211003BB159 /* PickerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerButton.swift; sourceTree = "<group>"; };
+		D4EEC7112194B211003BB159 /* SpectrumViewModel+ImageOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SpectrumViewModel+ImageOptions.swift"; sourceTree = "<group>"; };
+		D4EEC7122194B211003BB159 /* SpectrumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpectrumViewController.swift; sourceTree = "<group>"; };
+		D4EEC7132194B211003BB159 /* ConfigurationViewModel+Options.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConfigurationViewModel+Options.swift"; sourceTree = "<group>"; };
+		D4EEC7142194B211003BB159 /* ImageDifferenceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDifferenceViewModel.swift; sourceTree = "<group>"; };
+		D4EEC7152194B211003BB159 /* Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		D4EEC7162194B211003BB159 /* SpectrumViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpectrumViewModel.swift; sourceTree = "<group>"; };
+		D4EEC7172194B211003BB159 /* Misc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Misc.swift; sourceTree = "<group>"; };
+		D4EEC7182194B211003BB159 /* SpectrumKitSample-iOS-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpectrumKitSample-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		D4EEC7192194B211003BB159 /* ZoomableScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomableScrollView.swift; sourceTree = "<group>"; };
+		D4EEC71B2194B211003BB159 /* ConfigurationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationViewModel.swift; sourceTree = "<group>"; };
+		D4EEC71C2194B211003BB159 /* ImagePickerCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerCoordinator.swift; sourceTree = "<group>"; };
+		D4EEC71D2194B211003BB159 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
+		D4EEC71E2194B211003BB159 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D4EEC71F2194B211003BB159 /* XibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XibLoadable.swift; sourceTree = "<group>"; };
+		D4EEC7202194B211003BB159 /* SpectrumController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpectrumController.swift; sourceTree = "<group>"; };
+		D4EEC7212194B211003BB159 /* SpectrumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpectrumView.swift; sourceTree = "<group>"; };
+		EB4D5F0B8F9D74D6E064A896 /* libPods-SpectrumKitSample-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SpectrumKitSample-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F51BAF38DF7F621B70995ACB /* Pods-SpectrumKitSample-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpectrumKitSample-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpectrumKitSample-iOS/Pods-SpectrumKitSample-iOS.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D4EEC6F22194B1D7003BB159 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BF6C7FD42BB7B411AFC5695 /* libPods-SpectrumKitSample-iOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6C2ED82DCAB189883729BEF5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EB4D5F0B8F9D74D6E064A896 /* libPods-SpectrumKitSample-iOS.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6D9AEED268DF98F03D265AAD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7A5F2F5F90E2E6A30DB8D495 /* Pods-SpectrumKitSample-iOS.debug.xcconfig */,
+				F51BAF38DF7F621B70995ACB /* Pods-SpectrumKitSample-iOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D4EEC5DE2194B0C7003BB159 = {
+			isa = PBXGroup;
+			children = (
+				D4EEC6F62194B1D7003BB159 /* SpectrumKitSample-iOS */,
+				D4EEC5E92194B0C7003BB159 /* Products */,
+				6D9AEED268DF98F03D265AAD /* Pods */,
+				6C2ED82DCAB189883729BEF5 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D4EEC5E92194B0C7003BB159 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D4EEC6F52194B1D7003BB159 /* SpectrumKitSample-iOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D4EEC6F62194B1D7003BB159 /* SpectrumKitSample-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				D4EEC7152194B211003BB159 /* Alerts.swift */,
+				D4EEC71E2194B211003BB159 /* AppDelegate.swift */,
+				D4EEC71D2194B211003BB159 /* ConfigurationViewController.swift */,
+				D4EEC71B2194B211003BB159 /* ConfigurationViewModel.swift */,
+				D4EEC7132194B211003BB159 /* ConfigurationViewModel+Options.swift */,
+				D4EEC70C2194B211003BB159 /* ImageDifferenceView.swift */,
+				D4EEC70E2194B211003BB159 /* ImageDifferenceViewController.swift */,
+				D4EEC7142194B211003BB159 /* ImageDifferenceViewModel.swift */,
+				D4EEC71C2194B211003BB159 /* ImagePickerCoordinator.swift */,
+				D4EEC7172194B211003BB159 /* Misc.swift */,
+				D4EEC70D2194B211003BB159 /* panda.jpg */,
+				D4EEC7102194B211003BB159 /* PickerButton.swift */,
+				D4EEC7202194B211003BB159 /* SpectrumController.swift */,
+				D4EEC7182194B211003BB159 /* SpectrumKitSample-iOS-Bridging-Header.h */,
+				D4EEC7212194B211003BB159 /* SpectrumView.swift */,
+				D4EEC7122194B211003BB159 /* SpectrumViewController.swift */,
+				D4EEC7162194B211003BB159 /* SpectrumViewModel.swift */,
+				D4EEC7112194B211003BB159 /* SpectrumViewModel+ImageOptions.swift */,
+				D4EEC71F2194B211003BB159 /* XibLoadable.swift */,
+				D4EEC7192194B211003BB159 /* ZoomableScrollView.swift */,
+				D4EEC6FD2194B1D7003BB159 /* Main.storyboard */,
+				D4EEC7002194B1D8003BB159 /* Assets.xcassets */,
+				D4EEC7022194B1D8003BB159 /* LaunchScreen.storyboard */,
+				D4EEC7052194B1D8003BB159 /* Info.plist */,
+			);
+			path = "SpectrumKitSample-iOS";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D4EEC6F42194B1D7003BB159 /* SpectrumKitSample-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4EEC70A2194B1D8003BB159 /* Build configuration list for PBXNativeTarget "SpectrumKitSample-iOS" */;
+			buildPhases = (
+				632623AE32A98E8D0A2C8C8B /* [CP] Check Pods Manifest.lock */,
+				D4EEC6F12194B1D7003BB159 /* Sources */,
+				D4EEC6F22194B1D7003BB159 /* Frameworks */,
+				D4EEC6F32194B1D7003BB159 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SpectrumKitSample-iOS";
+			productName = "SpectrumKitSample-iOS";
+			productReference = D4EEC6F52194B1D7003BB159 /* SpectrumKitSample-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D4EEC5DF2194B0C7003BB159 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = Facebook;
+				TargetAttributes = {
+					D4EEC6F42194B1D7003BB159 = {
+						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
+					};
+				};
+			};
+			buildConfigurationList = D4EEC5E22194B0C7003BB159 /* Build configuration list for PBXProject "SpectrumKitSample" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D4EEC5DE2194B0C7003BB159;
+			productRefGroup = D4EEC5E92194B0C7003BB159 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D4EEC6F42194B1D7003BB159 /* SpectrumKitSample-iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D4EEC6F32194B1D7003BB159 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4EEC7232194B211003BB159 /* panda.jpg in Resources */,
+				D4EEC7042194B1D8003BB159 /* LaunchScreen.storyboard in Resources */,
+				D4EEC7012194B1D8003BB159 /* Assets.xcassets in Resources */,
+				D4EEC6FF2194B1D7003BB159 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		632623AE32A98E8D0A2C8C8B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SpectrumKitSample-iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D4EEC6F12194B1D7003BB159 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4EEC7302194B211003BB159 /* ConfigurationViewModel.swift in Sources */,
+				D4EEC7222194B211003BB159 /* ImageDifferenceView.swift in Sources */,
+				D4EEC7342194B211003BB159 /* XibLoadable.swift in Sources */,
+				D4EEC7242194B211003BB159 /* ImageDifferenceViewController.swift in Sources */,
+				D4EEC7352194B211003BB159 /* SpectrumController.swift in Sources */,
+				D4EEC72C2194B211003BB159 /* SpectrumViewModel.swift in Sources */,
+				D4EEC7362194B211003BB159 /* SpectrumView.swift in Sources */,
+				D4EEC72A2194B211003BB159 /* ImageDifferenceViewModel.swift in Sources */,
+				D4EEC72D2194B211003BB159 /* Misc.swift in Sources */,
+				D4EEC7292194B211003BB159 /* ConfigurationViewModel+Options.swift in Sources */,
+				D4EEC7272194B211003BB159 /* SpectrumViewModel+ImageOptions.swift in Sources */,
+				D4EEC7322194B211003BB159 /* ConfigurationViewController.swift in Sources */,
+				D4EEC7262194B211003BB159 /* PickerButton.swift in Sources */,
+				D4EEC72B2194B211003BB159 /* Alerts.swift in Sources */,
+				D4EEC72E2194B211003BB159 /* ZoomableScrollView.swift in Sources */,
+				D4EEC7282194B211003BB159 /* SpectrumViewController.swift in Sources */,
+				D4EEC7332194B211003BB159 /* AppDelegate.swift in Sources */,
+				D4EEC7312194B211003BB159 /* ImagePickerCoordinator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D4EEC6FD2194B1D7003BB159 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4EEC6FE2194B1D7003BB159 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D4EEC7022194B1D8003BB159 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4EEC7032194B1D8003BB159 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D4EEC5EE2194B0C7003BB159 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D4EEC5EF2194B0C7003BB159 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D4EEC7082194B1D8003BB159 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A5F2F5F90E2E6A30DB8D495 /* Pods-SpectrumKitSample-iOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "SpectrumKitSample-iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.libspectrum.SpectrumKitSample-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SpectrumKitSample-iOS/SpectrumKitSample-iOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D4EEC7092194B1D8003BB159 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F51BAF38DF7F621B70995ACB /* Pods-SpectrumKitSample-iOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "SpectrumKitSample-iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.libspectrum.SpectrumKitSample-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SpectrumKitSample-iOS/SpectrumKitSample-iOS-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D4EEC5E22194B0C7003BB159 /* Build configuration list for PBXProject "SpectrumKitSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4EEC5EE2194B0C7003BB159 /* Debug */,
+				D4EEC5EF2194B0C7003BB159 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4EEC70A2194B1D8003BB159 /* Build configuration list for PBXNativeTarget "SpectrumKitSample-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4EEC7082194B1D8003BB159 /* Debug */,
+				D4EEC7092194B1D8003BB159 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D4EEC5DF2194B0C7003BB159 /* Project object */;
+}

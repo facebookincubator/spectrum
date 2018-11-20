@@ -1,0 +1,103 @@
+PODS:
+  - libpng (1.6.18)
+  - libwebp (1.0.0):
+    - libwebp/core (= 1.0.0)
+    - libwebp/dec (= 1.0.0)
+    - libwebp/demux (= 1.0.0)
+    - libwebp/dsp (= 1.0.0)
+    - libwebp/enc (= 1.0.0)
+    - libwebp/mux (= 1.0.0)
+    - libwebp/utils (= 1.0.0)
+    - libwebp/webp (= 1.0.0)
+  - libwebp/core (1.0.0):
+    - libwebp/webp
+  - libwebp/dec (1.0.0):
+    - libwebp/core
+  - libwebp/demux (1.0.0):
+    - libwebp/core
+  - libwebp/dsp (1.0.0):
+    - libwebp/core
+  - libwebp/enc (1.0.0):
+    - libwebp/core
+  - libwebp/mux (1.0.0):
+    - libwebp/core
+  - libwebp/utils (1.0.0):
+    - libwebp/core
+  - libwebp/webp (1.0.0)
+  - mozjpeg (3.3.1)
+  - spectrum-folly (2018.11.12.00)
+  - SpectrumCore (0.1.0):
+    - spectrum-folly (~> 2018.11.12.00)
+    - SpectrumCore/Plugins/Jpeg (= 0.1.0)
+    - SpectrumCore/Plugins/Png (= 0.1.0)
+    - SpectrumCore/Plugins/Webp (= 0.1.0)
+  - SpectrumCore/Base (0.1.0):
+    - spectrum-folly (~> 2018.11.12.00)
+  - SpectrumCore/Plugins/Jpeg (0.1.0):
+    - mozjpeg
+    - spectrum-folly (~> 2018.11.12.00)
+    - SpectrumCore/Base (~> 0.1.0)
+  - SpectrumCore/Plugins/Png (0.1.0):
+    - libpng
+    - spectrum-folly (~> 2018.11.12.00)
+    - SpectrumCore/Base (~> 0.1.0)
+  - SpectrumCore/Plugins/Webp (0.1.0):
+    - libwebp
+    - spectrum-folly (~> 2018.11.12.00)
+    - SpectrumCore/Base (~> 0.1.0)
+  - SpectrumKit (0.1.0):
+    - spectrum-folly (~> 2018.11.12.00)
+    - SpectrumKit/Plugins/Default (= 0.1.0)
+  - SpectrumKit/Base (0.1.0):
+    - spectrum-folly (~> 2018.11.12.00)
+    - SpectrumCore/Base
+  - SpectrumKit/Base/Tests (0.1.0):
+    - spectrum-folly (~> 2018.11.12.00)
+    - SpectrumCore/Base
+  - SpectrumKit/Plugins/Default (0.1.0):
+    - spectrum-folly (~> 2018.11.12.00)
+    - SpectrumKit/Plugins/Jpeg
+    - SpectrumKit/Plugins/Png
+    - SpectrumKit/Plugins/Webp
+  - SpectrumKit/Plugins/Jpeg (0.1.0):
+    - spectrum-folly (~> 2018.11.12.00)
+    - SpectrumCore/Plugins/Jpeg
+    - SpectrumKit/Base (~> 0.1.0)
+  - SpectrumKit/Plugins/Png (0.1.0):
+    - spectrum-folly (~> 2018.11.12.00)
+    - SpectrumCore/Plugins/Png
+    - SpectrumKit/Base (~> 0.1.0)
+  - SpectrumKit/Plugins/Webp (0.1.0):
+    - spectrum-folly (~> 2018.11.12.00)
+    - SpectrumCore/Plugins/Webp
+    - SpectrumKit/Base (~> 0.1.0)
+
+DEPENDENCIES:
+  - SpectrumCore (from `../../`)
+  - SpectrumKit (from `../../`)
+  - SpectrumKit/Base/Tests (from `../../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - libpng
+    - libwebp
+    - mozjpeg
+    - spectrum-folly
+
+EXTERNAL SOURCES:
+  SpectrumCore:
+    :path: "../../"
+  SpectrumKit:
+    :path: "../../"
+
+SPEC CHECKSUMS:
+  libpng: 9c661ee692282485a9cf7fcf0159458c91b4f943
+  libwebp: d7e0c95fe97245c97e08101eba10702ebb0f6101
+  mozjpeg: a4d59753cccb0d7c2bcb38cd4eb936c72ec59234
+  spectrum-folly: 0b143554b0263383ac75a85b2b22f1f056900d21
+  SpectrumCore: 24a426cd5f9e2ef7d12f7113d15b742324ee3ee9
+  SpectrumKit: b941fd5f10a0096b07c929a498f9a17bd42f0ce1
+
+PODFILE CHECKSUM: 574b0770b7711bc5b6208930c47f1d0eedc64d45
+
+COCOAPODS: 1.5.3

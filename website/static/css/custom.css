@@ -1,0 +1,90 @@
+/*
+ *  Copyright (c) 2004-present, Facebook, Inc.
+ *
+ *  This source code is licensed under the MIT license found in the LICENSE
+ *  file in the root directory of this source tree.
+ */
+
+@media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
+}
+
+@media only screen and (min-width: 1024px) {
+}
+
+@media only screen and (max-width: 1023px) {
+}
+
+@media only screen and (min-width: 1400px) {
+}
+
+@media only screen and (min-width: 1500px) {
+}
+
+.homeContainer {
+  background: #B9459A;
+  padding: 32px;
+}
+
+.inverse {
+  color: #fff;
+}
+
+.inverseLight {
+  color: #fff;
+}
+
+.content {
+  max-width: 850px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content .inverse {
+  font-weight: 200;
+}
+
+.content .inverseLight {
+  font-weight: 100;
+}
+
+.blockContent {
+  font-weight: 300;
+}
+
+.blockContent h2 {
+  color: #5C224C;
+  font-weight: 200;
+}
+
+.blockImage img{
+  width: 64px;
+  height: 64px;
+  fill: #5C224C;
+}
+
+a {
+  color: #8A3373;
+}
+
+.buttons {
+  padding-top: 10px;
+}
+
+.buttons a {
+  border: 1px solid #FFF;
+  border-radius: 3px;
+  color: #FFF;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2em;
+  padding: 10px;
+  margin: 10px;
+  text-transform: uppercase;
+  transition: background 0.3s, color 0.3s;
+}
+
+.buttons a:hover {
+    background: #FFF;
+    color: #B9459A;
+  }

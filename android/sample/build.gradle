@@ -1,0 +1,46 @@
+// Copyright (c) Facebook, Inc. and its affiliates.
+//
+// This source code is licensed under the MIT license found in the
+// LICENSE file in the root directory of this source tree.
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        multiDexEnabled = true
+    }
+
+    splits {
+        abi {
+            enable true
+            universalApk true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt')
+        }
+    }
+}
+
+dependencies {
+    // Android Support Library
+    implementation deps.supportAppCompat
+
+    // Main spectrum Android project with the default plugins
+    implementation project(':android:spectrumdefault')
+
+    // Other implementation dependencies
+    implementation deps.kotlinAndroidKtx
+    implementation deps.kotlinJdk
+    implementation deps.soloader
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="optionPaddingLeft">16dp</dimen>
+    <dimen name="optionPaddingTop">8dp</dimen>
+    <dimen name="optionPaddingRight">16dp</dimen>
+    <dimen name="optionPaddingBottom">8dp</dimen>
+</resources>

@@ -1,0 +1,44 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        buildConfigField "boolean", "IS_INTERNAL_BUILD", 'true'
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile './ApplicationManifest.xml'
+        }
+    }
+
+    dependencies {
+        implementation project(':glog')
+    }
+}
+
+
+apply plugin: SpectrumDownloadAndMergePlugin
+
+downloadAndMergeNativeLibrary {
+  externalSourceUri 'https://github.com/facebook/folly/archive/v2018.09.10.00.tar.gz'
+  externalSourceInclude 'folly-2018.09.10.00/**'
+  overrideInclude '**'
+  filesMatchingPattern '**'
+  filesMatchingAction {
+      it.path = it.path - "folly-2018.09.10.00/"
+  }
+  cacheRevision = 1
+}
+
+preBuild.dependsOn {
+    prepareNativeLibrary
+}
+
+clean.dependsOn {
+    cleanNativeLibrary
+}

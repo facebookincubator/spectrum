@@ -1,0 +1,10 @@
+# Android / Gradle / Intellij
+local.properties
+*.iml
+.gradle
+.idea
+.externalNativeBuild
+build
+external
+androidLibs/third-party/*/merge
+ios/SpectrumKitSample/Pods
