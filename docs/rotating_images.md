@@ -2,7 +2,6 @@
 id: rotating_images
 title: Rotating Images
 ---
-
 To rotate an image, define a rotate requirement in the options' transformations. A rotate requirement has the following parameters:
 
 - Rotate the image by the given degrees. This changes the final image orientation either by changing the metadata's orientation value or reordering the pixels.
@@ -28,7 +27,7 @@ final RotateRequirement rotateRequirement =
 
 ### iOS
 
-```objective-c
+```objc
 FSPRotateRequirement *rotateRequirement = [FSPRotateRequirement
     rotateRequirementWithDegrees:90
           shouldFlipHorizontally:NO

@@ -3,6 +3,7 @@ id: getting_started_ios
 title: Getting Started on iOS
 ---
 
+
 See our [sample apps section](sample_apps.md) for an exemplary project setup.
 
 ## Adding Spectrum to your project
@@ -21,7 +22,7 @@ By default, the `SpectrumKit/Default` sub-spec is used which contains all bundle
 
 The following code encodes a `UIImage` to a JPEG that is stored at the given `targetUrl`:
 
-```objective-c
+```objc
 #import <SpectrumKit/SpectrumKit.h>
 #import <SpectrumKit/FSPDefaultPlugin.h>
 
@@ -38,7 +39,7 @@ FSPResultData *result = [FSPSpectrum.sharedInstance encodeImage:image
                                                         options:options
                                                           error:&error];
 
-// [...]
+/// [...]
 ```
 
 ## Loading specific plugins

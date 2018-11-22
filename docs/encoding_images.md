@@ -29,7 +29,7 @@ EncodeRequirement encodeRequirement =
 
 ### iOS
 
-```objective-c
+```objc
 FSPEncodeRequirement *encodeRequirement =
     [FSPEncodeRequirement encodeRequirementWithFormat:FSPEncodedImageFormat.jpeg
                                                  mode:FSPEncodeRequirementModeLossy
