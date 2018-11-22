@@ -1,4 +1,4 @@
-# Copyright 2004-present Facebook. All Rights Reserved.
+# Copyright (c) Facebook, Inc. and its affiliates.
 
 compiler_flags = '-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 -DSPECTRUM_TARGET_IOS -DSPECTRUM_EXTERNAL'
 
