@@ -22,4 +22,4 @@ For pull requests, please see the [CONTRIBUTING](https://github.com/facebookincu
 
 ## License
 
-Spectrum is [MIT-licensed](https://github.com/facebook/fresco/blob/master/LICENSE).
+Spectrum is [MIT-licensed](./LICENSE).
