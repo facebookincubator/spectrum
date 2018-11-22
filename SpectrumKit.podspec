@@ -2,7 +2,7 @@
 
 compiler_flags = '-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1'
 
-version = '0.1.0'
+version = '0.9.0'
 pinned_version = '~>' + version
 
 Pod::Spec.new do |spec|
@@ -16,7 +16,7 @@ TODO: Add long description of the pod here.
   spec.homepage = 'http://libspectrum.io'
   spec.license = { :type => 'MIT', :file => 'LICENSE' }
   spec.authors = 'Facebook'
-  spec.source = { :git => 'https://github.com/facebookincubator/spectrum.git', :tag => version }
+  spec.source = { :git => 'https://github.com/facebookincubator/spectrum.git', :tag => "v#{version}" }
   spec.ios.deployment_target = '8.0'
   spec.default_subspecs = 'Plugins/Default'
   spec.dependency 'spectrum-folly', "~>2018.11.12.00"
