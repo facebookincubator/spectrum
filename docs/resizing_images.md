@@ -9,22 +9,21 @@ Resizing images is a crucial transformation to reduce the output file size. It i
 
 Spectrum utilizes two methods for changing the resolution of an image:
 
- - _Sampling_: With sampling the decoder will drop pixel information while decoding. This is the most desirable process as it reduces computational costs of decoding and never allocates the full resolution in memory. This can only be done for certain ratios. Example: mozjpeg allows sampling ratios of _i/8_ for _i={1..16}_.
+- _Sampling_: With sampling the decoder will drop pixel information while decoding. This is the most desirable process as it reduces computational costs of decoding and never allocates the full resolution in memory. This can only be done for certain ratios. Example: mozjpeg allows sampling ratios of _i/8_ for _i={1..16}_.
 
- - _Interpolation_: In cases where sampling does not allow for a result that fulfills the request or the decompressor does not provide support, Spectrum uses classical interpolation. By default it uses the [magic kernel](http://www.johncostella.com/magic/). A configuration option allows using bicubic interpolation.
+- _Interpolation_: In cases where sampling does not allow for a result that fulfills the request or the decompressor does not provide support, Spectrum uses classical interpolation. By default it uses the [magic kernel](http://www.johncostella.com/magic/). A configuration option allows using bicubic interpolation.
 
 ## Resizing parameters
 
- When expressing the size requirement, the provided resize mode defines the desired precision of the final size. Allowing more flexibility of the target resolution usually results in more efficient execution.
+When expressing the size requirement, the provided resize mode defines the desired precision of the final size. Allowing more flexibility of the target resolution usually results in more efficient execution.
 
- - _Exact_: If the input image was larger than the target size, the final image's longest side fit exactly with one of the provided target boundaries. Where no sampling ratio results in the exact size, interpolation is used.
+- _Exact_: If the input image was larger than the target size, the final image's longest side fit exactly with one of the provided target boundaries. Where no sampling ratio results in the exact size, interpolation is used.
 
- - _Exact or smaller_: If the input image was larger than the target size, it will fit within the provided target boundaries. Spectrum might choose a slightly smaller size if it allows to just use sampling ratios. This usually results in a more efficient execution.
+- _Exact or smaller_: If the input image was larger than the target size, it will fit within the provided target boundaries. Spectrum might choose a slightly smaller size if it allows to just use sampling ratios. This usually results in a more efficient execution.
 
- - _Exact or larger_: Similar to the previous case, but instead allows the image to be larger than the target boundaries. This increases the likelihood that the most efficient execution can be used.
+- _Exact or larger_: Similar to the previous case, but instead allows the image to be larger than the target boundaries. This increases the likelihood that the most efficient execution can be used.
 
 > Spectrum will never upscale an image
-
 
 ## Code samples
 
@@ -50,7 +49,7 @@ final TranscodeOptions transcodeOptions = TranscodeOptions.Builder(/*...*/)
 
 ### iOS
 
-```objc
+```objective-c
 FSPResizeRequirement *resizeRequirement = [FSPResizeRequirement
     initWithMode:FSPResizeRequirementModeExactOrSmaller
       targetSize:CGSizeMake(2048, 2048)];

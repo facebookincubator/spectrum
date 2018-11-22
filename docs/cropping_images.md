@@ -30,7 +30,7 @@ final CropRequirement cropRequirement =
 
 ### iOS
 
-```objc
+```objective-c
 FSPRelativeToOriginCropRequirement *cropRequirement =
     [FSPRelativeToOriginCropRequirement relativeToOriginCropRequirementWithValues:{
       .top = 0.25f,
