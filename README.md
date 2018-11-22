@@ -8,17 +8,17 @@ Find out more at our [website](https://libspectrum.io).
 
 ## Requirements
 
-Spectrum was built with mobile iOS and Android in mind but could be wrapped for any platform .
+Spectrum was built with mobile iOS and Android in mind but could be wrapped for any platform.
 
 ## Getting started
 
-Please refer to our *Getting Started chapters* in our documentation to start using Spectrum to transcode your images on [Android](https://libspectrum.io/docs/getting_started_android) and [iOS](https://libspectrum.io/docs/getting_started_ios).
+Please refer to our _Getting Started chapters_ in our documentation to start using Spectrum to transcode your images on [Android](https://libspectrum.io/docs/getting_started_android) and [iOS](https://libspectrum.io/docs/getting_started_ios).
 
 ## Join the Spectrum community
 
 Please use our [issues page](https://github.com/facebookincubator/spectrum/issues) to let us know of any problems.
 
-For pull requests, please see the [CONTRIBUTING](https://github.com/facebookincubator/spectrum/blob/master/CONTRIBUTING.md) file for information on how to help out.
+For pull requests, please see the [CONTRIBUTING](./CONTRIBUTING.md) file for information on how to help out.
 
 ## License
 

@@ -9,7 +9,7 @@ The Spectrum repository provides sample applications that allow developers to qu
 
 ![Screenshot of the sample app running on Android](assets/sample_app_android_screen.png)
 
-The Android sample app is written in Kotlin. You will first setup your local environment and clone the repository by following the instructions from [the contributing chapter](contributing_android.md). Afterwards select the `sample` target in AndroidStudio to install it on your emulator or device.
+The Android sample app is written in Kotlin. You will first setup your local environment and clone the repository by following the instructions from [the contributing chapter](contributing_android.md). Afterwards, select the `sample` target in AndroidStudio to install it on your emulator or device.
 
 ## iOS
 

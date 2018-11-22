@@ -3,7 +3,7 @@ id: getting_started_android
 title: Getting Started on Android
 ---
 
-To integrate Spectrum into your project, simply add new dependencies to your app module, initialize them at application level, and construct a new instance of the `Spectrum` class. Then you are all set and ready for executing image operations.
+To integrate Spectrum into your project, simply add new dependencies to your app module, initialize them at the application level, and construct a new instance of the `Spectrum` class. Then you are all set and ready for executing image operations.
 
 See our [sample apps section](sample_apps.md) for an exemplary project setup.
 
@@ -41,7 +41,7 @@ public void onCreate() {
 }
 ```
 
-Then you can instantiate Spectrum. The constructor requires a `SpectrumLogger` and a list of `SpectrumPlugins`. After it is constructed the `Spectrum` object can handle multiple operations independently as it is thread-safe. Here, we load the default plugin list that includes support for JPEG, PNG and WebP:
+Then you can instantiate Spectrum. The constructor requires a `SpectrumLogger` and a list of `SpectrumPlugins`. After it is constructed the `Spectrum` object can handle multiple operations independently as it is thread-safe. Here, we load the default plugin list that includes support for JPEG, PNG, and WebP:
 
 ```java
 public void onCreate() {
@@ -54,7 +54,7 @@ public void onCreate() {
 
 ## Using Spectrum
 
-Now you are ready to use Spectrum in your application. Each of the operation will require a source to read the input from, a sink where the output is created, the corresponding options and a caller context.
+Now you are ready to use Spectrum in your application. Each of the operations will require a source to read the input from, a sink where the output is created, the corresponding options and a caller context.
 
 ```java
 mSpectrum.transcode(
@@ -64,7 +64,7 @@ mSpectrum.transcode(
   "my_callsite_identifier");
 ```
 
- The other sections show how to [transcode images for upload](transcoding_images_for_upload) and how to execute other common operations. When reading or writing to user storage, do not forget to [request the correct permissions](https://developer.android.com/training/data-storage/files#ExternalStoragePermissions).
+The other sections show how to [transcode images for upload](transcoding_images_for_upload) and how to execute other common operations. When reading or writing to user storage, do not forget to [request the correct permissions](https://developer.android.com/training/data-storage/files#ExternalStoragePermissions).
 
 ## Loading specific plugins
 

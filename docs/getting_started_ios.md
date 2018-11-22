@@ -3,7 +3,6 @@ id: getting_started_ios
 title: Getting Started on iOS
 ---
 
-
 See our [sample apps section](sample_apps.md) for an exemplary project setup.
 
 ## Adding Spectrum to your project
@@ -44,7 +43,7 @@ FSPResultData *result = [FSPSpectrum.sharedInstance encodeImage:image
 
 ## Loading specific plugins
 
-`FSPDefaultPlugin` loads all bundled plugins (i.e `FSPJpegPlugin`, `FSPPngPlugin` & `FSPWebpPlugin`). It also provides a `sharedInstance` singleton for easy access to `FSPSpectrum`. If want to load plugins more granularly, only include the desired sub-specs in your `Podfile`. The following example only adds the JPEG plugin:
+`FSPDefaultPlugin` loads all bundled plugins (i.e `FSPJpegPlugin`, `FSPPngPlugin` & `FSPWebpPlugin`). It also provides a `sharedInstance` singleton for easy access to `FSPSpectrum`. If you want to load plugins more granularly, only include the desired sub-specs in your `Podfile`. The following example only adds the JPEG plugin:
 
 ```Podfile
 pod 'SpectrumKit/Plugins/Jpeg'
