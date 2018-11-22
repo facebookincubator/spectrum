@@ -13,7 +13,7 @@ The following code provides a plausible configuration for processing images for 
 
 ### Android
 
-As most image selection code will provide an `URI` for the user image, it first needs to be resolved to an input stream.
+As most image selection code will provide a `URI` for the user image, it first needs to be resolved to an input stream.
 
 ```java
 try (final InputStream inputStream = contentResolver.openInputStream(uri)) {

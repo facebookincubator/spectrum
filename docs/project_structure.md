@@ -3,7 +3,7 @@ id: project_structure
 title: Project Structure
 ---
 
-The repository’s structure revolves around three main components: the C++ core library and the Android and iOS wrappers. Each of them comes with unit and integration tests plus a sample sample app per wrapper. The core C++ library contains all the shared code. Subsequently, the Android and iOS wrappers mirror the core's API.
+The repository’s structure revolves around three main components: the C++ core library and the Android and iOS wrappers. Each of them comes with unit and integration tests plus a sample app per wrapper. The core C++ library contains all the shared code. Subsequently, the Android and iOS wrappers mirror the core's API.
 
 ## C++
 
@@ -21,7 +21,7 @@ The Android wrapper is built in Java and calls the shared C++ code through a JNI
 - `android/src/main/java`: Contains the public Alchemist API and the calls into the JNI layer.
 - `android/src/main/cpp/`: The JNI integration that converts between the Java objects and C++ types.
 - `android/src/test/`: Unit tests for the Alchemist API.
-- `android/src/androidTest/`: Integration tests that both perform end-to-end test using SSIM comparison and particular checks of JNI conversions. Not yet open-sourced.
+- `android/src/androidTest/`: Integration tests that both perform an end-to-end test using SSIM comparison and particular checks of JNI conversions. Not yet open-sourced.
 - `android/sample/src/main/`: A sample app that demonstrates how to integrate Alchemist into your project.
 - `androidLibs/fbjni`: Internal library in (mostly) C++ that helps to write readable and correct JNI code.
 - `androidLibs/third-party`: Destination for all external libraries (e.g. mozjpeg). They are downloaded during build and patched with our configuration.
@@ -29,7 +29,7 @@ The Android wrapper is built in Java and calls the shared C++ code through a JNI
 
 ## iOS
 
-The iOS wrapper is built in Objective-C++ and calls the C++ library directly. It currently only support CocoaPods as a dependency manager. See the [Contributing on iOS](contributing_ios.md) section for more details.
+The iOS wrapper is built in Objective-C++ and calls the C++ library directly. It currently only supports CocoaPods as a dependency manager. See the [Contributing on iOS](contributing_ios.md) section for more details.
 
 - `ios/SpectrumKit/`: The framework's root folder.
   - `SpectrumKit/`: Sources of the main target.

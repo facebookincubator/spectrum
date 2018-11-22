@@ -3,11 +3,11 @@ id: faq
 title: FAQ
 ---
 
-If you have identified a common question and answer that should be featured here, please do not hesitate to create an issue or pull-request.
+If you have identified a common question and answer that should be featured here, please do not hesitate to create an issue or pull request.
 
 ### Why is Spectrum's version number 0.9.0? Is it ready to use?
 
-We decided to launch with version number 0.9.0 to allow us to incorporate early feedback by the community before finalizing the API. This is also because we are using a different [build tool](https://buckbuild.com/) internally. We aim to reach 1.0.0 before the end of year 2018.
+We decided to launch with version number 0.9.0 to allow us to incorporate early feedback by the community before finalizing the API. This is also because we are using a different [build tool](https://buckbuild.com/) internally. We aim to reach 1.0.0 before the end of the year 2018.
 
 ### How do I reduce the APK size impact of Spectrum on Android?
 
