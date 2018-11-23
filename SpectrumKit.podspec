@@ -8,9 +8,9 @@ pinned_version = '~>' + version
 Pod::Spec.new do |spec|
   spec.name = 'SpectrumKit'
   spec.version = version
-  spec.summary = 'A short description of Spectrum.'
+  spec.summary = 'A client-side image transcoding library.'
   spec.description = <<-DESC
-TODO: Add long description of the pod here.
+Spectrum is a cross-platform image transcoding library that can easily be integrated into an  iOS project to efficiently perform common image operations.
                        DESC
 
   spec.homepage = 'http://libspectrum.io'
