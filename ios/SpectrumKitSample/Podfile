@@ -4,5 +4,5 @@ platform :ios, '12.0'
 
 target 'SpectrumKitSample-iOS' do
   pod 'SpectrumCore', :path => '../../'
-  pod 'SpectrumKit', :path => '../../', :testspecs => ['Base/Tests']
+  pod 'SpectrumKit', :path => '../../'
 end

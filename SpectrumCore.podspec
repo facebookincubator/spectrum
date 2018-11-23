@@ -27,7 +27,7 @@ Spectrum is a cross-platform image transcoding library that can easily be integr
 
   spec.subspec 'Base' do |base_spec|
     base_spec.header_dir = 'spectrum'
-    base_spec.header_mappings_dir = 'cpp/src'
+    base_spec.header_mappings_dir = 'cpp/spectrum'
     base_spec.source_files = 'cpp/spectrum/**/*.{h,cpp}'
     base_spec.exclude_files = 'cpp/spectrum/plugins'
   end

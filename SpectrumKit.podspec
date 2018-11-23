@@ -32,10 +32,6 @@ Spectrum is a cross-platform image transcoding library that can easily be integr
                                     'ios/SpectrumKit/SpectrumKit/Requirements/*.h',
                                     'ios/SpectrumKit/SpectrumKit/Misc/*.h',
                                     'ios/SpectrumKit/SpectrumKit/Image/*.h'
-
-    base_spec.test_spec 'Tests' do |base_spec_tests|
-      base_spec_tests.source_files = 'ios/SpectrumKit/SpectrumKitTests/**/*.{m,mm}'
-    end
   end
 
   spec.subspec 'Plugins' do |plugins_spec|
