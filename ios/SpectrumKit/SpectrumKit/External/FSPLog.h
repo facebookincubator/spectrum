@@ -8,7 +8,7 @@
 #define FSPReportMustFixIfNot(condition, message) NSAssert(condition, message)
 #define FSPReportMustFixIfNil(condition, message) NSAssert(condition != nil, message)
 #define FSPReportMustFixIf(condition, message) NSAssert(!(condition), message)
-#define FSPCReportMustFix(condition, message) NSCAssert(!(condition), message)
+#define FSPCReportMustFix(message, desc) NSCAssert1(false, message, desc)
 #define FSPReportMustFixIfFalse(condition, message) NSCAssert(condition, message)
 
 #define FSP_LINK_REQUIRE(name)
