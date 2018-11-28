@@ -141,6 +141,10 @@ static image::ChromaSamplingMode FSPInternalChromaSamplingModeFromChromaSampling
       return image::ChromaSamplingMode::S420;
     case FSPImageChromaSamplingMode422:
       return image::ChromaSamplingMode::S422;
+    case FSPImageChromaSamplingMode411:
+      return image::ChromaSamplingMode::S411;
+    case FSPImageChromaSamplingMode440:
+      return image::ChromaSamplingMode::S440;
   }
 }
 
@@ -153,6 +157,10 @@ static FSPImageChromaSamplingMode FSPImageChromaSamplingModeFromInternalChromaSa
       return FSPImageChromaSamplingMode420;
     case image::ChromaSamplingMode::S422:
       return FSPImageChromaSamplingMode422;
+    case image::ChromaSamplingMode::S411:
+      return FSPImageChromaSamplingMode411;
+    case image::ChromaSamplingMode::S440:
+      return FSPImageChromaSamplingMode440;
   }
 }
 

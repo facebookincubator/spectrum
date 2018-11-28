@@ -28,6 +28,8 @@ enum class ChromaSamplingMode {
   S444 = 0,
   S420 = 1,
   S422 = 2,
+  S411 = 3,
+  S440 = 4,
 };
 
 #define SPECTRUM_UNREACHABLE_IMAGE_CHROMA_SAMPLING_MODE(chromaSamplingMode) \

@@ -62,6 +62,10 @@ std::string Configuration::General::chromaSamplingModeOverrideStringFromValue(
       return "S420";
     case ChromaSamplingModeOverride::S422:
       return "S422";
+    case ChromaSamplingModeOverride::S440:
+      return "S440";
+    case ChromaSamplingModeOverride::S411:
+      return "S411";
     default:
       return core::makeUnknownWithValue<std::uint8_t>(
           chromaSamplingModeOverride);
@@ -78,6 +82,10 @@ Configuration::General::chromaSamplingModeOverrideFromChromaSamplingMode(
       return Configuration::General::ChromaSamplingModeOverride::S420;
     case image::ChromaSamplingMode::S422:
       return Configuration::General::ChromaSamplingModeOverride::S422;
+    case image::ChromaSamplingMode::S440:
+      return Configuration::General::ChromaSamplingModeOverride::S440;
+    case image::ChromaSamplingMode::S411:
+      return Configuration::General::ChromaSamplingModeOverride::S411;
   }
 }
 
@@ -94,6 +102,10 @@ Configuration::General::chromaSamplingModeOverrideToChromaSamplingMode(
       return image::ChromaSamplingMode::S420;
     case Configuration::General::ChromaSamplingModeOverride::S422:
       return image::ChromaSamplingMode::S422;
+    case Configuration::General::ChromaSamplingModeOverride::S440:
+      return image::ChromaSamplingMode::S440;
+    case Configuration::General::ChromaSamplingModeOverride::S411:
+      return image::ChromaSamplingMode::S411;
   }
 }
 
@@ -106,6 +118,8 @@ Configuration::General::chromaSamplingModeOverrideFromValue(const int value) {
     case ChromaSamplingModeOverride::S444:
     case ChromaSamplingModeOverride::S420:
     case ChromaSamplingModeOverride::S422:
+    case ChromaSamplingModeOverride::S440:
+    case ChromaSamplingModeOverride::S411:
       return chromaSamplingModeOverride;
     default:
       SPECTRUM_UNREACHABLE_CONFIGURATION_CHROMA_SAMPLING_MODE_OVERRIDE(

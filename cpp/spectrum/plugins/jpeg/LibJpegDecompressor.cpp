@@ -99,6 +99,14 @@ image::ChromaSamplingMode LibJpegDecompressor::_chromaSamplingMode() {
       libJpegDecompressInfo.max_h_samp_factor == 2 &&
       libJpegDecompressInfo.max_v_samp_factor == 1) {
     return image::ChromaSamplingMode::S422;
+  } else if (
+      libJpegDecompressInfo.max_h_samp_factor == 4 &&
+      libJpegDecompressInfo.max_v_samp_factor == 1) {
+    return image::ChromaSamplingMode::S411;
+  } else if (
+      libJpegDecompressInfo.max_h_samp_factor == 1 &&
+      libJpegDecompressInfo.max_v_samp_factor == 2) {
+    return image::ChromaSamplingMode::S440;
   } else {
     SPECTRUM_ERROR(codecs::error::DecompressorUnexpectedChromaSamplingMode);
   }

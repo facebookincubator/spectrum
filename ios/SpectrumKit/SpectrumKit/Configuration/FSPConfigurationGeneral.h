@@ -13,6 +13,8 @@ typedef NS_ENUM(NSUInteger, FSPConfigurationChromaSamplingModeOverride) {
   FSPConfigurationChromaSamplingModeOverride444,
   FSPConfigurationChromaSamplingModeOverride420,
   FSPConfigurationChromaSamplingModeOverride422,
+  FSPConfigurationChromaSamplingModeOverride411,
+  FSPConfigurationChromaSamplingModeOverride440,
 } NS_SWIFT_NAME(ConfigurationChromaSamplingMode);
 
 NS_SWIFT_NAME(ConfigurationGeneral)

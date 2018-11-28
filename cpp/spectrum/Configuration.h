@@ -56,6 +56,8 @@ struct Configuration {
       S444,
       S420,
       S422,
+      S411,
+      S440,
     };
 
     static std::string chromaSamplingModeOverrideStringFromValue(

@@ -17,6 +17,8 @@ typedef NS_ENUM(NSUInteger, FSPImageChromaSamplingMode) {
   FSPImageChromaSamplingMode444 = 0,
   FSPImageChromaSamplingMode420 = 1,
   FSPImageChromaSamplingMode422 = 2,
+  FSPImageChromaSamplingMode411 = 3,
+  FSPImageChromaSamplingMode440 = 4,
 } NS_SWIFT_NAME(ImageChromaSamplingMode);
 
 /**

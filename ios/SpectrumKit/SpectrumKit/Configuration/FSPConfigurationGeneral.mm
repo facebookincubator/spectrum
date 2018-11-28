@@ -152,6 +152,10 @@ static FSPConfigurationChromaSamplingModeOverride FSPConfigurationChromaSampling
       return FSPConfigurationChromaSamplingModeOverride420;
     case Configuration::General::ChromaSamplingModeOverride::S422:
       return FSPConfigurationChromaSamplingModeOverride422;
+    case Configuration::General::ChromaSamplingModeOverride::S411:
+      return FSPConfigurationChromaSamplingModeOverride411;
+    case Configuration::General::ChromaSamplingModeOverride::S440:
+      return FSPConfigurationChromaSamplingModeOverride440;
   }
 }
 
@@ -166,6 +170,10 @@ static Configuration::General::ChromaSamplingModeOverride FSPInternalConfigurati
       return Configuration::General::ChromaSamplingModeOverride::S420;
     case FSPConfigurationChromaSamplingModeOverride422:
       return Configuration::General::ChromaSamplingModeOverride::S422;
+    case FSPConfigurationChromaSamplingModeOverride411:
+      return Configuration::General::ChromaSamplingModeOverride::S411;
+    case FSPConfigurationChromaSamplingModeOverride440:
+      return Configuration::General::ChromaSamplingModeOverride::S440;
   }
 }
 

@@ -20,6 +20,10 @@ std::string chromaSamplingModeStringValue(
       return "420";
     case ChromaSamplingMode::S422:
       return "422";
+    case ChromaSamplingMode::S411:
+      return "411";
+    case ChromaSamplingMode::S440:
+      return "440";
   }
 }
 
@@ -30,6 +34,8 @@ ChromaSamplingMode chromaSamplingModeFromValue(const int value) {
     case image::ChromaSamplingMode::S444:
     case image::ChromaSamplingMode::S420:
     case image::ChromaSamplingMode::S422:
+    case image::ChromaSamplingMode::S411:
+    case image::ChromaSamplingMode::S440:
       return chromaSamplingMode;
     default:
       SPECTRUM_UNREACHABLE_IMAGE_CHROMA_SAMPLING_MODE(chromaSamplingMode);

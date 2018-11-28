@@ -20,8 +20,14 @@ public enum ImageChromaSamplingMode {
   /** Sampling mode 4:2:0 uses 4 luma information per chroma information */
   S420(1),
 
-  /** Sampling mode 4:2:2 uses 2 vertical luma information per chroma information */
-  S422(2);
+  /** Sampling mode 4:2:2 uses 2 horizontal luma information per chroma information */
+  S422(2),
+
+  /** Sampling mode 4:1:1 uses 4 horizontal luma information per chroma information */
+  S411(3),
+
+  /** Sampling mode 4:4:0 uses 2 vertical luma information per chroma information */
+  S440(4);
 
   @DoNotStrip public final int value;
 
