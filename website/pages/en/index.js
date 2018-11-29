@@ -87,7 +87,7 @@ const Features = () => (
         title: 'High quality output that is small',
       },
       {
-        content: 'Because Spectrum\'s API is declarative, you define the output characteristics of the image and Spectrum does the complicated orchestrating for you! This helps to prevent common missteps such as incomplete handling of EXIF metadata',
+        content: 'Because Spectrum\'s API is declarative, you define the output characteristics of the image and Spectrum does the complicated orchestrating for you! This helps to prevent common missteps such as incomplete handling of EXIF metadata.',
         image: imgUrl('icon_code_phone.svg'),
         imageAlign: 'top',
         title: 'Simple to use and easy to learn',
