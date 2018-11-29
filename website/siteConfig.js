@@ -37,7 +37,7 @@ const siteConfig = {
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
   copyright: `Copyright © ${new Date().getFullYear()} Facebook`,
 
-  usePrism: ['jsx'],
+  usePrism: ['java', 'objective-c', 'groovy', 'bash'],
   highlight: {
     theme: 'atom-one-dark',
   },
