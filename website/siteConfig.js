@@ -24,7 +24,7 @@ const siteConfig = {
   ],
 
   /* path to images for header/footer */
-  headerIcon: 'img/spectrum_logo_no_circle_white.png',
+  headerIcon: 'img/spectrum_logo_square.png',
   footerIcon: 'img/spectrum_logo_white.svg',
   favicon: 'img/favicon.png',
 
