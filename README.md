@@ -1,6 +1,6 @@
 # Spectrum
 
-<img src="website/static/spectrum_logo_circle.png" width=150 align=right>
+<img src="website/static/img/spectrum_logo_circle.png" width=150 align=right>
 
 Spectrum is a cross-platform image transcoding library that can easily be integrated into an Android or iOS project to efficiently perform common image operations.
 
