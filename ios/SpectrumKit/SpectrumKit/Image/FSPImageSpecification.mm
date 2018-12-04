@@ -128,7 +128,7 @@ using namespace facebook::spectrum;
                              format:FSPImageFormat.bitmap
                  pixelSpecification:[FSPImagePixelSpecification imagePixelSpecificationFromImage:image]
                         orientation:FSPImageOrientationFromImage(image)
-                 chromaSamplingMode:FSPImageChromaSamplingMode444
+                 chromaSamplingMode:FSPImageChromaSamplingMode420
                            metadata:[FSPImageMetadata imageMetadataFromImage:image]];
 }
 
