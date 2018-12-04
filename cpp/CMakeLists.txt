@@ -12,21 +12,21 @@ project(spectrumcpp CXX)
 set(CMAKE_VERBOSE_MAKEFILE on)
 
 file(GLOB spectrumcpp_SOURCES
-  Spectrum/*.cpp
-  Spectrum/codecs/*.cpp
-  Spectrum/codecs/bitmap/*.cpp
-  Spectrum/codecs/isobmff/*.cpp
-  Spectrum/core/*.cpp
-  Spectrum/core/decisions/*.cpp
-  Spectrum/core/matchers/*.cpp
-  Spectrum/core/recipes/*.cpp
-  Spectrum/core/proc/*.cpp
-  Spectrum/core/proc/legacy/*.cpp
-  Spectrum/core/utils/*.cpp
-  Spectrum/image/*.cpp
-  Spectrum/image/metadata/*.cpp
-  Spectrum/io/*.cpp
-  Spectrum/requirements/*.cpp
+  spectrum/*.cpp
+  spectrum/codecs/*.cpp
+  spectrum/codecs/bitmap/*.cpp
+  spectrum/codecs/isobmff/*.cpp
+  spectrum/core/*.cpp
+  spectrum/core/decisions/*.cpp
+  spectrum/core/matchers/*.cpp
+  spectrum/core/recipes/*.cpp
+  spectrum/core/proc/*.cpp
+  spectrum/core/proc/legacy/*.cpp
+  spectrum/core/utils/*.cpp
+  spectrum/image/*.cpp
+  spectrum/image/metadata/*.cpp
+  spectrum/io/*.cpp
+  spectrum/requirements/*.cpp
 )
 
 add_library(spectrumcpp SHARED
