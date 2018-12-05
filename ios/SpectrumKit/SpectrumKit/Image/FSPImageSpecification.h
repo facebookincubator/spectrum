@@ -14,11 +14,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, FSPImageChromaSamplingMode) {
-  FSPImageChromaSamplingMode444 = 0,
-  FSPImageChromaSamplingMode420 = 1,
-  FSPImageChromaSamplingMode422 = 2,
-  FSPImageChromaSamplingMode411 = 3,
-  FSPImageChromaSamplingMode440 = 4,
+  FSPImageChromaSamplingModeNone = 0,
+  FSPImageChromaSamplingMode444,
+  FSPImageChromaSamplingMode420,
+  FSPImageChromaSamplingMode422,
+  FSPImageChromaSamplingMode411,
+  FSPImageChromaSamplingMode440,
 } NS_SWIFT_NAME(ImageChromaSamplingMode);
 
 /**

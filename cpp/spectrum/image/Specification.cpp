@@ -12,18 +12,22 @@ namespace spectrum {
 namespace image {
 
 std::string chromaSamplingModeStringValue(
-    const ChromaSamplingMode chromaSamplingMode) {
-  switch (chromaSamplingMode) {
-    case ChromaSamplingMode::S444:
-      return "444";
-    case ChromaSamplingMode::S420:
-      return "420";
-    case ChromaSamplingMode::S422:
-      return "422";
-    case ChromaSamplingMode::S411:
-      return "411";
-    case ChromaSamplingMode::S440:
-      return "440";
+    const folly::Optional<ChromaSamplingMode>& chromaSamplingMode) {
+  if (chromaSamplingMode.hasValue()) {
+    switch (*chromaSamplingMode) {
+      case ChromaSamplingMode::S444:
+        return "444";
+      case ChromaSamplingMode::S420:
+        return "420";
+      case ChromaSamplingMode::S422:
+        return "422";
+      case ChromaSamplingMode::S411:
+        return "411";
+      case ChromaSamplingMode::S440:
+        return "440";
+    }
+  } else {
+    return "none";
   }
 }
 

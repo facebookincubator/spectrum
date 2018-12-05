@@ -128,13 +128,15 @@ using namespace facebook::spectrum;
                              format:FSPImageFormat.bitmap
                  pixelSpecification:[FSPImagePixelSpecification imagePixelSpecificationFromImage:image]
                         orientation:FSPImageOrientationFromImage(image)
-                 chromaSamplingMode:FSPImageChromaSamplingMode420
+                 chromaSamplingMode:FSPImageChromaSamplingModeNone
                            metadata:[FSPImageMetadata imageMetadataFromImage:image]];
 }
 
-static image::ChromaSamplingMode FSPInternalChromaSamplingModeFromChromaSamplingMode(FSPImageChromaSamplingMode chromaSamplingMode)
+static folly::Optional<image::ChromaSamplingMode> FSPInternalChromaSamplingModeFromChromaSamplingMode(FSPImageChromaSamplingMode chromaSamplingMode)
 {
   switch (chromaSamplingMode) {
+    case FSPImageChromaSamplingModeNone:
+      return folly::none;
     case FSPImageChromaSamplingMode444:
       return image::ChromaSamplingMode::S444;
     case FSPImageChromaSamplingMode420:
@@ -148,19 +150,23 @@ static image::ChromaSamplingMode FSPInternalChromaSamplingModeFromChromaSampling
   }
 }
 
-static FSPImageChromaSamplingMode FSPImageChromaSamplingModeFromInternalChromaSamplingMode(const image::ChromaSamplingMode chromaSamplingMode)
+static FSPImageChromaSamplingMode FSPImageChromaSamplingModeFromInternalChromaSamplingMode(const folly::Optional<image::ChromaSamplingMode>& chromaSamplingMode)
 {
-  switch (chromaSamplingMode) {
-    case image::ChromaSamplingMode::S444:
-      return FSPImageChromaSamplingMode444;
-    case image::ChromaSamplingMode::S420:
-      return FSPImageChromaSamplingMode420;
-    case image::ChromaSamplingMode::S422:
-      return FSPImageChromaSamplingMode422;
-    case image::ChromaSamplingMode::S411:
-      return FSPImageChromaSamplingMode411;
-    case image::ChromaSamplingMode::S440:
-      return FSPImageChromaSamplingMode440;
+  if (chromaSamplingMode.hasValue()) {
+    switch (*chromaSamplingMode) {
+      case image::ChromaSamplingMode::S444:
+        return FSPImageChromaSamplingMode444;
+      case image::ChromaSamplingMode::S420:
+        return FSPImageChromaSamplingMode420;
+      case image::ChromaSamplingMode::S422:
+        return FSPImageChromaSamplingMode422;
+      case image::ChromaSamplingMode::S411:
+        return FSPImageChromaSamplingMode411;
+      case image::ChromaSamplingMode::S440:
+        return FSPImageChromaSamplingMode440;
+    }
+  } else {
+    return FSPImageChromaSamplingModeNone;
   }
 }
 

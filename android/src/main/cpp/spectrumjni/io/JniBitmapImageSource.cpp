@@ -47,7 +47,6 @@ image::Specification imageSpecificationFromBitmap(
           },
       .format = image::formats::Bitmap,
       .pixelSpecification = image::pixel::specifications::RGBA,
-      .chromaSamplingMode = image::ChromaSamplingMode::S444,
       .orientation = image::Orientation::Up,
       .metadata = {},
   };

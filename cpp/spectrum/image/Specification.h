@@ -38,7 +38,7 @@ enum class ChromaSamplingMode {
       chromaSamplingModeStringValue(chromaSamplingMode))
 
 std::string chromaSamplingModeStringValue(
-    const ChromaSamplingMode chromaSamplingMode);
+    const folly::Optional<ChromaSamplingMode>& chromaSamplingMode);
 
 ChromaSamplingMode chromaSamplingModeFromValue(const int value);
 
@@ -50,7 +50,7 @@ struct Specification {
   Format format;
   pixel::Specification pixelSpecification;
   Orientation orientation{Orientation::Up};
-  ChromaSamplingMode chromaSamplingMode{ChromaSamplingMode::S444};
+  folly::Optional<ChromaSamplingMode> chromaSamplingMode;
   Metadata metadata{};
 
   std::string string() const;

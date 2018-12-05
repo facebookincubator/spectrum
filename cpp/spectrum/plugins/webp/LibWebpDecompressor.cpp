@@ -225,7 +225,6 @@ image::Specification LibWebpDecompressor::sourceImageSpecification() {
           },
       .format = image::formats::Webp,
       .pixelSpecification = pixelSpecification,
-      .chromaSamplingMode = image::ChromaSamplingMode::S420,
   };
 
   return *_sourceImageSpecification;

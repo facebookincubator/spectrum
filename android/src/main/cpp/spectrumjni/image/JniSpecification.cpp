@@ -6,6 +6,7 @@
 #include "JniSpecification.h"
 
 #include <fbjni/fbjni.h>
+#include <spectrumjni/JniUtils.h>
 
 namespace facebook {
 namespace spectrum {
@@ -54,7 +55,9 @@ facebook::jni::local_ref<JSpecification> JSpecification::fromNative(
       JFormat::fromNative(specification.format),
       pixel::JSpecification::fromNative(specification.pixelSpecification),
       JOrientation::fromNative(specification.orientation),
-      JChromaSamplingMode::fromNative(specification.chromaSamplingMode),
+      jni::optionalToNullableJavaObject<
+          decltype(specification.chromaSamplingMode),
+          JChromaSamplingMode>(specification.chromaSamplingMode),
       JMetadata::fromNative(specification.metadata));
 }
 
@@ -83,11 +86,12 @@ Orientation JSpecification::orientation() const {
   return getFieldValue(field)->toNative();
 }
 
-ChromaSamplingMode JSpecification::chromaSamplingMode() const {
+folly::Optional<ChromaSamplingMode> JSpecification::chromaSamplingMode() const {
   static const auto field =
       javaClassStatic()->getField<JChromaSamplingMode::javaobject>(
           "chromaSamplingMode");
-  return getFieldValue(field)->toNative();
+  return jni::nullableJavaObjectToOptional<ChromaSamplingMode>(
+      getFieldValue(field));
 }
 
 Metadata JSpecification::metadata() const {

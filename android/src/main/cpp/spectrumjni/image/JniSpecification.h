@@ -47,7 +47,7 @@ class JSpecification : public facebook::jni::JavaClass<JSpecification> {
   Format format() const;
   pixel::Specification pixelSpecification() const;
   Orientation orientation() const;
-  ChromaSamplingMode chromaSamplingMode() const;
+  folly::Optional<ChromaSamplingMode> chromaSamplingMode() const;
   Metadata metadata() const;
 };
 

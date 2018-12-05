@@ -10,6 +10,7 @@ package com.facebook.spectrum.image;
 import android.graphics.Bitmap;
 import com.facebook.jni.annotations.DoNotStrip;
 import com.facebook.spectrum.utils.Preconditions;
+import javax.annotation.Nullable;
 import javax.annotation.concurrent.Immutable;
 
 /**
@@ -24,7 +25,7 @@ public class ImageSpecification {
   @DoNotStrip public final ImageFormat format;
   @DoNotStrip public final ImagePixelSpecification pixelSpecification;
   @DoNotStrip public final ImageOrientation orientation;
-  @DoNotStrip public final ImageChromaSamplingMode chromaSamplingMode;
+  @DoNotStrip @Nullable public final ImageChromaSamplingMode chromaSamplingMode;
   @DoNotStrip public final ImageMetadata metadata;
 
   /**
@@ -36,13 +37,7 @@ public class ImageSpecification {
       final ImageSize size,
       final ImageFormat format,
       final ImagePixelSpecification pixelSpecification) {
-    this(
-        size,
-        format,
-        pixelSpecification,
-        ImageOrientation.UP,
-        ImageChromaSamplingMode.S444,
-        ImageMetadata.empty());
+    this(size, format, pixelSpecification, ImageOrientation.UP, null, ImageMetadata.empty());
   }
 
   @DoNotStrip
@@ -51,7 +46,7 @@ public class ImageSpecification {
       final ImageFormat format,
       final ImagePixelSpecification pixelSpecification,
       final ImageOrientation orientation,
-      final ImageChromaSamplingMode chromaSamplingMode,
+      final @Nullable ImageChromaSamplingMode chromaSamplingMode,
       final ImageMetadata metadata) {
     this.size = Preconditions.checkNotNull(size);
     this.format = Preconditions.checkNotNull(format);

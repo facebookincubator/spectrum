@@ -36,13 +36,14 @@ image::ChromaSamplingMode calculateOutputChromaSamplingMode(
         supportedTargetChromaSamplingModes, *chromaSamplingModeOverride));
     return *chromaSamplingModeOverride;
   } else if (
+      inputImageSpecification.chromaSamplingMode.hasValue() &&
       configuration.jpeg.propagateSamplingModeFromSource() &&
       chromaSamplingModeVectorContains(
           supportedTargetChromaSamplingModes,
-          inputImageSpecification.chromaSamplingMode)) {
+          *inputImageSpecification.chromaSamplingMode)) {
     // We can propagate the sampling mode, and the compressor supports the
     // source chroma sampling mode.
-    return inputImageSpecification.chromaSamplingMode;
+    return *inputImageSpecification.chromaSamplingMode;
   } else {
     SPECTRUM_ENFORCE_IF(supportedTargetChromaSamplingModes.empty());
     return supportedTargetChromaSamplingModes[0];
