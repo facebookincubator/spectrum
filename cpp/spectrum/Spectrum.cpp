@@ -40,9 +40,6 @@ Spectrum::Spectrum(
           _codecRepository,
           std::move(pluginAggregator.encodedImageFormatDetectorHandlers)) {}
 
-template <typename T>
-std::string type_name();
-
 Result Spectrum::decode(
     io::IEncodedImageSource& source,
     io::IBitmapImageSink& sink,
