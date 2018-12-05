@@ -31,7 +31,7 @@ Operation OperationBuilder::build(
 Operation OperationBuilder::build(
     io::RewindableImageSource& source,
     io::IImageSink& sink,
-    Options options) const {
+    const Options& options) const {
   const auto inputImageSpecification =
       _encodedImageSpecificationDetector.detectImageSpecification(
           source, options);

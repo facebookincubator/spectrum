@@ -36,7 +36,7 @@ class OperationBuilder {
   Operation build(
       io::RewindableImageSource& source,
       io::IImageSink& sink,
-      Options options) const;
+      const Options& options) const;
 
  private:
   const Configuration& _configuration;
