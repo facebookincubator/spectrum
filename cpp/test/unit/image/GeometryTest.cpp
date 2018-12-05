@@ -12,8 +12,8 @@ using namespace facebook::spectrum::image;
 
 namespace facebook {
 namespace spectrum {
-namespace test {
 namespace image {
+namespace test {
 
 /**
  * Ratio
@@ -348,7 +348,7 @@ TEST(image_Rect, whenRequestingStringRepresentation_thenCorrect) {
       "{topLeft:{x:42,y:43},size:{width:44,height:45}}", stringRepresentation);
 }
 
-} // namespace image
 } // namespace test
+} // namespace image
 } // namespace spectrum
 } // namespace facebook

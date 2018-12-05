@@ -63,7 +63,7 @@ TEST(core_RuleMatcher, whenNoRulesMatches_thenThrows) {
   ASSERT_EQ(2, functorCallCount);
 }
 
-} // namespace core
 } // namespace test
+} // namespace core
 } // namespace spectrum
 } // namespace facebook

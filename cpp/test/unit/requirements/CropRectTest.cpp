@@ -11,8 +11,8 @@ using namespace facebook::spectrum::requirements;
 
 namespace facebook {
 namespace spectrum {
-namespace test {
 namespace requirements {
+namespace test {
 static constexpr auto defaultRect = image::Rect{
     .topLeft = image::Point{1, 2},
     .size = image::Size{5, 7},
@@ -101,7 +101,7 @@ TEST(requirements_CropRect_Values, whenRotated270_thenCorrect) {
   _assertRotatedCropRequirement(rotateRequirement, expectedRect);
 }
 
-} // namespace requirements
 } // namespace test
+} // namespace requirements
 } // namespace spectrum
 } // namespace facebook

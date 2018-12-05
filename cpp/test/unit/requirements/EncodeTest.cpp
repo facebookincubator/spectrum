@@ -11,10 +11,8 @@ using namespace facebook::spectrum::requirements;
 
 namespace facebook {
 namespace spectrum {
-namespace test {
 namespace requirements {
-
+namespace test {} // namespace test
 } // namespace requirements
-} // namespace test
 } // namespace spectrum
 } // namespace facebook

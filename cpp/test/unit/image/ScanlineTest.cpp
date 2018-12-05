@@ -11,8 +11,8 @@ using namespace facebook::spectrum::image;
 
 namespace facebook {
 namespace spectrum {
-namespace test {
 namespace image {
+namespace test {
 
 TEST(image_Scanline, whenSize_thenSizeInBytes) {
   auto scanline = Scanline(pixel::specifications::RGB, 10);
@@ -52,7 +52,7 @@ TEST(image_Scanline, copyPixelFromTo_whenCopyingRgb_thenMatches) {
   ASSERT_TRUE(std::memcmp(output.data() + 3, pixelsData.data() + 6, 3) == 0);
 }
 
-} // namespace image
 } // namespace test
+} // namespace image
 } // namespace spectrum
 } // namespace facebook

@@ -15,6 +15,7 @@ namespace facebook {
 namespace spectrum {
 namespace core {
 namespace proc {
+namespace test {
 
 TEST(RotationScanlineProcessingBlock, whenRotateUp_thenThrow) {
   ASSERT_ANY_THROW(RotationScanlineProcessingBlock block(
@@ -190,7 +191,8 @@ TEST(
   ASSERT_EQ(nullptr, block.produce());
 }
 
+} // namespace test
 } // namespace proc
-} // namespace proc
+} // namespace core
 } // namespace spectrum
 } // namespace facebook

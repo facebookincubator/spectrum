@@ -11,8 +11,8 @@ using namespace facebook::spectrum::image;
 
 namespace facebook {
 namespace spectrum {
-namespace test {
 namespace image {
+namespace test {
 
 TEST(image_Color, whenIdenticalCompared_thenEqual) {
   const auto a = Color{10, 20, 30};
@@ -28,7 +28,7 @@ TEST(image_Color, whenDifferentCompared_thenNotEqual) {
   ASSERT_NE(a, b);
 }
 
-} // namespace image
 } // namespace test
+} // namespace image
 } // namespace spectrum
 } // namespace facebook

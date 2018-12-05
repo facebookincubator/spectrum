@@ -11,6 +11,7 @@ namespace facebook {
 namespace spectrum {
 namespace core {
 namespace utils {
+namespace test {
 
 TEST(core_Utils, whenSwappingByteOrderOfValue_thenResultIsCorrect) {
   const auto value = std::uint32_t{0xA1B2C3D4};
@@ -36,6 +37,7 @@ TEST(core_Utils, whenConvertingToNativeByteOrder_thenResultCorrect) {
 #endif
 }
 
+} // namespace test
 } // namespace utils
 } // namespace core
 } // namespace spectrum

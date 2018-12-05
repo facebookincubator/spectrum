@@ -11,9 +11,6 @@
 
 namespace facebook {
 namespace spectrum {
-
-using namespace core::matchers;
-
 namespace core {
 namespace matchers {
 namespace test {

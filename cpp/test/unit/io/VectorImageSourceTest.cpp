@@ -14,6 +14,7 @@
 namespace facebook {
 namespace spectrum {
 namespace io {
+namespace test {
 
 TEST(VectorImageSource, whenConstructedFromEmpty_thenNothingRead) {
   auto imageSource = io::testutils::makeVectorImageSource("");
@@ -58,6 +59,7 @@ TEST(
   ASSERT_EQ(specification, imageSource.imageSpecification());
 }
 
+} // namespace test
 } // namespace io
 } // namespace spectrum
 } // namespace facebook

@@ -15,6 +15,7 @@
 namespace facebook {
 namespace spectrum {
 namespace io {
+namespace test {
 
 static constexpr auto ALPHABET = "abcdefghijklmnopqrstuvwxzy";
 
@@ -253,6 +254,7 @@ TEST(
   ASSERT_EQ(3, imageSource.available());
 }
 
+} // namespace test
 } // namespace io
 } // namespace spectrum
 } // namespace facebook

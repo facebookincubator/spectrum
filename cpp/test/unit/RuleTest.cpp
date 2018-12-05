@@ -11,6 +11,7 @@
 
 namespace facebook {
 namespace spectrum {
+namespace test {
 
 TEST(Rule, whenCreated_thenDefaultValuesCorrect) {
   const auto rule = Rule{"rule"};
@@ -25,5 +26,6 @@ TEST(Rule, whenCreated_thenDefaultValuesCorrect) {
   ASSERT_EQ(Rule::RotateSupport::None, rule.rotateSupport);
 }
 
+} // namespace test
 } // namespace spectrum
 } // namespace facebook

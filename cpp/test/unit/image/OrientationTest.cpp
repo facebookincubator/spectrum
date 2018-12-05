@@ -12,8 +12,8 @@ using namespace facebook::spectrum::image;
 
 namespace facebook {
 namespace spectrum {
-namespace test {
 namespace image {
+namespace test {
 
 TEST(image_image_Orientation, whenCreatedFromWrongValue_thenThrows) {
   ASSERT_THROW(orientationFromValue(9), SpectrumException);
@@ -215,7 +215,7 @@ TEST(image_Orientation, whenConvertedToString_thenCorrect) {
       "unknown (9)", orientationStringFromValue(static_cast<Orientation>(9)));
 }
 
-} // namespace image
 } // namespace test
+} // namespace image
 } // namespace spectrum
 } // namespace facebook

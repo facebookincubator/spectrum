@@ -16,6 +16,7 @@ namespace facebook {
 namespace spectrum {
 namespace core {
 namespace proc {
+namespace test {
 
 namespace {
 
@@ -394,6 +395,7 @@ TEST(core_proc_indices_Gray, whenGeneratingGrayAIndices_thenCorrect) {
   assertGrayIndices(reversedGrayA, 0, 1);
 }
 
+} // namespace test
 } // namespace proc
 } // namespace core
 } // namespace spectrum

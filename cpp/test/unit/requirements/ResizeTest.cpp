@@ -11,8 +11,8 @@ using namespace facebook::spectrum::requirements;
 
 namespace facebook {
 namespace spectrum {
-namespace test {
 namespace requirements {
+namespace test {
 
 TEST(Resize, whenCreatingWithDefaults_thenValuesCorrect) {
   const auto requirement = Resize{};
@@ -26,7 +26,7 @@ TEST(Resize, whenComparingWithDifferentValues_thenNotEqual) {
   ASSERT_NE(Resize({.targetSize = image::Size{1, 0}}), Resize());
 }
 
-} // namespace requirements
+} // namespace test
 } // namespace test
 } // namespace spectrum
 } // namespace facebook

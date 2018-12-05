@@ -11,8 +11,8 @@ using namespace facebook::spectrum::image;
 
 namespace facebook {
 namespace spectrum {
-namespace test {
 namespace image {
+namespace test {
 
 TEST(image_Format, whenCreated_thenContainsIdentifier) {
   const auto a = Format{"a"};
@@ -44,7 +44,7 @@ TEST(image_Format, whenJpeg_thenEncodedImageFormat) {
   ASSERT_TRUE(formats::Jpeg.encoded());
 }
 
-} // namespace image
 } // namespace test
+} // namespace image
 } // namespace spectrum
 } // namespace facebook

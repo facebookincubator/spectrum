@@ -12,8 +12,8 @@ using namespace facebook::spectrum::requirements;
 
 namespace facebook {
 namespace spectrum {
-namespace test {
 namespace requirements {
+namespace test {
 namespace {
 
 static constexpr auto defaultValues =
@@ -189,7 +189,7 @@ TEST(requirements_CropAbsoluteToOrigin_Values, whenRotated270_thenCorrect) {
   _assertRotatedCropRequirement(rotateRequirement, expectedValues);
 }
 
-} // namespace requirements
 } // namespace test
+} // namespace requirements
 } // namespace spectrum
 } // namespace facebook

@@ -15,6 +15,7 @@ namespace facebook {
 namespace spectrum {
 namespace core {
 namespace proc {
+namespace test {
 
 //
 // MagicKernel
@@ -312,8 +313,8 @@ TEST(ScalingScanlineProcessingBlock, whenDownscaleAllWhite_thenEqualRgb) {
       {{100, 90, 80}, {100, 90, 80}, {100, 90, 80}}, block.produce().get()));
 }
 
+} // namespace test
 } // namespace proc
 } // namespace core
-
 } // namespace spectrum
 } // namespace facebook

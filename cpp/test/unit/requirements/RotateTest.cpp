@@ -11,8 +11,8 @@ using namespace facebook::spectrum::requirements;
 
 namespace facebook {
 namespace spectrum {
-namespace test {
 namespace requirements {
+namespace test {
 
 TEST(Rotate, whenCreatingWithDefaults_thenValuesCorrect) {
   const auto requirement = Rotate{};
@@ -56,7 +56,7 @@ TEST(Rotate, whenNonZeroRotation_thenNoopIsFalse) {
   ASSERT_FALSE(Rotate({.forceUpOrientation = true}).noop());
 }
 
-} // namespace requirements
 } // namespace test
+} // namespace requirements
 } // namespace spectrum
 } // namespace facebook

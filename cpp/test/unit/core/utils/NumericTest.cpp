@@ -11,9 +11,9 @@ using namespace facebook::spectrum::core::numeric;
 
 namespace facebook {
 namespace spectrum {
-namespace test {
 namespace core {
 namespace numeric {
+namespace test {
 const auto lowestFloat = std::numeric_limits<float>::lowest();
 const auto lowestInt = std::numeric_limits<int>::lowest();
 
@@ -45,8 +45,8 @@ TEST(Numeric, whenConvertingValuesWithinfBounds_thenSucceed) {
   ASSERT_EQ(lowestInt, (_performConversion<float, int>(lowestInt)));
 }
 
+} // namespace test
 } // namespace numeric
 } // namespace core
-} // namespace test
 } // namespace spectrum
 } // namespace facebook

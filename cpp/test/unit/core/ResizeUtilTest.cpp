@@ -12,6 +12,7 @@
 namespace facebook {
 namespace spectrum {
 namespace core {
+namespace test {
 
 //
 // ResizeDecision
@@ -394,6 +395,7 @@ TEST(
   ASSERT_EQ(RESIZE_RATING::GOOD_WITH_SCALING, actual.getRating().first);
 }
 
+} // namespace test
 } // namespace core
 } // namespace spectrum
 } // namespace facebook

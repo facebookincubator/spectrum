@@ -15,6 +15,7 @@
 namespace facebook {
 namespace spectrum {
 namespace io {
+namespace test {
 
 TEST(FileImageSink, whenOpeningDevNull_thenNothingThrows) {
   FileImageSink sink("/dev/null");
@@ -40,6 +41,7 @@ TEST(FileImageSink, whenWritingToDevNull_thenWriteCountIncreases) {
   ASSERT_EQ(5, sink.totalBytesWritten());
 }
 
+} // namespace test
 } // namespace io
 } // namespace spectrum
 } // namespace facebook

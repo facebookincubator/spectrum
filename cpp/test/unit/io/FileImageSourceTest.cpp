@@ -15,6 +15,7 @@
 namespace facebook {
 namespace spectrum {
 namespace io {
+namespace test {
 
 TEST(FileImageSource, whenOpeningNonExistingFile_thenThrow) {
   ASSERT_THROW(
@@ -85,6 +86,7 @@ TEST(FileImageSource, whenAvailableAfterRead_thenMatchesRemainingBufferLength) {
   ASSERT_EQ(26 - 10, source.available());
 }
 
+} // namespace test
 } // namespace io
 } // namespace spectrum
 } // namespace facebook

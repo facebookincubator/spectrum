@@ -11,6 +11,7 @@
 
 namespace facebook {
 namespace spectrum {
+namespace test {
 
 TEST(SpectrumException, whenBuilding_nothingObservableHappens) {
   const auto name = "name";
@@ -30,5 +31,6 @@ TEST(SpectrumException, whenBuilding_nothingObservableHappens) {
   ASSERT_EQ(0, std::strcmp(expectedDescription, exception.what()));
 }
 
+} // namespace test
 } // namespace spectrum
 } // namespace facebook

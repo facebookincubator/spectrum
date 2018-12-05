@@ -18,6 +18,7 @@ namespace facebook {
 namespace spectrum {
 namespace core {
 namespace proc {
+namespace test {
 
 TEST(ScanlinePump, whenConstructed_thenNoObservableEffects) {
   ScanlinePump scanlinePump(
@@ -123,6 +124,7 @@ TEST(ScanlinePump, whenFourRotationBlockOf90Degree_thenOutputRotated360Degree) {
       image::testutils::assertScanlineGray({{1}, {2}, {3}}, output[3].get()));
 }
 
+} // namespace test
 } // namespace proc
 } // namespace core
 } // namespace spectrum

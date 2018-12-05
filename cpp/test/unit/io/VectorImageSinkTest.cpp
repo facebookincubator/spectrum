@@ -12,6 +12,7 @@
 namespace facebook {
 namespace spectrum {
 namespace io {
+namespace test {
 
 namespace {
 std::string vectorToString(std::vector<char> v) {
@@ -70,6 +71,7 @@ TEST(VectorImageSink, whenWrittenTo_thenBytesWrittenCounterIncreases) {
   ASSERT_EQ(16, sink.totalBytesWritten());
 }
 
+} // namespace test
 } // namespace io
 } // namespace spectrum
 } // namespace facebook

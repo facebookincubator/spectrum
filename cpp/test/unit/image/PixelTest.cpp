@@ -11,6 +11,7 @@ namespace facebook {
 namespace spectrum {
 namespace image {
 namespace pixel {
+namespace test {
 
 TEST(
     image_pixel_ColorModel,
@@ -76,6 +77,7 @@ TEST(image_pixel_Specification, whenDifferInOrder_thenNotEqual) {
   ASSERT_NE(specifications::RGBA, specifications::ABGR);
 }
 
+} // namespace test
 } // namespace pixel
 } // namespace image
 } // namespace spectrum

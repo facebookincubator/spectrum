@@ -15,6 +15,7 @@ namespace facebook {
 namespace spectrum {
 namespace core {
 namespace proc {
+namespace test {
 
 TEST(CroppingScanlineProcessingBlock, whenTargetTooWide_thenThrow) {
   ASSERT_THROW(
@@ -166,6 +167,7 @@ TEST(
   ASSERT_EQ(nullptr, block.produce());
 }
 
+} // namespace test
 } // namespace proc
 } // namespace core
 } // namespace spectrum

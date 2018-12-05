@@ -14,6 +14,7 @@
 
 namespace facebook {
 namespace spectrum {
+namespace test {
 
 //
 // Test error cases
@@ -28,5 +29,6 @@ TEST(Spectrum, transcode_whenInputSourceEmpty_thenThrowEmptyInputSource) {
       spectrum.decode(source, sink), spectrum::error::EmptyInputSource);
 }
 
+} // namespace test
 } // namespace spectrum
 } // namespace facebook

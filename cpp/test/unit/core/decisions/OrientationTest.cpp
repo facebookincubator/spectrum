@@ -11,9 +11,9 @@ using namespace facebook::spectrum::core::decisions;
 
 namespace facebook {
 namespace spectrum {
-namespace test {
 namespace core {
 namespace decisions {
+namespace test {
 namespace {
 
 Configuration makeConfiguration(const bool interpretMetadata) {
@@ -126,8 +126,8 @@ TEST(decisions_Orientation, whenRotateRequirement_thenTakenIntoAccount) {
   ASSERT_EQ(image::Orientation::Bottom, decision.metadataOrientation);
 }
 
+} // namespace test
 } // namespace decisions
 } // namespace core
-} // namespace test
 } // namespace spectrum
 } // namespace facebook
