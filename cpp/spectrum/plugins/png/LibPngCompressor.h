@@ -50,12 +50,21 @@ class LibPngCompressor final : public codecs::ICompressor {
   std::size_t inputScanline = 0;
   bool isHeaderWritten = false;
   bool writtenLastScanline = false;
+
+  /**
+   * For interlaced output all scanlines need to be buffered before writing them
+   * all at once
+   */
+  std::vector<std::unique_ptr<image::Scanline>> interlaceScanlineBuffer;
+
   folly::Optional<std::string> errorMessage;
 
   void ensureHeaderIsWritten(std::uint16_t colorType);
   void finishIfLastScanlineWritten();
 
-  void internalWriteScanline(std::unique_ptr<image::Scanline> scanline);
+  void internalWriteScanlineBaseline(std::unique_ptr<image::Scanline> scanline);
+  void internalWriteScanlineInterlaced(
+      std::unique_ptr<image::Scanline> scanline);
 
   void setErrorMessage(const std::string& errorMessage);
   void throwError(

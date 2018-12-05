@@ -134,8 +134,6 @@ void LibPngCompressor::ensureHeaderIsWritten(std::uint16_t colorType) {
     throwError(__PRETTY_FUNCTION__, __LINE__, "png_set_IHDR");
   }
 
-  // TODO T37006941: Interpret the configuration parameter `useInterlace` when
-  // writing PNG images and set `PNG_INTERLACE_ADAM7` as interlacing mode
   png_set_IHDR(
       libPngWriteStruct,
       libPngInfoStruct,
@@ -143,7 +141,8 @@ void LibPngCompressor::ensureHeaderIsWritten(std::uint16_t colorType) {
       _options.imageSpecification.size.height,
       8,
       colorType,
-      PNG_INTERLACE_NONE,
+      _options.configuration.png.useInterlacing() ? PNG_INTERLACE_ADAM7
+                                                  : PNG_INTERLACE_NONE,
       PNG_COMPRESSION_TYPE_DEFAULT,
       PNG_FILTER_TYPE_DEFAULT);
 
@@ -167,17 +166,8 @@ void LibPngCompressor::finishIfLastScanlineWritten() {
   }
 }
 
-void LibPngCompressor::internalWriteScanline(
+void LibPngCompressor::internalWriteScanlineBaseline(
     std::unique_ptr<image::Scanline> scanline) {
-  const auto pixelSpecification = scanline->specification();
-  SPECTRUM_ENFORCE_IF_NOT(
-      pixelSpecification == _options.imageSpecification.pixelSpecification);
-  SPECTRUM_ENFORCE_IF_NOT(
-      scanline->width() == _options.imageSpecification.size.width);
-  SPECTRUM_ENFORCE_IF(writtenLastScanline);
-
-  ensureHeaderIsWritten(colorTypeFromPixelSpecification(pixelSpecification));
-
   if (setjmp(png_jmpbuf(libPngWriteStruct))) {
     throwError(__PRETTY_FUNCTION__, __LINE__, "png_write_row");
   }
@@ -185,8 +175,37 @@ void LibPngCompressor::internalWriteScanline(
       libPngWriteStruct, reinterpret_cast<png_bytep>(scanline->data()));
 
   inputScanline++;
-
   finishIfLastScanlineWritten();
+}
+
+void LibPngCompressor::internalWriteScanlineInterlaced(
+    std::unique_ptr<image::Scanline> scanline) {
+  // buffer incoming scanlines
+  if (interlaceScanlineBuffer.size() == 0) {
+    interlaceScanlineBuffer.reserve(_options.imageSpecification.size.height);
+  }
+  interlaceScanlineBuffer.push_back(std::move(scanline));
+  inputScanline++;
+
+  // write all of them once the complete image has been buffered
+  if (interlaceScanlineBuffer.size() ==
+      _options.imageSpecification.size.height) {
+    if (setjmp(png_jmpbuf(libPngWriteStruct))) {
+      throwError(__PRETTY_FUNCTION__, __LINE__, "png_write_row");
+    }
+
+    const auto numberPasses = png_set_interlace_handling(libPngWriteStruct);
+    for (auto currentPass = 0; currentPass < numberPasses; currentPass++) {
+      for (auto& currentScanline : interlaceScanlineBuffer) {
+        png_write_row(
+            libPngWriteStruct,
+            reinterpret_cast<png_bytep>(currentScanline->data()));
+      }
+    }
+
+    interlaceScanlineBuffer.clear();
+    finishIfLastScanlineWritten();
+  }
 }
 
 void LibPngCompressor::setErrorMessage(const std::string& errorMessage) {
@@ -217,7 +236,19 @@ void LibPngCompressor::writeScanline(
   if (pixelSpecification == image::pixel::specifications::Gray ||
       pixelSpecification == image::pixel::specifications::RGB ||
       pixelSpecification == image::pixel::specifications::ARGB) {
-    return internalWriteScanline(std::move(scanline));
+    ensureHeaderIsWritten(colorTypeFromPixelSpecification(pixelSpecification));
+
+    SPECTRUM_ENFORCE_IF_NOT(
+        pixelSpecification == _options.imageSpecification.pixelSpecification);
+    SPECTRUM_ENFORCE_IF_NOT(
+        scanline->width() == _options.imageSpecification.size.width);
+    SPECTRUM_ENFORCE_IF(writtenLastScanline);
+
+    if (_options.configuration.png.useInterlacing()) {
+      return internalWriteScanlineInterlaced(std::move(scanline));
+    } else {
+      return internalWriteScanlineBaseline(std::move(scanline));
+    }
   } else {
     SPECTRUM_ERROR_STRING(
         codecs::error::CompressorCannotWritePixelSpecification,

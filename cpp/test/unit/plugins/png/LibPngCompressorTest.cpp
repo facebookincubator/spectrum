@@ -83,12 +83,11 @@ TEST(
 // Options
 //
 
-// TEST(plugins_png_LibPngCompressor, whenTurningInterlacingOn_outputImageValid)
-// {
-//   Configuration configuration;
-//   configuration.png.useInterlacing(true);
-//   assertValidScanlinesUsingConfiguration(configuration);
-// }
+TEST(plugins_png_LibPngCompressor, whenTurningInterlacingOn_outputImageValid) {
+  Configuration configuration;
+  configuration.png.useInterlacing(true);
+  assertValidScanlinesUsingConfiguration(configuration);
+}
 
 TEST(plugins_png_LibPngCompressor, whenTurningInterlacingOff_outputImageValid) {
   Configuration configuration;
