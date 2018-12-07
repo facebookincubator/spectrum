@@ -7,12 +7,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-extern NSString *const FSPSpectrumErrorDomain;
+FOUNDATION_EXTERN NSString *const FSPSpectrumErrorDomain;
 
 // User Info Keys
 
-extern NSString *const FSPErrorNameKey;
-extern NSString *const FSPErrorMessageKey;
-extern NSString *const FSPErrorLocationKey;
+FOUNDATION_EXTERN NSString *const FSPErrorNameKey;
+FOUNDATION_EXTERN NSString *const FSPErrorMessageKey;
+FOUNDATION_EXTERN NSString *const FSPErrorLocationKey;
 
 NS_ASSUME_NONNULL_END
