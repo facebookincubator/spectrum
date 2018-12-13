@@ -178,7 +178,8 @@ TEST(plugins_jpeg_LibJpegDctTransformer, whenCroppingAfterApply_thenThrow) {
   LibJpegDctTransformer dctTransformer(source, sink);
   dctTransformer.applyAndFinish();
 
-  ASSERT_THROW(dctTransformer.setCropRequirement(nullptr), SpectrumException);
+  ASSERT_THROW(
+      dctTransformer.setCropRequirement(folly::none), SpectrumException);
 }
 
 //
