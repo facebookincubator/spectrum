@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIImage.h>
 
-#import <FBBaseDefines/FBBaseDefines.h>
+#import <FBBaseLite/FBBaseDefines.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
