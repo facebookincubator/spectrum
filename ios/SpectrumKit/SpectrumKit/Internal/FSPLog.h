@@ -14,5 +14,5 @@
 #define FSPReportMustFixIfFalse(condition, message) FBReportMustFixIfFalse(condition, message)
 #define FSPCReportMustFix(message, desc) FBCReportMustFix(message, desc)
 
-#define FSP_LINK_REQUIRE(name) FB_LINK_REQUIRE(name)
+#define FSP_LINK_REQUIRE(name) FB_LINK_REQUIRE_CATEGORY(name)
 #define FSP_LINKABLE(name) FB_LINKABLE(name)
