@@ -1,7 +1,10 @@
 cmake_minimum_required(VERSION 3.6.0)
 project(mozjpeg C)
 
-add_library(mozjpeg STATIC
+set(can_use_assembler TRUE)
+enable_language(ASM)
+
+list(APPEND mozjpegsources
   jcapimin.c
   jcapistd.c
   jccoefct.c
@@ -53,8 +56,23 @@ add_library(mozjpeg STATIC
   jdarith.c
   transupp.c
   jmemnobs.c
-  jsimd_none.c
 )
+
+if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "armv7-a")
+  message(STATUS "Building mozjpeg with armv7-a SIMD support")
+  list(APPEND mozjpegsources
+    simd/jsimd_arm.c
+    simd/jsimd_arm_neon.S
+  )
+else()
+  message(STATUS "Building mozjpeg without SIMD support")
+  list(APPEND mozjpegsources
+    jsimd_none.c
+  )
+endif()
+
+
+add_library(mozjpeg STATIC ${mozjpegsources})
 
 target_compile_options(mozjpeg PRIVATE
   -fno-omit-frame-pointer
