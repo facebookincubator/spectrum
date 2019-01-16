@@ -33,10 +33,10 @@ FSPEncodeRequirement *encodeRequirement =
     [FSPEncodeRequirement encodeRequirementWithFormat:FSPEncodedImageFormat.jpeg];
 FSPEncodeOptions *options =
     [FSPEncodeOptions encodeOptionsWithEncodeRequirement:encodeRequirement];
-FSPResultData *result = [FSPSpectrum.sharedInstance encodeImage:image
-                                                    toFileAtURL:targetUrl
-                                                        options:options
-                                                          error:&error];
+FSPResult *result = [FSPSpectrum.sharedInstance encodeImage:image
+                                                toFileAtURL:targetUrl
+                                                    options:options
+                                                      error:&error];
 
 /// [...]
 ```

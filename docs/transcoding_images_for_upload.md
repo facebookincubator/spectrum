@@ -36,4 +36,26 @@ try (final InputStream inputStream = contentResolver.openInputStream(uri)) {
 
 ### iOS
 
-tbd
+Below is an example of encoding a `UIImage` into a `NSData`.
+
+```objc
+FSPEncodeRequirement *encodeRequirement =
+    [FSPEncodeRequirement encodeRequirementWithFormat:FSPEncodedImageFormat.jpeg
+                                                 mode:FSPEncodeRequirementModeLossy
+                                              quality:80];
+
+FSPTransformations *transformations = [FSPTransformations new];
+transformations.resizeRequirement =
+    [[FSPResizeRequirement alloc] initWithMode:FSPResizeRequirementModeExactOrSmaller
+                                    targetSize:CGSizeMake(2048, 2048)];
+
+FSPEncodeOptions *options =
+    [FSPEncodeOptions encodeOptionsWithEncodeRequirement:encodeRequirement
+                                         transformations:transformations
+                                                metadata:nil
+                                           configuration:nil
+                     outputPixelSpecificationRequirement:nil];
+
+NSError *error;
+FSPResultData *result = [FSPSpectrum.sharedInstance encodeImage:image options:options error:&error];
+```
