@@ -30,11 +30,17 @@ inline codecs::DecompressorProvider::Factory makeLibPngDecompressorFactory() {
 
 image::pixel::Specification pixelSpecificationNarrower(
     const image::pixel::Specification& pixelSpecification) {
-  if (pixelSpecification == image::pixel::specifications::RGBA) {
-    // PNGs cannot encode RGBA.
-    return image::pixel::specifications::ARGB;
+  if (pixelSpecification.colorModel == image::pixel::colormodels::Gray) {
+    return image::pixel::specifications::Gray;
   } else {
-    return pixelSpecification;
+    switch (pixelSpecification.alphaInfo) {
+      case image::pixel::AlphaInfo::None:
+      case image::pixel::AlphaInfo::SkipLast:
+      case image::pixel::AlphaInfo::SkipFirst:
+        return image::pixel::specifications::RGB;
+      default:
+        return image::pixel::specifications::ARGB;
+    }
   }
 }
 
