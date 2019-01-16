@@ -47,10 +47,10 @@ FSPEncodeRequirement *encodeRequirement =
     [FSPEncodeRequirement encodeRequirementWithFormat:FSPEncodedImageFormat.jpeg];
 FSPEncodeOptions *options =
     [FSPEncodeOptions encodeOptionsWithEncodeRequirement:encodeRequirement];
-FSPResultData *result = [FSPSpectrum.sharedInstance encodeImage:image
-                                                    toFileAtURL:targetUrl
-                                                        options:options
-                                                          error:&amp;error];
+FSPResult *result = [FSPSpectrum.sharedInstance encodeImage:image
+                                                toFileAtURL:targetUrl
+                                                    options:options
+                                                      error:&amp;error];
 
 <span class="hljs-comment">/// [...]</span>
 </code></pre>
