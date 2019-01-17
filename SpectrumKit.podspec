@@ -2,7 +2,7 @@
 
 compiler_flags = '-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1'
 
-version = '0.9.0'
+version = '1.0.0'
 pinned_version = '~>' + version
 
 Pod::Spec.new do |spec|
