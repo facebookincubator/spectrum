@@ -60,7 +60,7 @@ Now you are ready to use Spectrum in your application. Each of the operations wi
 mSpectrum.transcode(
   EncodedImageSource.from(inputFile),
   EncodedImageSink.from(outputStream),
-  EncodeOptions.Builder(new EncodeRequirement(JPEG, 80)),
+  TranscodeOptions.Builder(new EncodeRequirement(JPEG, 80)).build(),
   "my_callsite_identifier");
 ```
 
