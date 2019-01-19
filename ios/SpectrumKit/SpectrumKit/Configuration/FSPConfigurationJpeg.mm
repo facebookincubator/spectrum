@@ -19,6 +19,15 @@ using namespace facebook::spectrum;
 
 @implementation FSPConfigurationJpeg
 
+- (instancetype)init
+{
+  return [self initWithUseTrellis:YES
+                   useProgressive:NO
+                  useOptimizeScan:NO
+        useCompatibleDCScanOption:NO
+                usePSNRQuantTable:NO];
+}
+
 - (instancetype)initWithUseTrellis:(BOOL)useTrellis
                     useProgressive:(BOOL)useProgressive
                    useOptimizeScan:(BOOL)useOptimizeScan
