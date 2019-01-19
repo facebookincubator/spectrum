@@ -23,8 +23,8 @@ using namespace facebook::spectrum;
 }
 
 - (instancetype)initWithDidSucceed:(BOOL)didSucceed
-                          ruleName:(NSString *)ruleName
-          outputImageSpecification:(FSPImageSpecification *)outputImageSpecification
+                          ruleName:(nullable NSString *)ruleName
+          outputImageSpecification:(nullable FSPImageSpecification *)outputImageSpecification
                     totalBytesRead:(NSUInteger)totalBytesRead
                  totalBytesWritten:(NSUInteger)totalBytesWritten
                           duration:(NSUInteger)duration

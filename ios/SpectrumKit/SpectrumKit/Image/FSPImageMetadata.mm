@@ -38,7 +38,7 @@ static std::vector<std::uint8_t> dataToVector(NSData *data)
 
 #pragma mark - Initialisers
 
-+ (instancetype)imageMetadataWithDictionary:(NSDictionary<NSString *, id> *)dictionary
++ (instancetype)imageMetadataWithDictionary:(nullable NSDictionary<NSString *, id> *)dictionary
 {
   return [[self alloc] initWithMetadataDictionary:dictionary];
 }
@@ -52,7 +52,7 @@ static std::vector<std::uint8_t> dataToVector(NSData *data)
   return metadata;
 }
 
-- (instancetype)initWithMetadataDictionary:(NSDictionary<NSString *, id> *)dictionary
+- (instancetype)initWithMetadataDictionary:(nullable NSDictionary<NSString *, id> *)dictionary
 {
   if (self = [super init]) {
     _dictionary = [NSDictionary dictionaryWithDictionary:dictionary];

@@ -26,7 +26,7 @@ using namespace facebook::spectrum;
                         pixelSpecification:(FSPImagePixelSpecification *)pixelSpecification
                                orientation:(FSPImageOrientation)orientation
                         chromaSamplingMode:(FSPImageChromaSamplingMode)chromaSamplingMode
-                                  metadata:(FSPImageMetadata *)metadata
+                                  metadata:(nullable FSPImageMetadata *)metadata
 {
   return [[self alloc] initWithSize:size
                              format:format
@@ -43,7 +43,7 @@ using namespace facebook::spectrum;
           pixelSpecification:(FSPImagePixelSpecification *)pixelSpecification
                  orientation:(FSPImageOrientation)orientation
           chromaSamplingMode:(FSPImageChromaSamplingMode)chromaSamplingMode
-                    metadata:(FSPImageMetadata *)metadata
+                    metadata:(nullable FSPImageMetadata *)metadata
 {
   FSPReportMustFixIfNil(format, nil);
   FSPReportMustFixIfNil(pixelSpecification, nil);
