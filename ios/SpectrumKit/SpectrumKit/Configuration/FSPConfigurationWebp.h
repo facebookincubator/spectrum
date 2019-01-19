@@ -22,7 +22,7 @@ NS_SWIFT_NAME(ConfigurationWebp)
 @property (nonatomic, assign) FSPConfigurationWebpImageHint imageHint;
 
 - (instancetype)initWithMethod:(NSInteger)method
-                     imageHint:(FSPConfigurationWebpImageHint)imageHint;
+                     imageHint:(FSPConfigurationWebpImageHint)imageHint NS_DESIGNATED_INITIALIZER;
 
 - (BOOL)isEqualToConfigurationWebp:(FSPConfigurationWebp *)object;
 
