@@ -46,7 +46,7 @@ using namespace facebook::spectrum;
 
 - (instancetype)initWithInternalTranscodeResult:(const Result &)result
 {
-  return [self initWithDidSucceed:true
+  return [self initWithDidSucceed:YES
                          ruleName:[NSString stringWithUTF8String:result.ruleName.c_str()]
          outputImageSpecification:[FSPImageSpecification imageSpecificationFromInternalImageSpecification:result.outputImageSpecification]
                    totalBytesRead:static_cast<NSUInteger>(result.totalBytesRead)
