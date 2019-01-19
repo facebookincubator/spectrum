@@ -57,7 +57,8 @@ static std::vector<Plugin> convertPlugins(NSArray<id<FSPPlugin>> *plugins)
 {
   const auto outputStream = [NSOutputStream outputStreamToMemory];
   auto imageSink = io::OutputStreamImageSink{outputStream};
-  const auto result = [self _runEncodeImage:image sink:imageSink
+  const auto result = [self _runEncodeImage:image
+                                       sink:imageSink
                                     options:options
                                       error:error];
   return [self.class resultDataWithResult:result outputStream:outputStream];
