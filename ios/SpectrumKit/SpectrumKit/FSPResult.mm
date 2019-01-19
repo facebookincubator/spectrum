@@ -16,7 +16,7 @@ using namespace facebook::spectrum;
 {
   return [[self alloc] initWithDidSucceed:NO
                                  ruleName:nil
-                   outputImageSpecification:nil
+                 outputImageSpecification:nil
                            totalBytesRead:0
                         totalBytesWritten:0
                                  duration:0];
