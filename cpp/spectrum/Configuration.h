@@ -195,6 +195,13 @@ struct Configuration {
   // LibPng parameters
   //
   struct Png {
+    using CompressionLevel = int;
+    
+    static constexpr CompressionLevel CompressionLevelNone = 0;
+    static constexpr CompressionLevel CompressionLevelBestSpeed = 1;
+    static constexpr CompressionLevel CompressionLevelBestCompression = 9;
+    static constexpr CompressionLevel CompressionLevelDefault = -1;
+    
     /**
      * Whether to save PNG images with interlaced encoding.
      */
@@ -202,6 +209,16 @@ struct Configuration {
         bool,
         useInterlacing,
         false);
+      
+    /**
+     * The compression level that is used by zlib to determine
+     * how much time to spend on trying to compress the image data.
+     * 0 is for not using compression at all and 9 is for the best compression.
+     */
+    SPECTRUM_CONFIGURATION_MAKE_PROPERTY_W_DEFAULTS(
+        CompressionLevel,
+        compressionLevel,
+        -1);
 
     void merge(const Png& rhs);
     bool operator==(const Png& rhs) const;
