@@ -11,9 +11,9 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NSInteger FSPPngCompressionLevel NS_SWIFT_NAME(PngCompressionLevel);
 
 extern const FSPPngCompressionLevel FSPPngCompressionLevelNone NS_SWIFT_NAME(PngCompressionLevelNone);
-extern const FSPPngCompressionLevel FSPPngCompressionLevelBestSpeed NS_SWIFT_NAME(CompressionLevelBestSpeed);
-extern const FSPPngCompressionLevel FSPPngCompressionLevelBestCompression NS_SWIFT_NAME(CompressionLevelBestCompression);
-extern const FSPPngCompressionLevel FSPPngCompressionLevelDefault NS_SWIFT_NAME(CompressionLevelDefault);
+extern const FSPPngCompressionLevel FSPPngCompressionLevelBestSpeed NS_SWIFT_NAME(PngCompressionLevelBestSpeed);
+extern const FSPPngCompressionLevel FSPPngCompressionLevelBestCompression NS_SWIFT_NAME(PngCompressionLevelBestCompression);
+extern const FSPPngCompressionLevel FSPPngCompressionLevelDefault NS_SWIFT_NAME(PngCompressionLevelDefault);
 
 NS_SWIFT_NAME(ConfigurationPng)
 @interface FSPConfigurationPng : NSObject <NSCopying>
