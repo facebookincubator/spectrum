@@ -33,6 +33,7 @@ public class ConfigurationTest {
     assertThat(configuration.chromaSamplingModeOverride).isNull();
     assertThat(configuration.usePsnrQuantTable).isNull();
     assertThat(configuration.useInterlacing).isNull();
+    assertThat(configuration.compressionLevel).isNull();
     assertThat(configuration.defaultBackgroundColor).isNull();
     assertThat(configuration.webpMethod).isNull();
     assertThat(configuration.webpImageHint).isNull();
@@ -53,6 +54,7 @@ public class ConfigurationTest {
             .setChromaSamplingModeOverride(ImageChromaSamplingMode.S444)
             .setUsePsnrQuantTable(true)
             .setUseInterlacing(true)
+            .setCompressionLevel(9)
             .setWebpMethod(1)
             .setWebpImageHint(Configuration.ImageHint.DEFAULT)
             .build();
@@ -68,6 +70,7 @@ public class ConfigurationTest {
     assertThat(configuration.chromaSamplingModeOverride).isEqualTo(ImageChromaSamplingMode.S444);
     assertThat(configuration.usePsnrQuantTable).isTrue();
     assertThat(configuration.useInterlacing).isTrue();
+    assertThat(configuration.compressionLevel).isEqualTo(9);
     assertThat(configuration.defaultBackgroundColor).isNotNull();
     assertThat(configuration.defaultBackgroundColor.red).isEqualTo(12);
     assertThat(configuration.defaultBackgroundColor.green).isEqualTo(34);

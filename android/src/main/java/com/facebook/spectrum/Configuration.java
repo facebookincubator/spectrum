@@ -10,6 +10,8 @@ package com.facebook.spectrum;
 import com.facebook.jni.annotations.DoNotStrip;
 import com.facebook.spectrum.image.ImageChromaSamplingMode;
 import com.facebook.spectrum.image.ImageColor;
+import com.facebook.spectrum.utils.Preconditions;
+
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.Immutable;
 
@@ -72,6 +74,13 @@ public class Configuration {
   @DoNotStrip @Nullable public final Boolean useInterlacing;
 
   /**
+   * Png: The compression level that is used by zlib to determine
+   * how much time to spend on trying to compress the image data.
+   * 0 is for not using compression at all and 9 is for the best compression.
+   */
+  @DoNotStrip @Nullable public final Integer compressionLevel;
+
+  /**
    * Webp: Compression quality/speed tradeoff where 0 is the fastest and 6 is the slowest/best
    * compression.
    */
@@ -93,6 +102,7 @@ public class Configuration {
       @Nullable Boolean useCompatibleDcScanOpt,
       @Nullable Boolean usePsnrQuantTable,
       @Nullable Boolean useInterlacing,
+      @Nullable Integer compressionLevel,
       @Nullable Integer webpMethod,
       @Nullable ImageHint webpImageHint) {
     this.defaultBackgroundColor = defaultBackgroundColor;
@@ -106,6 +116,7 @@ public class Configuration {
     this.chromaSamplingModeOverride = chromaSamplingModeOverride;
     this.usePsnrQuantTable = usePsnrQuantTable;
     this.useInterlacing = useInterlacing;
+    this.compressionLevel = compressionLevel;
     this.webpMethod = webpMethod;
     this.webpImageHint = webpImageHint;
   }
@@ -139,6 +150,8 @@ public class Configuration {
         + usePsnrQuantTable
         + ", useInterlacing="
         + useInterlacing
+        + ", compressionLevel="
+        + compressionLevel
         + ", webpMethod="
         + webpMethod
         + ", webpImageHint="
@@ -172,6 +185,7 @@ public class Configuration {
     @Nullable private Boolean mUseCompatibleDcScanOpt;
     @Nullable private Boolean mUsePsnrQuantTable;
     @Nullable private Boolean mUseInterlacing;
+    @Nullable private Integer mCompressionLevel;
     @Nullable private Integer mWebpMethod;
     @Nullable private ImageHint mWebpImageHint;
 
@@ -258,6 +272,17 @@ public class Configuration {
     }
 
     /**
+     * Png: The compression level that is used by zlib to determine
+     * how much time to spend on trying to compress the image data.
+     * 0 is for not using compression at all and 9 is for the best compression.
+     */
+    public Builder setCompressionLevel(final Integer compressionLevel) {
+      Preconditions.checkArgument(compressionLevel >= -1 && compressionLevel <= 9);
+      mCompressionLevel = compressionLevel;
+      return this;
+    }
+
+    /**
      * Webp: Compression quality/speed tradeoff where 0 is the fastest and 6 is the slowest/best
      * compression.
      */
@@ -290,6 +315,7 @@ public class Configuration {
           mUseCompatibleDcScanOpt,
           mUsePsnrQuantTable,
           mUseInterlacing,
+          mCompressionLevel,
           mWebpMethod,
           mWebpImageHint);
     }
@@ -398,6 +424,9 @@ public class Configuration {
     if (useInterlacing != null
         ? !useInterlacing.equals(that.useInterlacing)
         : that.useInterlacing != null) return false;
+    if (compressionLevel != null
+        ? !compressionLevel.equals(that.compressionLevel)
+        : that.compressionLevel != null) return false;
     if (webpMethod != null ? !webpMethod.equals(that.webpMethod) : that.webpMethod != null)
       return false;
     return webpImageHint == that.webpImageHint;
