@@ -108,6 +108,10 @@ LibPngCompressor::LibPngCompressor(const codecs::CompressorOptions& options)
         codecs::error::CompressorFailure, "png_create_info_struct_failed");
   }
 
+  png_set_compression_level(
+      libPngWriteStruct,
+      options.configuration.png.compressionLevel());
+  
   png_set_write_fn(
       libPngWriteStruct,
       &options.sink,
