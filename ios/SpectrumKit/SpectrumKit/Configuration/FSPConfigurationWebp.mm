@@ -20,11 +20,6 @@ using namespace facebook::spectrum;
 
 @implementation FSPConfigurationWebp
 
-- (instancetype)init
-{
-  return [self initWithMethod:3 imageHint:FSPConfigurationWebpImageHintDefault];
-}
-
 - (instancetype)initWithMethod:(NSInteger)method imageHint:(FSPConfigurationWebpImageHint)imageHint
 {
   if (self = [super init]) {

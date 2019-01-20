@@ -20,7 +20,7 @@ NS_SWIFT_NAME(ConfigurationJpeg)
                     useProgressive:(BOOL)useProgressive
                    useOptimizeScan:(BOOL)useOptimizeScan
          useCompatibleDCScanOption:(BOOL)useCompatibleDCScanOption
-                 usePSNRQuantTable:(BOOL)usePSNRQuantTable NS_DESIGNATED_INITIALIZER;
+                 usePSNRQuantTable:(BOOL)usePSNRQuantTable;
 
 - (BOOL)isEqualToConfigurationJpeg:(FSPConfigurationJpeg *)object;
 

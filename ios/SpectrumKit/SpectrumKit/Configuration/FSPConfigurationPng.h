@@ -13,7 +13,7 @@ NS_SWIFT_NAME(ConfigurationPng)
 
 @property (nonatomic, assign) BOOL useInterlacing;
 
-- (instancetype)initWithUseInterlacing:(BOOL)useInterlacing NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithUseInterlacing:(BOOL)useInterlacing;
 
 - (BOOL)isEqualToConfigurationPng:(FSPConfigurationPng *)object;
 

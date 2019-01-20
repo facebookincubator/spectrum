@@ -19,11 +19,6 @@ using namespace facebook::spectrum;
 
 @implementation FSPConfigurationPng
 
-- (instancetype)init
-{
-  return [self initWithUseInterlacing:NO];
-}
-
 - (instancetype)initWithUseInterlacing:(BOOL)useInterlacing
 {
   if (self = [super init]) {
