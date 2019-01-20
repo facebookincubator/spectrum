@@ -9,7 +9,14 @@
 
 #import <spectrum/Configuration.h>
 
+#import "FSPLog.h"
+
 using namespace facebook::spectrum;
+
+const NSInteger FSPPngCompressionLevelNone = Configuration::Png::CompressionLevelNone;
+const NSInteger FSPPngCompressionLevelBestSpeed = Configuration::Png::CompressionLevelBestSpeed;
+const NSInteger FSPPngCompressionLevelBestCompression = Configuration::Png::CompressionLevelBestCompression;
+const NSInteger FSPPngCompressionLevelDefault = Configuration::Png::CompressionLevelDefault;
 
 @interface FSPConfigurationPng()
 
@@ -20,9 +27,14 @@ using namespace facebook::spectrum;
 @implementation FSPConfigurationPng
 
 - (instancetype)initWithUseInterlacing:(BOOL)useInterlacing
+                      compressionLevel:(FSPPngCompressionLevel)compressionLevel
 {
+  FSPReportMustFixIf(compressionLevel < FSPPngCompressionLevelDefault, nil);
+  FSPReportMustFixIf(compressionLevel > FSPPngCompressionLevelBestCompression, nil);
+
   if (self = [super init]) {
     self.useInterlacing = useInterlacing;
+    self.compressionLevel = compressionLevel;
   }
 
   return self;
@@ -38,6 +50,19 @@ using namespace facebook::spectrum;
 - (BOOL)useInterlacing
 {
   return _configuration.useInterlacing();
+}
+
+- (void)setCompressionLevel:(FSPPngCompressionLevel)compressionLevel
+{
+  FSPReportMustFixIf(compressionLevel < FSPPngCompressionLevelDefault, nil);
+  FSPReportMustFixIf(compressionLevel > FSPPngCompressionLevelBestCompression, nil);
+    
+  _configuration.compressionLevel(SPECTRUM_CONVERT_OR_THROW(compressionLevel, Configuration::Png::CompressionLevel));
+}
+
+- (FSPPngCompressionLevel)compressionLevel
+{
+  return _configuration.compressionLevel();
 }
 
 #pragma mark - Equality
@@ -75,7 +100,8 @@ using namespace facebook::spectrum;
 
 - (id)copyWithZone:(__unused NSZone *)zone
 {
-  return [[[self class] allocWithZone:zone] initWithUseInterlacing:self.useInterlacing];
+  return [[[self class] allocWithZone:zone] initWithUseInterlacing:self.useInterlacing
+                                                  compressionLevel:self.compressionLevel];
 }
 
 #pragma mark - Internal
