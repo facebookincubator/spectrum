@@ -88,6 +88,61 @@ extension ConfigurationViewModel {
 
     static var allValues: [DefaultBackgroundColor] = [.black, .white, .blue, .red, .green]
   }
+    
+  enum CompressionLevel: Int, AlertOptions {
+    case `default`
+    case none
+    case bestSpeed
+    case bestCompression
+    
+    var rawValue: Int {
+      switch self {
+      case .default:
+        return PngCompressionLevelDefault
+      case .none:
+        return PngCompressionLevelNone
+      case .bestSpeed:
+        return PngCompressionLevelBestSpeed
+      case .bestCompression:
+        return PngCompressionLevelBestCompression
+      }
+    }
+    
+    init?(rawValue: Int) {
+      switch rawValue {
+      case 0:
+        self = .none
+      case 1:
+        self = .bestSpeed
+      case 9:
+        self = .bestCompression
+      default:
+        self = .default
+      }
+    }
+    
+    // MARK: AlertOptions
+    
+    var title: String {
+      switch self {
+      case .default:
+        return "Default"
+      case .none:
+        return "None (\(rawValue))"
+      case .bestSpeed:
+        return "Best speed (\(rawValue))"
+      case .bestCompression:
+        return "Best compression (\(rawValue))"
+      }
+    }
+    
+    var isAvailable: Bool {
+      return true
+    }
+    
+    static var allValues: [CompressionLevel] = [.default, .none, .bestSpeed, .bestCompression]
+    
+  }
 
   enum WebpMethod: Int, AlertOptions {
     case one = 1

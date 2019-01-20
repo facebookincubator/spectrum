@@ -132,6 +132,14 @@ final class ConfigurationViewModel: ConfigurationViewModelInternalDelegate {
         self.delegate?.internalViewModelDidUpdate(self)
       }
     }
+    
+    var compressionLevel: CompressionLevel {
+      get { return CompressionLevel(rawValue: self.configuration.compressionLevel)! }
+      set {
+        self.configuration.compressionLevel = newValue.rawValue
+        self.delegate?.internalViewModelDidUpdate(self)
+      }
+    }
 
     // MARK: - Private Properties
 
@@ -141,7 +149,6 @@ final class ConfigurationViewModel: ConfigurationViewModelInternalDelegate {
 
     init(configuration: ConfigurationPng) {
       self.configuration = configuration
-      self.useInterlacing = configuration.useInterlacing
     }
   }
 

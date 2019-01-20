@@ -162,6 +162,10 @@ struct Alerts {
   static let configurationGeneralDefaultBackgroundColor = AlertContent(title: NSLocalizedString("Select default background color", comment: "Configuration general background color title"),
                                                                        message: nil,
                                                                        optionsType: ConfigurationViewModel.DefaultBackgroundColor.self)
+  
+  static let configurationPngCompressionLevel = AlertContent(title: NSLocalizedString("Select PNG compression level", comment: "Configuration PNG compression level"),
+                                                             message: nil,
+                                                             optionsType: ConfigurationViewModel.CompressionLevel.self)
 
   static let configurationWebpMethod = AlertContent(title: NSLocalizedString("Select WebP method", comment: "Configuration webp method title"),
                                                     message: nil,
