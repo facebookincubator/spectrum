@@ -74,6 +74,8 @@ TEST(Configuration, whenRequestingDefaultValue_allParametersAreCorrect) {
 
   // Png
   ASSERT_EQ(false, configuration.png.useInterlacing());
+  ASSERT_EQ(
+      Configuration::Png::CompressionLevelDefault, configuration.png.compressionLevel());
 
   // WebP
   ASSERT_EQ(3, configuration.webp.method());
@@ -148,6 +150,15 @@ TEST(
     Configuration_Png,
     whenMergingOrComparing_thenUseInterlacingIsAccountedFor) {
   SPECTRUM_CONFIGURATION_TEST_PROPERTY(bool, png.useInterlacing, true);
+}
+
+TEST(
+    Configuration_Png,
+    whenMergingOrComparing_thenCompressionLevelIsAccountedFor) {
+  SPECTRUM_CONFIGURATION_TEST_PROPERTY(
+      Configuration::Png::CompressionLevel,
+      png.compressionLevel,
+      Configuration::Png::CompressionLevelBestCompression);
 }
 
 TEST(Configuration_WebP, whenMergingOrComparing_thenMethodAccountedFor) {
