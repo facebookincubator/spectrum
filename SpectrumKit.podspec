@@ -19,7 +19,7 @@ Spectrum is a cross-platform image transcoding library that can easily be integr
   spec.source = { :git => 'https://github.com/facebookincubator/spectrum.git', :tag => "v#{version}" }
   spec.ios.deployment_target = '8.0'
   spec.default_subspecs = 'Plugins/Default'
-  spec.dependency 'spectrum-folly', "~>2018.11.12.00"
+  spec.dependency 'spectrum-folly', "~>2019.01.21.00"
   spec.compiler_flags = compiler_flags
 
   spec.subspec 'Base' do |base_spec|
