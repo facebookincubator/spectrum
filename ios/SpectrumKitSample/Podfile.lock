@@ -1,29 +1,29 @@
 PODS:
   - libpng (1.6.18)
-  - libwebp (1.0.0):
-    - libwebp/core (= 1.0.0)
-    - libwebp/dec (= 1.0.0)
-    - libwebp/demux (= 1.0.0)
-    - libwebp/dsp (= 1.0.0)
-    - libwebp/enc (= 1.0.0)
-    - libwebp/mux (= 1.0.0)
-    - libwebp/utils (= 1.0.0)
-    - libwebp/webp (= 1.0.0)
-  - libwebp/core (1.0.0):
+  - libwebp (1.0.2):
+    - libwebp/core (= 1.0.2)
+    - libwebp/dec (= 1.0.2)
+    - libwebp/demux (= 1.0.2)
+    - libwebp/dsp (= 1.0.2)
+    - libwebp/enc (= 1.0.2)
+    - libwebp/mux (= 1.0.2)
+    - libwebp/utils (= 1.0.2)
+    - libwebp/webp (= 1.0.2)
+  - libwebp/core (1.0.2):
     - libwebp/webp
-  - libwebp/dec (1.0.0):
+  - libwebp/dec (1.0.2):
     - libwebp/core
-  - libwebp/demux (1.0.0):
+  - libwebp/demux (1.0.2):
     - libwebp/core
-  - libwebp/dsp (1.0.0):
+  - libwebp/dsp (1.0.2):
     - libwebp/core
-  - libwebp/enc (1.0.0):
+  - libwebp/enc (1.0.2):
     - libwebp/core
-  - libwebp/mux (1.0.0):
+  - libwebp/mux (1.0.2):
     - libwebp/core
-  - libwebp/utils (1.0.0):
+  - libwebp/utils (1.0.2):
     - libwebp/core
-  - libwebp/webp (1.0.0)
+  - libwebp/webp (1.0.2)
   - mozjpeg (3.3.1)
   - spectrum-folly (2018.11.12.00)
   - SpectrumCore (1.0.0):
