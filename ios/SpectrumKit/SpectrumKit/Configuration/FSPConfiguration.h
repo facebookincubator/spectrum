@@ -24,7 +24,7 @@ NS_SWIFT_NAME(Configuration)
 - (instancetype)initWithGeneral:(FSPConfigurationGeneral *)general
                            jpeg:(FSPConfigurationJpeg *)jpeg
                             png:(FSPConfigurationPng *)png
-                           webp:(FSPConfigurationWebp *)webp;
+                           webp:(FSPConfigurationWebp *)webp NS_DESIGNATED_INITIALIZER;
 
 - (BOOL)isEqualToConfiguration:(FSPConfiguration *)object;
 

@@ -16,15 +16,15 @@ using namespace facebook::spectrum;
 {
   return [[self alloc] initWithDidSucceed:NO
                                  ruleName:nil
-                   outputImageSpecification:nil
+                 outputImageSpecification:nil
                            totalBytesRead:0
                         totalBytesWritten:0
                                  duration:0];
 }
 
 - (instancetype)initWithDidSucceed:(BOOL)didSucceed
-                          ruleName:(NSString *)ruleName
-          outputImageSpecification:(FSPImageSpecification *)outputImageSpecification
+                          ruleName:(nullable NSString *)ruleName
+          outputImageSpecification:(nullable FSPImageSpecification *)outputImageSpecification
                     totalBytesRead:(NSUInteger)totalBytesRead
                  totalBytesWritten:(NSUInteger)totalBytesWritten
                           duration:(NSUInteger)duration
@@ -46,7 +46,7 @@ using namespace facebook::spectrum;
 
 - (instancetype)initWithInternalTranscodeResult:(const Result &)result
 {
-  return [self initWithDidSucceed:true
+  return [self initWithDidSucceed:YES
                          ruleName:[NSString stringWithUTF8String:result.ruleName.c_str()]
          outputImageSpecification:[FSPImageSpecification imageSpecificationFromInternalImageSpecification:result.outputImageSpecification]
                    totalBytesRead:static_cast<NSUInteger>(result.totalBytesRead)
