@@ -25,12 +25,12 @@ android {
 apply plugin: SpectrumDownloadAndMergePlugin
 
 downloadAndMergeNativeLibrary {
-  externalSourceUri 'https://github.com/facebook/folly/archive/v2018.09.10.00.tar.gz'
-  externalSourceInclude 'folly-2018.09.10.00/**'
+  externalSourceUri 'https://github.com/facebook/folly/archive/v2019.01.21.00.tar.gz'
+  externalSourceInclude 'folly-2019.01.21.00/**'
   overrideInclude '**'
   filesMatchingPattern '**'
   filesMatchingAction {
-      it.path = it.path - "folly-2018.09.10.00/"
+      it.path = it.path - "folly-2019.01.21.00/"
   }
   cacheRevision = 1
 }
