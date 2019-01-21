@@ -21,12 +21,12 @@ apply plugin: SpectrumDownloadAndMergePlugin
 import org.apache.tools.ant.filters.ReplaceTokens
 
 downloadAndMergeNativeLibrary {
-  externalSourceUri 'https://github.com/webmproject/libwebp/archive/v1.0.0.tar.gz'
-  externalSourceInclude 'libwebp-1.0.0/**'
+  externalSourceUri 'https://github.com/webmproject/libwebp/archive/v1.0.2.tar.gz'
+  externalSourceInclude 'libwebp-1.0.2/**'
   overrideInclude '**'
   filesMatchingPattern '**'
   filesMatchingAction {
-      it.path = it.path - "libwebp-1.0.0"
+      it.path = it.path - "libwebp-1.0.2"
   }
   cacheRevision = 1
 }
