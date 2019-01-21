@@ -35,6 +35,6 @@ The iOS wrapper is built in Objective-C++ and calls the C++ library directly. It
   - `SpectrumKit/`: Sources of the main target.
   - `SpectrumKitPlugins/`: Subfolders contain Objective-C bundled codecs.
   - `SpectrumKitTests/`: Wrapper's unit tests.
-  - `SpectrumKitIntrumentationTests/`: Wrapper's integration tests.
-  - `SpectrumKitIntrumentationTestsHelpers/`: Helpers for the integration tests.
+  - `SpectrumKitInstrumentationTests/`: Wrapper's integration tests.
+  - `SpectrumKitInstrumentationTestsHelpers/`: Helpers for the integration tests.
 - `ios/SpectrumKitSample/`: SpectrumKit's sample app.
