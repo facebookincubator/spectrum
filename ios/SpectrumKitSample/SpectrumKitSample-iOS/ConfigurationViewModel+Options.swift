@@ -110,11 +110,11 @@ extension ConfigurationViewModel {
     
     init?(rawValue: Int) {
       switch rawValue {
-      case 0:
+      case PngCompressionLevelNone:
         self = .none
-      case 1:
+      case PngCompressionLevelBestSpeed:
         self = .bestSpeed
-      case 9:
+      case PngCompressionLevelBestCompression:
         self = .bestCompression
       default:
         self = .default
