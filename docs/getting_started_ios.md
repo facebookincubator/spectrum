@@ -10,12 +10,14 @@ See our [sample apps section](sample_apps.md) for an exemplary project setup.
 Spectrum can be integrated through [CocoaPods](https://cocoapods.org). To do so, add the following line in your `Podfile`:
 
 ```Podfile
-pod 'SpectrumKit/SpectrumKit'
+pod 'SpectrumKit'
 ```
 
 Then run `pod install`.
 
 By default, the `SpectrumKit/Default` sub-spec is used which contains all bundled plugins. See [below](#loading-specific-plugins) if you want to only load specific plugins.
+
+> Spectrum currently doesn't support frameworks in Cocoapods. Please make sure your podfile doesn't `use_frameworks!`.
 
 ## Using Spectrum
 
