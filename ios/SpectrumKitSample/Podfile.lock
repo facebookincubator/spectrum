@@ -88,7 +88,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   libpng: 9c661ee692282485a9cf7fcf0159458c91b4f943
-  libwebp: d7e0c95fe97245c97e08101eba10702ebb0f6101
+  libwebp: b068a3bd7c45f7460f6715be7bed1a18fd5d6b48
   mozjpeg: a4d59753cccb0d7c2bcb38cd4eb936c72ec59234
   spectrum-folly: 0b143554b0263383ac75a85b2b22f1f056900d21
   SpectrumCore: dae3bb32c202578d6a88c50093eaeaf57acf3279
