@@ -124,16 +124,21 @@ extension ConfigurationViewModel {
     // MARK: AlertOptions
     
     var title: String {
+      let title: String
+      
       switch self {
       case .default:
-        return "Default"
+        return NSLocalizedString("Default", comment: "Png default compression level")
       case .none:
-        return "None (\(rawValue))"
+        title = NSLocalizedString("None", comment: "Png no compression level")
       case .bestSpeed:
-        return "Best speed (\(rawValue))"
+        title = NSLocalizedString("Best speed", comment: "Png best speed compression level")
       case .bestCompression:
-        return "Best compression (\(rawValue))"
+        title = NSLocalizedString("Best compression", comment: "Png best compression level")
       }
+      
+      let formatString = NSLocalizedString("%@ (%d)", comment: "Png compression level format String")
+      return String(format: formatString, title, rawValue)
     }
     
     var isAvailable: Bool {
