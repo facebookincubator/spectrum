@@ -277,7 +277,7 @@ public class Configuration {
      * 0 is for not using compression at all and 9 is for the best compression.
      */
     public Builder setCompressionLevel(final Integer compressionLevel) {
-      Preconditions.checkArgument(compressionLevel <= 9);
+      Preconditions.checkArgument(compressionLevel >= 0 && compressionLevel <= 9);
       mCompressionLevel = compressionLevel;
       return this;
     }
