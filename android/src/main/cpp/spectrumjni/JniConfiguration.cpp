@@ -83,6 +83,9 @@ facebook::jni::local_ref<JConfiguration> JConfiguration::fromNative(
       jni::optionalToNullableJavaObject<
           decltype(configuration.png.optional_useInterlacing()),
           jni::JBoolean>(configuration.png.optional_useInterlacing()),
+      jni::optionalToNullableJavaObject<
+          decltype(configuration.png.optional_compressionLevel()),
+          jni::JInteger>(configuration.png.optional_compressionLevel()),
 
       // Webp
       jni::optionalToNullableJavaObject<
@@ -111,6 +114,7 @@ Configuration JConfiguration::toNative() const {
 
   Configuration::Png png;
   png.useInterlacing(useInterlacing());
+  png.compressionLevel(compressionLevel());
 
   Configuration::Webp webp;
   webp.method(method());
@@ -208,6 +212,13 @@ folly::Optional<bool> JConfiguration::useInterlacing() const {
   static const auto field =
       javaClassStatic()->getField<jni::JBoolean::javaobject>("useInterlacing");
   return jni::nullableJavaObjectToOptional<bool>(getFieldValue(field));
+}
+
+folly::Optional<int> JConfiguration::compressionLevel() const {
+  static const auto field =
+      javaClassStatic()->getField<jni::JInteger::javaobject>(
+          "compressionLevel");
+  return jni::nullableJavaObjectToOptional<int>(getFieldValue(field));
 }
 
 folly::Optional<int> JConfiguration::method() const {

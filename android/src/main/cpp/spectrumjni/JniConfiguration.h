@@ -53,6 +53,7 @@ class JConfiguration : public facebook::jni::JavaClass<JConfiguration> {
   chromaSamplingModeOverride() const;
   folly::Optional<bool> usePsnrQuantTable() const;
   folly::Optional<bool> useInterlacing() const;
+  folly::Optional<int> compressionLevel() const;
   folly::Optional<int> method() const;
   folly::Optional<Configuration::Webp::ImageHint> imageHint() const;
 };
