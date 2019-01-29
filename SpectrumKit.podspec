@@ -3,7 +3,6 @@
 compiler_flags = '-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1'
 
 version = '1.0.0'
-pinned_version = '~>' + version
 
 Pod::Spec.new do |spec|
   spec.name = 'SpectrumKit'
@@ -19,7 +18,7 @@ Spectrum is a cross-platform image transcoding library that can easily be integr
   spec.source = { :git => 'https://github.com/facebookincubator/spectrum.git', :tag => "v#{version}" }
   spec.ios.deployment_target = '8.0'
   spec.default_subspecs = 'Plugins/Default'
-  spec.dependency 'spectrum-folly', "~>2019.01.21.00"
+  spec.dependency 'spectrum-folly', '~> 2019.01.21.00'
   spec.compiler_flags = compiler_flags
 
   spec.subspec 'Base' do |base_spec|
@@ -36,27 +35,27 @@ Spectrum is a cross-platform image transcoding library that can easily be integr
 
   spec.subspec 'Plugins' do |plugins_spec|
     plugins_spec.subspec 'Default' do |default_spec|
-      default_spec.dependency 'SpectrumKit/Plugins/Jpeg'
-      default_spec.dependency 'SpectrumKit/Plugins/Png'
-      default_spec.dependency 'SpectrumKit/Plugins/Webp'
+      default_spec.dependency 'SpectrumKit/Plugins/Jpeg', version
+      default_spec.dependency 'SpectrumKit/Plugins/Png', version
+      default_spec.dependency 'SpectrumKit/Plugins/Webp', version
       default_spec.source_files = 'ios/SpectrumKit/SpectrumKitPlugins/Default/**/*'
     end
 
     plugins_spec.subspec 'Jpeg' do |plugins_jpeg_spec|
-      plugins_jpeg_spec.dependency 'SpectrumKit/Base', pinned_version
+      plugins_jpeg_spec.dependency 'SpectrumKit/Base', version
       plugins_jpeg_spec.dependency 'SpectrumCore/Plugins/Jpeg'
       plugins_jpeg_spec.source_files = 'ios/SpectrumKit/SpectrumKitPlugins/Jpeg/**/*'
     end
 
     plugins_spec.subspec 'Png' do |plugins_png_spec|
-      plugins_png_spec.dependency 'SpectrumKit/Base', pinned_version
-      plugins_png_spec.dependency 'SpectrumCore/Plugins/Png'
+      plugins_png_spec.dependency 'SpectrumKit/Base', version
+      plugins_png_spec.dependency 'SpectrumCore/Plugins/Png', version
       plugins_png_spec.source_files = 'ios/SpectrumKit/SpectrumKitPlugins/Png/**/*'
     end
 
     plugins_spec.subspec 'Webp' do |plugins_webp_spec|
-      plugins_webp_spec.dependency 'SpectrumKit/Base', pinned_version
-      plugins_webp_spec.dependency 'SpectrumCore/Plugins/Webp'
+      plugins_webp_spec.dependency 'SpectrumKit/Base', version
+      plugins_webp_spec.dependency 'SpectrumCore/Plugins/Webp', version
       plugins_webp_spec.source_files = 'ios/SpectrumKit/SpectrumKitPlugins/Webp/**/*'
     end
   end
