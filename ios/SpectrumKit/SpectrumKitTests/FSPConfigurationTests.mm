@@ -31,6 +31,7 @@ using namespace facebook::spectrum;
   XCTAssertEqual(configuration.jpeg.usePSNRQuantTable, NO);
 
   XCTAssertEqual(configuration.png.useInterlacing, NO);
+  XCTAssertEqual(configuration.png.compressionLevel, FSPPngCompressionLevelDefault);
 
   XCTAssertEqual(configuration.webp.method, 3);
   XCTAssertEqual(configuration.webp.imageHint, FSPConfigurationWebpImageHintDefault);
@@ -160,6 +161,16 @@ using namespace facebook::spectrum;
   XCTAssertNotEqualObjects(object, object2);
 }
 
+- (void)testIsNotEqualOnDifferentPngCompressionLevel
+{
+  const auto object = makeDefaultConfiguration();
+  const auto object2 = makeDefaultConfiguration();
+    
+  object2.png.compressionLevel = FSPPngCompressionLevelBestSpeed;
+    
+  XCTAssertNotEqualObjects(object, object2);
+}
+
 - (void)testIsNotEqualOnDifferentWebpMethod
 {
   const auto object = makeDefaultConfiguration();
@@ -196,6 +207,7 @@ static Configuration makeDefaultInternalConfiguration()
   configuration.jpeg.useCompatibleDcScanOpt(true);
   configuration.jpeg.usePsnrQuantTable(true);
   configuration.png.useInterlacing(true);
+  configuration.png.compressionLevel(Configuration::Png::CompressionLevelBestCompression);
   configuration.webp.method(2);
   configuration.webp.imageHint(Configuration::Webp::ImageHint::Photo);
   return configuration;
@@ -212,7 +224,8 @@ static FSPConfiguration *makeDefaultConfiguration()
                                                                   useOptimizeScan:NO
                                                         useCompatibleDCScanOption:YES
                                                                 usePSNRQuantTable:YES];
-  const auto pngConfiguration = [[FSPConfigurationPng alloc] initWithUseInterlacing:YES];
+  const auto pngConfiguration = [[FSPConfigurationPng alloc] initWithUseInterlacing:YES
+                                                                   compressionLevel:FSPPngCompressionLevelBestCompression];
   const auto webpConfiguration = [[FSPConfigurationWebp alloc] initWithMethod:2
                                                                     imageHint:FSPConfigurationWebpImageHintPhoto];
   return [[FSPConfiguration alloc] initWithGeneral:generalConfiguration

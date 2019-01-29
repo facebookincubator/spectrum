@@ -37,6 +37,7 @@ final class ConfigurationViewController: UIViewController, ConfigurationViewMode
   @IBOutlet private var jpegUseDcScanOptionSwitch: UISwitch!
   @IBOutlet private var jpegUsePsnrQuantTableSwitch: UISwitch!
   @IBOutlet private var pngUseInterlacingSwitch: UISwitch!
+  @IBOutlet private var pngCompressionLevelButton: UIButton!
   @IBOutlet private var webpMethodButton: UIButton!
   @IBOutlet private var webpImageHintButton: UIButton!
 
@@ -80,6 +81,7 @@ final class ConfigurationViewController: UIViewController, ConfigurationViewMode
 
     self.alertOptionControllerByButton = [
       self.generalDefaultBackgroundColorButton: AnyAlertOptionController(alertContent: Alerts.configurationGeneralDefaultBackgroundColor, destination: viewModel.general, keyPath: \.defaultBackgroundColor),
+      self.pngCompressionLevelButton: AnyAlertOptionController(alertContent: Alerts.configurationPngCompressionLevel, destination: viewModel.png, keyPath: \.compressionLevel),
       self.webpMethodButton: AnyAlertOptionController(alertContent: Alerts.configurationWebpMethod, destination: viewModel.webp, keyPath: \.method),
       self.webpImageHintButton: AnyAlertOptionController(alertContent: Alerts.configurationWebpImageHint, destination: viewModel.webp, keyPath: \.imageHint),
     ]
@@ -108,7 +110,9 @@ final class ConfigurationViewController: UIViewController, ConfigurationViewMode
     self.jpegUseOptimizeScanSwitch.isOn = viewModel.jpeg.useOptimizeScan
     self.jpegUseDcScanOptionSwitch.isOn = viewModel.jpeg.useCompatibleDCScanOption
     self.jpegUsePsnrQuantTableSwitch.isOn = viewModel.jpeg.usePSNRQuantTable
+    
     self.pngUseInterlacingSwitch.isOn = viewModel.png.useInterlacing
+    self.pngCompressionLevelButton.setTitle(viewModel.png.compressionLevel.title, for: .normal)
 
     self.webpMethodButton.setTitle(viewModel.webp.method.title, for: .normal)
     self.webpImageHintButton.setTitle(viewModel.webp.imageHint.title, for: .normal)

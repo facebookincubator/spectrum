@@ -88,6 +88,66 @@ extension ConfigurationViewModel {
 
     static var allValues: [DefaultBackgroundColor] = [.black, .white, .blue, .red, .green]
   }
+    
+  enum CompressionLevel: Int, AlertOptions {
+    case `default`
+    case none
+    case bestSpeed
+    case bestCompression
+    
+    var rawValue: Int {
+      switch self {
+      case .default:
+        return PngCompressionLevelDefault
+      case .none:
+        return PngCompressionLevelNone
+      case .bestSpeed:
+        return PngCompressionLevelBestSpeed
+      case .bestCompression:
+        return PngCompressionLevelBestCompression
+      }
+    }
+    
+    init?(rawValue: Int) {
+      switch rawValue {
+      case PngCompressionLevelNone:
+        self = .none
+      case PngCompressionLevelBestSpeed:
+        self = .bestSpeed
+      case PngCompressionLevelBestCompression:
+        self = .bestCompression
+      default:
+        self = .default
+      }
+    }
+    
+    // MARK: AlertOptions
+    
+    var title: String {
+      let title: String
+      
+      switch self {
+      case .default:
+        return NSLocalizedString("Default", comment: "Png default compression level")
+      case .none:
+        title = NSLocalizedString("None", comment: "Png no compression level")
+      case .bestSpeed:
+        title = NSLocalizedString("Best speed", comment: "Png best speed compression level")
+      case .bestCompression:
+        title = NSLocalizedString("Best compression", comment: "Png best compression level")
+      }
+      
+      let formatString = NSLocalizedString("%@ (%d)", comment: "Png compression level format String")
+      return String(format: formatString, title, rawValue)
+    }
+    
+    var isAvailable: Bool {
+      return true
+    }
+    
+    static var allValues: [CompressionLevel] = [.default, .none, .bestSpeed, .bestCompression]
+    
+  }
 
   enum WebpMethod: Int, AlertOptions {
     case one = 1

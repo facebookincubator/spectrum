@@ -173,12 +173,23 @@ bool Configuration::Jpeg::operator==(const Jpeg& rhs) const {
 // Png
 //
 
+const Configuration::Png::CompressionLevel
+    Configuration::Png::CompressionLevelNone = 0;
+const Configuration::Png::CompressionLevel
+    Configuration::Png::CompressionLevelBestSpeed = 1;
+const Configuration::Png::CompressionLevel
+    Configuration::Png::CompressionLevelBestCompression = 9;
+const Configuration::Png::CompressionLevel
+    Configuration::Png::CompressionLevelDefault = -1;
+
 void Configuration::Png::merge(const Png& rhs) {
   SPECTRUM_CONFIGURATION_MERGE_PROPERTY(useInterlacing, rhs);
+  SPECTRUM_CONFIGURATION_MERGE_PROPERTY(compressionLevel, rhs);
 }
 
 bool Configuration::Png::operator==(const Png& rhs) const {
-  return SPECTRUM_CONFIGURATION_COMPARE_PROPERTY(useInterlacing, rhs);
+  return SPECTRUM_CONFIGURATION_COMPARE_PROPERTY(useInterlacing, rhs) &&
+      SPECTRUM_CONFIGURATION_COMPARE_PROPERTY(compressionLevel, rhs);
 }
 
 //

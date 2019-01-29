@@ -74,6 +74,13 @@ enum class ConfigurationViewModel {
             EnumParameterEntry("4:4:4", "1 luma information per chroma information", ImageChromaSamplingMode.S444)
     )
 
+    private val pngCompressionLevel: Array<EnumParameterEntry<Int>> = arrayOf(
+            EnumParameterEntry("Default", null, -1),
+            EnumParameterEntry("Compression level = 0", "No compression", 0),
+            EnumParameterEntry("Compression level = 1", "Best speed", 1),
+            EnumParameterEntry("Compression level = 9", "Best compression", 9)
+    )
+
     private val webpMethodEntries: Array<EnumParameterEntry<Int>> = arrayOf(
             EnumParameterEntry("Default", null, null as Int?),
             EnumParameterEntry("Webp method = 0", "Slowest", 0),
@@ -103,7 +110,8 @@ enum class ConfigurationViewModel {
                     BooleanParameter("PSNR optimised quantisation table", false) { cb, v -> cb.setUsePsnrQuantTable(v) })
             ),
             ParameterGroup("Png", arrayOf(
-                    BooleanParameter("Save with interlacing", false) { cb, v -> cb.setUseInterlacing(v) })
+                    BooleanParameter("Save with interlacing", false) { cb, v -> cb.setUseInterlacing(v) },
+                    EnumParameter("Compression level", pngCompressionLevel) { cb, v -> cb.setCompressionLevel(v) })
             ),
             ParameterGroup("WebP", arrayOf(
                     EnumParameter("Webp compression method", webpMethodEntries) { cb, v -> v?.let { cb.setWebpMethod(it) } },
