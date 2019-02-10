@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 
 #import <FBLog/FBLog.h>
-#import <FBDefines/FBDefines.h>
+#import <FBDefines/FBMacros.h>
 
 #define FSPReportMustFixIfNot(condition, message) FBReportMustFixIfNot(condition, message)
 #define FSPReportMustFixIfNil(condition, message) FBReportMustFixIfNot(condition, message)
