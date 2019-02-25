@@ -3,7 +3,7 @@ id: getting_started_ios
 title: Getting Started on iOS
 ---
 
-See our [sample apps section](sample_apps.md) for an exemplary project setup.
+While our examples on this website focus on Objective-C, we have designed the API with Swift in mind. All public APIs provide bridging headers. See our [sample app for iOS](sample_apps.md) for an example project written in Swift.
 
 ## Adding Spectrum to your project
 

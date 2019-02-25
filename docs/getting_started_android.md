@@ -5,7 +5,7 @@ title: Getting Started on Android
 
 To integrate Spectrum into your project, simply add new dependencies to your app module, initialize them at the application level, and construct a new instance of the `Spectrum` class. Then you are all set and ready for executing image operations.
 
-See our [sample apps section](sample_apps.md) for an exemplary project setup.
+While our examples on this website focus on Java, we have designed the API with Kotlin in mind. Our [sample app for Android](sample_apps.md) is written in Kotlin.
 
 ## Update your project's Gradle configuration
 
