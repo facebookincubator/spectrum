@@ -75,8 +75,7 @@ enum class ConfigurationViewModel {
     )
 
     private val pngCompressionLevel: Array<EnumParameterEntry<Int>> = arrayOf(
-            EnumParameterEntry("Default", null, -1),
-            EnumParameterEntry("Compression level = 0", "No compression", 0),
+            EnumParameterEntry("Default level = 0", "No compression", 0),
             EnumParameterEntry("Compression level = 1", "Best speed", 1),
             EnumParameterEntry("Compression level = 9", "Best compression", 9)
     )
