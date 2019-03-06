@@ -75,7 +75,8 @@ enum class ConfigurationViewModel {
     )
 
     private val pngCompressionLevel: Array<EnumParameterEntry<Int>> = arrayOf(
-            EnumParameterEntry("Default level = 0", "No compression", 0),
+            EnumParameterEntry("Default", null, null as Int?),
+            EnumParameterEntry("Compression level = 0", "No compression", 0),
             EnumParameterEntry("Compression level = 1", "Best speed", 1),
             EnumParameterEntry("Compression level = 9", "Best compression", 9)
     )
@@ -110,7 +111,7 @@ enum class ConfigurationViewModel {
             ),
             ParameterGroup("Png", arrayOf(
                     BooleanParameter("Save with interlacing", false) { cb, v -> cb.setUseInterlacing(v) },
-                    EnumParameter("Compression level", pngCompressionLevel) { cb, v -> cb.setCompressionLevel(v) })
+                    EnumParameter("Compression level", pngCompressionLevel) { cb, v -> v?.let { cb.setCompressionLevel(v) } })
             ),
             ParameterGroup("WebP", arrayOf(
                     EnumParameter("Webp compression method", webpMethodEntries) { cb, v -> v?.let { cb.setWebpMethod(it) } },
