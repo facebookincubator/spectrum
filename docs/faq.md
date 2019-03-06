@@ -18,3 +18,9 @@ You might also want to look into [just including plugins for the image formats t
 ### How can I contribute to Spectrum?
 
 Have a look at the [issues on GitHub that are marked with `good first issue`](https://github.com/facebookincubator/spectrum/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22). Those are small to medium sized features that we will support. To get started also look at our contributing pages for [Android](contributing_android.md) and [iOS](contributing_ios.md).
+
+### How fast is Spectrum?
+
+When creating Spectrum, our focus has been on the "photo upload" use-case. This process consists of the preprocessing of the image and its transmission over the network. As the latter is less predictable and often the primary bottleneck, we generally favor doing more computation in the preprocessing step to reduce the payload that will be transmitted. This becomes visible through choices such as using [MozJpeg as the standard JPEG implementation](supported_image_formats.md#jpeg).
+
+Spectrum's design generally focusses on tasks that create encoded image output (such as encoding and transcoding). For specialized operations (e.g. processing Bitmaps), other tools (e.g. using parallel computing on the GPU) are usually more performant.
