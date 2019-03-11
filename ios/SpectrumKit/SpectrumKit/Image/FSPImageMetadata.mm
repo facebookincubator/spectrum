@@ -135,14 +135,14 @@ static std::vector<std::uint8_t> dataToVector(NSData *data)
 
     if (@available(iOS 10.0, *)) {
       const CGColorSpaceRef colorSpace = CGImageGetColorSpace(image);
-      NSString *const colorSpaceName = (__bridge id)CGColorSpaceCopyName(colorSpace);
+      NSString *const colorSpaceName = (__bridge_transfer id)CGColorSpaceCopyName(colorSpace);
 
       if ([colorSpaceName isEqualToString:(NSString *)kCGColorSpaceSRGB]) {
         mutableExifDictionary[(NSString*)kCGImagePropertyExifColorSpace] = @(FSPColorProfileSRGBValue);
         _colorProfileData = nil;
       } else {
         mutableExifDictionary[(NSString*)kCGImagePropertyExifColorSpace] = nil;
-        _colorProfileData = (__bridge id)CGColorSpaceCopyICCData(colorSpace);
+        _colorProfileData = (__bridge_transfer id)CGColorSpaceCopyICCData(colorSpace);
       }
     } else {
       // Force sRGB before iOS 10.
