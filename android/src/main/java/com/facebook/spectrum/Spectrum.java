@@ -25,9 +25,9 @@ import com.facebook.spectrum.utils.Preconditions;
  * #transcode}, and {@link #transform} operations.
  *
  * <p>Once created, a {@link Spectrum} object is thread-safe in respect to the executed operations.
- * If ised repeatedly, consider retaining an instance around in your application.
+ * If used repeatedly, consider retaining an instance around in your application.
  */
-public class Spectrum {
+public class Spectrum implements ISpectrum {
 
   private final SpectrumHybrid mSpectrumHybrid;
   private final SpectrumLogger mSpectrumLogger;
@@ -63,21 +63,12 @@ public class Spectrum {
     return new Spectrum(spectrumLogger, configuration, plugins);
   }
 
-  /** @return true iff the native code loaded and initialized properly. */
+  @Override
   public boolean isAvailable() {
     return mSpectrumHybrid.isAvailable();
   }
 
-  /**
-   * A decode operation reads an encoded image and creates a bitmap.
-   *
-   * @param source The {@link EncodedImageSource} to read from.
-   * @param bitmapTarget The {@link BitmapTarget} to create and retain the created bitmap.
-   * @param decodeOptions The {@link DecodeOptions} for this operation.
-   * @param callerContext The caller context that identifies this particular call site.
-   * @return {@link SpectrumResult} containing information about the execution.
-   * @throws SpectrumException for invalid input, missing support and runtime errors.
-   */
+  @Override
   public SpectrumResult decode(
       final EncodedImageSource source,
       final BitmapTarget bitmapTarget,
@@ -88,16 +79,7 @@ public class Spectrum {
     return internalExecute(task, decodeOptions, callerContext);
   }
 
-  /**
-   * An encode operation reads a bitmap and creates an encoded image.
-   *
-   * @param bitmap The {@link Bitmap} to read from.
-   * @param sink The {@link EncodedImageSink} to write the encoded image to.
-   * @param encodeOptions The {@link EncodeOptions} for this operation.
-   * @param callerContext The caller context that identifies this particular call site.
-   * @return {@link SpectrumResult} containing information about the execution.
-   * @throws SpectrumException for invalid input, missing support and runtime errors.
-   */
+  @Override
   public SpectrumResult encode(
       final Bitmap bitmap,
       final EncodedImageSink sink,
@@ -108,16 +90,7 @@ public class Spectrum {
     return internalExecute(task, encodeOptions, callerContext);
   }
 
-  /**
-   * A transcode operation reads an encoded image and creates an encoded image.
-   *
-   * @param source The {@link EncodedImageSource} to read from.
-   * @param sink The {@link EncodedImageSink} to write the encoded image to.
-   * @param transcodeOptions The {@link TranscodeOptions} for this operation.
-   * @param callerContext The caller context that identifies this particular call site.
-   * @return {@link SpectrumResult} containing information about the execution.
-   * @throws SpectrumException for invalid input, missing support and runtime errors.
-   */
+  @Override
   public SpectrumResult transcode(
       final EncodedImageSource source,
       final EncodedImageSink sink,
@@ -128,16 +101,7 @@ public class Spectrum {
     return internalExecute(task, transcodeOptions, callerContext);
   }
 
-  /**
-   * A transform operation reads a bitmap and creates a bitmap.
-   *
-   * @param bitmap The {@link Bitmap} to read from
-   * @param bitmapTarget The {@link BitmapTarget} to create and retain the created bitmap.
-   * @param transformOptions The {@link TransformOptions} for this operation.
-   * @param callerContext The caller context that identifies this particular call site.
-   * @return {@link SpectrumResult} containing information about the execution.
-   * @throws SpectrumException for invalid input, missing support and runtime errors.
-   */
+  @Override
   public SpectrumResult transform(
       final Bitmap bitmap,
       final BitmapTarget bitmapTarget,
@@ -148,10 +112,7 @@ public class Spectrum {
     return internalExecute(task, transformOptions, callerContext);
   }
 
-  /**
-   * This method indicates whether the given image format is supported by Spectrum using the default
-   * plugin.
-   */
+  @Override
   public boolean isImageFormatSupported(final ImageFormat imageFormat) {
     if (ImageFormat.BITMAP.equals(imageFormat)
         || EncodedImageFormat.JPEG.equals(imageFormat)
