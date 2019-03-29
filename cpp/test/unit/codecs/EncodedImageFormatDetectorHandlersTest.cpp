@@ -127,7 +127,7 @@ TEST(codecs_EncodedImageFormatDetectorHandlers, whenNotFtyp_thenReturnNone) {
       "\x00\x00\x00\x10"
       "BAAD",
       8));
-  ASSERT_EQ(folly::none, makeHeifImageFormatDetectorHandler()(imageSource));
+  ASSERT_EQ(folly::none, makeIsobmffImageFormatDetectorHandler()(imageSource));
 }
 
 TEST(
@@ -139,12 +139,12 @@ TEST(
       "XXXX"
       "0000",
       8 + 8));
-  ASSERT_EQ(folly::none, makeHeifImageFormatDetectorHandler()(imageSource));
+  ASSERT_EQ(folly::none, makeIsobmffImageFormatDetectorHandler()(imageSource));
 }
 
 TEST(
     codecs_EncodedImageFormatDetectorHandlers,
-    whenMatchingMajorBrands_thenReturnHeif) {
+    whenMatchingMajorBrandsIsHeif_thenReturnHeif) {
   auto imageSource = io::testutils::makeVectorImageSource(std::string(
       "\x00\x00\x00\x08"
       "ftyp"
@@ -152,12 +152,13 @@ TEST(
       "0000",
       8 + 8));
   ASSERT_EQ(
-      image::formats::Heif, makeHeifImageFormatDetectorHandler()(imageSource));
+      image::formats::Heif,
+      makeIsobmffImageFormatDetectorHandler()(imageSource));
 }
 
 TEST(
     codecs_EncodedImageFormatDetectorHandlers,
-    whenMatchingCompatibleBrands_thenReturnHeif) {
+    whenMatchingCompatibleBrandsContainsHeif_thenReturnHeif) {
   auto imageSource = io::testutils::makeVectorImageSource(std::string(
       "\x00\x00\x00\x10"
       "ftyp"
@@ -167,7 +168,38 @@ TEST(
       "heic",
       8 + 16));
   ASSERT_EQ(
-      image::formats::Heif, makeHeifImageFormatDetectorHandler()(imageSource));
+      image::formats::Heif,
+      makeIsobmffImageFormatDetectorHandler()(imageSource));
+}
+
+TEST(
+    codecs_EncodedImageFormatDetectorHandlers,
+    whenMatchingMajorBrandsIsAvif_thenReturnAvif) {
+  auto imageSource = io::testutils::makeVectorImageSource(std::string(
+      "\x00\x00\x00\x08"
+      "ftyp"
+      "avif"
+      "0000",
+      8 + 8));
+  ASSERT_EQ(
+      image::formats::Avif,
+      makeIsobmffImageFormatDetectorHandler()(imageSource));
+}
+
+TEST(
+    codecs_EncodedImageFormatDetectorHandlers,
+    whenMatchingCompatibleBrandsContainsAvif_thenReturnAvif) {
+  auto imageSource = io::testutils::makeVectorImageSource(std::string(
+      "\x00\x00\x00\x10"
+      "ftyp"
+      "XXXX"
+      "0000"
+      "XXXX"
+      "avif",
+      8 + 16));
+  ASSERT_EQ(
+      image::formats::Avif,
+      makeIsobmffImageFormatDetectorHandler()(imageSource));
 }
 
 } // namespace test

@@ -87,6 +87,12 @@ static constexpr EncodedFormat Gif{"gif"};
  */
 static constexpr EncodedFormat Heif{"heif"};
 
+/**
+ * An AVIF encoded image, see
+ * https://en.wikipedia.org/wiki/AV1#AV1_Image_File_Format_(AVIF)
+ */
+static constexpr EncodedFormat Avif{"avif"};
+
 } // namespace formats
 } // namespace image
 } // namespace spectrum

@@ -64,25 +64,35 @@ EncodedImageFormatDetectorHandler makeRiffImageFormatDetectorHandler(
       };
 }
 
-constexpr std::array<folly::StringPiece, 6> heifBrands = {
-    {folly::StringPiece{"mif1"},
-     folly::StringPiece{"msf1"},
-     folly::StringPiece{"heic"},
+constexpr std::array<folly::StringPiece, 4> heifBrands = {
+    {folly::StringPiece{"heic"},
      folly::StringPiece{"heix"},
      folly::StringPiece{"hevc"},
      folly::StringPiece{"hevx"}}};
 
-bool isHeifBrand(const isobmff::Brand& brand) {
+constexpr std::array<folly::StringPiece, 2> avifBrands = {
+    {folly::StringPiece{"avif"}, folly::StringPiece{"avis"}}};
+
+folly::Optional<image::EncodedFormat> isoBmffBrandToFormat(
+    const isobmff::Brand& brand) {
   const char* brandChars = reinterpret_cast<const char*>(brand.data());
+
   for (const auto& brand : heifBrands) {
     if (strncmp(brand.begin(), brandChars, brand.size()) == 0) {
-      return true;
+      return image::formats::Heif;
     }
   }
-  return false;
+
+  for (const auto& brand : avifBrands) {
+    if (strncmp(brand.begin(), brandChars, brand.size()) == 0) {
+      return image::formats::Avif;
+    }
+  }
+
+  return folly::none;
 }
 
-folly::Optional<image::EncodedFormat> heifEncodedImageFormatDetectorHandler(
+folly::Optional<image::EncodedFormat> isobmffEncodedImageFormatDetectorHandler(
     io::IImageSource& source) {
   constexpr uint64_t maxBoxSize = 64;
 
@@ -96,13 +106,15 @@ folly::Optional<image::EncodedFormat> heifEncodedImageFormatDetectorHandler(
     return folly::none;
   }
 
-  if (isHeifBrand(ftypBox.majorBrand)) {
-    return image::formats::Heif;
+  const auto formatFromMajorBrand = isoBmffBrandToFormat(ftypBox.majorBrand);
+  if (formatFromMajorBrand.has_value()) {
+    return formatFromMajorBrand.value();
   }
 
   for (const auto& brand : ftypBox.compatibleBrands) {
-    if (isHeifBrand(brand)) {
-      return image::formats::Heif;
+    const auto formatFromCompatibleBrand = isoBmffBrandToFormat(brand);
+    if (formatFromCompatibleBrand.has_value()) {
+      return formatFromCompatibleBrand.value();
     }
   }
 
@@ -165,8 +177,8 @@ EncodedImageFormatDetectorHandler makeWebpVp8xImageFormatDetectorHandler() {
       headers::RiffWebpVp8x, image::formats::Webp);
 }
 
-EncodedImageFormatDetectorHandler makeHeifImageFormatDetectorHandler() {
-  return &heifEncodedImageFormatDetectorHandler;
+EncodedImageFormatDetectorHandler makeIsobmffImageFormatDetectorHandler() {
+  return &isobmffEncodedImageFormatDetectorHandler;
 }
 
 std::vector<EncodedImageFormatDetectorHandler>
@@ -179,7 +191,7 @@ makeAllImageFormatDetectorHandlers() {
       makeWebpVp8ImageFormatDetectorHandler(),
       makeWebpVp8lImageFormatDetectorHandler(),
       makeWebpVp8xImageFormatDetectorHandler(),
-      makeHeifImageFormatDetectorHandler(),
+      makeIsobmffImageFormatDetectorHandler(),
   };
 }
 

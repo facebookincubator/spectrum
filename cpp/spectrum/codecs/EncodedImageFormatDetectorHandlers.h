@@ -38,7 +38,7 @@ EncodedImageFormatDetectorHandler makeGif89ImageFormatDetectorHandler();
 EncodedImageFormatDetectorHandler makeWebpVp8ImageFormatDetectorHandler();
 EncodedImageFormatDetectorHandler makeWebpVp8lImageFormatDetectorHandler();
 EncodedImageFormatDetectorHandler makeWebpVp8xImageFormatDetectorHandler();
-EncodedImageFormatDetectorHandler makeHeifImageFormatDetectorHandler();
+EncodedImageFormatDetectorHandler makeIsobmffImageFormatDetectorHandler();
 
 std::vector<EncodedImageFormatDetectorHandler>
 makeAllImageFormatDetectorHandlers();
