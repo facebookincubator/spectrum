@@ -36,7 +36,13 @@ class IvfAv1Decompressor final : public codecs::IDecompressor {
   io::IImageSource& _source;
 
   folly::Optional<image::Specification> _imageSpecification;
-  void ensureHeaderIsRead();
+  size_t _payloadLength;
+  void _ensureHeaderIsRead();
+
+  bool _entireImageHasBeenRead = false;
+  std::vector<std::unique_ptr<image::Scanline>> _entireImage;
+  std::uint32_t _currentOutputScanline = 0;
+  void _ensureEntireImageIsRead();
 
  public:
   image::Specification sourceImageSpecification() override;
