@@ -74,10 +74,6 @@ static constexpr Path s85x128_Q85 =
 
 } // namespace jpeg
 
-//
-// PNG
-//
-
 namespace png {
 
 static constexpr Path s128x85_RGB =
@@ -118,10 +114,6 @@ static constexpr Path s16x16_a50_cABCDEF_ARGB_8B = folly::StringPiece{
     "xplat/spectrum/cpp/testutils/data/png/16x16_a50_cABCDEF_argb_8b.png"};
 } // namespace png
 
-//
-// WEBP
-//
-
 namespace webp {
 static constexpr Path s16x16_WHITE_GRAY_1B = folly::StringPiece{
     "xplat/spectrum/cpp/testutils/data/webp/16x16_white_gray_1b.webp"};
@@ -148,6 +140,13 @@ static constexpr Path exceedingly_large = folly::StringPiece{
     "xplat/spectrum/cpp/testutils/data/webp/exceedingly_large.webp"};
 
 } // namespace webp
+
+namespace avif {
+
+static constexpr Path s256_170_rav1e_s420 = folly::StringPiece{
+    "xplat/spectrum/cpp/testutils/data/avif/256_170_rav1e_s420.ivf"};
+
+}
 
 namespace misc {
 static constexpr Path alphabetTxt =

@@ -9,6 +9,7 @@
 #include <spectrum/Rule.h>
 #include <spectrum/Spectrum.h>
 #include <spectrum/codecs/Repository.h>
+#include <spectrum/plugins/avif/IvfAv1Decompressor.h>
 
 #include <memory>
 
@@ -49,12 +50,29 @@ folly::Optional<image::EncodedFormat> ivfEncodedImageFormatDetectorHandler(
   return folly::none;
 }
 
+inline codecs::DecompressorProvider::Factory makeIvfAv1DecompressorFactory() {
+  return [](io::IImageSource& source,
+            const folly::Optional<image::Ratio>& /* unused */,
+            const Configuration& /* unused */) {
+    return std::make_unique<IvfAv1Decompressor>(source);
+  };
+}
+
+codecs::DecompressorProvider makeIvfAv1DecompressorProvider() {
+  return {
+      .format = formats::IvfAv1,
+      .supportedSamplingRatios = {},
+      .decompressorFactory = makeIvfAv1DecompressorFactory(),
+  };
+}
+
 } // namespace
 
 Plugin makeTranscodingPlugin() {
   auto plugin = Plugin{};
   plugin.encodedImageFormatDetectorHandlers.push_back(
       &ivfEncodedImageFormatDetectorHandler);
+  plugin.decompressorProviders.push_back(makeIvfAv1DecompressorProvider());
   return plugin;
 }
 
