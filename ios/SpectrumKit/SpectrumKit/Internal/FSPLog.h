@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import <FBLog/FBAssert.h>
 #import <FBLog/FBLog.h>
 #import <FBDefines/FBDefines.h>
 
