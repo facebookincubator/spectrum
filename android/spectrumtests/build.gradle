@@ -16,28 +16,13 @@ android {
         buildConfigField "boolean", "IS_INTERNAL_BUILD", 'true'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
-    sourceSets {
-        main {
-            assets.srcDirs = [
-                    'src/main/java/com/facebook/spectrum/testutils/assets/jpeg',
-                    'src/main/java/com/facebook/spectrum/testutils/assets/png',
-                    'src/main/java/com/facebook/spectrum/testutils/assets/webp',
-                    'src/main/java/com/facebook/spectrum/testutils/assets/ivfav1'
-            ]
-        }
-    }
 }
 
 dependencies {
     compileOnly deps.jsr305
     implementation deps.soloader
-    implementation project(':android')
-    implementation deps.festAssert
-    implementation deps.junit
-    implementation deps.supportTestRunner
-    implementation deps.supportTestRules
-    implementation 'androidx.exifinterface:exifinterface:1.1.0-alpha01'
+    androidTestImplementation project(':android:spectrumdefault')
+    androidTestImplementation project(':android:spectrumtestutils')
 
     androidTestImplementation deps.festAssert
     androidTestImplementation deps.junit
@@ -45,12 +30,3 @@ dependencies {
     androidTestImplementation deps.supportTestRunner
     androidTestImplementation deps.supportTestRules
 }
-
-apply from: rootProject.file('gradle/release.gradle')
-
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-
-artifacts.add('archives', sourcesJar)

@@ -40,7 +40,7 @@ public class SpectrumAssertUtils {
     }
   }
 
-  static class Builder {
+  public static class Builder {
     final String inputPath;
 
     @Nullable Bitmap comparisionBitmap = null;
@@ -94,6 +94,10 @@ public class SpectrumAssertUtils {
       Preconditions.checkArgument(ssimTolerance.value >= 0f && ssimTolerance.value <= 1f);
       this.ssimTolerance = ssimTolerance;
       return this;
+    }
+
+    public Builder usingSsimTolerance(final float offset) {
+      return usingSsimTolerance(Offset.offset(offset));
     }
 
     public Builder assertingOutputFormat(final ImageFormat imageFormat) {

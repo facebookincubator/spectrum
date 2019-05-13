@@ -16,7 +16,7 @@ import java.io.InputStream;
 
 public class TestData {
 
-  interface JPEG {
+  public interface JPEG {
     String PATH_85x128_Q15 = "sample_85x128_q15.jpg";
     String PATH_85x128_Q85 = "sample_85x128_q85.jpg";
 
@@ -48,7 +48,7 @@ public class TestData {
     String PATH_16x16_cABCDF0_Q75 = "16x16_cABCDF0_q75.jpg";
   }
 
-  interface PNG {
+  public interface PNG {
     String PATH_128x85 = "128x85.png";
     String PATH_128x85_ARGB = "128x85_argb.png";
     String PATH_800x530 = "800x530.png";
@@ -56,13 +56,13 @@ public class TestData {
     String PATH_341x512_R90_CROPPED_MIRRORED = "341x512_r90_cropped_mirrored.png";
   }
 
-  interface WEBP {
+  public interface WEBP {
     String PATH_128x85_LOSSLESS = "128x85_rgb_lossless.webp";
     String PATH_128x85_LOSSY = "128x85_rgb_lossy.webp";
     String PATH_16x16_a50_cABCDEF = "16x16_a_50_cABCDEF_lossless.webp";
   }
 
-  interface IVFAV1 {
+  public interface IVFAV1 {
     String PATH_256_170_RAV1E_S420_IVFAV1 = "256_170_rav1e_s420.ivf";
     String PATH_256_170_RAV1E_S420_IVFAV1_PNG = "256_170_rav1e_s420.ivf.png";
   }
