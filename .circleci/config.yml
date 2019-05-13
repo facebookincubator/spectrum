@@ -50,7 +50,7 @@ jobs:
       - run: ./gradlew prepareNative
       - run: ./gradlew test
 
-  test-android-unit:
+  test-android-instrumented:
     docker:
       - image: circleci/android:api-28-ndk-r17b
     steps:
@@ -68,3 +68,5 @@ workflows:
           filters: *filter-only-master
       - build-android-release
       - build-android-sample-app
+      - test-android-unit
+      - test-android-instrumented
