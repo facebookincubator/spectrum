@@ -40,6 +40,26 @@ jobs:
       - run: ./gradlew prepareNative
       - run: ./gradlew android:sample:assembleDebug
 
+  test-android-unit:
+    docker:
+      - image: circleci/android:api-28-ndk-r17b
+    steps:
+      - checkout
+      - run: yes | sdkmanager --licenses || exit 0
+      - run: yes | sdkmanager --update || exit 0
+      - run: ./gradlew prepareNative
+      - run: ./gradlew test
+
+  test-android-unit:
+    docker:
+      - image: circleci/android:api-28-ndk-r17b
+    steps:
+      - checkout
+      - run: yes | sdkmanager --licenses || exit 0
+      - run: yes | sdkmanager --update || exit 0
+      - run: ./gradlew prepareNative
+      - run: ./gradlew connectedAndroidTest
+
 workflows:
   version: 2
   build_and_deploy:
