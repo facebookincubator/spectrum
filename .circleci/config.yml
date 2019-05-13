@@ -20,44 +20,56 @@ jobs:
             git config --global user.name "Website Deployment Script"
             echo "machine github.com login docusaurus-bot password $GITHUB_DOCUSAURUS_TOKEN" > ~/.netrc
             cd website && yarn install && GIT_USER=docusaurus-bot USE_SSH=false yarn run publish-gh-pages
-  build-android-release:
+            
+  build-android-release-and-sample:
     docker:
-      - image: circleci/android:api-28-ndk-r17b
+      - image: circleci/android:api-28
     steps:
       - checkout
       - run: yes | sdkmanager --licenses || exit 0
       - run: yes | sdkmanager --update || exit 0
+      - run:
+          name: Setup NDK
+          command: |
+            wget --quiet https://dl.google.com/android/repository/android-ndk-r17b-linux-x86_64.zip
+            unzip -q android-ndk-r17b-linux-x86_64.zip -d /home/circleci
+            echo "ndk.dir=/home/circleci/android-ndk-r17b" >> /home/circleci/project/local.properties
+            sudo apt-get install file
       - run: ./gradlew prepareNative
       - run: ./gradlew assembleRelease
-
-  build-android-sample-app:
-    docker:
-      - image: circleci/android:api-28-ndk-r17b
-    steps:
-      - checkout
-      - run: yes | sdkmanager --licenses || exit 0
-      - run: yes | sdkmanager --update || exit 0
-      - run: ./gradlew prepareNative
       - run: ./gradlew android:sample:assembleDebug
-
-  test-android-unit:
+      
+  test-android-unit-and-instrumented:
     docker:
-      - image: circleci/android:api-28-ndk-r17b
+      - image: circleci/android:api-28
     steps:
       - checkout
       - run: yes | sdkmanager --licenses || exit 0
       - run: yes | sdkmanager --update || exit 0
+      - run:
+          name: Setup NDK
+          command: |
+            wget --quiet https://dl.google.com/android/repository/android-ndk-r17b-linux-x86_64.zip
+            unzip -q android-ndk-r17b-linux-x86_64.zip -d /home/circleci
+            echo "ndk.dir=/home/circleci/android-ndk-r17b" >> /home/circleci/project/local.properties
+            sudo apt-get install file
+      - run:
+          name: Setup emulator
+          command: |
+            sdkmanager "system-images;android-19;default;armeabi-v7a"
+            echo "no" | avdmanager create avd -n test -k "system-images;android-19;default;armeabi-v7a"
+      - run:
+          name: Launch emulator
+          command: emulator -avd test -no-audio -no-window
+          background: true
+      - run:
+          name: Wait for emulator
+          command: circle-android wait-for-boot
+      - run:
+          name: Remove lock screen
+          command: adb shell input keyevent 82
       - run: ./gradlew prepareNative
       - run: ./gradlew test
-
-  test-android-instrumented:
-    docker:
-      - image: circleci/android:api-28-ndk-r17b
-    steps:
-      - checkout
-      - run: yes | sdkmanager --licenses || exit 0
-      - run: yes | sdkmanager --update || exit 0
-      - run: ./gradlew prepareNative
       - run: ./gradlew connectedAndroidTest
 
 workflows:
@@ -66,7 +78,5 @@ workflows:
     jobs:
       - deploy-website:
           filters: *filter-only-master
-      - build-android-release
-      - build-android-sample-app
-      - test-android-unit
-      - test-android-instrumented
+      - build-android-release-and-sample
+      - test-android-unit-and-instrumented
