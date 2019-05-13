@@ -28,6 +28,11 @@ dependencies {
     compileOnly deps.jsr305
     implementation deps.soloader
     implementation project(':android')
+    implementation deps.festAssert
+    implementation deps.junit
+    implementation deps.supportTestRunner
+    implementation deps.supportTestRules
+    implementation 'androidx.exifinterface:exifinterface:1.1.0-alpha01'
 
     androidTestImplementation deps.festAssert
     androidTestImplementation deps.junit
