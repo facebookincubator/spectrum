@@ -48,6 +48,7 @@ ext.deps = [
         // Android Support Libraries
         supportAppCompat: 'androidx.appcompat:appcompat:1.0.0',
         supportTestRunner: 'androidx.test:runner:1.1.0',
+        supportTestRules: 'androidx.test:rules:1.1.0',
         supportMultidex: 'androidx.multidex:multidex:2.0.0',
 
         // Annotations
