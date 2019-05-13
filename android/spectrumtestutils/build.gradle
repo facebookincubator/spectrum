@@ -19,7 +19,12 @@ android {
 
     sourceSets {
         androidTest {
-            assets.srcDirs = ['src/androidTest/java/com/facebook/spectrum/testutils/assets/']
+            assets.srcDirs = [
+                    'src/main/java/com/facebook/spectrum/testutils/assets/jpeg',
+                    'src/main/java/com/facebook/spectrum/testutils/assets/png',
+                    'src/main/java/com/facebook/spectrum/testutils/assets/webp',
+                    'src/main/java/com/facebook/spectrum/testutils/assets/ivfav1'
+            ]
         }
     }
 }

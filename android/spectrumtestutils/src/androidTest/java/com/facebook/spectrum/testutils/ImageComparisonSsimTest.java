@@ -24,8 +24,8 @@ public class ImageComparisonSsimTest {
 
   @Test
   public void testCompare_whenIdentical_thenScoreEqual1() throws IOException {
-    final Bitmap a = TestData.getBitmap(TestData.SAMPLE_85x128_q85);
-    final Bitmap b = TestData.getBitmap(TestData.SAMPLE_85x128_q85);
+    final Bitmap a = TestData.getBitmap(TestData.JPEG.PATH_85x128_Q85);
+    final Bitmap b = TestData.getBitmap(TestData.JPEG.PATH_85x128_Q85);
 
     final float score = ImageComparison.compare(a, b, ImageComparisonMethod.SSIM);
     assertThat(score).isEqualTo(1.00f, EPS);
@@ -48,8 +48,8 @@ public class ImageComparisonSsimTest {
 
   @Test
   public void testCompare_whenDistortedByOneRect_thenScoreSmallerThan1() throws IOException {
-    final Bitmap a = TestData.getBitmap(TestData.SAMPLE_85x128_q85);
-    final Bitmap b = TestData.getBitmap(TestData.SAMPLE_85x128_q85);
+    final Bitmap a = TestData.getBitmap(TestData.JPEG.PATH_85x128_Q85);
+    final Bitmap b = TestData.getBitmap(TestData.JPEG.PATH_85x128_Q85);
 
     final Bitmap mutableB = b.copy(Bitmap.Config.ARGB_8888, true);
     final Canvas canvasB = new Canvas(mutableB);
@@ -65,8 +65,8 @@ public class ImageComparisonSsimTest {
   @Test
   public void testCompare_whenDistortedByTwoRects_thenScoreSmallerThan1_andSmallerThanWithOneRect()
       throws IOException {
-    final Bitmap a = TestData.getBitmap(TestData.SAMPLE_85x128_q85);
-    final Bitmap b = TestData.getBitmap(TestData.SAMPLE_85x128_q85);
+    final Bitmap a = TestData.getBitmap(TestData.JPEG.PATH_85x128_Q85);
+    final Bitmap b = TestData.getBitmap(TestData.JPEG.PATH_85x128_Q85);
 
     final Bitmap mutableB = b.copy(Bitmap.Config.ARGB_8888, true);
     final Canvas canvasB = new Canvas(mutableB);
@@ -83,8 +83,8 @@ public class ImageComparisonSsimTest {
 
   @Test
   public void testCompare_whenDistortedByWorseQuality_thenScoreSmallerThan1() throws IOException {
-    final Bitmap a = TestData.getBitmap(TestData.SAMPLE_85x128_q85);
-    final Bitmap b = TestData.getBitmap(TestData.SAMPLE_85x128_q15);
+    final Bitmap a = TestData.getBitmap(TestData.JPEG.PATH_85x128_Q85);
+    final Bitmap b = TestData.getBitmap(TestData.JPEG.PATH_85x128_Q15);
 
     final float score = ImageComparison.compare(a, b, ImageComparisonMethod.SSIM);
     assertThat(score).isEqualTo(0.81f, EPS);

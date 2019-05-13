@@ -25,9 +25,9 @@ public class SpectrumAssertUtilsTest {
         EncodeOptions.Builder(new EncodeRequirement(EncodedImageFormat.JPEG, 50)).build();
 
     final Builder builder =
-        Builder.withTestImage(TestData.SAMPLE_85x128_q15)
+        Builder.withTestImage(TestData.JPEG.PATH_85x128_Q15)
             .encoding(options)
-            .comparingAgainstTestFile(TestData.SAMPLE_85x128_q15)
+            .comparingAgainstTestFile(TestData.JPEG.PATH_85x128_Q15)
             .assertingOutputFormat(EncodedImageFormat.JPEG)
             .usingSsimTarget(1.0f)
             .usingSsimTolerance(Offset.offset(0.05f));
@@ -40,7 +40,7 @@ public class SpectrumAssertUtilsTest {
     final DecodeOptions options = DecodeOptions.Builder().build();
 
     final Builder builder =
-        Builder.withTestImage(TestData.SAMPLE_85x128_q15)
+        Builder.withTestImage(TestData.JPEG.PATH_85x128_Q15)
             .decoding(options)
             .comparingAgainst(Bitmap.createBitmap(10, 10, Bitmap.Config.ARGB_8888))
             .assertingOutputExifOrientation(2);
