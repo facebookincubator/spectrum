@@ -39,7 +39,7 @@ jobs:
       - run: ./gradlew assembleRelease
       - run: ./gradlew android:sample:assembleDebug
       
-  test-android-unit-and-instrumented:
+  test-android-unit:
     docker:
       - image: circleci/android:api-28
     steps:
@@ -53,24 +53,8 @@ jobs:
             unzip -q android-ndk-r17b-linux-x86_64.zip -d /home/circleci
             echo "ndk.dir=/home/circleci/android-ndk-r17b" >> /home/circleci/project/local.properties
             sudo apt-get install file
-      - run:
-          name: Setup emulator
-          command: |
-            sdkmanager "system-images;android-19;default;armeabi-v7a"
-            echo "no" | avdmanager create avd -n test -k "system-images;android-19;default;armeabi-v7a"
-      - run:
-          name: Launch emulator
-          command: emulator -avd test -no-audio -no-window
-          background: true
-      - run:
-          name: Wait for emulator
-          command: circle-android wait-for-boot
-      - run:
-          name: Remove lock screen
-          command: adb shell input keyevent 82
       - run: ./gradlew prepareNative
       - run: ./gradlew test
-      - run: ./gradlew connectedAndroidTest
 
 workflows:
   version: 2
@@ -79,4 +63,4 @@ workflows:
       - deploy-website:
           filters: *filter-only-master
       - build-android-release-and-sample
-      - test-android-unit-and-instrumented
+      - test-android-unit
