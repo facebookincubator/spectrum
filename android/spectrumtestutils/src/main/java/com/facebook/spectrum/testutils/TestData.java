@@ -27,6 +27,8 @@ public class TestData {
     String PATH_800x530_Q75_GRAYSCALE = "800x530_q75_grayscale.jpg";
     String PATH_800x530_Q75_PROGRESSIVE = "800x530_q75_progressive.jpg";
 
+    String PATH_128x85_Q75_PROGRESSIVE_R90 = "128x85_q75_progressive_r90.jpg";
+
     String PATH_CROPPED_200x100_100_50_Q95 = "c200x100_o100_50_q95.jpg";
     String PATH_CROPPED_RELATIVE_50Px60P_CENTER_Q95 = "c50px60p_center_q95.jpg";
 
