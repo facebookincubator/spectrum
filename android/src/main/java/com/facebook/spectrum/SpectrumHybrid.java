@@ -12,7 +12,6 @@ import android.graphics.Bitmap;
 import android.util.Log;
 import com.facebook.jni.HybridData;
 import com.facebook.jni.annotations.DoNotStrip;
-import com.facebook.soloader.SoLoader;
 import com.facebook.spectrum.options.DecodeOptions;
 import com.facebook.spectrum.options.EncodeOptions;
 import com.facebook.spectrum.options.TransformOptions;
@@ -101,7 +100,7 @@ public class SpectrumHybrid {
       return;
     }
 
-    SoLoader.loadLibrary("spectrum");
+    SpectrumSoLoader.loadLibrary("spectrum");
     mHybridData = initHybrid(mConfiguration, mPlugins);
   }
 

@@ -9,7 +9,7 @@ package com.facebook.spectrum.plugins;
 
 import com.facebook.jni.HybridData;
 import com.facebook.jni.annotations.DoNotStrip;
-import com.facebook.soloader.SoLoader;
+import com.facebook.spectrum.SpectrumSoLoader;
 import javax.annotation.Nullable;
 
 public class SpectrumPluginPng extends SpectrumPlugin {
@@ -28,7 +28,7 @@ public class SpectrumPluginPng extends SpectrumPlugin {
       return;
     }
 
-    SoLoader.loadLibrary("spectrumpluginpng");
+    SpectrumSoLoader.loadLibrary("spectrumpluginpng");
     mHybridData = initHybrid();
   }
 

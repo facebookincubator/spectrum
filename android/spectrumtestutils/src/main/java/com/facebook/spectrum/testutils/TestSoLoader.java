@@ -8,16 +8,21 @@
 package com.facebook.spectrum.testutils;
 
 import androidx.test.InstrumentationRegistry;
-import com.facebook.soloader.SoLoader;
-import java.io.IOException;
+import com.facebook.spectrum.SpectrumSoLoader;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class TestSoLoader {
 
+  private static AtomicBoolean sAlreadyInitialized = new AtomicBoolean(false);
+
   public static void init() {
-    try {
-      SoLoader.init(InstrumentationRegistry.getContext(), 0);
-    } catch (final IOException e) {
-      throw new RuntimeException("failed to initialize SoLoader");
+    if (sAlreadyInitialized.getAndSet(true)) {
+      // In test environments it is more convenient to call init() before each test case and only
+      // have the first one be effective. This is safe as we use the same configuration in every
+      // call.
+      return;
     }
+    SpectrumSoLoader.init(
+        InstrumentationRegistry.getContext(), new SpectrumSoLoader.FacebookSoLoaderImpl());
   }
 }
