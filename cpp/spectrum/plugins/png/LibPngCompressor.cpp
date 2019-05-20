@@ -39,21 +39,14 @@ void libPngWriteCallback(
   sink->write(reinterpret_cast<char*>(data), len);
 }
 
-int colorTypeFromPixelSpecification(
-    const image::pixel::Specification pixelSpecification) {
+std::uint16_t colorTypeFromPixelSpecification(
+    const image::pixel::Specification& pixelSpecification) {
   if (pixelSpecification == image::pixel::specifications::Gray) {
     return PNG_COLOR_TYPE_GRAY;
-
   } else if (pixelSpecification == image::pixel::specifications::RGB) {
     return PNG_COLOR_TYPE_RGB;
-
   } else if (pixelSpecification == image::pixel::specifications::ARGB) {
-#ifdef PNG_FORMAT_AFIRST_SUPPORTED
-    return PNG_COLOR_TYPE_RGBA | PNG_FORMAT_FLAG_AFIRST;
-#else
     return PNG_COLOR_TYPE_RGBA;
-#endif
-
   } else if (pixelSpecification == image::pixel::specifications::RGBA) {
     return PNG_COLOR_TYPE_RGBA;
 
@@ -63,6 +56,13 @@ int colorTypeFromPixelSpecification(
         pixelSpecification.string());
   }
 }
+
+bool swapAlphaFromPixelSpecification(
+    const image::pixel::Specification& pixelSpecification) {
+  return pixelSpecification.hasAlpha() &&
+      pixelSpecification.isAlphaLeadingComponent();
+}
+
 } // anonymous namespace
 
 // allows to define a static error handler function that can be "friended"
@@ -126,7 +126,9 @@ LibPngCompressor::~LibPngCompressor() {
 // Private
 //
 
-void LibPngCompressor::ensureHeaderIsWritten(std::uint16_t colorType) {
+void LibPngCompressor::ensureHeaderIsWritten(
+    const std::uint16_t colorType,
+    const bool swapAlpha) {
   SPECTRUM_ENFORCE_IF_NOT(!writtenLastScanline);
 
   if (isHeaderWritten) {
@@ -148,6 +150,10 @@ void LibPngCompressor::ensureHeaderIsWritten(std::uint16_t colorType) {
                                                   : PNG_INTERLACE_NONE,
       PNG_COMPRESSION_TYPE_DEFAULT,
       PNG_FILTER_TYPE_DEFAULT);
+
+  if (swapAlpha) {
+    png_set_swap_alpha(libPngWriteStruct);
+  }
 
   isHeaderWritten = true;
 
@@ -239,7 +245,9 @@ void LibPngCompressor::writeScanline(
   if (pixelSpecification == image::pixel::specifications::Gray ||
       pixelSpecification == image::pixel::specifications::RGB ||
       pixelSpecification == image::pixel::specifications::ARGB) {
-    ensureHeaderIsWritten(colorTypeFromPixelSpecification(pixelSpecification));
+    ensureHeaderIsWritten(
+        colorTypeFromPixelSpecification(pixelSpecification),
+        swapAlphaFromPixelSpecification(pixelSpecification));
 
     SPECTRUM_ENFORCE_IF_NOT(
         pixelSpecification == _options.imageSpecification.pixelSpecification);

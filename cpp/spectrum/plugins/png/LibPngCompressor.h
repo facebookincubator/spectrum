@@ -59,7 +59,9 @@ class LibPngCompressor final : public codecs::ICompressor {
 
   folly::Optional<std::string> errorMessage;
 
-  void ensureHeaderIsWritten(std::uint16_t colorType);
+  void ensureHeaderIsWritten(
+      const std::uint16_t colorType,
+      const bool swapAlpha);
   void finishIfLastScanlineWritten();
 
   void internalWriteScanlineBaseline(std::unique_ptr<image::Scanline> scanline);
