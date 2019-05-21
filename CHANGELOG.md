@@ -1,3 +1,14 @@
+# 1.1.0 (May 21, 2019)
+
+ - Spectrum now supports modular headers when using cocoapods
+ - Spectrum now supports setting the compression level for libpng
+ - Spectrum now supports setting a custom SoLoader implementation
+ - Fixed Spectrum's PNG encode operations from ARGB input
+ - Spectrum's dependency on libwebp is updated to 1.0.2
+ - Spectrum has experimental support for decoding AV1 frames in IVF containers
+ - Improved documentation including highlights of Kotlin/Swift interoperability
+ - Various fixes and improvements
+
 # 1.0.0 (January 16, 2018)
 
  - Spectrum can now write interlaced PNG files
