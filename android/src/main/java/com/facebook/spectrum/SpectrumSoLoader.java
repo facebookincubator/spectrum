@@ -10,6 +10,7 @@ package com.facebook.spectrum;
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
+import com.facebook.jni.FbJniSoLoader;
 import com.facebook.soloader.SoLoader;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -54,6 +55,9 @@ public class SpectrumSoLoader {
 
     sSoLoaderDelegate = soLoaderDelegate;
     sSoLoaderDelegate.init(context);
+
+    // also make our FbJni copy use this SoLoader abstraction
+    FbJniSoLoader.delegate = new SpectrumImplForFbJniSoLoaderDelegate();
   }
 
   public static void loadLibrary(final String shortName) {
@@ -103,6 +107,19 @@ public class SpectrumSoLoader {
     @Override
     public void loadLibrary(final String shortName) {
       System.loadLibrary(shortName);
+    }
+  }
+
+  /**
+   * Delegate implementation for the {@link FbJniSoLoader} to use this {@link SpectrumSoLoader}.
+   * Required to avoid circular dependencies between modules.
+   */
+  private static final class SpectrumImplForFbJniSoLoaderDelegate
+      implements FbJniSoLoader.SoLoaderWrapper {
+
+    @Override
+    public void loadLibrary(final String shortName) {
+      SpectrumSoLoader.loadLibrary(shortName);
     }
   }
 }

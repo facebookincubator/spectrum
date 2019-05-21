@@ -8,12 +8,11 @@
 package com.facebook.jni;
 
 import com.facebook.jni.annotations.DoNotStrip;
-import com.facebook.soloader.SoLoader;
 
 @DoNotStrip
 public class ThreadScopeSupport {
   static {
-    SoLoader.loadLibrary("spectrumfbjni");
+    FbJniSoLoader.loadLibrary("spectrumfbjni");
   }
 
   // This is just used for ThreadScope::withClassLoader to have a java function

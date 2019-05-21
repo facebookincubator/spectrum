@@ -28,7 +28,6 @@ android {
 
 dependencies {
     compileOnly deps.jsr305
-    implementation deps.soloader
 }
 
 apply from: rootProject.file('gradle/release.gradle')

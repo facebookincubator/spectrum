@@ -8,7 +8,6 @@
 package com.facebook.jni;
 
 import com.facebook.jni.annotations.DoNotStrip;
-import com.facebook.soloader.SoLoader;
 
 /**
  * This object holds a native C++ member for hybrid Java/C++ objects.
@@ -22,7 +21,7 @@ import com.facebook.soloader.SoLoader;
 public class HybridData {
 
   static {
-    SoLoader.loadLibrary("spectrumfbjni");
+    FbJniSoLoader.loadLibrary("spectrumfbjni");
   }
 
   @DoNotStrip private Destructor mDestructor = new Destructor(this);
