@@ -19,12 +19,9 @@
 #include <mozjpeg/jerror.h>
 #include <mozjpeg/jinclude.h>
 #include <mozjpeg/jpeglib.h>
+#include <mozjpeg/transupp.h>
 
 #include <folly/Optional.h>
-
-extern "C" {
-#include <mozjpeg/transupp.h> // doesn't play nice with C++
-}
 
 namespace facebook {
 namespace spectrum {
