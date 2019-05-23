@@ -34,7 +34,7 @@ Spectrum is a cross-platform image transcoding library that can easily be integr
   spec.subspec 'Plugins' do |plugins_spec|
     plugins_spec.subspec 'Jpeg' do |plugins_jpeg_spec|
       plugins_jpeg_spec.dependency 'SpectrumCore/Base', version
-      plugins_jpeg_spec.dependency 'mozjpeg', '3.3.1'
+      plugins_jpeg_spec.dependency 'mozjpeg', '3.3.2'
       plugins_jpeg_spec.source_files = 'cpp/spectrum/plugins/jpeg/**/*.{h,cpp}'
       plugins_jpeg_spec.header_dir = 'spectrum/plugins/jpeg'
       plugins_jpeg_spec.header_mappings_dir = 'cpp/spectrum/plugins/jpeg'
