@@ -7,11 +7,10 @@
 
 package com.facebook.spectrum.plugins.png;
 
+import com.facebook.spectrum.DefaultPlugins;
 import com.facebook.spectrum.Spectrum;
 import com.facebook.spectrum.logging.BaseSpectrumLogger;
 import com.facebook.spectrum.options.DecodeOptions;
-import com.facebook.spectrum.plugins.SpectrumPlugin;
-import com.facebook.spectrum.plugins.SpectrumPluginPng;
 import com.facebook.spectrum.testutils.SpectrumAssertUtils;
 import com.facebook.spectrum.testutils.TestData;
 import com.facebook.spectrum.testutils.TestSoLoader;
@@ -25,8 +24,7 @@ public class PngDecodeTest {
   @Before
   public void setup() {
     TestSoLoader.init();
-    mSpectrum =
-        Spectrum.make(new BaseSpectrumLogger(), new SpectrumPlugin[] {SpectrumPluginPng.get()});
+    mSpectrum = Spectrum.make(new BaseSpectrumLogger(), DefaultPlugins.get());
   }
 
   @Test

@@ -9,12 +9,11 @@ package com.facebook.spectrum.plugins.png;
 
 import static com.facebook.spectrum.image.EncodedImageFormat.PNG;
 
+import com.facebook.spectrum.DefaultPlugins;
 import com.facebook.spectrum.Spectrum;
 import com.facebook.spectrum.image.ImageSize;
 import com.facebook.spectrum.logging.BaseSpectrumLogger;
 import com.facebook.spectrum.options.TranscodeOptions;
-import com.facebook.spectrum.plugins.SpectrumPlugin;
-import com.facebook.spectrum.plugins.SpectrumPluginPng;
 import com.facebook.spectrum.requirements.EncodeRequirement;
 import com.facebook.spectrum.requirements.ResizeRequirement;
 import com.facebook.spectrum.testutils.SpectrumAssertUtils;
@@ -30,8 +29,7 @@ public class PngTranscodeTest {
   @Before
   public void setup() {
     TestSoLoader.init();
-    mSpectrum =
-        Spectrum.make(new BaseSpectrumLogger(), new SpectrumPlugin[] {SpectrumPluginPng.get()});
+    mSpectrum = Spectrum.make(new BaseSpectrumLogger(), DefaultPlugins.get());
   }
 
   @Test
@@ -43,6 +41,7 @@ public class PngTranscodeTest {
         mSpectrum,
         SpectrumAssertUtils.Builder.withTestImage(TestData.PNG.PATH_128x85)
             .transcoding(transcodeOptions)
+            .assertingOutputFormat(PNG)
             .comparingAgainstTestFile(TestData.PNG.PATH_128x85)
             .usingSsimTarget(1f)
             .usingSsimTolerance(0f));
@@ -59,6 +58,7 @@ public class PngTranscodeTest {
         mSpectrum,
         SpectrumAssertUtils.Builder.withTestImage(TestData.PNG.PATH_800x530)
             .transcoding(transcodeOptions)
+            .assertingOutputFormat(PNG)
             .comparingAgainstTestFile(TestData.PNG.PATH_128x85)
             .usingSsimTarget(.88f));
   }

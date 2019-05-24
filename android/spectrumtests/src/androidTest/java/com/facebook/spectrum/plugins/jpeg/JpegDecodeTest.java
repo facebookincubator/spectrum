@@ -7,12 +7,11 @@
 
 package com.facebook.spectrum.plugins.jpeg;
 
+import com.facebook.spectrum.DefaultPlugins;
 import com.facebook.spectrum.Spectrum;
 import com.facebook.spectrum.image.ImageSize;
 import com.facebook.spectrum.logging.BaseSpectrumLogger;
 import com.facebook.spectrum.options.DecodeOptions;
-import com.facebook.spectrum.plugins.SpectrumPlugin;
-import com.facebook.spectrum.plugins.SpectrumPluginJpeg;
 import com.facebook.spectrum.requirements.CropRequirement;
 import com.facebook.spectrum.requirements.ResizeRequirement;
 import com.facebook.spectrum.requirements.RotateRequirement;
@@ -29,8 +28,7 @@ public class JpegDecodeTest {
   @Before
   public void setup() {
     TestSoLoader.init();
-    mSpectrum =
-        Spectrum.make(new BaseSpectrumLogger(), new SpectrumPlugin[] {SpectrumPluginJpeg.get()});
+    mSpectrum = Spectrum.make(new BaseSpectrumLogger(), DefaultPlugins.get());
   }
 
   @Test

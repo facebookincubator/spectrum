@@ -10,12 +10,11 @@ package com.facebook.spectrum.plugins.png;
 import static com.facebook.spectrum.image.EncodedImageFormat.PNG;
 
 import com.facebook.spectrum.Configuration;
+import com.facebook.spectrum.DefaultPlugins;
 import com.facebook.spectrum.Spectrum;
+import com.facebook.spectrum.image.EncodedImageFormat;
 import com.facebook.spectrum.logging.BaseSpectrumLogger;
 import com.facebook.spectrum.options.EncodeOptions;
-import com.facebook.spectrum.plugins.SpectrumPlugin;
-import com.facebook.spectrum.plugins.SpectrumPluginJpeg;
-import com.facebook.spectrum.plugins.SpectrumPluginPng;
 import com.facebook.spectrum.requirements.EncodeRequirement;
 import com.facebook.spectrum.testutils.SpectrumAssertUtils;
 import com.facebook.spectrum.testutils.TestData;
@@ -30,19 +29,16 @@ public class PngEncodeTest {
   @Before
   public void setup() {
     TestSoLoader.init();
-    mSpectrum =
-        Spectrum.make(
-            new BaseSpectrumLogger(),
-            new SpectrumPlugin[] {SpectrumPluginPng.get(), SpectrumPluginJpeg.get()});
+    mSpectrum = Spectrum.make(new BaseSpectrumLogger(), DefaultPlugins.get());
   }
 
   @Test
   public void testEncode_whenDefaultOptions_thenResultSimilar() throws Exception {
     SpectrumAssertUtils.executeAndAssert(
         mSpectrum,
-        // note that this uses a JPEG as input to ensure it is not pass-through
         SpectrumAssertUtils.Builder.withTestImage(TestData.JPEG.PATH_128x85_Q75_BASELINE)
             .encoding(EncodeOptions.Builder(new EncodeRequirement(PNG)).build())
+            .assertingOutputFormat(EncodedImageFormat.PNG)
             .comparingAgainstTestFile(TestData.JPEG.PATH_128x85_Q75_BASELINE));
   }
 
@@ -54,9 +50,9 @@ public class PngEncodeTest {
 
     SpectrumAssertUtils.executeAndAssert(
         mSpectrum,
-        // note that this uses a JPEG as input to ensure it is not pass-through
         SpectrumAssertUtils.Builder.withTestImage(TestData.JPEG.PATH_128x85_Q75_BASELINE)
             .encoding(encodeOptions)
+            .assertingOutputFormat(EncodedImageFormat.PNG)
             .comparingAgainstTestFile(TestData.JPEG.PATH_128x85_Q75_BASELINE));
   }
 }

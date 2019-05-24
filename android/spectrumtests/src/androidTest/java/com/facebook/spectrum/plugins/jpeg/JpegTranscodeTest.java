@@ -12,11 +12,10 @@ import static com.facebook.spectrum.requirements.EncodeRequirement.Mode.LOSSY;
 
 import android.media.ExifInterface;
 import com.facebook.spectrum.Configuration;
+import com.facebook.spectrum.DefaultPlugins;
 import com.facebook.spectrum.Spectrum;
 import com.facebook.spectrum.logging.BaseSpectrumLogger;
 import com.facebook.spectrum.options.TranscodeOptions;
-import com.facebook.spectrum.plugins.SpectrumPlugin;
-import com.facebook.spectrum.plugins.SpectrumPluginJpeg;
 import com.facebook.spectrum.requirements.CropRequirement;
 import com.facebook.spectrum.requirements.EncodeRequirement;
 import com.facebook.spectrum.testutils.SpectrumAssertUtils;
@@ -32,8 +31,7 @@ public class JpegTranscodeTest {
   @Before
   public void setup() {
     TestSoLoader.init();
-    mSpectrum =
-        Spectrum.make(new BaseSpectrumLogger(), new SpectrumPlugin[] {SpectrumPluginJpeg.get()});
+    mSpectrum = Spectrum.make(new BaseSpectrumLogger(), DefaultPlugins.get());
   }
 
   @Test
@@ -45,6 +43,7 @@ public class JpegTranscodeTest {
         mSpectrum,
         SpectrumAssertUtils.Builder.withTestImage(TestData.JPEG.PATH_128x85_Q75_BASELINE)
             .transcoding(transcodeOptions)
+            .assertingOutputFormat(JPEG)
             .comparingAgainstTestFile(TestData.JPEG.PATH_128x85_Q75_BASELINE)
             .usingSsimTarget(1f)
             .usingSsimTolerance(0f));
@@ -59,6 +58,7 @@ public class JpegTranscodeTest {
         mSpectrum,
         SpectrumAssertUtils.Builder.withTestImage(TestData.JPEG.PATH_128x85_Q75_BASELINE)
             .transcoding(transcodeOptions)
+            .assertingOutputFormat(JPEG)
             .comparingAgainstTestFile(TestData.JPEG.PATH_128x85_Q75_BASELINE)
             .usingSsimTarget(0.95f));
   }
@@ -72,6 +72,7 @@ public class JpegTranscodeTest {
         mSpectrum,
         SpectrumAssertUtils.Builder.withTestImage(TestData.JPEG.PATH_128x85_Q75_BASELINE)
             .transcoding(transcodeOptions)
+            .assertingOutputFormat(JPEG)
             .comparingAgainstTestFile(TestData.JPEG.PATH_128x85_Q75_BASELINE)
             .usingSsimTarget(0.65f)
             .usingSsimTolerance(0.1f));
@@ -94,6 +95,7 @@ public class JpegTranscodeTest {
         mSpectrum,
         SpectrumAssertUtils.Builder.withTestImage(TestData.JPEG.PATH_800x530_Q75_PROGRESSIVE)
             .transcoding(transcodeOptions)
+            .assertingOutputFormat(JPEG)
             .comparingAgainstTestFile(TestData.JPEG.PATH_CROPPED_200x100_100_50_Q95));
   }
 
@@ -114,6 +116,7 @@ public class JpegTranscodeTest {
         mSpectrum,
         SpectrumAssertUtils.Builder.withTestImage(TestData.JPEG.PATH_800x530_Q75_PROGRESSIVE)
             .transcoding(transcodeOptions)
+            .assertingOutputFormat(JPEG)
             .comparingAgainstTestFile(TestData.JPEG.PATH_CROPPED_RELATIVE_50Px60P_CENTER_Q95));
   }
 
@@ -132,6 +135,7 @@ public class JpegTranscodeTest {
         mSpectrum,
         SpectrumAssertUtils.Builder.withTestImage(TestData.JPEG.PATH_128x85_Q75_PROGRESSIVE)
             .transcoding(transcodeOptions)
+            .assertingOutputFormat(JPEG)
             .comparingAgainstTestFile(TestData.JPEG.PATH_128x85_Q75_PROGRESSIVE)
             .assertingOutputExifOrientation(ExifInterface.ORIENTATION_ROTATE_90));
   }
@@ -151,6 +155,7 @@ public class JpegTranscodeTest {
         mSpectrum,
         SpectrumAssertUtils.Builder.withTestImage(TestData.JPEG.PATH_128x85_Q75_PROGRESSIVE)
             .transcoding(transcodeOptions)
+            .assertingOutputFormat(JPEG)
             .comparingAgainstTestFile(TestData.JPEG.PATH_128x85_Q75_PROGRESSIVE_R90)
             .assertingOutputExifOrientation(ExifInterface.ORIENTATION_UNDEFINED));
   }
