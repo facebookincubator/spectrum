@@ -1,4 +1,4 @@
-# 1.1.0 (May 21, 2019)
+# 1.1.0 (May 24, 2019)
 
  - Spectrum now supports modular headers when using cocoapods
  - Spectrum now supports setting the compression level for libpng
@@ -9,7 +9,7 @@
  - Improved documentation including highlights of Kotlin/Swift interoperability
  - Various fixes and improvements
 
-# 1.0.0 (January 16, 2018)
+# 1.0.0 (January 17, 2019)
 
  - Spectrum can now write interlaced PNG files
  - Spectrum now supports consuming JPEG images with 4:1:1 and 4:4:0 chroma subsampling (see GitHub issue 8)
