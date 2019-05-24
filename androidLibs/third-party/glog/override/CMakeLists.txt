@@ -5,5 +5,5 @@ add_library(glog INTERFACE)
 
 target_include_directories(glog INTERFACE
   ..
-  glog-0.3.5/src
+  glog-0.4.0/src
 )
