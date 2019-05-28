@@ -17,16 +17,32 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/source_image"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:background="@color/layout_background"
-                android:minHeight="180dp" />
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/source_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:background="@color/layout_background"
+                    android:minHeight="180dp" />
+
+                <Button
+                    android:id="@+id/button_choose_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:alpha=".8"
+                    android:background="@color/button_overlay_background"
+                    android:padding="8dp"
+                    android:text="@string/button_change_input_image"
+                    android:textColor="@color/white" />
+
+            </RelativeLayout>
 
             <LinearLayout
-                android:id="@+id/button_choose_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/parameter_container_background"
@@ -35,12 +51,6 @@
                 android:paddingLeft="@dimen/optionPaddingLeft"
                 android:paddingRight="@dimen/optionPaddingRight"
                 android:paddingTop="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_source_image"
-                    android:textColor="@color/parameter_text" />
 
                 <TextView
                     android:id="@+id/source_info"

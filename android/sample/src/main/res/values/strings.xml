@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" description="Displayed name of the app">Spectrum</string>
-    <string name="label_source_image">Source Image</string>
     <string name="label_input_type">Input Type</string>
     <string name="label_output_type">Output Type</string>
     <string name="label_input_file">Input File</string>
@@ -22,4 +21,5 @@
     <string name="label_encode_mode">Encode Mode</string>
     <string name="label_configuration">Configuration</string>
     <string name="button_edit_configuration">Edit configuration</string>
+    <string name="button_change_input_image">Click to change input…</string>
 </resources>

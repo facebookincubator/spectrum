@@ -114,9 +114,9 @@ enum class TranscodeViewModel {
     private fun getImageInformationSummary(bitmap: Bitmap, length: Int): String {
         val bitrateBitsPerPixel = 8.0f * length.toFloat() / (bitmap.width * bitmap.height).toFloat()
         return StringBuilder().apply {
-            append("size: ${bitmap.width}x${bitmap.height}\n")
-            append(" len: $length\n")
-            append(String.format("rate: %.2f bits/px\n", bitrateBitsPerPixel))
+            append("size: ${bitmap.width}x${bitmap.height} - ")
+            append(String.format("len: %.2f KiB - ", length / 1024f))
+            append(String.format("rate: %.2f bits/px", bitrateBitsPerPixel))
         }.toString()
     }
 }
