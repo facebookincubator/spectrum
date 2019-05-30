@@ -11,6 +11,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import androidx.test.InstrumentationRegistry;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -71,6 +72,18 @@ public class TestData {
 
   public static InputStream getInputStream(final String path) throws IOException {
     return getContext().getResources().getAssets().open(path);
+  }
+
+  public static byte[] getInputBytes(final String path) throws IOException {
+    final InputStream is = getInputStream(path);
+    final ByteArrayOutputStream bos = new ByteArrayOutputStream(is.available());
+
+    final byte[] buffer = new byte[16 * 1024];
+    int readBytes;
+    while ((readBytes = is.read(buffer)) > 0) {
+      bos.write(buffer, 0, readBytes);
+    }
+    return bos.toByteArray();
   }
 
   static Bitmap getBitmap(final String path) throws IOException {
