@@ -58,6 +58,8 @@ ext.deps = [
         soloader: 'com.facebook.soloader:soloader:0.5.1',
 
         // Third-party
+        dexmaker: 'com.google.dexmaker:dexmaker:1.2',
+        dexmakerMockito: 'com.google.dexmaker:dexmaker-mockito:1.2',
         festAssert: 'org.easytesting:fest-assert-core:2.0M10',
         junit: 'junit:junit:4.12',
         kotlinAndroidKtx: 'androidx.core:core-ktx:1.0.0',

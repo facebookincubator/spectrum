@@ -69,7 +69,7 @@ public class TestData {
     String PATH_256_170_RAV1E_S420_IVFAV1_PNG = "256_170_rav1e_s420.ivf.png";
   }
 
-  static InputStream getInputStream(final String path) throws IOException {
+  public static InputStream getInputStream(final String path) throws IOException {
     return getContext().getResources().getAssets().open(path);
   }
 

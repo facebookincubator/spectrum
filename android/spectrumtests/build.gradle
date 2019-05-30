@@ -36,6 +36,9 @@ dependencies {
     androidTestImplementation deps.festAssert
     androidTestImplementation deps.junit
     androidTestImplementation deps.robolectric
+    androidTestImplementation deps.mockitoCore
+    androidTestImplementation deps.dexmaker
+    androidTestImplementation deps.dexmakerMockito
     androidTestImplementation deps.supportTestRunner
     androidTestImplementation deps.supportTestRules
 }
