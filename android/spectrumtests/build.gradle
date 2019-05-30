@@ -16,6 +16,15 @@ android {
         buildConfigField "boolean", "IS_INTERNAL_BUILD", 'true'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    sourceSets {
+        androidTest {
+            java {
+                // disable in OSS build until dav1d is integrated
+                exclude '**/ivfav1/**/*.java'
+            }
+        }
+    }
 }
 
 dependencies {
