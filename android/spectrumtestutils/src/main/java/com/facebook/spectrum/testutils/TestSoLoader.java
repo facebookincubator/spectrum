@@ -25,4 +25,8 @@ public class TestSoLoader {
     SpectrumSoLoader.init(
         InstrumentationRegistry.getContext(), new SpectrumSoLoader.FacebookSoLoaderImpl());
   }
+
+  public static void loadLibrary(final String shortName) {
+    SpectrumSoLoader.loadLibrary(shortName);
+  }
 }

@@ -30,7 +30,7 @@ target_compile_options(spectrum PRIVATE
   -DNDEBUG
 )
 
-target_include_directories(spectrum PRIVATE
+target_include_directories(spectrum PUBLIC
   ${spectrum_DIR}
 )
 

@@ -32,6 +32,7 @@ dependencies {
     implementation deps.soloader
     androidTestImplementation project(':android:spectrumdefault')
     androidTestImplementation project(':android:spectrumtestutils')
+    androidTestImplementation project(':fbjni')
 
     androidTestImplementation deps.festAssert
     androidTestImplementation deps.junit

@@ -15,6 +15,17 @@ android {
         targetSdkVersion rootProject.targetSdkVersion
         buildConfigField "boolean", "IS_INTERNAL_BUILD", 'true'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
+
+        externalNativeBuild {
+            cmake {
+                arguments '-DANDROID_TOOLCHAIN=clang', '-DANDROID_STL=c++_shared'
+                targets 'spectrumtest'
+            }
+        }
     }
 
     sourceSets {
@@ -26,6 +37,20 @@ android {
                     'src/main/java/com/facebook/spectrum/testutils/assets/ivfav1'
             ]
         }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path './CMakeLists.txt'
+        }
+    }
+
+    packagingOptions {
+        // provided by the main spectrum target
+        exclude "**/libc++_shared.so"
+        exclude "**/libspectrumcpp.so"
+        exclude "**/libspectrumfbjni.so"
+        exclude "**/libspectrum.so"
     }
 }
 
