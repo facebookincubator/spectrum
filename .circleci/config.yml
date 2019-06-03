@@ -35,11 +35,29 @@ executors:
       - BUILD_THREADS: 2
 
 commands:
-    prepare_native_gradle_deps:
-      steps:
-        - run:
+  install_apt_get_deps:
+    steps:
+      - run:
+          name: Download apt-get build dependencies
+          command: sudo apt-get install ant autoconf automake g++ gcc libqt5widgets5 lib32z1 lib32stdc++6 make maven python-dev python3-dev qml-module-qtquick-controls qtdeclarative5-dev libpulse0 file -y
+  prepare_native_gradle_deps:
+    steps:
+      - run:
           name: Download and prepare native dependencies via gralde
           command: ./gradlew prepareNative
+  create_emulator:
+    steps:
+      - run:
+          name: Create emulator
+          command: |
+            AVD_PACKAGES="system-images;android-$ANDROID_SDK_TARGET_API_LEVEL;google_apis;$AVD_ABI"
+            echo "Creating AVD with packages $AVD_PACKAGES"
+            echo no | avdmanager create avd --name "$AVD_NAME" --force --package "$AVD_PACKAGES" --tag google_apis --abi "$AVD_ABI"
+  launch_emulator:
+    steps:
+      - run:
+          name: Launch emulator
+          command: "$ANDROID_HOME/emulator/emulator" -avd "$AVD_NAME" -no-audio -no-window
 
 #
 # JOBS
@@ -73,6 +91,17 @@ jobs:
       - prepare_native_gradle_deps
       - run: ./gradlew android:sample:assembleDebug
 
+  test-android:
+    executor: spectrumandroid
+    steps:
+      - checkout
+      - install_apt_get_deps
+      - prepare_native_gradle_deps
+      - create_emulator
+      - launch_emulator
+      - run: ./gradlew test
+      - run: ./gradlew connectedAndroidTest
+
 #
 # WORKFLOWS
 #
@@ -84,4 +113,5 @@ workflows:
       - deploy-website:
           filters: *filter-only-master
       - build-android-release
+      - build-android-sample-app
       - build-android-sample-app
