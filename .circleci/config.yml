@@ -57,7 +57,8 @@ commands:
     steps:
       - run:
           name: Launch emulator
-          command: "$ANDROID_HOME/emulator/emulator" -avd "$AVD_NAME" -no-audio -no-window
+          command: |
+            "$ANDROID_HOME/emulator/emulator" -avd "$AVD_NAME" -no-audio -no-window
 
 #
 # JOBS
