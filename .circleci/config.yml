@@ -115,4 +115,4 @@ workflows:
           filters: *filter-only-master
       - build-android-release
       - build-android-sample-app
-      - build-android-sample-app
+      - test-android
