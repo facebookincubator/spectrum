@@ -45,6 +45,7 @@ commands:
       - run:
           name: Create emulator
           command: |
+            source ".circleci/scripts/.tests.env"
             AVD_PACKAGES="system-images;android-$ANDROID_SDK_TARGET_API_LEVEL;google_apis;$AVD_ABI"
             echo "Creating AVD with packages $AVD_PACKAGES"
             echo no | avdmanager create avd --name "$AVD_NAME" --force --package "$AVD_PACKAGES" --tag google_apis --abi "$AVD_ABI"
@@ -53,7 +54,15 @@ commands:
       - run:
           name: Launch emulator
           command: |
+            source ".circleci/scripts/.tests.env"
             "$ANDROID_HOME/emulator/emulator" -avd "$AVD_NAME" -no-audio -no-window
+  wait_for_emulator:
+    steps:
+      - run:
+          name: Wait for emulator
+          command: |
+            source ".circleci/scripts/.tests.env"
+            ".circleci/scripts/wait_for_emulator.sh"
 
 #
 # JOBS
@@ -94,6 +103,7 @@ jobs:
       - prepare_native_gradle_deps
       - create_emulator
       - launch_emulator
+      - wait_for_emulator
       - run: ./gradlew test
       - run: ./gradlew connectedAndroidTest
 
