@@ -35,11 +35,6 @@ executors:
       - BUILD_THREADS: 2
 
 commands:
-  install_apt_get_deps:
-    steps:
-      - run:
-          name: Download apt-get build dependencies
-          command: sudo apt-get install ant autoconf automake g++ gcc libqt5widgets5 lib32z1 lib32stdc++6 make maven python-dev python3-dev qml-module-qtquick-controls qtdeclarative5-dev libpulse0 file -y
   prepare_native_gradle_deps:
     steps:
       - run:
@@ -96,7 +91,6 @@ jobs:
     executor: spectrumandroid
     steps:
       - checkout
-      - install_apt_get_deps
       - prepare_native_gradle_deps
       - create_emulator
       - launch_emulator
