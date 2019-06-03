@@ -1,12 +1,69 @@
 # Copyright (c) Facebook, Inc. and its affiliates.
 
+#
+# GENERAL CONFIG
+#
+
+version: 2.1
+
 aliases:
  - &filter-only-master
    branches:
      only:
        - master
 
-version: 2
+#
+# EXECUTORS & JOBS
+#
+
+executors:
+  spectrumandroid:
+    docker:
+      - image: reactnativecommunity/react-native-android:2019-5-29
+    working_directory: ~/react-native
+    resource_class: "large"
+    environment:
+      - TERM: "dumb"
+      - ADB_INSTALL_TIMEOUT: 10
+      - _JAVA_OPTIONS: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+      - GRADLE_OPTS: '-Dorg.gradle.daemon=false -Dorg.gradle.jvmargs="-XX:+HeapDumpOnOutOfMemoryError"'
+      - BUILD_THREADS: 2
+
+commands:
+  prepare_native_gradle_deps:
+    steps:
+      - run:
+          name: Download and prepare native dependencies via Gradle
+          command: ./gradlew prepareNative
+  create_emulator:
+    steps:
+      - run:
+          name: Create emulator
+          command: |
+            source ".circleci/scripts/.tests.env"
+            AVD_PACKAGES="system-images;android-$ANDROID_SDK_TARGET_API_LEVEL;google_apis;$AVD_ABI"
+            echo "Creating AVD with packages $AVD_PACKAGES"
+            echo no | avdmanager create avd --name "$AVD_NAME" --force --package "$AVD_PACKAGES" --tag google_apis --abi "$AVD_ABI"
+  launch_emulator:
+    steps:
+      - run:
+          name: Launch emulator
+          background: true
+          command: |
+            source ".circleci/scripts/.tests.env"
+            "$ANDROID_HOME/emulator/emulator" -avd "$AVD_NAME" -no-audio -no-window
+  wait_for_emulator:
+    steps:
+      - run:
+          name: Wait for emulator
+          command: |
+            source ".circleci/scripts/.tests.env"
+            ".circleci/scripts/wait_for_emulator.sh"
+
+#
+# JOBS
+#
+
 jobs:
   deploy-website:
     docker:
@@ -20,25 +77,38 @@ jobs:
             git config --global user.name "Website Deployment Script"
             echo "machine github.com login docusaurus-bot password $GITHUB_DOCUSAURUS_TOKEN" > ~/.netrc
             cd website && yarn install && GIT_USER=docusaurus-bot USE_SSH=false yarn run publish-gh-pages
+
   build-android-release:
-    docker:
-      - image: circleci/android:api-28-ndk-r17b
+    executor: spectrumandroid
     steps:
       - checkout
-      - run: yes | sdkmanager --licenses || exit 0
-      - run: yes | sdkmanager --update || exit 0
-      - run: ./gradlew prepareNative
+      - prepare_native_gradle_deps
       - run: ./gradlew assembleRelease
 
   build-android-sample-app:
-    docker:
-      - image: circleci/android:api-28-ndk-r17b
+    executor: spectrumandroid
     steps:
       - checkout
-      - run: yes | sdkmanager --licenses || exit 0
-      - run: yes | sdkmanager --update || exit 0
-      - run: ./gradlew prepareNative
+      - prepare_native_gradle_deps
       - run: ./gradlew android:sample:assembleDebug
+
+  test-android:
+    executor: spectrumandroid
+    steps:
+      - checkout
+      - create_emulator
+      - launch_emulator
+
+      # continue with unit tests while we wait for the emulator to have launched
+      - prepare_native_gradle_deps
+      - run: ./gradlew test
+
+      - wait_for_emulator
+      - run: ./gradlew connectedAndroidTest
+
+#
+# WORKFLOWS
+#
 
 workflows:
   version: 2
@@ -48,3 +118,4 @@ workflows:
           filters: *filter-only-master
       - build-android-release
       - build-android-sample-app
+      - test-android
