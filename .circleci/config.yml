@@ -1,12 +1,50 @@
 # Copyright (c) Facebook, Inc. and its affiliates.
 
+#
+# GENERAL CONFIG
+#
+
+version: 2.1
+
 aliases:
  - &filter-only-master
    branches:
      only:
        - master
 
-version: 2
+defaults: &defaults
+  working_directory: ~/react-native
+  environment:
+    - GIT_COMMIT_DESC: git log --format=oneline -n 1 $CIRCLE_SHA1
+
+#
+# EXECUTORS & JOBS
+#
+
+executors:
+  spectrumandroid:
+    <<: *defaults
+    docker:
+      - image: reactnativecommunity/react-native-android:2019-5-29
+    resource_class: "large"
+    environment:
+      - TERM: "dumb"
+      - ADB_INSTALL_TIMEOUT: 10
+      - _JAVA_OPTIONS: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+      - GRADLE_OPTS: '-Dorg.gradle.daemon=false -Dorg.gradle.jvmargs="-XX:+HeapDumpOnOutOfMemoryError"'
+      - BUILD_THREADS: 2
+
+commands:
+    prepare_native_gradle_deps:
+      steps:
+        - run:
+          name: Download and prepare native dependencies via gralde
+          command: ./gradlew prepareNative
+
+#
+# JOBS
+#
+
 jobs:
   deploy-website:
     docker:
@@ -20,25 +58,24 @@ jobs:
             git config --global user.name "Website Deployment Script"
             echo "machine github.com login docusaurus-bot password $GITHUB_DOCUSAURUS_TOKEN" > ~/.netrc
             cd website && yarn install && GIT_USER=docusaurus-bot USE_SSH=false yarn run publish-gh-pages
+
   build-android-release:
-    docker:
-      - image: circleci/android:api-28-ndk-r17b
+    executor: spectrumandroid
     steps:
       - checkout
-      - run: yes | sdkmanager --licenses || exit 0
-      - run: yes | sdkmanager --update || exit 0
-      - run: ./gradlew prepareNative
+      - prepare_native_gradle_deps
       - run: ./gradlew assembleRelease
 
   build-android-sample-app:
-    docker:
-      - image: circleci/android:api-28-ndk-r17b
+    executor: spectrumandroid
     steps:
       - checkout
-      - run: yes | sdkmanager --licenses || exit 0
-      - run: yes | sdkmanager --update || exit 0
-      - run: ./gradlew prepareNative
+      - prepare_native_gradle_deps
       - run: ./gradlew android:sample:assembleDebug
+
+#
+# WORKFLOWS
+#
 
 workflows:
   version: 2
