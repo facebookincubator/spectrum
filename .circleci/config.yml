@@ -53,6 +53,7 @@ commands:
     steps:
       - run:
           name: Launch emulator
+          background: true
           command: |
             source ".circleci/scripts/.tests.env"
             "$ANDROID_HOME/emulator/emulator" -avd "$AVD_NAME" -no-audio -no-window
@@ -100,11 +101,17 @@ jobs:
     executor: spectrumandroid
     steps:
       - checkout
-      - prepare_native_gradle_deps
       - create_emulator
       - launch_emulator
-      - wait_for_emulator
+
+      # continue with unit tests while we wait for the emulator
+      - prepare_native_gradle_deps
       - run: ./gradlew test
+
+      # pre-build some artifacts while we are waiting
+      - run: ./gradlew assembleDebug
+
+      - wait_for_emulator
       - run: ./gradlew connectedAndroidTest
 
 #
