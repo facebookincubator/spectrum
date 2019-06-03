@@ -12,20 +12,15 @@ aliases:
      only:
        - master
 
-defaults: &defaults
-  working_directory: ~/react-native
-  environment:
-    - GIT_COMMIT_DESC: git log --format=oneline -n 1 $CIRCLE_SHA1
-
 #
 # EXECUTORS & JOBS
 #
 
 executors:
   spectrumandroid:
-    <<: *defaults
     docker:
       - image: reactnativecommunity/react-native-android:2019-5-29
+    working_directory: ~/react-native
     resource_class: "large"
     environment:
       - TERM: "dumb"
@@ -38,7 +33,7 @@ commands:
   prepare_native_gradle_deps:
     steps:
       - run:
-          name: Download and prepare native dependencies via gralde
+          name: Download and prepare native dependencies via Gradle
           command: ./gradlew prepareNative
   create_emulator:
     steps:
@@ -104,12 +99,9 @@ jobs:
       - create_emulator
       - launch_emulator
 
-      # continue with unit tests while we wait for the emulator
+      # continue with unit tests while we wait for the emulator to have launched
       - prepare_native_gradle_deps
       - run: ./gradlew test
-
-      # pre-build some artifacts while we are waiting
-      - run: ./gradlew assembleDebug
 
       - wait_for_emulator
       - run: ./gradlew connectedAndroidTest
