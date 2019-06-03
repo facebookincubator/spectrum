@@ -35,9 +35,9 @@ executors:
       - BUILD_THREADS: 2
 
 commands:
-    prepare_native_gradle_deps:
-      steps:
-        - run:
+  prepare_native_gradle_deps:
+    steps:
+      - run:
           name: Download and prepare native dependencies via gralde
           command: ./gradlew prepareNative
 
