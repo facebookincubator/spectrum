@@ -235,10 +235,16 @@ FSPImagePixelSpecificationComponentsOrder FSPImagePixelSpecificationComponentsOr
       return FSPImagePixelSpecificationColorModel.unknown;
     case kCGColorSpaceModelMonochrome:
       return FSPImagePixelSpecificationColorModel.gray;
-    case kCGColorSpaceModelRGB:
+    case kCGColorSpaceModelRGB: {
+      const auto bitsPerComponent = CGImageGetBitsPerComponent(image.CGImage);
+      SPECTRUM_ERROR_FORMAT_IF(bitsPerComponent != 8, "unsupported_image_pixel_spec_rgb_bits_per_component", "%d", bitsPerComponent);
       return FSPImagePixelSpecificationColorModel.rgb;
-    case kCGColorSpaceModelCMYK:
+    }
+    case kCGColorSpaceModelCMYK: {
+      const auto bitsPerComponent = CGImageGetBitsPerComponent(image.CGImage);
+      SPECTRUM_ERROR_FORMAT_IF(bitsPerComponent != 8, "unsupported_image_pixel_spec_cmyk_bits_per_component", "%d", bitsPerComponent);
       return FSPImagePixelSpecificationColorModel.yCbCr;
+    }
     case kCGColorSpaceModelLab:
     case kCGColorSpaceModelDeviceN:
     case kCGColorSpaceModelIndexed:
