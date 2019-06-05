@@ -1,4 +1,7 @@
-// Copyright 2004-present Facebook. All Rights Reserved.
+// Copyright (c) Facebook, Inc. and its affiliates.
+//
+// This source code is licensed under the MIT license found in the
+// LICENSE file in the root directory of this source tree.
 
 #pragma once
 
@@ -92,6 +95,20 @@ SPECTRUM_MAKE_LOOPBACK_CLASS(
 }
 
 } // namespace image
+
+namespace requirements {
+
+SPECTRUM_MAKE_LOOPBACK_CLASS(
+        JniEncodeRequirementTest,
+        JEncode,
+        "Lcom/facebook/spectrum/requirements/JniEncodeRequirementTest;");
+
+SPECTRUM_MAKE_LOOPBACK_CLASS(
+        JniResizeRequirementTest,
+        JResize,
+        "Lcom/facebook/spectrum/requirements/JniResizeRequirementTest;");
+
+} // namespace requirements
 
 #undef SPECTRUM_MAKE_LOOPBACK_CLASS
 

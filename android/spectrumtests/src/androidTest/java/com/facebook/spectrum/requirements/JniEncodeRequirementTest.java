@@ -5,19 +5,20 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-package com.facebook.spectrum.image;
+package com.facebook.spectrum.requirements;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
 import android.annotation.SuppressLint;
 import com.facebook.jni.HybridData;
 import com.facebook.jni.annotations.DoNotStrip;
+import com.facebook.spectrum.image.EncodedImageFormat;
 import com.facebook.spectrum.testutils.TestSoLoader;
 import org.junit.Before;
 import org.junit.Test;
 
 @SuppressLint("MissingNativeLoadLibrary")
-public class JniImageFormatTest {
+public class JniEncodeRequirementTest {
 
   private HybridData mHybridData;
 
@@ -29,17 +30,22 @@ public class JniImageFormatTest {
   }
 
   @Test
-  public void test_whenGivenImageFormat_thenEqualIsReturned() {
-    testLoopback(ImageFormat.BITMAP);
+  public void test_whenLosslessEncodeRequirement_thenEqualIsReturned() {
+    testLoopback(new EncodeRequirement(EncodedImageFormat.JPEG));
   }
 
   @Test
-  public void test_whenEncodedImageFormat_thenEqualIsReturned() {
-    testLoopback(EncodedImageFormat.JPEG);
+  public void test_whenLossyEncodeRequirement_thenEqualIsReturned() {
+    testLoopback(new EncodeRequirement(EncodedImageFormat.JPEG, 42, EncodeRequirement.Mode.LOSSY));
   }
 
-  private void testLoopback(ImageFormat original) {
-    final ImageFormat twin = loopback(original);
+  @Test
+  public void test_whenAnyEncodeRequirement_thenEqualIsReturned() {
+    testLoopback(new EncodeRequirement(EncodedImageFormat.JPEG, 42, EncodeRequirement.Mode.ANY));
+  }
+
+  private void testLoopback(EncodeRequirement original) {
+    final EncodeRequirement twin = loopback(original);
     assertThat(twin).isEqualTo(original);
   }
 
@@ -47,5 +53,5 @@ public class JniImageFormatTest {
   private native HybridData initHybrid();
 
   @DoNotStrip
-  private native ImageFormat loopback(ImageFormat format);
+  private native EncodeRequirement loopback(EncodeRequirement encodeRequirement);
 }

@@ -1,8 +1,12 @@
-// Copyright 2004-present Facebook. All Rights Reserved.
+// Copyright (c) Facebook, Inc. and its affiliates.
+//
+// This source code is licensed under the MIT license found in the
+// LICENSE file in the root directory of this source tree.
 
 #include "JniInputStreamImageSourceTest.h"
 #include "JniLoopBackTestHelper.h"
 #include "JniOutputStreamImageSinkTest.h"
+#include "JniCropRequirementTest.h"
 #include "JniSpectrumExceptionTest.h"
 
 #include <fbjni/fbjni.h>
@@ -14,6 +18,7 @@ jint JNI_OnLoad(JavaVM* vm, void*) {
     // non-loopback tests
     jni::JniInputStreamImageSourceTest::registerNatives();
     jni::JniOutputStreamImageSinkTest::registerNatives();
+    requirements::JniCropRequirementTest::registerNatives();
     JniSpectrumExceptionTest::registerNatives();
 
     // loopback: image::
@@ -25,5 +30,9 @@ jint JNI_OnLoad(JavaVM* vm, void*) {
     image::JniMetadataTest::registerNatives();
     image::JniChromaSamplingModeTest::registerNatives();
     image::JniImageSpecificationTest::registerNatives();
+
+    // loopback: requirements::
+    requirements::JniEncodeRequirementTest::registerNatives();
+    requirements::JniResizeRequirementTest::registerNatives();
   });
 }

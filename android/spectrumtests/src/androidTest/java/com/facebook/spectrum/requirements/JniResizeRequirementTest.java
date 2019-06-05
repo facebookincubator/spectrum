@@ -5,19 +5,20 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-package com.facebook.spectrum.image;
+package com.facebook.spectrum.requirements;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
 import android.annotation.SuppressLint;
 import com.facebook.jni.HybridData;
 import com.facebook.jni.annotations.DoNotStrip;
+import com.facebook.spectrum.image.ImageSize;
 import com.facebook.spectrum.testutils.TestSoLoader;
 import org.junit.Before;
 import org.junit.Test;
 
 @SuppressLint("MissingNativeLoadLibrary")
-public class JniImageColorTest {
+public class JniResizeRequirementTest {
 
   private HybridData mHybridData;
 
@@ -29,16 +30,24 @@ public class JniImageColorTest {
   }
 
   @Test
-  public void test_whenGivenImageColor_thenEqualIsReturned() {
-    final ImageColor imageColor = new ImageColor(12, 34, 56);
-    final ImageColor twin = loopback(imageColor);
+  public void test_whenResizeExact_thenEqualsReturned() {
+    testLoopback(new ResizeRequirement(ResizeRequirement.Mode.EXACT, new ImageSize(480, 320)));
+  }
 
-    assertThat(twin).isEqualTo(imageColor);
+  @Test
+  public void test_whenResizeExactOrSmaller_thenEqualsReturned() {
+    testLoopback(
+        new ResizeRequirement(ResizeRequirement.Mode.EXACT_OR_SMALLER, new ImageSize(480, 320)));
+  }
+
+  private void testLoopback(ResizeRequirement original) {
+    final ResizeRequirement twin = loopback(original);
+    assertThat(twin).isEqualTo(original);
   }
 
   @DoNotStrip
   private native HybridData initHybrid();
 
   @DoNotStrip
-  private native ImageColor loopback(ImageColor imageColor);
+  private native ResizeRequirement loopback(ResizeRequirement resizeRequirement);
 }

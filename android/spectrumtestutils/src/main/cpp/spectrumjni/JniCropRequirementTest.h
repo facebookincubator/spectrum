@@ -6,36 +6,30 @@
 #pragma once
 
 #include <fbjni/fbjni.h>
-#include <spectrumjni/JniSpectrumException.h>
+#include <spectrumjni/requirements/JniCropRequirement.h>
 
 namespace facebook {
 namespace spectrum {
+namespace requirements {
 
-class JniSpectrumExceptionTest
-    : public facebook::jni::HybridClass<JniSpectrumExceptionTest> {
+class JniCropRequirementTest
+    : public facebook::jni::HybridClass<JniCropRequirementTest> {
  private:
   friend HybridBase;
 
  public:
   constexpr static auto kJavaDescriptor =
-      "Lcom/facebook/spectrum/JniSpectrumExceptionTest;";
+      "Lcom/facebook/spectrum/requirements/JniCropRequirementTest;";
 
   static facebook::jni::local_ref<jhybriddata> initHybrid(
       facebook::jni::alias_ref<jhybridobject>);
 
-  void throwSpectrumException(
-      const std::string name,
-      const std::string message,
-      const std::string function,
-      const int line);
-
-  void throwSpectrumExceptionWithoutMessage(
-      const std::string name,
-      const std::string function,
-      const int line);
+  std::string describe(
+      facebook::jni::alias_ref<JCropRequirement> jCropRequirement);
 
   static void registerNatives();
 };
 
+} // namespace requirements
 } // namespace spectrum
 } // namespace facebook
