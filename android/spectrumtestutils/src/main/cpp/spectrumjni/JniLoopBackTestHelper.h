@@ -110,6 +110,48 @@ SPECTRUM_MAKE_LOOPBACK_CLASS(
 
 } // namespace requirements
 
+namespace jni {
+
+SPECTRUM_MAKE_LOOPBACK_CLASS(
+        JniConfigurationTest,
+        JConfiguration,
+        "Lcom/facebook/spectrum/types/JniConfigurationTest;");
+
+} // namespace jni
+
+namespace options {
+
+SPECTRUM_MAKE_LOOPBACK_CLASS(
+        JniTransformationsTest,
+        JTransformations,
+        "Lcom/facebook/spectrum/options/JniTransformationsTest;");
+
+SPECTRUM_MAKE_LOOPBACK_CLASS_WITH_INPUT_OUTPUT(
+        JniDecodeOptionsTest,
+        JDecodeOptions,
+        JOptions,
+        "Lcom/facebook/spectrum/options/JniDecodeOptionsTest;");
+
+SPECTRUM_MAKE_LOOPBACK_CLASS_WITH_INPUT_OUTPUT(
+        JniEncodeOptionsTest,
+        JEncodeOptions,
+        JOptions,
+        "Lcom/facebook/spectrum/options/JniEncodeOptionsTest;");
+
+SPECTRUM_MAKE_LOOPBACK_CLASS_WITH_INPUT_OUTPUT(
+        JniTranscodeOptionsTest,
+        JTranscodeOptions,
+        JOptions,
+        "Lcom/facebook/spectrum/options/JniTranscodeOptionsTest;");
+
+SPECTRUM_MAKE_LOOPBACK_CLASS_WITH_INPUT_OUTPUT(
+        JniTransformOptionsTest,
+        JTransformOptions,
+        JOptions,
+        "Lcom/facebook/spectrum/options/JniTransformOptionsTest;");
+
+} // namespace jni
+
 #undef SPECTRUM_MAKE_LOOPBACK_CLASS
 
 } // namespace spectrum

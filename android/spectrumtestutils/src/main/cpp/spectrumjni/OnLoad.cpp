@@ -34,5 +34,15 @@ jint JNI_OnLoad(JavaVM* vm, void*) {
     // loopback: requirements::
     requirements::JniEncodeRequirementTest::registerNatives();
     requirements::JniResizeRequirementTest::registerNatives();
+
+    // loopback: jni::
+    jni::JniConfigurationTest::registerNatives();
+
+    // loopback: options::
+    options::JniDecodeOptionsTest::registerNatives();
+    options::JniEncodeOptionsTest::registerNatives();
+    options::JniTranscodeOptionsTest::registerNatives();
+    options::JniTransformOptionsTest::registerNatives();
+    options::JniTransformationsTest::registerNatives();
   });
 }
