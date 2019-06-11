@@ -138,7 +138,7 @@ ResizeDecision calculateResizeDecisionWithScaling(
       return ResizeDecision(inputSize).rate(RESIZE_RATING::OPTIMAL);
     }
 
-    const auto isSmaller = targetSize >= sizeAfterCropping;
+    const auto isSmaller = sizeAfterCropping.containedIn(targetSize);
     const bool isLarger = !isSmaller;
     const float relativeDeltaToTargetWidth = std::abs(
         1.0f - ((float)sizeAfterCropping.width / (float)targetSize.width));

@@ -118,20 +118,12 @@ bool Size::contains(const Point& other) const {
   return other.x <= width && other.y <= height;
 }
 
-bool Size::operator<(const Size& rhs) const {
-  return width < rhs.width && height < rhs.height;
-}
-
-bool Size::operator<=(const Size& rhs) const {
-  return width <= rhs.width && height <= rhs.height;
-}
-
-bool Size::operator>=(const Size& rhs) const {
+bool Size::contains(const Size& rhs) const {
   return width >= rhs.width && height >= rhs.height;
 }
 
-bool Size::operator>(const Size& rhs) const {
-  return width > rhs.width && height > rhs.height;
+bool Size::containedIn(const Size& rhs) const {
+  return rhs.contains(*this);
 }
 
 bool Size::operator==(const Size& rhs) const {
@@ -164,7 +156,7 @@ Size Size::downscaledToFit(const Size& other) const {
 Size Size::downscaledToFit(
     const Size& other,
     const core::numeric::RoundingMode roundingMode) const {
-  if (*this <= other) {
+  if (this->containedIn(other)) {
     return *this;
   }
 

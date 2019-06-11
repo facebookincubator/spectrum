@@ -241,24 +241,24 @@ TEST(image_Size, whenEqualSized_thenBothContainsAndContainedIn) {
   const auto a = Size{10, 10};
   const auto b = Size{10, 10};
 
-  ASSERT_TRUE(a <= b);
-  ASSERT_TRUE(b <= a);
+  ASSERT_TRUE(a.contains(b));
+  ASSERT_TRUE(a.containedIn(b));
 }
 
 TEST(image_Size, whenOneSideLarger_thenOnlyContains) {
   const auto a = Size{11, 10};
   const auto b = Size{10, 10};
 
-  ASSERT_TRUE(b <= a);
-  ASSERT_FALSE(a <= b);
+  ASSERT_TRUE(a.contains(b));
+  ASSERT_FALSE(a.containedIn(b));
 }
 
 TEST(image_Size, whenTwoSidesLarger_thenOnlyContains) {
   const auto a = Size{11, 11};
   const auto b = Size{10, 10};
 
-  ASSERT_TRUE(b <= a);
-  ASSERT_FALSE(a <= b);
+  ASSERT_TRUE(a.contains(b));
+  ASSERT_FALSE(a.containedIn(b));
 }
 
 TEST(image_Size, whenShrinkInto_thenResultsCorrect) {

@@ -116,7 +116,7 @@ struct Size {
   Size transposed() const;
 
   /**
-   * Returns true if the point is within the size.
+   * Returns true iff the point is within the size.
    */
   bool contains(const Point& other) const;
 
@@ -168,13 +168,27 @@ struct Size {
       const Size& other,
       const core::numeric::RoundingMode roundingMode) const;
 
-  bool operator==(const Size& rhs) const;
-  bool operator!=(const Size& rhs) const;
+  /**
+   * Returns true iff the given size fully fits within this size (i.e. all
+   * dimensions of that size are of less or equal length).
+   */
+  bool contains(const Size& rhs) const;
 
-  bool operator<(const Size& rhs) const;
-  bool operator<=(const Size& rhs) const;
-  bool operator>=(const Size& rhs) const;
-  bool operator>(const Size& rhs) const;
+  /**
+   * Returns true iff this size fully fits within the given size (i.e. all
+   * dimensions of this size are of less or equal length).
+   */
+  bool containedIn(const Size& rhs) const;
+
+  /**
+   * Returns true iff the given size has equal width and height
+   */
+  bool operator==(const Size& rhs) const;
+
+  /**
+   * Returns true iff the given size differs in width and/or height
+   */
+  bool operator!=(const Size& rhs) const;
 
   std::string string() const;
 };
