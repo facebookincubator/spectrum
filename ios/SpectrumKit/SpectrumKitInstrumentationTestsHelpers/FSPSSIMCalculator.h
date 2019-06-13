@@ -6,14 +6,16 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIImage.h>
 
-#import <FBBaseLite/FBBaseDefines.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
-FB_EXTERN_C_BEGIN
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 CGFloat FSPComputeSSIMFactorBetween(UIImage *left, UIImage *right);
 
-FB_EXTERN_C_END
+#ifdef __cplusplus
+}
+#endif
 
 NS_ASSUME_NONNULL_END
