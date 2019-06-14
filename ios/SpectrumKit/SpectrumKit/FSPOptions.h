@@ -42,7 +42,7 @@ NS_SWIFT_NAME(Options)
 @property (nonatomic, strong, nullable, readonly) FSPImagePixelSpecification *outputImagePixelSpecification;
 
 /**
- * Optional metadata to consider besiders the ones provided by the encoded image.
+ * Optional metadata to consider besides the ones provided by the encoded image.
  */
 @property (nonatomic, copy, nullable, readonly) FSPImageMetadata *metadata;
 

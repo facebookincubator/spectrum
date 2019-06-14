@@ -17,23 +17,37 @@ namespace test {
 namespace {
 Result passthroughFailureReason(
     const bool isRulePassthrough,
-    const folly::Optional<requirements::Encode::Mode>& encodeRequirementMode) {
+    const folly::Optional<requirements::Encode::Mode>& encodeRequirementMode,
+    const folly::Optional<image::Metadata>& extraMetadata = folly::none) {
   auto parameters =
       testutils::makeDummyOperationParameters(image::formats::Jpeg);
   parameters.encodeRequirement = requirements::Encode{
       .format = image::formats::Jpeg,
       .mode = encodeRequirementMode.value_or(requirements::Encode::Mode::Any),
   };
+  parameters.extraMetadata = extraMetadata;
 
   const auto rule = Rule{.name = "rule", .isPassthrough = isRulePassthrough};
   return matchesPassthroughRequirement(rule, parameters);
 }
 } // namespace
 
+image::Metadata makeMetadata() {
+  return image::Metadata{{}, image::metadata::ICCProfile()};
+}
+
 TEST(core_matchers_Passthrough, whenIsPassthrough_mustTranscode_thenFail) {
   ASSERT_EQ(
       reasons::PassthroughDenied,
       passthroughFailureReason(true, requirements::Encode::Mode::Lossy)
+          .failureReason);
+}
+
+TEST(core_matchers_Passthrough, whenIsPassthrough_hasMetadata_thenFail) {
+  ASSERT_EQ(
+      reasons::PassthroughDenied,
+      passthroughFailureReason(
+          true, requirements::Encode::Mode::Lossless, makeMetadata())
           .failureReason);
 }
 

@@ -31,9 +31,17 @@ Result matchesPassthroughRequirement(
     const Rule& rule,
     const Operation::Parameters& parameters) {
   const auto& encodeRequirement = parameters.encodeRequirement;
-  if (rule.isPassthrough && encodeRequirement.hasValue() &&
-      !_matchesPassthroughEncodeRequirement(*encodeRequirement)) {
-    return reasons::PassthroughDenied;
+  if (rule.isPassthrough) {
+    if (parameters.extraMetadata.hasValue()) {
+      // passthrough would otherwise ignore the extra metadata
+      return reasons::PassthroughDenied;
+    }
+
+    if (encodeRequirement.hasValue() &&
+        !_matchesPassthroughEncodeRequirement(*encodeRequirement)) {
+      // passthrough would otherwise ignore the encode requirement
+      return reasons::PassthroughDenied;
+    }
   }
 
   return Result::ok();
