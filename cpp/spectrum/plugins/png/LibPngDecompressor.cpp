@@ -12,9 +12,6 @@
 #include <spectrum/plugins/png/LibPngConstants.h>
 
 #include "png.h"
-#include "pngstruct.h"
-// must come after pngstruct
-#include "pnginfo.h"
 
 #include <folly/Optional.h>
 
@@ -142,7 +139,7 @@ void LibPngDecompressor::ensureHeaderIsRead() {
   png_set_expand(libPngReadStruct);
 
   // reduce bitDepth to 8 bit if necessary
-  if (libPngInfoStruct->bit_depth == 16) {
+  if (png_get_bit_depth(libPngReadStruct, libPngInfoStruct) == 16) {
     png_set_strip_16(libPngReadStruct);
   }
 
@@ -157,7 +154,8 @@ void LibPngDecompressor::ensureHeaderIsRead() {
   // libPng by default outputs RGBA while we work with ARGB
   // png_set_swap_alpha needs to be called after png_read_update_info() in order
   // to also include palette to RGBA transformations that change the colorType
-  if (libPngInfoStruct->color_type & PNG_COLOR_MASK_ALPHA) {
+  if (png_get_color_type(libPngReadStruct, libPngInfoStruct) &
+      PNG_COLOR_MASK_ALPHA) {
     png_set_swap_alpha(libPngReadStruct);
   }
 
@@ -167,9 +165,12 @@ void LibPngDecompressor::ensureHeaderIsRead() {
 void LibPngDecompressor::ensureReadyToReadScanline() {
   ensureHeaderIsRead();
 
-  SPECTRUM_ENFORCE_IF_NOT(outputScanline < libPngInfoStruct->height);
+  SPECTRUM_ENFORCE_IF_NOT(
+      outputScanline <
+      png_get_image_height(libPngReadStruct, libPngInfoStruct));
 
-  const auto interlaceType = libPngInfoStruct->interlace_type;
+  const auto interlaceType =
+      png_get_interlace_type(libPngReadStruct, libPngInfoStruct);
   isInterlaced = interlaceType != PNG_INTERLACE_NONE;
 }
 
@@ -244,15 +245,19 @@ image::Specification LibPngDecompressor::sourceImageSpecification() {
   ensureHeaderIsRead();
 
   const auto pixelSpecification = _pixelSpecificationFromColorType(
-      libPngInfoStruct->color_type,
-      libPngInfoStruct->bit_depth,
+      png_get_color_type(libPngReadStruct, libPngInfoStruct),
+      png_get_bit_depth(libPngReadStruct, libPngInfoStruct),
       png_get_channels(libPngReadStruct, libPngInfoStruct));
 
   _sourceImageSpecification = image::Specification{
-      .size = image::Size{SPECTRUM_CONVERT_OR_THROW(
-                              libPngInfoStruct->width, std::uint32_t),
-                          SPECTRUM_CONVERT_OR_THROW(
-                              libPngInfoStruct->height, std::uint32_t)},
+      .size =
+          image::Size{
+              SPECTRUM_CONVERT_OR_THROW(
+                  png_get_image_width(libPngReadStruct, libPngInfoStruct),
+                  std::uint32_t),
+              SPECTRUM_CONVERT_OR_THROW(
+                  png_get_image_height(libPngReadStruct, libPngInfoStruct),
+                  std::uint32_t)},
       .format = image::formats::Png,
       .pixelSpecification = pixelSpecification,
       .chromaSamplingMode = image::ChromaSamplingMode::S444,
