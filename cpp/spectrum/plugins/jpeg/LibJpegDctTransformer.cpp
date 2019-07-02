@@ -13,6 +13,7 @@
 #include <spectrum/io/IImageSource.h>
 #include <spectrum/plugins/jpeg/LibJpegSinkManager.h>
 #include <spectrum/plugins/jpeg/LibJpegSourceManager.h>
+#include <spectrum/plugins/jpeg/LibJpegUtilities.h>
 
 #include <array>
 #include <memory>
@@ -116,9 +117,9 @@ void LibJpegDctTransformer::applyAndFinish() {
       srccoefs,
       &libJpegTransformInfo);
   jpeg_write_coefficients(&libJpegCompressInfo, dstcoefs);
-
-  jcopy_markers_execute(
-      &libJpegDecompressInfo, &libJpegCompressInfo, JCOPYOPT_ALL);
+  // we re-write parsed metadata to control the specific elements copied; in
+  // particular to avoid copying thumbnail images
+  writeMetadata(libJpegCompressInfo, readMetadata(libJpegDecompressInfo));
 
   // will finally apply the transformations (e.g. rotating in place)
   jtransform_execute_transformation(
