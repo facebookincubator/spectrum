@@ -25,19 +25,19 @@ namespace io {
  *
  * This is the prefered way to retrieve decoded image data in C++ call sites.
  */
-class VectorImageSink : public IBitmapImageSink {
+class VectorBitmapImageSink : public IBitmapImageSink {
  private:
   std::vector<char> _data;
   folly::Optional<image::Size> _imageSize;
   folly::Optional<image::pixel::Specification> _pixelSpecification;
 
  public:
-  explicit VectorImageSink(
+  explicit VectorBitmapImageSink(
       const std::size_t initialCapacity = core::DefaultBufferSize);
-  VectorImageSink(const VectorImageSink&) = delete;
-  VectorImageSink(VectorImageSink&&) = default;
+  VectorBitmapImageSink(const VectorBitmapImageSink&) = delete;
+  VectorBitmapImageSink(VectorBitmapImageSink&&) = default;
 
-  ~VectorImageSink() override = default;
+  ~VectorBitmapImageSink() override = default;
 
   void setConfiguration(
       const image::Size& imageSize,

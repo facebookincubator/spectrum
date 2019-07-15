@@ -17,19 +17,19 @@ namespace facebook {
 namespace spectrum {
 namespace io {
 
-VectorImageSink::VectorImageSink(const std::size_t initialCapacity)
+VectorBitmapImageSink::VectorBitmapImageSink(const std::size_t initialCapacity)
     : IBitmapImageSink() {
   _data.reserve(initialCapacity);
 }
 
-void VectorImageSink::_write(
+void VectorBitmapImageSink::_write(
     const char* const source,
     const std::size_t length) {
   SPECTRUM_ENFORCE_IF_NOT(source != nullptr);
   _data.insert(_data.end(), source, source + length);
 }
 
-void VectorImageSink::setConfiguration(
+void VectorBitmapImageSink::setConfiguration(
     const image::Size& imageSize,
     const image::pixel::Specification& pixelSpecification) {
   _imageSize = imageSize;

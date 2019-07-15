@@ -18,7 +18,7 @@ namespace testutils {
  * An ImageSink that writes to a std::string that can be accessed from tests
  * to assert the written content.
  */
-class FakeImageSink : public VectorImageSink {
+class FakeImageSink : public VectorBitmapImageSink {
  public:
   std::string stringContent();
 };

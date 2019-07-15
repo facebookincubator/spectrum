@@ -20,20 +20,22 @@ std::string vectorToString(std::vector<char> v) {
 }
 } // namespace
 
-TEST(VectorImageSink, whenConstructed_thenContentEmpty) {
-  VectorImageSink sink;
+TEST(VectorBitmapImageSink, whenConstructed_thenContentEmpty) {
+  VectorBitmapImageSink sink;
   ASSERT_EQ("", vectorToString(sink.getVectorReference()));
 }
 
-TEST(VectorImageSink, whenGivenConfiguration_thenNothingObservableHappens) {
-  VectorImageSink sink;
+TEST(
+    VectorBitmapImageSink,
+    whenGivenConfiguration_thenNothingObservableHappens) {
+  VectorBitmapImageSink sink;
   sink.setConfiguration(
       image::Size{640, 480}, image::pixel::specifications::ARGB);
   ASSERT_EQ("", vectorToString(sink.getVectorReference()));
 }
 
-TEST(VectorImageSink, whenWrittenTo_thenAppendedToContent) {
-  VectorImageSink sink;
+TEST(VectorBitmapImageSink, whenWrittenTo_thenAppendedToContent) {
+  VectorBitmapImageSink sink;
   ASSERT_EQ("", vectorToString(sink.getVectorReference()));
 
   std::string s1 = "abcdefg";
@@ -45,8 +47,10 @@ TEST(VectorImageSink, whenWrittenTo_thenAppendedToContent) {
   ASSERT_EQ("abcdefg123456789", vectorToString(sink.getVectorReference()));
 }
 
-TEST(VectorImageSink, whenWrittenpartiallyTo_thenPartiallyAppendedToContent) {
-  VectorImageSink sink;
+TEST(
+    VectorBitmapImageSink,
+    whenWrittenpartiallyTo_thenPartiallyAppendedToContent) {
+  VectorBitmapImageSink sink;
   ASSERT_EQ("", vectorToString(sink.getVectorReference()));
 
   std::string s1 = "abcdefg";
@@ -58,8 +62,8 @@ TEST(VectorImageSink, whenWrittenpartiallyTo_thenPartiallyAppendedToContent) {
   ASSERT_EQ("abc123", vectorToString(sink.getVectorReference()));
 }
 
-TEST(VectorImageSink, whenWrittenTo_thenBytesWrittenCounterIncreases) {
-  VectorImageSink sink;
+TEST(VectorBitmapImageSink, whenWrittenTo_thenBytesWrittenCounterIncreases) {
+  VectorBitmapImageSink sink;
   ASSERT_EQ("", vectorToString(sink.getVectorReference()));
 
   std::string s1 = "abcdefg";
