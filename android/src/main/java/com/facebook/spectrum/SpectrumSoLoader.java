@@ -72,7 +72,7 @@ public class SpectrumSoLoader {
     sSoLoaderDelegate.loadLibrary(shortName);
   }
 
-  interface SoLoaderWrapper {
+  public interface SoLoaderWrapper {
     void init(final Context context);
 
     void loadLibrary(final String shortName);
