@@ -5,9 +5,7 @@
 
 #include "VectorImageSink.h"
 
-#include <spectrum/core/Constants.h>
 #include <spectrum/core/SpectrumEnforce.h>
-#include <spectrum/io/IImageSource.h>
 
 #include <algorithm>
 #include <cstddef>
@@ -17,29 +15,32 @@ namespace facebook {
 namespace spectrum {
 namespace io {
 
-VectorBitmapImageSink::VectorBitmapImageSink(const std::size_t initialCapacity)
-    : IBitmapImageSink() {
+template <class Interface>
+VectorImageSink<Interface>::VectorImageSink(std::size_t initialCapacity) {
   _data.reserve(initialCapacity);
 }
 
-void VectorBitmapImageSink::_write(
+template <class Interface>
+void VectorImageSink<Interface>::setConfiguration(
+    const image::Size& imageSize,
+    const image::pixel::Specification& pixelSpecification) {
+  _imageSize = std::move(imageSize);
+  _pixelSpecification = std::move(pixelSpecification);
+  _data.reserve(
+      _imageSize->width * _imageSize->height *
+      _pixelSpecification->bytesPerPixel);
+}
+
+template <class Interface>
+void VectorImageSink<Interface>::_write(
     const char* const source,
     const std::size_t length) {
   SPECTRUM_ENFORCE_IF_NOT(source != nullptr);
   _data.insert(_data.end(), source, source + length);
 }
 
-void VectorBitmapImageSink::setConfiguration(
-    const image::Size& imageSize,
-    const image::pixel::Specification& pixelSpecification) {
-  _imageSize = imageSize;
-  _pixelSpecification = pixelSpecification;
-  const std::size_t sizePerPixel = pixelSpecification.bytesPerPixel;
-  const std::size_t totalNumPixel = imageSize.width * imageSize.height;
-  const std::size_t totalSize = totalNumPixel * sizePerPixel;
-
-  _data.reserve(totalSize);
-}
+template class VectorImageSink<IBitmapImageSink>;
+template class VectorImageSink<IEncodedImageSink>;
 
 } // namespace io
 } // namespace spectrum

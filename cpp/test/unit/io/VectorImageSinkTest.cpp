@@ -15,27 +15,28 @@ namespace io {
 namespace test {
 
 namespace {
+
 std::string vectorToString(std::vector<char> v) {
   return std::string(v.begin(), v.end());
 }
-} // namespace
 
-TEST(VectorBitmapImageSink, whenConstructed_thenContentEmpty) {
-  VectorBitmapImageSink sink;
+template <class Sink>
+void whenConstructed_thenContentEmpty() {
+  Sink sink;
   ASSERT_EQ("", vectorToString(sink.getVectorReference()));
 }
 
-TEST(
-    VectorBitmapImageSink,
-    whenGivenConfiguration_thenNothingObservableHappens) {
-  VectorBitmapImageSink sink;
+template <class Sink>
+void whenGivenConfiguration_thenNothingObservableHappens() {
+  Sink sink;
   sink.setConfiguration(
       image::Size{640, 480}, image::pixel::specifications::ARGB);
   ASSERT_EQ("", vectorToString(sink.getVectorReference()));
 }
 
-TEST(VectorBitmapImageSink, whenWrittenTo_thenAppendedToContent) {
-  VectorBitmapImageSink sink;
+template <class Sink>
+void whenWrittenTo_thenAppendedToContent() {
+  Sink sink;
   ASSERT_EQ("", vectorToString(sink.getVectorReference()));
 
   std::string s1 = "abcdefg";
@@ -47,10 +48,9 @@ TEST(VectorBitmapImageSink, whenWrittenTo_thenAppendedToContent) {
   ASSERT_EQ("abcdefg123456789", vectorToString(sink.getVectorReference()));
 }
 
-TEST(
-    VectorBitmapImageSink,
-    whenWrittenpartiallyTo_thenPartiallyAppendedToContent) {
-  VectorBitmapImageSink sink;
+template <class Sink>
+void whenWrittenpartiallyTo_thenPartiallyAppendedToContent() {
+  Sink sink;
   ASSERT_EQ("", vectorToString(sink.getVectorReference()));
 
   std::string s1 = "abcdefg";
@@ -62,8 +62,9 @@ TEST(
   ASSERT_EQ("abc123", vectorToString(sink.getVectorReference()));
 }
 
-TEST(VectorBitmapImageSink, whenWrittenTo_thenBytesWrittenCounterIncreases) {
-  VectorBitmapImageSink sink;
+template <class Sink>
+void whenWrittenTo_thenBytesWrittenCounterIncreases() {
+  Sink sink;
   ASSERT_EQ("", vectorToString(sink.getVectorReference()));
 
   std::string s1 = "abcdefg";
@@ -74,6 +75,20 @@ TEST(VectorBitmapImageSink, whenWrittenTo_thenBytesWrittenCounterIncreases) {
   sink.write(s2.data(), s2.size());
   ASSERT_EQ(16, sink.totalBytesWritten());
 }
+
+} // namespace
+
+#define TEST_VECTOR_IMAGE_SINK(testName) \
+  TEST(VectorImageSink, testName) {      \
+    testName<VectorBitmapImageSink>();   \
+    testName<VectorEncodedImageSink>();  \
+  }
+
+TEST_VECTOR_IMAGE_SINK(whenConstructed_thenContentEmpty);
+TEST_VECTOR_IMAGE_SINK(whenGivenConfiguration_thenNothingObservableHappens);
+TEST_VECTOR_IMAGE_SINK(whenWrittenTo_thenAppendedToContent);
+TEST_VECTOR_IMAGE_SINK(whenWrittenpartiallyTo_thenPartiallyAppendedToContent);
+TEST_VECTOR_IMAGE_SINK(whenWrittenTo_thenBytesWrittenCounterIncreases);
 
 } // namespace test
 } // namespace io
