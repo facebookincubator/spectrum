@@ -16,7 +16,9 @@ namespace testutils {
  * Creates a dummy operation specification.
  */
 Operation::Parameters makeDummyOperationParameters(
-    const image::Format& imageFormat = image::formats::Bitmap);
+    const image::Format& imageFormat = image::formats::Bitmap,
+    const folly::Optional<image::pixel::Specification>&
+        outputPixelSpecificationRequirement = folly::none);
 
 /**
  * Creates an operation from the source / sink with dummy data.

@@ -13,12 +13,16 @@ namespace core {
 namespace testutils {
 
 Operation::Parameters makeDummyOperationParameters(
-    const image::Format& imageFormat) {
+    const image::Format& imageFormat,
+    const folly::Optional<image::pixel::Specification>&
+        outputPixelSpecificationRequirement) {
   return Operation::Parameters{
       .inputImageSpecification =
           image::testutils::makeDummyImageSpecification(),
       .outputImageFormat = imageFormat,
       .transformations = {},
+      .outputPixelSpecificationRequirement =
+          outputPixelSpecificationRequirement,
   };
 }
 

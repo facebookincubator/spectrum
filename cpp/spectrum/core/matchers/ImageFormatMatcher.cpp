@@ -43,8 +43,16 @@ Result matchesEqualInputOutputImageFormatRequirement(
   const auto inputFormat = parameters.inputImageSpecification.format;
   const auto outputFormat = parameters.outputImageFormat;
 
-  if (rule.requiresEqualInputOutputFormat && inputFormat != outputFormat) {
-    return reasons::EqualInputOutputImageFormatFalse;
+  if (rule.requiresEqualInputOutputFormat) {
+    if (inputFormat != outputFormat) {
+      return reasons::EqualInputOutputImageFormatFalse;
+    }
+
+    if (parameters.outputPixelSpecificationRequirement.hasValue() &&
+        parameters.outputPixelSpecificationRequirement.value() !=
+            parameters.inputImageSpecification.pixelSpecification) {
+      return reasons::EqualInputOutputImageFormatFalse;
+    }
   }
 
   return Result::ok();

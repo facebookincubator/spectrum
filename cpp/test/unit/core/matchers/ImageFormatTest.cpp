@@ -48,10 +48,16 @@ auto outputImageFormatFailureReason(
 auto equalInputOutputImageFormatFailureReason(
     const image::Format& inputFormat,
     const image::EncodedFormat& outputFormat,
-    const bool requiresEqualInputOutputFormat) {
-  auto parameters = testutils::makeDummyOperationParameters();
+    const bool requiresEqualInputOutputFormat,
+    const image::pixel::Specification& inputPixelSpecification =
+        image::pixel::specifications::RGBA,
+    const folly::Optional<image::pixel::Specification>&
+        outputPixelSpecificationRequirement = folly::none) {
+  auto parameters = testutils::makeDummyOperationParameters(
+      image::formats::Bitmap, outputPixelSpecificationRequirement);
   parameters.inputImageSpecification =
-      image::testutils::makeDummyImageSpecification(inputFormat);
+      image::testutils::makeDummyImageSpecification(
+          inputFormat, inputPixelSpecification);
   parameters.outputImageFormat = outputFormat;
 
   const auto rule = Rule{
@@ -95,13 +101,27 @@ TEST(core_matchers_ImageFormat, whenOutputFormatSupported_thenSucceed) {
 
 TEST(
     core_matchers_ImageFormat,
-    whenRequiresEqualInputOutput_equal_thenSuceeds) {
+    whenRequiresEqualInputOutput_equal_thenSucceeds) {
   ASSERT_TRUE(equalInputOutputImageFormatFailureReason(
                   image::formats::Jpeg, image::formats::Jpeg, true)
                   .success());
   ASSERT_TRUE(equalInputOutputImageFormatFailureReason(
                   image::formats::Jpeg, image::formats::Jpeg, false)
                   .success());
+}
+
+TEST(
+    core_matchers_ImageFormat,
+    whenRequiresEqualInputOutput_equalFormatsDifferentPixelSpec_thenFails) {
+  ASSERT_EQ(
+      reasons::EqualInputOutputImageFormatFalse,
+      equalInputOutputImageFormatFailureReason(
+          image::formats::Png,
+          image::formats::Png,
+          true,
+          image::pixel::specifications::RGBA,
+          image::pixel::specifications::Gray)
+          .failureReason);
 }
 
 TEST(

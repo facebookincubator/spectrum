@@ -13,11 +13,13 @@ namespace image {
 namespace testutils {
 
 inline image::Specification makeDummyImageSpecification(
-    const image::Format& format = image::formats::Bitmap) {
+    const image::Format& format = image::formats::Bitmap,
+    const image::pixel::Specification& pixelSpecification =
+        image::pixel::specifications::RGBA) {
   return image::Specification{
       .size = image::Size{.width = 1, .height = 1},
       .format = format,
-      .pixelSpecification = image::pixel::specifications::RGBA,
+      .pixelSpecification = pixelSpecification,
       .chromaSamplingMode = image::ChromaSamplingMode::S444,
       .orientation = image::Orientation::Up,
       .metadata = {},
