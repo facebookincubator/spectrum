@@ -38,7 +38,7 @@ public class SpectrumResult {
     this.totalBytesWritten = totalBytesWritten;
   }
 
-  /** <code>True</code> iff a rule has been applied to fulfill the request */
+  /** <code>True</code> if a rule has been applied to fulfill the request */
   @DoNotStrip
   public boolean isSuccessful() {
     return ruleName != null;

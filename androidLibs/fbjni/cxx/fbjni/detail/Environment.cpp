@@ -97,7 +97,7 @@ inline void setTLData(pthread_key_t key, detail::TLData* data) {
   }
 }
 
-// This returns non-nullptr iff the env was cached from java.  So it
+// This returns non-nullptr if the env was cached from java.  So it
 // can return nullptr for a thread which has been registered.
 inline JNIEnv* cachedOrNull() {
   detail::TLData* pdata = getTLData(getTLKey());

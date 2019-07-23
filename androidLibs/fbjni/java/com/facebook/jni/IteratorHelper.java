@@ -34,7 +34,7 @@ public class IteratorHelper {
   }
 
   /**
-   * Moves the helper to the next entry in the map, if any. Returns true iff there is an entry to
+   * Moves the helper to the next entry in the map, if any. Returns true if there is an entry to
    * read.
    */
   @DoNotStrip

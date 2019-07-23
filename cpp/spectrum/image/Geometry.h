@@ -90,7 +90,7 @@ constexpr auto pointZero = Point{0, 0};
 /**
  * Represents a rectangular area defined by its width and height.
  *
- * When comparing two size objects A and B, A is larger than B iff both its
+ * When comparing two size objects A and B, A is larger than B if both its
  * width and height are larger.
  */
 struct Size {
@@ -116,7 +116,7 @@ struct Size {
   Size transposed() const;
 
   /**
-   * Returns true iff the point is within the size.
+   * Returns true if the point is within the size.
    */
   bool contains(const Point& other) const;
 
@@ -169,24 +169,24 @@ struct Size {
       const core::numeric::RoundingMode roundingMode) const;
 
   /**
-   * Returns true iff the given size fully fits within this size (i.e. all
+   * Returns true if the given size fully fits within this size (i.e. all
    * dimensions of that size are of less or equal length).
    */
   bool contains(const Size& rhs) const;
 
   /**
-   * Returns true iff this size fully fits within the given size (i.e. all
+   * Returns true if this size fully fits within the given size (i.e. all
    * dimensions of this size are of less or equal length).
    */
   bool containedIn(const Size& rhs) const;
 
   /**
-   * Returns true iff the given size has equal width and height
+   * Returns true if the given size has equal width and height
    */
   bool operator==(const Size& rhs) const;
 
   /**
-   * Returns true iff the given size differs in width and/or height
+   * Returns true if the given size differs in width and/or height
    */
   bool operator!=(const Size& rhs) const;
 

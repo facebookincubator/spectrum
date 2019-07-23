@@ -28,7 +28,7 @@ public class BitmapTarget {
   /**
    * Allocates a bitmap with the given width, height, and {@link Bitmap.Config#ARGB_8888}.
    *
-   * @return True iff the allocation was successful.
+   * @return True if the allocation was successful.
    * @throws IllegalStateException if the target already has an allocated {@link Bitmap}.
    */
   @DoNotStrip

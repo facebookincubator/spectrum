@@ -20,7 +20,7 @@ import com.facebook.spectrum.options.TransformOptions;
  */
 public interface ISpectrum {
 
-  /** @return true iff the native code loaded and initialized properly. */
+  /** @return true if the native code loaded and initialized properly. */
   boolean isAvailable();
 
   /**
