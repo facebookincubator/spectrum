@@ -11,6 +11,16 @@ Spectrum ships with a considerable amount of native C++ code. By default the And
 
 You might also want to look into [just including plugins for the image formats that you want to support](getting_started_android.md#loading-specific-plugins).
 
+### In which order are the transformations (resize, rotate, and crop) executed?
+
+Interestingly, the actual order of execution does not matter. This is a nice property that allows Spectrum to reoder operations into a more efficient sequence. With regard to the logical order, the following statements make it more clear:
+
+- The crop requirement always logically works on the input image coordinates. I.e. one can imagine that it is executed first.
+- The resize requirement gives a guarantee about the output image dimensions. I.e. one can imagine that it is executed last.
+- The rotation requirement can be seen as being "logically executed" in between as it does not directly relate to the input or output dimensions.
+
+When actually executing a request, Spectrum might rotate first or resize first. However, it will always ensure that it updates the other transformations such that the logical model still holds. E.g. if Spectrum resizes first, the crop requirement will also be "resized".
+
 ### How can I contribute to Spectrum?
 
 Have a look at the [issues on GitHub that are marked with `good first issue`](https://github.com/facebookincubator/spectrum/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22). Those are small to medium sized features that we will support. To get started also look at our contributing pages for [Android](contributing_android.md) and [iOS](contributing_ios.md).
