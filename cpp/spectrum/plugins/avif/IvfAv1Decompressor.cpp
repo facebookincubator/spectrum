@@ -26,17 +26,6 @@ namespace avif {
 
 namespace {
 constexpr int DAV1D_OK = 0;
-
-folly::Range<const std::uint8_t*> readRangeFromSource(
-    io::IImageSource& source,
-    const size_t len) {
-  std::vector<char> bytes(len);
-  SPECTRUM_ENFORCE_IF(source.read(bytes.data(), len) != len);
-
-  const auto data = reinterpret_cast<const std::uint8_t*>(bytes.data());
-  return folly::Range<const std::uint8_t*>(data, data + len);
-}
-
 } // namespace
 
 IvfAv1Decompressor::IvfAv1Decompressor(io::IImageSource& source)
@@ -164,10 +153,11 @@ void IvfAv1Decompressor::_ensureHeaderIsRead() {
   if (_imageSpecification.hasValue()) {
     return;
   }
-
-  auto buffer = readRangeFromSource(
-      _source,
-      sizeof(fb::ivf::IvfFileHeader) + sizeof(fb::ivf::IvfFrameHeader));
+  auto len = sizeof(fb::ivf::IvfFileHeader) + sizeof(fb::ivf::IvfFrameHeader);
+  std::vector<char> bytes(len);
+  SPECTRUM_ENFORCE_IF(_source.read(bytes.data(), len) != len);
+  const auto data = reinterpret_cast<const std::uint8_t*>(bytes.data());
+  auto buffer = folly::Range<const std::uint8_t*>(data, data + len);
 
   // Read IvfFileHeader
   const auto fileHeader = fb::ivf::parseIvfFileHeader(buffer);
