@@ -62,7 +62,7 @@ dependencies {
     implementation deps.junit
     implementation deps.supportTestRunner
     implementation deps.supportTestRules
-    implementation 'androidx.exifinterface:exifinterface:1.1.0-alpha01'
+    implementation 'androidx.exifinterface:exifinterface:1.1.0-beta01'
 
     androidTestImplementation deps.festAssert
     androidTestImplementation deps.junit
