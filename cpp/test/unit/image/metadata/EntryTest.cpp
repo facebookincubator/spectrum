@@ -242,9 +242,9 @@ TEST(image_metadata_Entry, whenExtractingValueVectorWithWrongCount_thenThrows) {
 TEST(
     image_metadata_Entry,
     whenParsingButDataLengthIsNotBigEnoughForCount_thenThrows) {
-  const auto location = std::uint8_t{0};
-  const auto location2 = std::uint8_t{0};
-  const auto context = ReadContext{&location2, 2, &location, true};
+  // create array to ensure order of pointers
+  const std::array<std::uint8_t, 2> data = {0, 0};
+  const auto context = ReadContext{&data[0], std::size_t{2}, &data[1], true};
   auto entries = Entry::TagMap{};
 
   ASSERT_THROW(
@@ -255,11 +255,15 @@ TEST(
 TEST(
     image_metadata_Entry,
     whenParsingButDataLengthIsNotBigEnoughForAllEntries_thenThrows) {
-  const auto location = std::uint8_t{0};
-  const auto count = std::uint16_t{42};
-  const auto countAddress = reinterpret_cast<const std::uint8_t*>(&count);
+  // create array to ensure order of pointers
+  std::uint16_t countEntries = 42;
+  const std::array<std::uint16_t, 2> data = {countEntries, 0};
+  const auto countAddress = reinterpret_cast<const std::uint8_t*>(&data[0]);
   const auto context = ReadContext{
-      countAddress, sizeof(std::uint16_t) + (42 * 12) - 1, &location, true};
+      countAddress,
+      sizeof(std::uint16_t) + (countEntries * sizeof(Entry::MemoryLayout)) - 1,
+      reinterpret_cast<const std::uint8_t*>(&data[1]),
+      true};
   auto entries = Entry::TagMap{};
 
   ASSERT_THROW(

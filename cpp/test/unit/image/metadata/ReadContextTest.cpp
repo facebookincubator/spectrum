@@ -16,23 +16,23 @@ namespace test {
 TEST(
     image_matadata_ReadContext,
     whenCreatingAContext_thenPropertiesAreCorrect) {
-  const auto location = std::uint8_t{0};
-  const auto location2 = std::uint8_t{0};
+  // create array to ensure order of pointers
+  const std::array<std::uint8_t, 2> data = {0, 0};
   const auto dataLength = std::size_t{42};
-  const auto context = ReadContext{&location2, dataLength, &location, false};
-
-  ASSERT_EQ(&location, context.tiffHeaderBegin);
-  ASSERT_EQ(&location2 + dataLength, context.dataEnd);
+  const auto context = ReadContext{&data[0], dataLength, &data[1], false};
+  ASSERT_EQ(&data[1], context.tiffHeaderBegin);
+  ASSERT_EQ(&data[0] + dataLength, context.dataEnd);
   ASSERT_FALSE(context.isLittleEndianEncoded);
 }
 
 TEST(
     image_matadata_ReadContext,
     whenTiffAddressIsNotBetweenDataBeginAndDataEnd_thenThrows) {
-  const auto location = std::uint8_t{0};
-  const auto location2 = std::uint8_t{0};
+  // create array to ensure order of pointers
+  const std::array<std::uint8_t, 2> data = {0, 0};
   ASSERT_THROW(
-      ReadContext(&location, 42, &location2, false), SpectrumException);
+      ReadContext(&data[1], std::size_t{42}, &data[0], false),
+      SpectrumException);
 }
 
 TEST(image_matadata_ReadContext, whenNullptrIsPassedAsDataBegin_thenThrows) {
