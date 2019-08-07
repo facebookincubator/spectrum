@@ -28,10 +28,11 @@ image::Specification detectImageSpecification(
   const auto codecRepository =
       codecs::testutils::makeCodecRepositoryWithFakeDecompressor(
           decompressorImageSize, decompressorPixelSpecification);
+  Configuration c;
   const auto encodedImageInformationDetector =
       EncodedImageSpecificationDetector{
           codecRepository,
-          Configuration(),
+          c,
           std::move(encodedImageFormatDetectorHandlers),
       };
 
