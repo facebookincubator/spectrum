@@ -90,6 +90,6 @@ public class SpectrumLogcatLogger extends BaseSpectrumLogger {
   }
 
   private static boolean isValidLogLevel(final int level) {
-    return level >= Log.DEBUG && level <= Log.ASSERT;
+    return level >= Log.VERBOSE && level <= Log.ASSERT;
   }
 }
