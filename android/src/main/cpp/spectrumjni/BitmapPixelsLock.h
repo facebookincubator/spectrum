@@ -18,6 +18,7 @@ class BitmapPixelsLock {
   JNIEnv* env_;
   jobject bitmap_;
   uint8_t* ptr_;
+  uint32_t scanlineSizeBytes_;
 
   bool releaseLock(const bool permitException);
 
@@ -36,6 +37,10 @@ class BitmapPixelsLock {
 
   uint8_t* getPixelsPtr() {
     return ptr_;
+  }
+
+  uint32_t getScanlineSizeBytes() {
+    return scanlineSizeBytes_;
   }
 };
 

@@ -11,11 +11,11 @@ namespace facebook {
 namespace spectrum {
 namespace plugins {
 
-class JSpectrumPluginPng
-    : public facebook::jni::HybridClass<JSpectrumPluginPng> {
+class JSpectrumPluginPlatform
+    : public facebook::jni::HybridClass<JSpectrumPluginPlatform> {
  public:
   static constexpr const char* kJavaDescriptor =
-      "Lcom/facebook/spectrum/plugins/SpectrumPluginPng;";
+      "Lcom/facebook/spectrum/plugins/SpectrumPluginPlatform;";
 
   static void registerNatives();
 

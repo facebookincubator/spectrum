@@ -14,7 +14,16 @@ namespace spectrum {
 namespace jni {
 
 BitmapPixelsLock::BitmapPixelsLock(JNIEnv* env, jobject bitmap)
-    : env_(env), bitmap_(bitmap), ptr_(nullptr) {
+    : env_(env), bitmap_(bitmap), ptr_(nullptr), scanlineSizeBytes_(0) {
+  AndroidBitmapInfo info;
+  if (AndroidBitmap_getInfo(env_, bitmap, &info) !=
+      ANDROID_BITMAP_RESULT_SUCCESS) {
+    SPECTRUM_ERROR_CSTR(
+        io::error::ImageSourceFailure, "failed_to_obtain_bitmap_info");
+  }
+
+  scanlineSizeBytes_ = info.stride;
+
   if (AndroidBitmap_lockPixels(env_, bitmap_, (void**)&ptr_) !=
       ANDROID_BITMAP_RESULT_SUCCESS) {
     SPECTRUM_ERROR_CSTR(

@@ -70,6 +70,10 @@ public class TestData {
     String PATH_256_170_RAV1E_S420_IVFAV1_PNG = "256_170_rav1e_s420.ivf.png";
   }
 
+  public interface GIF {
+    String PATH_128x85 = "128x85.gif";
+  }
+
   public static InputStream getInputStream(final String path) throws IOException {
     return getContext().getResources().getAssets().open(path);
   }
@@ -91,7 +95,15 @@ public class TestData {
     //noinspection TryFinallyCanBeTryWithResources
     try {
       inputStream = getInputStream(path);
-      return BitmapFactory.decodeStream(inputStream);
+      Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+      if (bitmap.getConfig() == null) {
+        // HACK: Fixing issue with GIF on Android 7 API 24 where the decoded bitmap is missing
+        // bitmap config
+        // @see
+        // https://android.googlesource.com/platform/frameworks/base/+/android-9.0.0_r8/graphics/java/android/graphics/Bitmap.java#833
+        bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, false);
+      }
+      return bitmap;
     } finally {
       if (inputStream != null) {
         inputStream.close();

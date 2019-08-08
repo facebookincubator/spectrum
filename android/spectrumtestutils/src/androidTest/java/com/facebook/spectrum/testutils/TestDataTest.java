@@ -36,6 +36,11 @@ public class TestDataTest {
     openAndAssertAllFields(TestData.IVFAV1.class, false);
   }
 
+  @Test
+  public void testOpenTestData_whenReadingAllGifFiles_thenAllAreNonEmpty() throws Exception {
+    openAndAssertAllFields(TestData.GIF.class, true);
+  }
+
   private void openAndAssertAllFields(final Class clazz, final boolean assertSuccessfulDecode)
       throws Exception {
     final Field[] allFields = clazz.getFields();

@@ -14,7 +14,6 @@ android {
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         buildConfigField "boolean", "IS_INTERNAL_BUILD", 'true'
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
             abiFilters 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
@@ -23,20 +22,8 @@ android {
         externalNativeBuild {
             cmake {
                 arguments '-DANDROID_TOOLCHAIN=clang', '-DANDROID_STL=c++_shared'
-                targets 'spectrumtest'
+                targets 'spectrumpluginplatform'
             }
-        }
-    }
-
-    sourceSets {
-        main {
-            assets.srcDirs = [
-                    'src/main/java/com/facebook/spectrum/testutils/assets/jpeg',
-                    'src/main/java/com/facebook/spectrum/testutils/assets/png',
-                    'src/main/java/com/facebook/spectrum/testutils/assets/webp',
-                    'src/main/java/com/facebook/spectrum/testutils/assets/ivfav1',
-                    'src/main/java/com/facebook/spectrum/testutils/assets/gif',
-            ]
         }
     }
 
@@ -56,21 +43,18 @@ android {
 }
 
 dependencies {
+    implementation project(':android')
+    implementation project(':fbjni')
     compileOnly deps.jsr305
     implementation deps.soloader
-    implementation project(':android')
-    implementation deps.festAssert
-    implementation deps.junit
-    implementation deps.supportTestRunner
-    implementation deps.supportTestRules
-    implementation 'androidx.exifinterface:exifinterface:1.1.0-beta01'
 
-    androidTestImplementation deps.festAssert
-    androidTestImplementation deps.junit
-    androidTestImplementation deps.robolectric
-    androidTestImplementation deps.supportTestRunner
-    androidTestImplementation deps.supportTestRules
+    testImplementation deps.festAssert
+    testImplementation deps.junit
+    testImplementation deps.mockitoCore
+    testImplementation deps.robolectric
 }
+
+apply from: rootProject.file('gradle/release.gradle')
 
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
