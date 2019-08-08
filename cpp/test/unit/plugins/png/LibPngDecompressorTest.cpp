@@ -87,6 +87,62 @@ TEST(
 
 TEST(
     plugins_png_LibPngDecompressor,
+    whenReading_graya8bit_thenPixelSpecificationAndDimensionCorrect) {
+  io::FileImageSource source{
+      testdata::paths::png::s16x16_BLACK_GRAY_A_8B.normalized()};
+  auto decompressor = LibPngDecompressor{source};
+  const auto inputImageSpecification = decompressor.sourceImageSpecification();
+
+  ASSERT_EQ(
+      image::pixel::specifications::GrayA,
+      inputImageSpecification.pixelSpecification);
+  ASSERT_EQ((image::Size{16, 16}), inputImageSpecification.size);
+}
+
+TEST(
+    plugins_png_LibPngDecompressor,
+    whenReading_graya16bit_thenPixelSpecificationAndDimensionCorrect) {
+  io::FileImageSource source{
+      testdata::paths::png::s16x16_BLACK_GRAY_A_16B.normalized()};
+  auto decompressor = LibPngDecompressor{source};
+  const auto inputImageSpecification = decompressor.sourceImageSpecification();
+
+  ASSERT_EQ(
+      image::pixel::specifications::GrayA,
+      inputImageSpecification.pixelSpecification);
+  ASSERT_EQ((image::Size{16, 16}), inputImageSpecification.size);
+}
+
+TEST(
+    plugins_png_LibPngDecompressor,
+    whenReading_gray_trns_8bit_thenPixelSpecificationAndDimensionCorrect) {
+  io::FileImageSource source{
+      testdata::paths::png::s16x16_BLACK_GRAY_TRNS_8B.normalized()};
+  auto decompressor = LibPngDecompressor{source};
+  const auto inputImageSpecification = decompressor.sourceImageSpecification();
+
+  ASSERT_EQ(
+      image::pixel::specifications::GrayA,
+      inputImageSpecification.pixelSpecification);
+  ASSERT_EQ((image::Size{16, 16}), inputImageSpecification.size);
+}
+
+TEST(
+    plugins_png_LibPngDecompressor,
+    whenReading_gray_trns_16bit_thenPixelSpecificationAndDimensionCorrect) {
+  io::FileImageSource source{
+      testdata::paths::png::s16x16_BLACK_GRAY_TRNS_16B.normalized()};
+  auto decompressor = LibPngDecompressor{source};
+  const auto inputImageSpecification = decompressor.sourceImageSpecification();
+
+  ASSERT_EQ(
+      image::pixel::specifications::GrayA,
+      inputImageSpecification.pixelSpecification);
+  ASSERT_EQ((image::Size{16, 16}), inputImageSpecification.size);
+}
+
+TEST(
+    plugins_png_LibPngDecompressor,
     whenReading_rgb4bit_thenPixelSpecificationAndDimensionCorrect) {
   io::FileImageSource source{
       testdata::paths::png::s16x16_cABCDEF_RGB_4B.normalized()};

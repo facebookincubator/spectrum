@@ -92,6 +92,15 @@ static constexpr Path s16x16_BLACK_GRAY_4B = folly::StringPiece{
 static constexpr Path s16x16_BLACK_GRAY_8B = folly::StringPiece{
     "xplat/spectrum/cpp/testutils/data/png/16x16_black_gray_8b.png"};
 
+static constexpr Path s16x16_BLACK_GRAY_A_8B = folly::StringPiece{
+    "xplat/spectrum/cpp/testutils/data/png/16x16_black_gray_a_8b.png"};
+static constexpr Path s16x16_BLACK_GRAY_A_16B = folly::StringPiece{
+    "xplat/spectrum/cpp/testutils/data/png/16x16_black_gray_a_16b.png"};
+static constexpr Path s16x16_BLACK_GRAY_TRNS_8B = folly::StringPiece{
+    "xplat/spectrum/cpp/testutils/data/png/16x16_black_gray_tRNS_8b.png"};
+static constexpr Path s16x16_BLACK_GRAY_TRNS_16B = folly::StringPiece{
+    "xplat/spectrum/cpp/testutils/data/png/16x16_black_gray_tRNS_16b.png"};
+
 static constexpr Path s16x16_WHITE_GRAY_1B = folly::StringPiece{
     "xplat/spectrum/cpp/testutils/data/png/16x16_white_gray_1b.png"};
 static constexpr Path s16x16_WHITE_GRAY_2B = folly::StringPiece{

@@ -47,6 +47,10 @@ image::pixel::Specification _pixelSpecificationFromColorType(
   if (bitDepth == 8 && colorType == PNG_COLOR_TYPE_GRAY && channels == 1) {
     return image::pixel::specifications::Gray;
   } else if (
+      bitDepth == 8 && colorType == PNG_COLOR_TYPE_GRAY_ALPHA &&
+      channels == 2) {
+    return image::pixel::specifications::GrayA;
+  } else if (
       bitDepth == 8 && colorType == PNG_COLOR_TYPE_RGB && channels == 3) {
     return image::pixel::specifications::RGB;
   } else if (
