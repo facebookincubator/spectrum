@@ -25,7 +25,7 @@ struct DataRange {
     return begin + length;
   }
 
-  const bool valid() const {
+  bool valid() const {
     return begin != nullptr;
   }
 };
