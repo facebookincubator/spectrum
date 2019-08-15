@@ -52,6 +52,9 @@ NS_SWIFT_NAME(EncodedImageFormat)
 /** A HEIF encoded image, see https://en.wikipedia.org/wiki/High_Efficiency_Image_File_Format */
 @property (class, nonatomic, readonly) FSPEncodedImageFormat *heif;
 
+/** An AVIF encoded image, see https://en.wikipedia.org/wiki/AV1#AV1_Image_File_Format_(AVIF) */
+@property (class, nonatomic, readonly) FSPEncodedImageFormat *avif;
+
 @end
 
 NS_ASSUME_NONNULL_END

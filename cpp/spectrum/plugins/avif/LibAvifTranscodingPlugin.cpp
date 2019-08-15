@@ -23,7 +23,7 @@ namespace {
 constexpr auto IvfPrefix = folly::StringPiece{"DKIF"};
 constexpr auto Av1FourCC = folly::StringPiece{"AV01"};
 
-folly::Optional<image::EncodedFormat> ivfEncodedImageFormatDetectorHandler(
+folly::Optional<image::EncodedFormat> avifEncodedImageFormatDetectorHandler(
     io::IImageSource& source) {
   constexpr auto len = sizeof(fb::ivf::IvfFileHeader);
 
@@ -44,13 +44,13 @@ folly::Optional<image::EncodedFormat> ivfEncodedImageFormatDetectorHandler(
           Av1FourCC.begin(),
           reinterpret_cast<const char*>(ivfHeader.fourcc),
           Av1FourCC.size()) == 0) {
-    return formats::IvfAv1; // fourcc indicating AV1
+    return formats::Avif; // fourcc indicating AV1
   }
 
   return folly::none;
 }
 
-inline codecs::DecompressorProvider::Factory makeIvfAv1DecompressorFactory() {
+inline codecs::DecompressorProvider::Factory makeAvifDecompressorFactory() {
   return [](io::IImageSource& source,
             const folly::Optional<image::Ratio>& /* unused */,
             const Configuration& /* unused */) {
@@ -58,11 +58,11 @@ inline codecs::DecompressorProvider::Factory makeIvfAv1DecompressorFactory() {
   };
 }
 
-codecs::DecompressorProvider makeIvfAv1DecompressorProvider() {
+codecs::DecompressorProvider makeAvifDecompressorProvider() {
   return {
-      .format = formats::IvfAv1,
+      .format = formats::Avif,
       .supportedSamplingRatios = {},
-      .decompressorFactory = makeIvfAv1DecompressorFactory(),
+      .decompressorFactory = makeAvifDecompressorFactory(),
   };
 }
 
@@ -71,8 +71,8 @@ codecs::DecompressorProvider makeIvfAv1DecompressorProvider() {
 Plugin makeTranscodingPlugin() {
   auto plugin = Plugin{};
   plugin.encodedImageFormatDetectorHandlers.push_back(
-      &ivfEncodedImageFormatDetectorHandler);
-  plugin.decompressorProviders.push_back(makeIvfAv1DecompressorProvider());
+      &avifEncodedImageFormatDetectorHandler);
+  plugin.decompressorProviders.push_back(makeAvifDecompressorProvider());
   return plugin;
 }
 

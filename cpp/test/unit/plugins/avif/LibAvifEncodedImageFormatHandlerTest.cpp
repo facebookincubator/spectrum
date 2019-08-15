@@ -64,7 +64,7 @@ TEST(plugins_avif_EncodedImageFormatHandler, whenCorrectFourCC_thenIvfAv1) {
       "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00" // frame nom, dem, cnt
       "\x00\x00\x00\x00", // unused
       32);
-  ASSERT_EQ(formats::IvfAv1, runEncodedImageFormatHandler(input));
+  ASSERT_EQ(formats::Avif, runEncodedImageFormatHandler(input));
 }
 
 } // namespace test

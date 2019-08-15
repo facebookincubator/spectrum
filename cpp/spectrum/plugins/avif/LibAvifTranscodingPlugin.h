@@ -17,7 +17,7 @@ namespace formats {
 /**
  * An IVF formatted file with AV1 payload as generated e.g. using libaom.
  */
-static constexpr image::EncodedFormat IvfAv1{"ivfav1"};
+static constexpr image::EncodedFormat Avif{"avif"};
 } // namespace formats
 
 Plugin makeTranscodingPlugin();

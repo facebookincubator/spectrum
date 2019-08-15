@@ -33,6 +33,9 @@ public class EncodedImageFormat extends ImageFormat {
   /** A HEIF encoded image, see https://en.wikipedia.org/wiki/High_Efficiency_Image_File_Format */
   public static final EncodedImageFormat HEIF = new EncodedImageFormat("heif");
 
+  /** An AVIF encoded image, see https://en.wikipedia.org/wiki/AV1#AV1_Image_File_Format_(AVIF) */
+  public static final EncodedImageFormat AVIF = new EncodedImageFormat("avif");
+
   @DoNotStrip
   public EncodedImageFormat(final String identifier) {
     super(identifier);

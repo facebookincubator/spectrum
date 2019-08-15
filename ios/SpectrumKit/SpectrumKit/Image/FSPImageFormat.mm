@@ -108,6 +108,11 @@ using namespace facebook::spectrum;
   return [self imageFormatWithIdentifier:FSPStringFromInternalFixedString(image::formats::Heif.identifier())];
 }
 
++ (FSPEncodedImageFormat *)avif
+{
+  return [self imageFormatWithIdentifier:FSPStringFromInternalFixedString(image::formats::Avif.identifier())];
+}
+
 #pragma mark - Internal
 
 - (image::EncodedFormat)makeInternalFormat

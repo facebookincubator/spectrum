@@ -35,7 +35,7 @@ TEST(
   auto decompressor = IvfAv1Decompressor{source};
 
   const auto specifications = decompressor.sourceImageSpecification();
-  ASSERT_EQ(avif::formats::IvfAv1, specifications.format);
+  ASSERT_EQ(avif::formats::Avif, specifications.format);
   ASSERT_EQ((image::Size{256, 170}), specifications.size);
 }
 

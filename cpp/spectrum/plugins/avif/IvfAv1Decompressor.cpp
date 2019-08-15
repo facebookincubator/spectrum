@@ -170,7 +170,7 @@ void IvfAv1Decompressor::_ensureHeaderIsRead() {
 
   _imageSpecification = image::Specification{
       .size = image::Size{fileHeader.frameWidth, fileHeader.frameHeight},
-      .format = formats::IvfAv1,
+      .format = formats::Avif,
       .pixelSpecification = image::pixel::specifications::RGB};
 }
 
