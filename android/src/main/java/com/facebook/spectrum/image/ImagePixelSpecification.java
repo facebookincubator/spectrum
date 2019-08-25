@@ -187,9 +187,7 @@ public enum ImagePixelSpecification {
       throw new IllegalArgumentException("Unsupported PixelColorModel");
     }
   }
-  /**
-   * The alpha info specifies the behaviour of the optional alpha channel
-   */
+  /** The alpha info specifies the behaviour of the optional alpha channel */
   @DoNotStrip
   @Immutable
   enum AlphaInfo {

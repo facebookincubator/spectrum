@@ -51,7 +51,10 @@ public class SpectrumHybrid {
       ensureNativeLibraryInitialized();
       return mHybridData != null && mHybridData.isValid();
     } catch (Throwable t) {
-      Log.e(TAG, String.format((Locale) null, "Failed to load and initialize native: %s", t.getMessage()), t);
+      Log.e(
+          TAG,
+          String.format((Locale) null, "Failed to load and initialize native: %s", t.getMessage()),
+          t);
       return false;
     }
   }

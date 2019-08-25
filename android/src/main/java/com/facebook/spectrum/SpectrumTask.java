@@ -18,8 +18,8 @@ import java.io.IOException;
 import javax.annotation.Nullable;
 
 /**
- * An executable Spectrum task such as decoding or transcoding. It allows delaying the execution
- * and wrapping it within appropriate logging and re-try mechanisms.
+ * An executable Spectrum task such as decoding or transcoding. It allows delaying the execution and
+ * wrapping it within appropriate logging and re-try mechanisms.
  */
 /*package*/ interface SpectrumTask {
   SpectrumResult execute(final SpectrumHybrid spectrumHybrid) throws SpectrumException;
