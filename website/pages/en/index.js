@@ -53,8 +53,8 @@ class HomeSplash extends React.Component {
     return (
       <SplashContainer>
         <div className="content">
-        <div className="inner">
-          <ProjectTitle />
+          <div className="inner">
+            <ProjectTitle />
         </div>
         <h2 className="inverseLight">Spectrum is a cross-platform image transcoding library that can easily be integrated into an Android or iOS project to efficiently perform common image operations.</h2>
       </div>
