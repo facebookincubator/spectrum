@@ -244,6 +244,7 @@ void LibPngCompressor::writeScanline(
   const auto pixelSpecification = scanline->specification();
   if (pixelSpecification == image::pixel::specifications::Gray ||
       pixelSpecification == image::pixel::specifications::RGB ||
+      pixelSpecification == image::pixel::specifications::RGBA ||
       pixelSpecification == image::pixel::specifications::ARGB) {
     ensureHeaderIsWritten(
         colorTypeFromPixelSpecification(pixelSpecification),
