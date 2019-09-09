@@ -16,10 +16,10 @@ namespace facebook {
 namespace spectrum {
 namespace io {
 
-template <class Interface>
+template <class Interface, typename T>
 class VectorImageSource : public Interface {
  public:
-  explicit VectorImageSource(std::vector<char> data);
+  explicit VectorImageSource(std::vector<T> data);
 
   VectorImageSource(const VectorImageSource&) = delete;
   VectorImageSource(VectorImageSource&&) = default;
@@ -30,7 +30,7 @@ class VectorImageSource : public Interface {
   std::size_t available() override;
 
  private:
-  const std::vector<char> _data;
+  const std::vector<T> _data;
   std::size_t _offset = 0;
 };
 
@@ -39,7 +39,9 @@ class VectorImageSource : public Interface {
  *
  * This is the prefered way to provide encoded image data in C++ call sites.
  */
-using VectorEncodedImageSource = VectorImageSource<IEncodedImageSource>;
+using VectorEncodedImageSource = VectorImageSource<IEncodedImageSource, char>;
+using IntVectorEncodedImageSource =
+    VectorImageSource<IEncodedImageSource, uint8_t>;
 
 /**
  * The vector bitmap image source wraps decoded pixel data together with its
@@ -47,12 +49,13 @@ using VectorEncodedImageSource = VectorImageSource<IEncodedImageSource>;
  *
  * This is the prefered way to provide decoded image data in C++ call sites.
  */
-class VectorBitmapImageSource : public VectorImageSource<IBitmapImageSource> {
+class VectorBitmapImageSource
+    : public VectorImageSource<IBitmapImageSource, char> {
  public:
   explicit VectorBitmapImageSource(
       std::vector<char> data,
       const image::Specification& imageSpecification)
-      : VectorImageSource<IBitmapImageSource>(data),
+      : VectorImageSource<IBitmapImageSource, char>(data),
         _imageSpecification(imageSpecification) {}
   image::Specification imageSpecification() const override {
     return _imageSpecification;

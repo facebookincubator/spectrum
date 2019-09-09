@@ -17,17 +17,17 @@ namespace facebook {
 namespace spectrum {
 namespace io {
 
-template <class Interface>
-VectorImageSource<Interface>::VectorImageSource(std::vector<char> data)
+template <class Interface, typename T>
+VectorImageSource<Interface, T>::VectorImageSource(std::vector<T> data)
     : Interface(), _data(std::move(data)) {}
 
-template <class Interface>
-std::size_t VectorImageSource<Interface>::getTotalBytesRead() const {
+template <class Interface, typename T>
+std::size_t VectorImageSource<Interface, T>::getTotalBytesRead() const {
   return _offset;
 }
 
-template <class Interface>
-std::size_t VectorImageSource<Interface>::read(
+template <class Interface, typename T>
+std::size_t VectorImageSource<Interface, T>::read(
     char* const destination,
     const std::size_t length) {
   const auto bytesLeft = _data.size() - _offset;
@@ -39,13 +39,14 @@ std::size_t VectorImageSource<Interface>::read(
   return bytesToRead;
 }
 
-template <class Interface>
-std::size_t VectorImageSource<Interface>::available() {
+template <class Interface, typename T>
+std::size_t VectorImageSource<Interface, T>::available() {
   return _data.size() - _offset;
 }
 
-template class VectorImageSource<IBitmapImageSource>;
-template class VectorImageSource<IEncodedImageSource>;
+template class VectorImageSource<IBitmapImageSource, char>;
+template class VectorImageSource<IEncodedImageSource, char>;
+template class VectorImageSource<IEncodedImageSource, uint8_t>;
 
 } // namespace io
 } // namespace spectrum
