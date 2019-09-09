@@ -39,7 +39,8 @@ class VectorImageSource : public Interface {
  *
  * This is the prefered way to provide encoded image data in C++ call sites.
  */
-using VectorEncodedImageSource = VectorImageSource<IEncodedImageSource, char>;
+using CharVectorEncodedImageSource =
+    VectorImageSource<IEncodedImageSource, char>;
 using IntVectorEncodedImageSource =
     VectorImageSource<IEncodedImageSource, uint8_t>;
 

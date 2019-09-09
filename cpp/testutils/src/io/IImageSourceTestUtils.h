@@ -24,7 +24,7 @@ void assertRead(
     const std::size_t lenToRead,
     IImageSource& imageSource);
 
-VectorEncodedImageSource makeVectorImageSource(const std::string& content);
+CharVectorEncodedImageSource makeVectorImageSource(const std::string& content);
 
 VectorBitmapImageSource makeVectorBitmapImageSource(
     const std::string& content,

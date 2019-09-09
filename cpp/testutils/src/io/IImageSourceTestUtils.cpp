@@ -30,9 +30,9 @@ void assertRead(
   ASSERT_EQ(expectedString, std::string(buffer.data(), actualBytesRead));
 }
 
-VectorEncodedImageSource makeVectorImageSource(const std::string& content) {
+CharVectorEncodedImageSource makeVectorImageSource(const std::string& content) {
   auto v = std::vector<char>{content.begin(), content.end()};
-  return VectorEncodedImageSource(std::move(v));
+  return CharVectorEncodedImageSource(std::move(v));
 }
 
 VectorBitmapImageSource makeVectorBitmapImageSource(
