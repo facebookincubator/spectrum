@@ -32,7 +32,12 @@ class FileImageSource : public IEncodedImageSource {
    */
   explicit FileImageSource(const std::string& path);
   FileImageSource(const FileImageSource&) = delete;
+#if !defined(__ANDROID__) || defined(_LIBCPP_VERSION)
+  // gnustl doesn't mark std::ifstream as movable, and since we have a
+  // std::ifstream member variable we can't then use the default move
+  // constructor. We can remove the conditional after we've switched to libc++.
   FileImageSource(FileImageSource&&) = default;
+#endif
 
   ~FileImageSource() override = default;
 

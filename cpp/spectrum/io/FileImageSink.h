@@ -32,7 +32,12 @@ class FileImageSink : public IEncodedImageSink {
    */
   explicit FileImageSink(const std::string& path);
   FileImageSink(const FileImageSink&) = delete;
+#if !defined(__ANDROID__) || defined(_LIBCPP_VERSION)
+  // gnustl doesn't mark std::ofstream as movable, and since we have a
+  // std::ofstream member variable we can't then use the default move
+  // constructor. We can remove the conditional after we've switched to libc++.
   FileImageSink(FileImageSink&&) = default;
+#endif
 
   ~FileImageSink() override = default;
 
