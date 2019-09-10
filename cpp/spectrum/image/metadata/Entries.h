@@ -45,12 +45,9 @@ class Entries {
     static constexpr std::uint16_t ENDIAN_CODE_BIG = 0x4d4d;
     static constexpr std::uint16_t FIXED_VALUE = 0x2a;
     static constexpr std::uint32_t DEFAULT_OFFSET = 8;
-
-#if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-    static constexpr std::uint16_t ENDIAN_CODE_CURRENT = ENDIAN_CODE_LITTLE;
-#else
-    static constexpr std::uint16_t ENDIAN_CODE_CURRENT = ENDIAN_CODE_BIG;
-#endif
+    static constexpr std::uint16_t ENDIAN_CODE_CURRENT() {
+      return folly::kIsLittleEndian ? ENDIAN_CODE_LITTLE : ENDIAN_CODE_BIG;
+    }
 
    private:
     const char _header[5];
@@ -62,7 +59,7 @@ class Entries {
    public:
     MemoryLayout(
         const char* const header = HEADER_VALUE,
-        const std::uint16_t endianness = ENDIAN_CODE_CURRENT,
+        const std::uint16_t endianness = ENDIAN_CODE_CURRENT(),
         const std::uint16_t fixedValue = FIXED_VALUE,
         const std::uint32_t firstIfdOffset = DEFAULT_OFFSET);
 

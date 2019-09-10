@@ -13,6 +13,10 @@ namespace image {
 namespace metadata {
 namespace test {
 
+static_assert(
+    folly::kIsLittleEndian,
+    "Tests are only expected to be ran on a little-endian machine");
+
 TEST(
     image_matadata_ReadContext,
     whenCreatingAContext_thenPropertiesAreCorrect) {

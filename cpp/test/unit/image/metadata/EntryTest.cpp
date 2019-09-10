@@ -16,9 +16,9 @@ namespace image {
 namespace metadata {
 namespace test {
 
-#if __BYTE_ORDER__ != __ORDER_LITTLE_ENDIAN__
-#error Tests are only expected to be ran on a little-endian machine
-#endif
+static_assert(
+    folly::kIsLittleEndian,
+    "Tests are only expected to be ran on a little-endian machine");
 
 namespace {
 static void testSerialisation(

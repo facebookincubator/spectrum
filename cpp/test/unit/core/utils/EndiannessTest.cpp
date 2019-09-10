@@ -27,14 +27,8 @@ TEST(core_Utils, whenConvertingToNativeByteOrder_thenResultCorrect) {
 
   ASSERT_EQ('X', convertValueToNativeByteOrder('X', true));
   ASSERT_EQ('X', convertValueToNativeByteOrder('X', false));
-
-#if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
   ASSERT_EQ(value, convertValueToNativeByteOrder(value, true));
   ASSERT_EQ(swappedValue, convertValueToNativeByteOrder(value, false));
-#else
-  ASSERT_EQ(swappedValue, convertValueToNativeEndian(value, true));
-  ASSERT_EQ(value, convertValueToNativeEndian(value, false));
-#endif
 }
 
 } // namespace test

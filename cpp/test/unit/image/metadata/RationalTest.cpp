@@ -14,6 +14,10 @@ namespace image {
 namespace metadata {
 namespace test {
 
+static_assert(
+    folly::kIsLittleEndian,
+    "Tests are only expected to be ran on a little-endian machine");
+
 TEST(image_metadata_Rational, whenByteSwapped_thenCorrectValueReturned) {
   const auto rational = Rational{1, 2};
   const auto swappedRational = core::utils::swapValueByteOrder(rational);

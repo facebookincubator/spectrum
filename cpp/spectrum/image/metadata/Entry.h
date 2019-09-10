@@ -10,6 +10,7 @@
 #include <spectrum/image/metadata/Utils.h>
 
 #include <folly/Optional.h>
+#include <folly/Portability.h>
 #include <folly/Range.h>
 
 #include <cstddef>

@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include <folly/Portability.h>
 #include <algorithm>
 #include <cstdint>
 #include <type_traits>

@@ -14,6 +14,10 @@ namespace metadata {
 namespace utils {
 namespace test {
 
+static_assert(
+    folly::kIsLittleEndian,
+    "Tests are only expected to be ran on a little-endian machine");
+
 TEST(
     image_metadata_Utils,
     whenCreatingDataFromPrimitiveValue_thenDataIsCorrect) {

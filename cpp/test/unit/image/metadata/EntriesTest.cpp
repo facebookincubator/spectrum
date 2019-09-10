@@ -20,6 +20,10 @@ namespace image {
 namespace metadata {
 namespace test {
 
+static_assert(
+    folly::kIsLittleEndian,
+    "Tests are only expected to be ran on a little-endian machine");
+
 namespace { /* anonymous */
 std::vector<std::uint8_t> makeTestLayout(
     const folly::Optional<Entries::MemoryLayout>& layout = folly::none,
@@ -82,7 +86,7 @@ TEST(
     whenExifHeaderDoesNotContainValidEndianCode_thenThrows) {
   const auto layout =
       Entries::MemoryLayout{Entries::MemoryLayout::HEADER_VALUE,
-                            Entries::MemoryLayout::ENDIAN_CODE_CURRENT - 1};
+                            Entries::MemoryLayout::ENDIAN_CODE_CURRENT() - 1};
   ASSERT_THROW(
       layout.ensureExpectedLayout(sizeof(Entries::MemoryLayout)),
       SpectrumException);
@@ -93,7 +97,7 @@ TEST(
     whenExifHeaderDoesNotContainValidFixedValue_thenThrows) {
   const auto layout =
       Entries::MemoryLayout{Entries::MemoryLayout::HEADER_VALUE,
-                            Entries::MemoryLayout::ENDIAN_CODE_CURRENT,
+                            Entries::MemoryLayout::ENDIAN_CODE_CURRENT(),
                             0};
   ASSERT_THROW(
       layout.ensureExpectedLayout(sizeof(Entries::MemoryLayout)),
@@ -135,7 +139,7 @@ TEST(
 TEST(image_metadata_Entries, whenFirstIfdOffsetPointsInsideTheMemoryLayout) {
   const auto layout =
       Entries::MemoryLayout{Entries::MemoryLayout::HEADER_VALUE,
-                            Entries::MemoryLayout::ENDIAN_CODE_CURRENT,
+                            Entries::MemoryLayout::ENDIAN_CODE_CURRENT(),
                             Entries::MemoryLayout::FIXED_VALUE,
                             Entries::MemoryLayout::DEFAULT_OFFSET - 1};
   ASSERT_THROW(

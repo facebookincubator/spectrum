@@ -5,21 +5,19 @@
 
 #pragma once
 
+#include <folly/Portability.h>
 #include <algorithm>
 #include <cstdint>
 #include <type_traits>
-
-#ifndef __BYTE_ORDER__
-#error __BYTE_ORDER__ undefined!
-#elif __BYTE_ORDER__ != __ORDER_LITTLE_ENDIAN__ && \
-    __BYTE_ORDER__ != __ORDER_BIG_ENDIAN__
-#error Unexpected __BYTE_ORDER__ value!
-#endif
 
 namespace facebook {
 namespace spectrum {
 namespace core {
 namespace utils {
+
+static_assert(
+    folly::kIsLittleEndian || folly::kIsBigEndian,
+    "Unexpected endianness!");
 
 /**
  * Marker interface that when subclassed, opts-out a class from having it bytes
@@ -58,13 +56,13 @@ template <typename T>
 T convertValueToNativeByteOrder(
     const T value,
     const bool isLittleEndianEncoded) noexcept {
-#if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-  return isLittleEndianEncoded || sizeof(T) == 1 ? value
-                                                 : swapValueByteOrder(value);
-#else
-  return isLittleEndianEncoded && sizeof(T) != 1 ? swapValueByteOrder(value)
-                                                 : value;
-#endif
+  if (folly::kIsLittleEndian) {
+    return isLittleEndianEncoded || sizeof(T) == 1 ? value
+                                                   : swapValueByteOrder(value);
+  } else {
+    return isLittleEndianEncoded && sizeof(T) != 1 ? swapValueByteOrder(value)
+                                                   : value;
+  }
 }
 
 } // namespace utils

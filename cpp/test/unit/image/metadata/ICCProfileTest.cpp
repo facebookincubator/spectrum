@@ -12,6 +12,11 @@ namespace spectrum {
 namespace image {
 namespace metadata {
 namespace test {
+
+static_assert(
+    folly::kIsLittleEndian,
+    "Tests are only expected to be ran on a little-endian machine");
+
 namespace {
 
 static constexpr std::size_t MARKER_MAX_SIZE = 1024 * 64; // 64k
