@@ -39,7 +39,7 @@ public class SpectrumPluginPng extends SpectrumPlugin {
   private native long nativeCreatePlugin();
 
   /** Returns global instance of the {@link SpectrumPluginPng} */
-  public static SpectrumPlugin get() {
+  public static SpectrumPluginPng get() {
     synchronized (SpectrumPluginPng.class) {
       if (sInstance != null) {
         return sInstance;

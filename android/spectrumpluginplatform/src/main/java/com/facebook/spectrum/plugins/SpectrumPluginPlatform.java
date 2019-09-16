@@ -46,7 +46,7 @@ public class SpectrumPluginPlatform extends SpectrumPlugin {
   private native long nativeCreatePlugin();
 
   /** Returns global instance of the {@link SpectrumPluginPlatform} */
-  public static SpectrumPlugin get() {
+  public static SpectrumPluginPlatform get() {
     synchronized (SpectrumPluginPlatform.class) {
       if (sInstance != null) {
         return sInstance;

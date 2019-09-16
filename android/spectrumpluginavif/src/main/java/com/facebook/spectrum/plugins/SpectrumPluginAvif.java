@@ -39,7 +39,7 @@ public class SpectrumPluginAvif extends SpectrumPlugin {
   private native long nativeCreatePlugin();
 
   /** Returns global instance of the {@link SpectrumPluginAvif} */
-  public static SpectrumPlugin get() {
+  public static SpectrumPluginAvif get() {
     synchronized (SpectrumPluginAvif.class) {
       if (sInstance != null) {
         return sInstance;

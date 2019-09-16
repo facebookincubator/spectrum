@@ -39,7 +39,7 @@ public class SpectrumPluginWebp extends SpectrumPlugin {
   private native long nativeCreatePlugin();
 
   /** Returns global instance of the {@link SpectrumPluginWebp} */
-  public static SpectrumPlugin get() {
+  public static SpectrumPluginWebp get() {
     synchronized (SpectrumPluginWebp.class) {
       if (sInstance != null) {
         return sInstance;

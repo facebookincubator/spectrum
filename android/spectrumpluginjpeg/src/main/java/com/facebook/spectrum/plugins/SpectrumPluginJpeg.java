@@ -39,7 +39,7 @@ public class SpectrumPluginJpeg extends SpectrumPlugin {
   private native long nativeCreatePlugin();
 
   /** Returns global instance of the {@link SpectrumPluginJpeg} */
-  public static SpectrumPlugin get() {
+  public static SpectrumPluginJpeg get() {
     synchronized (SpectrumPluginJpeg.class) {
       if (sInstance != null) {
         return sInstance;
