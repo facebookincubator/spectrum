@@ -7,6 +7,7 @@
 
 #include <folly/Optional.h>
 
+#include <cstdarg>
 #include <sstream>
 #include <stdexcept>
 #include <string>
@@ -56,6 +57,6 @@ void internalThrowError(
       name, formattedExtra, function, line);
 }
 
-} // namespace error
+} // namespace core
 } // namespace spectrum
 } // namespace facebook
