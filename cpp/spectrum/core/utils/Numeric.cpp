@@ -20,6 +20,8 @@ double rounded(const double value, const RoundingMode roundingMode) {
       return round(value);
     case RoundingMode::Down:
       return floor(value);
+    default:
+      SPECTRUM_UNREACHABLE;
   }
 }
 

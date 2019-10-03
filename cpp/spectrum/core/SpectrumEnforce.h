@@ -38,7 +38,7 @@ std::string makeUnknownWithValue(const U& value) {
   s << "unknown (" << static_cast<T>(value) << ")";
   return s.str();
 }
-}
+} // namespace core
 } // namespace spectrum
 } // namespace facebook
 
@@ -117,3 +117,6 @@ std::string makeUnknownWithValue(const U& value) {
  */
 #define SPECTRUM_UNREACHABLE_STRING(name, string) \
   SPECTRUM_ERROR_FORMAT(name, "%s", string.c_str())
+
+#define SPECTRUM_UNREACHABLE \
+  SPECTRUM_ERROR_FORMAT(folly::StringPiece{"unreachable_case"}, "%s", "")

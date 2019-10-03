@@ -23,6 +23,8 @@ bool _matchesPassthroughEncodeRequirement(
       return true;
     case requirements::Encode::Mode::Lossy:
       return false;
+    default:
+      SPECTRUM_UNREACHABLE;
   }
 }
 } // namespace

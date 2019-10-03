@@ -95,10 +95,7 @@ Entries::MemoryLayout::MemoryLayout(
   SPECTRUM_ENFORCE_IF_NOT(header != nullptr);
   // I really want header to be const, but we need to do this because g++
   // doesn't support literal array initialisation.
-  std::strncpy(
-      const_cast<char*>(this->_header),
-      header,
-      std::min(strlen(header) + 1, sizeof(this->_header)));
+  std::strncpy(const_cast<char*>(this->_header), header, sizeof(this->_header));
 }
 
 void Entries::MemoryLayout::ensureExpectedLayout(

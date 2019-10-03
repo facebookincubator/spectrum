@@ -25,6 +25,8 @@ std::string chromaSamplingModeStringValue(
         return "411";
       case ChromaSamplingMode::S440:
         return "440";
+      default:
+        SPECTRUM_UNREACHABLE;
     }
   } else {
     return "none";

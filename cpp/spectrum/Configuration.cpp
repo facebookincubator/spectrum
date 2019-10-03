@@ -86,6 +86,8 @@ Configuration::General::chromaSamplingModeOverrideFromChromaSamplingMode(
       return Configuration::General::ChromaSamplingModeOverride::S440;
     case image::ChromaSamplingMode::S411:
       return Configuration::General::ChromaSamplingModeOverride::S411;
+    default:
+      SPECTRUM_UNREACHABLE;
   }
 }
 
@@ -106,6 +108,9 @@ Configuration::General::chromaSamplingModeOverrideToChromaSamplingMode(
       return image::ChromaSamplingMode::S440;
     case Configuration::General::ChromaSamplingModeOverride::S411:
       return image::ChromaSamplingMode::S411;
+    default:
+      SPECTRUM_UNREACHABLE_CONFIGURATION_CHROMA_SAMPLING_MODE_OVERRIDE(
+          chromaSamplingModeOverride);
   }
 }
 

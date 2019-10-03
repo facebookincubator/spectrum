@@ -97,14 +97,14 @@ image::Specification BaseRecipe::perform(const Operation& operation) const {
 }
 
 Rule BaseRecipe::makeRule() {
-  return {
+  return Rule{
       .name = "base",
+      .recipeFactory = &std::make_unique<BaseRecipe>,
       .requiresEqualInputOutputFormat = false,
       .isPassthrough = false,
       .cropSupport = Rule::CropSupport::Exact,
       .resizeSupport = Rule::ResizeSupport::Exact,
       .rotateSupport = Rule::RotateSupport::MultipleOf90Flip,
-      .recipeFactory = &std::make_unique<BaseRecipe>,
   };
 }
 

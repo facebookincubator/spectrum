@@ -53,14 +53,14 @@ codecs::DecompressorProvider makeLibPngDecompressorProvider() {
 }
 
 codecs::CompressorProvider makeLibPngCompressorProvider() {
-  return {
+  return codecs::CompressorProvider{
       .format = image::formats::Png,
       .supportsSettingMetadata = false,
+      .pixelSpecificationNarrower = &pixelSpecificationNarrower,
       .supportedChromaSamplingModes =
           {
               image::ChromaSamplingMode::S420,
           },
-      .pixelSpecificationNarrower = &pixelSpecificationNarrower,
       .compressorFactory =
           [](const codecs::CompressorOptions& options) {
             return std::make_unique<LibPngCompressor>(options);

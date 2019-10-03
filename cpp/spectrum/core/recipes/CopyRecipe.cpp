@@ -28,14 +28,14 @@ image::Specification CopyRecipe::perform(
 }
 
 Rule CopyRecipe::makeRule() {
-  return {
+  return Rule{
       .name = "copy",
+      .recipeFactory = &std::make_unique<CopyRecipe>,
       .requiresEqualInputOutputFormat = true,
       .isPassthrough = true,
       .cropSupport = Rule::CropSupport::None,
       .resizeSupport = Rule::ResizeSupport::None,
       .rotateSupport = Rule::RotateSupport::None,
-      .recipeFactory = &std::make_unique<CopyRecipe>,
   };
 }
 

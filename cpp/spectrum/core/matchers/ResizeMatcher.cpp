@@ -29,6 +29,8 @@ bool _matchesResizeRequirement(
     case Rule::ResizeSupport::ExactOrSmaller:
       return resizeRequirement.mode ==
           spectrum::requirements::Resize::Mode::ExactOrSmaller;
+    default:
+      SPECTRUM_UNREACHABLE;
   }
 }
 } // namespace

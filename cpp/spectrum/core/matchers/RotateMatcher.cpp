@@ -41,6 +41,8 @@ bool _matchesRotateRequirement(
           !rotateRequirement.forceUpOrientation;
     case Rule::RotateSupport::MultipleOf90Flip:
       return isRotationMultipleOf90;
+    default:
+      SPECTRUM_UNREACHABLE;
   }
 }
 } // namespace

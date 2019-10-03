@@ -26,6 +26,8 @@ bool _matchesCropRequirement(
     case Rule::CropSupport::Approximate: {
       return !cropRequirement.mustBeExact;
     }
+    default:
+      SPECTRUM_UNREACHABLE;
   }
 }
 } // namespace

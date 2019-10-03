@@ -51,6 +51,8 @@ std::string alphaInfoValueToString(const AlphaInfo alphaInfo) {
       return "premultipliedFirst";
     case AlphaInfo::PremultipliedLast:
       return "premultipliedLast";
+    default:
+      SPECTRUM_UNREACHABLE;
   }
 }
 
@@ -72,6 +74,8 @@ bool alphaInfoIsFirst(const AlphaInfo alphaInfo) {
     case AlphaInfo::SkipLast:
     case AlphaInfo::PremultipliedLast:
       return false;
+    default:
+      SPECTRUM_UNREACHABLE;
   }
 }
 
@@ -86,6 +90,8 @@ bool alphaInfoIsLast(const AlphaInfo alphaInfo) {
     case AlphaInfo::SkipLast:
     case AlphaInfo::PremultipliedLast:
       return true;
+    default:
+      SPECTRUM_UNREACHABLE;
   }
 }
 
@@ -100,6 +106,8 @@ bool alphaInfoIsPremultiplied(const AlphaInfo alphaInfo) {
     case AlphaInfo::First:
     case AlphaInfo::Last:
       return false;
+    default:
+      SPECTRUM_UNREACHABLE;
   }
 }
 
@@ -114,6 +122,8 @@ bool alphaInfoShouldInterpretAlphaValue(const AlphaInfo alphaInfo) {
     case AlphaInfo::SkipFirst:
     case AlphaInfo::SkipLast:
       return false;
+    default:
+      SPECTRUM_UNREACHABLE;
   }
 }
 
@@ -128,6 +138,8 @@ std::string componentsOrderValueToString(
       return "natural";
     case ComponentsOrder::Reversed:
       return "reversed";
+    default:
+      SPECTRUM_UNREACHABLE;
   }
 }
 
