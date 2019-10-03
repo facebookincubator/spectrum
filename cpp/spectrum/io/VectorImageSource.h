@@ -50,13 +50,14 @@ using IntVectorEncodedImageSource =
  *
  * This is the prefered way to provide decoded image data in C++ call sites.
  */
+template <typename T>
 class VectorBitmapImageSource
-    : public VectorImageSource<IBitmapImageSource, char> {
+    : public VectorImageSource<IBitmapImageSource, T> {
  public:
   explicit VectorBitmapImageSource(
-      std::vector<char> data,
+      std::vector<T> data,
       const image::Specification& imageSpecification)
-      : VectorImageSource<IBitmapImageSource, char>(data),
+      : VectorImageSource<IBitmapImageSource, T>(data),
         _imageSpecification(imageSpecification) {}
   image::Specification imageSpecification() const override {
     return _imageSpecification;
@@ -65,6 +66,9 @@ class VectorBitmapImageSource
  private:
   image::Specification _imageSpecification;
 };
+
+using CharVectorBitmapImageSource = VectorBitmapImageSource<char>;
+using IntVectorBitmapImageSource = VectorBitmapImageSource<uint8_t>;
 
 } // namespace io
 } // namespace spectrum

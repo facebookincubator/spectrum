@@ -35,11 +35,11 @@ CharVectorEncodedImageSource makeVectorImageSource(const std::string& content) {
   return CharVectorEncodedImageSource(std::move(v));
 }
 
-VectorBitmapImageSource makeVectorBitmapImageSource(
+CharVectorBitmapImageSource makeVectorBitmapImageSource(
     const std::string& content,
     const image::Specification& imageSpecification) {
   auto v = std::vector<char>{content.begin(), content.end()};
-  return VectorBitmapImageSource(std::move(v), imageSpecification);
+  return CharVectorBitmapImageSource(std::move(v), imageSpecification);
 }
 
 } // namespace testutils

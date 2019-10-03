@@ -45,6 +45,7 @@ std::size_t VectorImageSource<Interface, T>::available() {
 }
 
 template class VectorImageSource<IBitmapImageSource, char>;
+template class VectorImageSource<IBitmapImageSource, uint8_t>;
 template class VectorImageSource<IEncodedImageSource, char>;
 template class VectorImageSource<IEncodedImageSource, uint8_t>;
 

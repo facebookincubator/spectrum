@@ -55,7 +55,7 @@ TEST(
     VectorBitmapImageSource,
     whenConstructedWithSpecification_thenSpecificationReads) {
   const auto specification = image::testutils::makeDummyImageSpecification();
-  auto imageSource = io::VectorBitmapImageSource({}, specification);
+  auto imageSource = io::CharVectorBitmapImageSource({}, specification);
   ASSERT_EQ(specification, imageSource.imageSpecification());
 }
 
