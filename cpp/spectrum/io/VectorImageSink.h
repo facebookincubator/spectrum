@@ -26,7 +26,7 @@ namespace io {
  *
  * This is the prefered way to retrieve sink image data in C++ call sites.
  */
-template <class Interface>
+template <class Interface, typename T>
 class VectorImageSink : public Interface {
  public:
   explicit VectorImageSink(
@@ -40,7 +40,7 @@ class VectorImageSink : public Interface {
 
   ~VectorImageSink() override = default;
 
-  std::vector<char>& getVectorReference() {
+  std::vector<T>& getVectorReference() {
     return _data;
   }
 
@@ -60,13 +60,15 @@ class VectorImageSink : public Interface {
   void _write(const char* const source, const std::size_t length) override;
 
  private:
-  std::vector<char> _data;
+  std::vector<T> _data;
   folly::Optional<image::Size> _imageSize;
   folly::Optional<image::pixel::Specification> _pixelSpecification;
 };
 
-using VectorBitmapImageSink = VectorImageSink<IBitmapImageSink>;
-using VectorEncodedImageSink = VectorImageSink<IEncodedImageSink>;
+using CharVectorBitmapImageSink = VectorImageSink<IBitmapImageSink, char>;
+using IntVectorBitmapImageSink = VectorImageSink<IBitmapImageSink, uint8_t>;
+using CharVectorEncodedImageSink = VectorImageSink<IEncodedImageSink, char>;
+using IntVectorEncodedImageSink = VectorImageSink<IEncodedImageSink, uint8_t>;
 
 } // namespace io
 } // namespace spectrum

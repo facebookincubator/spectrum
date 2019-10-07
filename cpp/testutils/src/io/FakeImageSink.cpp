@@ -11,7 +11,7 @@ namespace io {
 namespace testutils {
 
 std::string FakeImageSink::stringContent() {
-  const auto& content = VectorBitmapImageSink::getVectorReference();
+  const auto& content = CharVectorBitmapImageSink::getVectorReference();
   return std::string(content.begin(), content.end());
 }
 

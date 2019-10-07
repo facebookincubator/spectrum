@@ -15,13 +15,13 @@ namespace facebook {
 namespace spectrum {
 namespace io {
 
-template <class Interface>
-VectorImageSink<Interface>::VectorImageSink(std::size_t initialCapacity) {
+template <class Interface, typename T>
+VectorImageSink<Interface, T>::VectorImageSink(std::size_t initialCapacity) {
   _data.reserve(initialCapacity);
 }
 
-template <class Interface>
-void VectorImageSink<Interface>::setConfiguration(
+template <class Interface, typename T>
+void VectorImageSink<Interface, T>::setConfiguration(
     const image::Size& imageSize,
     const image::pixel::Specification& pixelSpecification) {
   _imageSize = std::move(imageSize);
@@ -31,16 +31,18 @@ void VectorImageSink<Interface>::setConfiguration(
       _pixelSpecification->bytesPerPixel);
 }
 
-template <class Interface>
-void VectorImageSink<Interface>::_write(
+template <class Interface, typename T>
+void VectorImageSink<Interface, T>::_write(
     const char* const source,
     const std::size_t length) {
   SPECTRUM_ENFORCE_IF_NOT(source != nullptr);
   _data.insert(_data.end(), source, source + length);
 }
 
-template class VectorImageSink<IBitmapImageSink>;
-template class VectorImageSink<IEncodedImageSink>;
+template class VectorImageSink<IBitmapImageSink, char>;
+template class VectorImageSink<IBitmapImageSink, uint8_t>;
+template class VectorImageSink<IEncodedImageSink, char>;
+template class VectorImageSink<IEncodedImageSink, uint8_t>;
 
 } // namespace io
 } // namespace spectrum

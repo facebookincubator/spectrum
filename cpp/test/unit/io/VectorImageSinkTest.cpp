@@ -20,6 +20,10 @@ std::string vectorToString(std::vector<char> v) {
   return std::string(v.begin(), v.end());
 }
 
+std::string vectorToString(std::vector<uint8_t> v) {
+  return std::string(v.begin(), v.end());
+}
+
 template <class Sink>
 void whenConstructed_thenContentEmpty() {
   Sink sink;
@@ -78,10 +82,12 @@ void whenWrittenTo_thenBytesWrittenCounterIncreases() {
 
 } // namespace
 
-#define TEST_VECTOR_IMAGE_SINK(testName) \
-  TEST(VectorImageSink, testName) {      \
-    testName<VectorBitmapImageSink>();   \
-    testName<VectorEncodedImageSink>();  \
+#define TEST_VECTOR_IMAGE_SINK(testName)    \
+  TEST(VectorImageSink, testName) {         \
+    testName<CharVectorBitmapImageSink>();  \
+    testName<CharVectorEncodedImageSink>(); \
+    testName<IntVectorBitmapImageSink>();   \
+    testName<IntVectorEncodedImageSink>();  \
   }
 
 TEST_VECTOR_IMAGE_SINK(whenConstructed_thenContentEmpty);
