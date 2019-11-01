@@ -153,8 +153,7 @@ static constexpr Path exceedingly_large = folly::StringPiece{
 namespace avif {
 
 static constexpr Path s256_170_rav1e_s420 = folly::StringPiece{
-    "xplat/spectrum/cpp/testutils/data/avif/256_170_rav1e_s420.ivf"};
-
+    "xplat/spectrum/cpp/testutils/data/avif/256_170_rav1e_s420.avif"};
 }
 
 namespace misc {

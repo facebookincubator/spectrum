@@ -6,19 +6,11 @@
 #pragma once
 
 #include <spectrum/Plugin.h>
-#include <spectrum/image/Format.h>
 
 namespace facebook {
 namespace spectrum {
 namespace plugins {
 namespace avif {
-
-namespace formats {
-/**
- * An IVF formatted file with AV1 payload as generated e.g. using libaom.
- */
-static constexpr image::EncodedFormat Avif{"avif"};
-} // namespace formats
 
 Plugin makeTranscodingPlugin();
 

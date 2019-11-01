@@ -5,11 +5,11 @@
 
 #include "LibAvifTranscodingPlugin.h"
 
-#include <ivf/ivfheader.h>
 #include <spectrum/Rule.h>
 #include <spectrum/Spectrum.h>
 #include <spectrum/codecs/Repository.h>
-#include <spectrum/plugins/avif/IvfAv1Decompressor.h>
+#include <spectrum/image/Format.h>
+#include <spectrum/plugins/avif/AvifDecompressor.h>
 
 #include <memory>
 
@@ -20,47 +20,17 @@ namespace avif {
 
 namespace {
 
-constexpr auto IvfPrefix = folly::StringPiece{"DKIF"};
-constexpr auto Av1FourCC = folly::StringPiece{"AV01"};
-
-folly::Optional<image::EncodedFormat> avifEncodedImageFormatDetectorHandler(
-    io::IImageSource& source) {
-  constexpr auto len = sizeof(fb::ivf::IvfFileHeader);
-
-  std::vector<char> bytes(len);
-  if (source.read(bytes.data(), len) != len) {
-    return folly::none; // header too short
-  }
-
-  if (strncmp(IvfPrefix.begin(), bytes.data(), IvfPrefix.size()) != 0) {
-    return folly::none; // not a IVF header
-  }
-
-  const auto data = reinterpret_cast<const std::uint8_t*>(bytes.data());
-  auto range = folly::Range<const std::uint8_t*>(data, data + len);
-
-  const auto ivfHeader = fb::ivf::parseIvfFileHeader(range);
-  if (strncmp(
-          Av1FourCC.begin(),
-          reinterpret_cast<const char*>(ivfHeader.fourcc),
-          Av1FourCC.size()) == 0) {
-    return formats::Avif; // fourcc indicating AV1
-  }
-
-  return folly::none;
-}
-
 inline codecs::DecompressorProvider::Factory makeAvifDecompressorFactory() {
   return [](io::IImageSource& source,
             const folly::Optional<image::Ratio>& /* unused */,
             const Configuration& /* unused */) {
-    return std::make_unique<IvfAv1Decompressor>(source);
+    return std::make_unique<AvifDecompressor>(source);
   };
 }
 
 codecs::DecompressorProvider makeAvifDecompressorProvider() {
   return {
-      .format = formats::Avif,
+      .format = image::formats::Avif,
       .supportedSamplingRatios = {},
       .decompressorFactory = makeAvifDecompressorFactory(),
   };
@@ -70,8 +40,6 @@ codecs::DecompressorProvider makeAvifDecompressorProvider() {
 
 Plugin makeTranscodingPlugin() {
   auto plugin = Plugin{};
-  plugin.encodedImageFormatDetectorHandlers.push_back(
-      &avifEncodedImageFormatDetectorHandler);
   plugin.decompressorProviders.push_back(makeAvifDecompressorProvider());
   return plugin;
 }
