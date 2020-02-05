@@ -50,7 +50,7 @@ Spectrum is a cross-platform image transcoding library that can easily be integr
 
     plugins_spec.subspec 'Webp' do |plugins_webp_spec|
       plugins_webp_spec.dependency 'SpectrumCore/Base', version
-      plugins_webp_spec.dependency 'libwebp', '~> 1.0.2'
+      plugins_webp_spec.dependency 'libwebp', '~> 1.1.0'
       plugins_webp_spec.source_files = 'cpp/spectrum/plugins/webp/**/*.{h,cpp}'
       plugins_webp_spec.header_dir = 'spectrum/plugins/webp'
       plugins_webp_spec.header_mappings_dir = 'cpp/spectrum/plugins/webp'
