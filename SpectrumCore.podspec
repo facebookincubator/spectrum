@@ -21,7 +21,7 @@ Spectrum is a cross-platform image transcoding library that can easily be integr
                           'Plugins/Png',
                           'Plugins/Webp'
 
-  spec.dependency 'spectrum-folly', '~> 2019.01.21.00'
+  spec.dependency 'spectrum-folly', '~> 2020.02.03.00'
   spec.compiler_flags = compiler_flags
 
   spec.subspec 'Base' do |base_spec|
