@@ -45,6 +45,15 @@ android {
         testImplementation deps.mockitoCore
         testImplementation deps.robolectric
     }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules.pro'
+        }
+    }
 }
 
 apply from: rootProject.file('gradle/release.gradle')

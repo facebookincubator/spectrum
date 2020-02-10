@@ -40,6 +40,15 @@ android {
         exclude "**/libspectrumfbjni.so"
         exclude "**/libspectrum.so"
     }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules.pro'
+        }
+    }
 }
 
 dependencies {
