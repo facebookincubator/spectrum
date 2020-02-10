@@ -65,7 +65,7 @@ ext.deps = [
         kotlinAndroidKtx: 'androidx.core:core-ktx:1.0.1',
         kotlinJdk: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
         mockitoCore: 'org.mockito:mockito-core:1.10.19',
-        robolectric: 'org.robolectric:robolectric:3.0',
+        robolectric: 'org.robolectric:robolectric:4.1',
 ]
 
 //
