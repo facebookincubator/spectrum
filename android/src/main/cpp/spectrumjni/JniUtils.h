@@ -15,9 +15,8 @@ namespace jni {
 template <typename NATIVE_TYPE, typename JAVA_TYPE>
 folly::Optional<NATIVE_TYPE> nullableJavaObjectToOptional(
     const JAVA_TYPE& javaObject) {
-  return javaObject
-      ? folly::Optional<NATIVE_TYPE>(javaObject->toNative())
-      : folly::Optional<NATIVE_TYPE>();
+  return javaObject ? folly::Optional<NATIVE_TYPE>(javaObject->toNative())
+                    : folly::Optional<NATIVE_TYPE>();
 }
 
 template <typename OPTIONAL_NATIVE_TYPE, typename JAVA_TYPE>

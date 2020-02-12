@@ -98,7 +98,7 @@ TEST(image_testutils_ProcTestHelper, assertScanline_whenDifferent_thenFail) {
 }
 
 } // namespace test
-} // namespace helper
-} // namespace proc
+} // namespace testutils
+} // namespace image
 } // namespace spectrum
 } // namespace facebook

@@ -19,7 +19,7 @@ namespace proc {
 namespace error {
 extern const folly::StringPiece CannotConvertScanlineBetweenSpecifications;
 extern const folly::StringPiece UnsupportedPremultipliedAlpha;
-}
+} // namespace error
 
 using PixelIndex = std::uint8_t;
 

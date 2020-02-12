@@ -12,9 +12,7 @@ namespace core {
 std::unique_ptr<codecs::IDecompressor> Operation::makeDecompressor(
     const folly::Optional<image::Ratio>& samplingRatio) const {
   return codecs.decompressorProvider.decompressorFactory(
-      io.source,
-      samplingRatio,
-      configuration);
+      io.source, samplingRatio, configuration);
 }
 
 std::unique_ptr<codecs::ICompressor> Operation::makeCompressor(

@@ -108,6 +108,6 @@ class Entries {
 };
 
 } // namespace metadata
-} // namespace base
+} // namespace image
 } // namespace spectrum
 } // namespace facebook

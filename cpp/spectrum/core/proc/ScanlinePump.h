@@ -51,7 +51,6 @@ class ScanlinePump {
   void pumpAll();
 };
 
-
 } // namespace proc
 } // namespace core
 } // namespace spectrum

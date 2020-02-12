@@ -35,8 +35,7 @@ bool Options::operator==(const Options& rhs) const {
       outputPixelSpecificationRequirement ==
       rhs.outputPixelSpecificationRequirement &&
       transformations == rhs.transformations &&
-      configuration == rhs.configuration &&
-      metadata == rhs.metadata;
+      configuration == rhs.configuration && metadata == rhs.metadata;
 }
 
 image::Format Options::outputFormat() const {

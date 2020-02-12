@@ -74,7 +74,7 @@ TEST(
   ASSERT_EQ(16, sink.totalBytesWritten());
 }
 
-} // namespace helper
+} // namespace test
 } // namespace testutils
 } // namespace io
 } // namespace spectrum

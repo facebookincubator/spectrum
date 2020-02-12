@@ -120,10 +120,7 @@ TEST(
   auto source = io::testutils::makeVectorImageSource("");
   const auto decompressor =
       codecRepository.decompressorProvider(image::formats::Webp)
-          .decompressorFactory(
-              source,
-              folly::none,
-              Configuration());
+          .decompressorFactory(source, folly::none, Configuration());
 
   ASSERT_EQ(
       "webpDecompressor",

@@ -31,9 +31,7 @@ std::string descriptionStringFromValues(
   return string;
 }
 
-std::string makeLocation(
-    const char* const function,
-    const unsigned int line) {
+std::string makeLocation(const char* const function, const unsigned int line) {
   std::stringstream ss;
   ss << function << ":" << line;
   return ss.str();

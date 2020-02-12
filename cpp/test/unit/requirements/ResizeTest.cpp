@@ -27,6 +27,6 @@ TEST(Resize, whenComparingWithDifferentValues_thenNotEqual) {
 }
 
 } // namespace test
-} // namespace test
+} // namespace requirements
 } // namespace spectrum
 } // namespace facebook

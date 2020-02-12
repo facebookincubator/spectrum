@@ -155,6 +155,6 @@ TEST(requirements_CropRelativeToOrigin_Values, whenRotated270_thenCorrect) {
 }
 
 } // namespace test
-} // namespace test
+} // namespace requirements
 } // namespace spectrum
 } // namespace facebook

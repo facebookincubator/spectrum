@@ -139,8 +139,8 @@ TEST(
           .failureReason);
 }
 
+} // namespace test
 } // namespace matchers
 } // namespace core
-} // namespace test
 } // namespace spectrum
 } // namespace facebook

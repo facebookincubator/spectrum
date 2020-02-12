@@ -19,7 +19,7 @@ const folly::StringPiece CannotConvertScanlineBetweenSpecifications{
     "cannot_convert_scanline_between_specifications"};
 const folly::StringPiece UnsupportedPremultipliedAlpha{
     "scanline_conversion_unsupported_premultiplied_alpha"};
-}
+} // namespace error
 
 namespace {
 
