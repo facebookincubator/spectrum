@@ -23,7 +23,7 @@ void ScanlinePump::pumpAll() {
     auto scanline = scanlineGenerator();
     SPECTRUM_ENFORCE_IF_NOT(scanline);
 
-    // exectue processing blocks and consumer while there's actual processing
+    // execute processing blocks and consumer while there's actual processing
     // happening in any of the processing steps
     bool change;
     do {
