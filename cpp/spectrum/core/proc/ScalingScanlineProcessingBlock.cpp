@@ -141,7 +141,7 @@ void MagicKernelScalingBlockImpl::runMagicKernel() {
     }
 
     // free processed input
-    input[nextLineToRelease].release();
+    input[nextLineToRelease].reset();
     nextLineToRelease++;
   }
 }
@@ -321,7 +321,7 @@ std::unique_ptr<image::Scanline> BicubicScalingBlockImpl::produce() {
   // free scanlines that will not be touched again
   for (int i = nextLineToRelease; i < y0; i++) {
     SPECTRUM_ENFORCE_IF(input[i] == nullptr);
-    input[i].release();
+    input[i].reset();
   }
   nextLineToRelease = y0;
 
