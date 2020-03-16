@@ -70,26 +70,39 @@ void AvifDecompressor::_ensureEntireImageIsRead() {
         "failed avifDecoderRead");
   }
 
-  SPECTRUM_ERROR_CSTR_IF_NOT(
-      image->depth == 8,
-      codecs::error::DecompressorFailure,
-      "can only read 8-bit images");
+  avifRGBImage rgb{
+      .width = image->width,
+      .height = image->height,
+      .depth = 8,
+      .format = AVIF_RGB_FORMAT_RGB,
+      .pixels = nullptr,
+      .rowBytes = 0,
+  };
 
-  avifImageYUVToRGB(image);
+  avifRGBImageAllocatePixels(&rgb);
+  SCOPE_EXIT {
+    avifRGBImageFreePixels(&rgb);
+  };
+
+  SPECTRUM_ERROR_CSTR_IF_NOT(
+      AVIF_RESULT_OK == avifImageYUVToRGB(image, &rgb),
+      codecs::error::DecompressorFailure,
+      "failed avifImageYUVToRGB");
 
   _entireImage.reserve(image->height);
   for (auto row = 0; row < image->height; ++row) {
     auto scanline = std::make_unique<image::Scanline>(
         image::pixel::specifications::RGB, image->width);
 
-    const auto rgbImageOffset = row * image->width;
-    auto writePtr = scanline->data();
-    for (auto i = 0; i < image->width; ++i, writePtr += 3) {
-      writePtr[0] = image->rgbPlanes[0][rgbImageOffset + i];
-      writePtr[1] = image->rgbPlanes[1][rgbImageOffset + i];
-      writePtr[2] = image->rgbPlanes[2][rgbImageOffset + i];
-    }
+    SPECTRUM_ERROR_FORMAT_IF_NOT(
+        scanline->sizeBytes() == rgb.rowBytes,
+        codecs::error::DecompressorFailure,
+        "scanline size (%d) does not match decoded row bytes (%d)",
+        scanline->sizeBytes(),
+        rgb.rowBytes);
 
+    std::memcpy(
+        scanline->data(), rgb.pixels + row * rgb.rowBytes, rgb.rowBytes);
     _entireImage.push_back(std::move(scanline));
   }
 
