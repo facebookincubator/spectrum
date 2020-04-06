@@ -16,9 +16,9 @@ buildscript {
         targetCompatibilityVersion = JavaVersion.VERSION_1_7
     }
     repositories {
+        maven { url "https://repo.maven.apache.org/maven2" }
         google()
         mavenLocal()
-        maven { url "https://repo.maven.apache.org/maven2" }
         jcenter()
     }
     dependencies {
@@ -35,9 +35,9 @@ plugins {
 
 subprojects {
     repositories {
+        maven { url "https://repo.maven.apache.org/maven2" }
         google()
         mavenLocal()
-        maven { url "https://repo.maven.apache.org/maven2" }
         jcenter()
     }
 }
