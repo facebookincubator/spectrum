@@ -101,7 +101,7 @@ jobs:
 
       # continue with unit tests while we wait for the emulator to have launched
       - prepare_native_gradle_deps
-      - run: ./gradlew test --debug
+      - run: ./gradlew test --debug --stacktrace
 
       - wait_for_emulator
       - run: ./gradlew connectedAndroidTest
