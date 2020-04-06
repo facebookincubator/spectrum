@@ -62,3 +62,11 @@ task sourcesJar(type: Jar) {
 }
 
 artifacts.add('archives', sourcesJar)
+
+android {
+    testOptions {
+        unitTests.all {
+            systemProperty 'robolectric.dependency.repo.url', 'https://repo1.maven.org/maven2'
+        }
+    }
+}

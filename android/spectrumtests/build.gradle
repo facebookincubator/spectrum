@@ -45,3 +45,11 @@ dependencies {
     androidTestImplementation deps.supportTestRunner
     androidTestImplementation deps.supportTestRules
 }
+
+android {
+    testOptions {
+        unitTests.all {
+            systemProperty 'robolectric.dependency.repo.url', 'https://repo1.maven.org/maven2'
+        }
+    }
+}
