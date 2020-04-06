@@ -38,7 +38,10 @@ dependencies {
 
     androidTestImplementation deps.festAssert
     androidTestImplementation deps.junit
-    androidTestImplementation deps.robolectric
+    androidTestImplementation(deps.robolectric) {
+        exclude module: 'xmlpull'
+        exclude module: 'xpp3_min'
+    }
     androidTestImplementation deps.mockitoCore
     androidTestImplementation deps.dexmaker
     androidTestImplementation deps.dexmakerMockito

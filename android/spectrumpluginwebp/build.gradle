@@ -50,7 +50,10 @@ dependencies {
     testImplementation deps.festAssert
     testImplementation deps.junit
     testImplementation deps.mockitoCore
-    testImplementation deps.robolectric
+    testImplementation(deps.robolectric) {
+        exclude module: 'xmlpull'
+        exclude module: 'xpp3_min'
+    }
 }
 
 apply from: rootProject.file('gradle/release.gradle')
