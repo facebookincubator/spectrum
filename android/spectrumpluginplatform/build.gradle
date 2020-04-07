@@ -51,9 +51,17 @@ dependencies {
     testImplementation deps.festAssert
     testImplementation deps.junit
     testImplementation deps.mockitoCore
-    testImplementation(deps.robolectric) {
-        exclude module: 'xmlpull'
-        exclude module: 'xpp3_min'
+    testImplementation(deps.robolectric){
+        // exclude group: 'org.apache.maven', module: 'maven-artifact'
+        // exclude group: 'org.apache.maven', module: 'maven-artifact-manager'
+        // exclude group: 'org.apache.maven', module: 'maven-model'
+        // exclude group: 'org.apache.maven', module: 'maven-plugin-registry'
+        // exclude group: 'org.apache.maven', module: 'maven-profile'
+        // exclude group: 'org.apache.maven', module: 'maven-project'
+        // exclude group: 'org.apache.maven', module: 'maven-settings'
+        // exclude group: 'org.apache.maven', module: 'maven-error-diagnostics'
+        // exclude group: "org.apache.maven.wagon"
+        exclude module: 'maven-ant-tasks'
     }
 }
 
@@ -71,5 +79,9 @@ android {
         unitTests.all {
             systemProperty 'robolectric.dependency.repo.url', 'https://repo1.maven.org/maven2'
         }
+    }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
     }
 }
