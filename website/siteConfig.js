@@ -6,6 +6,10 @@
  */
 
 const siteConfig = {
+  algolia: {
+    apiKey: 'e2a02b6504ab8ff2f254c7e2c2bdd6f1',
+    indexName: 'libspectrum',
+  },
   title: 'Spectrum',
   tagline: 'Making mobile image processing simple',
   url: 'https://libspectrum.io/',
