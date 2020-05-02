@@ -23,7 +23,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath 'com.android.tools.build:gradle:3.6.2'
         classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:${GRADLE_BINTRAY_PLUGIN_VERSION}"
         classpath "com.github.dcendents:android-maven-gradle-plugin:${ANDROID_MAVEN_GRADLE_PLUGIN_VERSION}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
@@ -48,8 +48,8 @@ ext.isRelease = { ['uploadArchives', 'bintrayUpload'].any { gradle.startParamete
 ext.deps = [
         // Android Support Libraries
         supportAppCompat: 'androidx.appcompat:appcompat:1.1.0',
-        supportTestRunner: 'androidx.test:runner:1.1.0',
-        supportTestRules: 'androidx.test:rules:1.1.0',
+        supportTestRunner: 'androidx.test:runner:1.2.0',
+        supportTestRules: 'androidx.test:rules:1.2.0',
         supportMultidex: 'androidx.multidex:multidex:2.0.1',
 
         // Annotations
