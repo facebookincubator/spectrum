@@ -62,6 +62,7 @@ dependencies {
         // exclude group: 'org.apache.maven', module: 'maven-error-diagnostics'
         // exclude group: "org.apache.maven.wagon"
         exclude module: 'maven-ant-tasks'
+        exclude group: 'com.google.auto.service', module: 'auto-service'
     }
 }
 
