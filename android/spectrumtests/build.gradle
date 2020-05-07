@@ -40,7 +40,7 @@ android {
 dependencies {
     compileOnly deps.jsr305
     implementation deps.soloader
-    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation deps.supportMultidex
     androidTestImplementation project(':android:spectrumdefault')
     androidTestImplementation project(':android:spectrumpluginplatform')
     androidTestImplementation project(':android:spectrumtestutils')
