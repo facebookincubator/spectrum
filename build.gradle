@@ -49,7 +49,7 @@ ext.deps = [
         supportAppCompat: 'androidx.appcompat:appcompat:1.0.0',
         supportTestRunner: 'androidx.test:runner:1.1.0',
         supportTestRules: 'androidx.test:rules:1.1.0',
-        supportMultidex: 'androidx.multidex:multidex:2.0.0',
+        supportMultidex: 'androidx.multidex:multidex:2.0.1',
 
         // Annotations
         jsr305: 'com.google.code.findbugs:jsr305:3.0.1',

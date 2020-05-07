@@ -10,11 +10,21 @@ android {
     compileSdkVersion rootProject.compileSdkVersion
     buildToolsVersion rootProject.buildToolsVersion
 
+    testOptions.unitTests.includeAndroidResources = true
+
     defaultConfig {
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         buildConfigField "boolean", "IS_INTERNAL_BUILD", 'true'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),'proguard-rules.pro'
+        }
     }
 
     sourceSets {
@@ -30,6 +40,7 @@ android {
 dependencies {
     compileOnly deps.jsr305
     implementation deps.soloader
+    implementation deps.supportMultidex
     androidTestImplementation project(':android:spectrumdefault')
     androidTestImplementation project(':android:spectrumpluginplatform')
     androidTestImplementation project(':android:spectrumtestutils')
