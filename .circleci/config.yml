@@ -106,7 +106,9 @@ jobs:
       - run: ./gradlew test
 
       - wait_for_emulator
-      - run: ./gradlew connectedAndroidTest
+      - run:
+          command: ./gradlew connectedAndroidTest
+          no_output_timeout: 20m
 
 #
 # WORKFLOWS
