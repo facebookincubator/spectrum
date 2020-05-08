@@ -24,7 +24,7 @@ executors:
     resource_class: "large"
     environment:
       - TERM: "dumb"
-      - ADB_INSTALL_TIMEOUT: 10
+      - ADB_INSTALL_TIMEOUT: 20
       - _JAVA_OPTIONS: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
       - GRADLE_OPTS: '-Dorg.gradle.daemon=false -Dorg.gradle.jvmargs="-XX:+HeapDumpOnOutOfMemoryError"'
       - BUILD_THREADS: 2
