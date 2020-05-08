@@ -19,7 +19,7 @@ aliases:
 executors:
   spectrumandroid:
     docker:
-      - image: reactnativecommunity/react-native-android:2019-5-29
+      - image: reactnativecommunity/react-native-android:2020-4-1
     working_directory: ~/react-native
     resource_class: "large"
     environment:
@@ -42,6 +42,8 @@ commands:
           command: |
             source ".circleci/scripts/.tests.env"
             AVD_PACKAGES="system-images;android-$ANDROID_SDK_TARGET_API_LEVEL;google_apis;$AVD_ABI"
+            echo "Installing syste image for $AVD_PACKAGES"
+            sdkmanager $AVD_PACKAGES
             echo "Creating AVD with packages $AVD_PACKAGES"
             echo no | avdmanager create avd --name "$AVD_NAME" --force --package "$AVD_PACKAGES" --tag google_apis --abi "$AVD_ABI"
   launch_emulator:
