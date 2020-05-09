@@ -24,7 +24,7 @@ executors:
     resource_class: "large"
     environment:
       - TERM: "dumb"
-      - ADB_INSTALL_TIMEOUT: 40
+      - ADB_INSTALL_TIMEOUT: 20
       - _JAVA_OPTIONS: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
       - GRADLE_OPTS: '-Dorg.gradle.daemon=false -Dorg.gradle.jvmargs="-XX:+HeapDumpOnOutOfMemoryError"'
       - BUILD_THREADS: 2
@@ -100,15 +100,16 @@ jobs:
       - checkout
       - create_emulator
       - launch_emulator
+      # wait for emulator to give it more time to finish startup activities before tests
+      - wait_for_emulator
 
-      # continue with unit tests while we wait for the emulator to have launched
+      # run unit tests
       - prepare_native_gradle_deps
       - run: ./gradlew test
 
-      - wait_for_emulator
       - run:
           command: ./gradlew connectedAndroidTest
-          no_output_timeout: 40m
+          no_output_timeout: 20m
 
 #
 # WORKFLOWS
