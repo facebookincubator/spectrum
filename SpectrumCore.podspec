@@ -2,7 +2,7 @@
 
 compiler_flags = '-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 -DSPECTRUM_TARGET_IOS -DSPECTRUM_EXTERNAL'
 
-version = '1.1.0'
+version = '1.2.0'
 
 Pod::Spec.new do |spec|
   spec.name = 'SpectrumCore'

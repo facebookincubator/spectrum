@@ -1,80 +1,65 @@
 PODS:
   - libpng (1.6.35)
   - libwebp (1.1.0):
-    - libwebp/core (= 1.1.0)
-    - libwebp/dec (= 1.1.0)
     - libwebp/demux (= 1.1.0)
-    - libwebp/dsp (= 1.1.0)
-    - libwebp/enc (= 1.1.0)
     - libwebp/mux (= 1.1.0)
-    - libwebp/utils (= 1.1.0)
     - libwebp/webp (= 1.1.0)
-  - libwebp/core (1.1.0):
-    - libwebp/webp
-  - libwebp/dec (1.1.0):
-    - libwebp/core
   - libwebp/demux (1.1.0):
-    - libwebp/core
-  - libwebp/dsp (1.1.0):
-    - libwebp/core
-  - libwebp/enc (1.1.0):
-    - libwebp/core
+    - libwebp/webp
   - libwebp/mux (1.1.0):
-    - libwebp/core
-  - libwebp/utils (1.1.0):
-    - libwebp/core
+    - libwebp/demux
   - libwebp/webp (1.1.0)
   - mozjpeg (3.3.2)
   - spectrum-folly (2019.01.21.00)
-  - SpectrumCore (1.1.0):
+  - SpectrumCore (1.2.0):
     - spectrum-folly (~> 2019.01.21.00)
-    - SpectrumCore/Plugins/Jpeg (= 1.1.0)
-    - SpectrumCore/Plugins/Png (= 1.1.0)
-    - SpectrumCore/Plugins/Webp (= 1.1.0)
-  - SpectrumCore/Base (1.1.0):
+    - SpectrumCore/Plugins/Jpeg (= 1.2.0)
+    - SpectrumCore/Plugins/Png (= 1.2.0)
+    - SpectrumCore/Plugins/Webp (= 1.2.0)
+  - SpectrumCore/Base (1.2.0):
     - spectrum-folly (~> 2019.01.21.00)
-  - SpectrumCore/Plugins/Jpeg (1.1.0):
+  - SpectrumCore/Plugins/Jpeg (1.2.0):
     - mozjpeg (= 3.3.2)
     - spectrum-folly (~> 2019.01.21.00)
-    - SpectrumCore/Base (= 1.1.0)
-  - SpectrumCore/Plugins/Png (1.1.0):
+    - SpectrumCore/Base (= 1.2.0)
+  - SpectrumCore/Plugins/Png (1.2.0):
     - libpng (~> 1.6.35)
     - spectrum-folly (~> 2019.01.21.00)
-    - SpectrumCore/Base (= 1.1.0)
-  - SpectrumCore/Plugins/Webp (1.1.0):
+    - SpectrumCore/Base (= 1.2.0)
+  - SpectrumCore/Plugins/Webp (1.2.0):
     - libwebp (~> 1.1.0)
     - spectrum-folly (~> 2019.01.21.00)
-    - SpectrumCore/Base (= 1.1.0)
-  - SpectrumKit (1.1.0):
+    - SpectrumCore/Base (= 1.2.0)
+  - SpectrumKit (1.2.0):
     - spectrum-folly (~> 2019.01.21.00)
-    - SpectrumKit/Plugins/Default (= 1.1.0)
-  - SpectrumKit/Base (1.1.0):
+    - SpectrumKit/Plugins/Default (= 1.2.0)
+  - SpectrumKit/Base (1.2.0):
     - spectrum-folly (~> 2019.01.21.00)
     - SpectrumCore/Base
-  - SpectrumKit/Plugins/Default (1.1.0):
+  - SpectrumKit/Plugins/Default (1.2.0):
     - spectrum-folly (~> 2019.01.21.00)
-    - SpectrumKit/Plugins/Jpeg (= 1.1.0)
-    - SpectrumKit/Plugins/Png (= 1.1.0)
-    - SpectrumKit/Plugins/Webp (= 1.1.0)
-  - SpectrumKit/Plugins/Jpeg (1.1.0):
+    - SpectrumKit/Plugins/Jpeg (= 1.2.0)
+    - SpectrumKit/Plugins/Png (= 1.2.0)
+    - SpectrumKit/Plugins/Webp (= 1.2.0)
+  - SpectrumKit/Plugins/Jpeg (1.2.0):
     - spectrum-folly (~> 2019.01.21.00)
     - SpectrumCore/Plugins/Jpeg
-    - SpectrumKit/Base (= 1.1.0)
-  - SpectrumKit/Plugins/Png (1.1.0):
+    - SpectrumKit/Base (= 1.2.0)
+  - SpectrumKit/Plugins/Png (1.2.0):
     - spectrum-folly (~> 2019.01.21.00)
-    - SpectrumCore/Plugins/Png (= 1.1.0)
-    - SpectrumKit/Base (= 1.1.0)
-  - SpectrumKit/Plugins/Webp (1.1.0):
+    - SpectrumCore/Plugins/Png (= 1.2.0)
+    - SpectrumKit/Base (= 1.2.0)
+  - SpectrumKit/Plugins/Webp (1.2.0):
     - spectrum-folly (~> 2019.01.21.00)
-    - SpectrumCore/Plugins/Webp (= 1.1.0)
-    - SpectrumKit/Base (= 1.1.0)
+    - SpectrumCore/Plugins/Webp (= 1.2.0)
+    - SpectrumKit/Base (= 1.2.0)
 
 DEPENDENCIES:
   - SpectrumCore (from `../../`)
   - SpectrumKit (from `../../`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - libpng
     - libwebp
     - mozjpeg
@@ -88,12 +73,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   libpng: c490b0523e94f78697f83ad434fbaf715050e15b
-  libwebp: b068a3bd7c45f7460f6715be7bed1a18fd5d6b48
+  libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
   mozjpeg: bbe5f12952c272e10063446feaf7ec09a800c5e3
   spectrum-folly: 7a893fae801f809e710d4d5a8325034131e0e949
-  SpectrumCore: d295796b63522ec09fd3d72c2823f3e4469eadff
-  SpectrumKit: 1c43fa1e562f48c760bffc87a5fe191880a0b418
+  SpectrumCore: b6e3215eecf37f5a34a513149d254cbcb591aea2
+  SpectrumKit: ab258a700c3a5fd0559fba8b55db24a733eb954e
 
 PODFILE CHECKSUM: a3355323527bc38784cfac19efa6537f855b6fa9
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.9.3

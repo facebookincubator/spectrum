@@ -1,3 +1,18 @@
+# 1.2.0 (Jun 5, 2020)
+- Error is now reported for images with a pixel format kCGImagePixelFormatRGB555 (iOS)
+- Fixed an issue by which metadata wouldn't be added to the encoded image
+- Avoids copying thumbnail metadata on transcoded images
+- Renamed VectorImageSink to VectorBitmapImageSink
+- Fixed Kotlin compatibility issues from SoLoaderWrapper
+- Fixed an issue that would result in ignoring the output pixel specification in certain situations
+- Increased test coverage
+- Fixed heap-use-after-free in avif decompressor
+- Support RGBA for PNG compression
+- Fixed compilation on Windows
+- Fixed memory leak in ScalingScanlineProcessingBlock
+- Updated deps: libavif 0.6.2, libwebp 1.1.0
+
+
 # 1.1.0 (May 24, 2019)
 
  - Spectrum now supports modular headers when using cocoapods
