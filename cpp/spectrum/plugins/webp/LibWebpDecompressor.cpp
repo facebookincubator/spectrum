@@ -11,7 +11,11 @@
 #include <spectrum/io/IImageSource.h>
 #include <spectrum/plugins/webp/LibWebpConstants.h>
 
+#ifdef COCOAPODS_BUILD
+#include <libwebp/decode.h>
+#else
 #include "webp/decode.h"
+#endif
 
 #include <folly/Optional.h>
 

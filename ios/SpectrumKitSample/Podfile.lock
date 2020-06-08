@@ -76,7 +76,7 @@ SPEC CHECKSUMS:
   libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
   mozjpeg: bbe5f12952c272e10063446feaf7ec09a800c5e3
   spectrum-folly: 7a893fae801f809e710d4d5a8325034131e0e949
-  SpectrumCore: b6e3215eecf37f5a34a513149d254cbcb591aea2
+  SpectrumCore: e4d7e7baa857185184ce8d7f6d5f850ecbd81cfc
   SpectrumKit: ab258a700c3a5fd0559fba8b55db24a733eb954e
 
 PODFILE CHECKSUM: a3355323527bc38784cfac19efa6537f855b6fa9

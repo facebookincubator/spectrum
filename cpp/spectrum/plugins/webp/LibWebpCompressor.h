@@ -12,7 +12,11 @@
 
 #include <folly/Optional.h>
 
+#ifdef COCOAPODS_BUILD
+#include <libwebp/encode.h>
+#else
 #include <webp/encode.h>
+#endif
 
 #include <array>
 #include <memory>

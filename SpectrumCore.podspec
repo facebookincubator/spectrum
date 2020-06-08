@@ -54,6 +54,7 @@ Spectrum is a cross-platform image transcoding library that can easily be integr
       plugins_webp_spec.source_files = 'cpp/spectrum/plugins/webp/**/*.{h,cpp}'
       plugins_webp_spec.header_dir = 'spectrum/plugins/webp'
       plugins_webp_spec.header_mappings_dir = 'cpp/spectrum/plugins/webp'
+      plugins_webp_spec.compiler_flags = "-DCOCOAPODS_BUILD"
     end
   end
 end
