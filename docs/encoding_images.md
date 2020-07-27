@@ -9,7 +9,7 @@ An encode requirement must be set when the target image is compressed. An encode
 - _Mode_: Defines how the image should be encoded. Can be `Any`, `Lossy` or `Lossless`.
 - _Quality_: The compression quality that should be used. The value must be between 0 and 100. 0 is deemed as unset in which case a default value for the format will be used.
 
-> While JPEG can only perform lossy compression in most cases it may be able to perform lossless transcoding. For more info, check the [lossless JPEG bullet point](supported_image_formats.md#support).
+> While JPEG can only perform lossy compression in most cases, it may be able to perform lossless transcoding. For more info, check the [lossless JPEG bullet point](supported_image_formats.md#support).
 
 ## Code Sample
 
