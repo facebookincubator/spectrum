@@ -1,8 +1,16 @@
-# Spectrum
-
-<img src="website/static/img/spectrum_logo_circle.png" width=150 align=right>
-
-[![CircleCI](https://circleci.com/gh/facebookincubator/spectrum.svg?style=svg)](https://circleci.com/gh/facebookincubator/spectrum)
+<p align="center">
+  <a href="https://libspectrum.io/">
+    <img src="website/static/img/spectrum_logo_color.svg" width="20%" />
+  </a>
+</p>
+<h1 align="center">
+  Spectrum
+</h1>
+<p align="center">
+  <a href="https://circleci.com/gh/facebookincubator/spectrum">
+    <img src="https://circleci.com/gh/facebookincubator/spectrum.svg?style=svg" alt="CircleCI" />
+  </a>
+</p>
 
 Spectrum is a cross-platform image transcoding library that can easily be integrated into an Android or iOS project to efficiently perform common image operations.
 
