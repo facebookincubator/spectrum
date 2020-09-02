@@ -48,13 +48,13 @@ codecs::CompressorProvider makeLibJpegCompressorProvider() {
   return {
       .format = image::formats::Jpeg,
       .supportsSettingMetadata = true,
+      .pixelSpecificationNarrower = &pixelSpecificationNarrower,
       .supportedChromaSamplingModes =
           {
               image::ChromaSamplingMode::S420,
               image::ChromaSamplingMode::S422,
               image::ChromaSamplingMode::S444,
           },
-      .pixelSpecificationNarrower = &pixelSpecificationNarrower,
       .compressorFactory = makeLibJpegCompressorFactory(),
   };
 }
