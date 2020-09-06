@@ -88,6 +88,10 @@ codecs::DecompressorProvider makeLibJpegDecompressorProvider() {
 Rule makeLibJpegLosslessRotateCropTranscodeRule() {
   return Rule{
       .name = "libjpeg_lossless_rotate_and_crop",
+      .recipeFactory =
+          []() {
+            return std::make_unique<LibJpegLosslessRotateAndCropRecipe>();
+          },
       .allowedInputFormats = {image::formats::Jpeg},
       .allowedOutputFormats = {image::formats::Jpeg},
       .requiresEqualInputOutputFormat = false,
@@ -95,10 +99,6 @@ Rule makeLibJpegLosslessRotateCropTranscodeRule() {
       .cropSupport = Rule::CropSupport::Approximate,
       .resizeSupport = Rule::ResizeSupport::None,
       .rotateSupport = Rule::RotateSupport::MultipleOf90,
-      .recipeFactory =
-          []() {
-            return std::make_unique<LibJpegLosslessRotateAndCropRecipe>();
-          },
   };
 }
 } // namespace
