@@ -28,13 +28,13 @@ codecs::CompressorProvider makeLibWebpCompressorProvider() {
   return {
       .format = image::formats::Webp,
       .supportsSettingMetadata = false,
-      .supportedChromaSamplingModes =
-          {
-              image::ChromaSamplingMode::S420,
-          },
       .pixelSpecificationNarrower =
           [](const image::pixel::Specification& /* unused */) {
             return image::pixel::specifications::RGBA;
+          },
+      .supportedChromaSamplingModes =
+          {
+              image::ChromaSamplingMode::S420,
           },
       .compressorFactory = makeLibWebpCompressorFactory(),
   };
