@@ -19,10 +19,10 @@ namespace test {
 namespace {
 
 static constexpr auto defaultValues =
-    CropRelativeToOrigin::Values{.left = 0.1f,
-                                 .right = 0.8f,
-                                 .top = 0.5f,
-                                 .bottom = 0.75f};
+    CropRelativeToOrigin::Values{.top = 0.5f,
+                                 .left = 0.1f,
+                                 .bottom = 0.75f,
+                                 .right = 0.8f};
 
 static constexpr auto defaultImageSize = image::Size{10, 20};
 

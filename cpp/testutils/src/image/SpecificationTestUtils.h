@@ -20,8 +20,8 @@ inline image::Specification makeDummyImageSpecification(
       .size = image::Size{.width = 1, .height = 1},
       .format = format,
       .pixelSpecification = pixelSpecification,
-      .chromaSamplingMode = image::ChromaSamplingMode::S444,
       .orientation = image::Orientation::Up,
+      .chromaSamplingMode = image::ChromaSamplingMode::S444,
       .metadata = {},
   };
 }
