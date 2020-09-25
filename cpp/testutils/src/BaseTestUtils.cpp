@@ -55,10 +55,10 @@ Rule makeRule(
     folly::Optional<Recipe::Factory>&& recipeFactory) {
   return Rule{
       .name = ruleName,
-      .allowedInputFormats = {acceptedInputFormat},
-      .allowedOutputFormats = {acceptedOutputFormat},
       .recipeFactory =
           recipeFactory.hasValue() ? std::move(*recipeFactory) : nullptr,
+      .allowedInputFormats = {acceptedInputFormat},
+      .allowedOutputFormats = {acceptedOutputFormat},
   };
 }
 
