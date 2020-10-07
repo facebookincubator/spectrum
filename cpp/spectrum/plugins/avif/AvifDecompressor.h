@@ -13,6 +13,10 @@
 
 #include <memory>
 
+extern "C" {
+struct avifDecoder;
+}
+
 namespace facebook {
 namespace spectrum {
 namespace plugins {
@@ -26,9 +30,16 @@ class AvifDecompressor final : public codecs::IDecompressor {
   explicit AvifDecompressor(io::IImageSource& source);
   AvifDecompressor(AvifDecompressor&&) = default;
 
+  virtual ~AvifDecompressor();
+
  private:
   io::IImageSource& _source;
+
+  avifDecoder* _decoder = nullptr;
+  void _parseContainer();
+
   folly::Optional<image::Specification> _imageSpecification;
+  void _computeSpecifications();
 
   bool _entireImageHasBeenRead = false;
   std::vector<std::unique_ptr<image::Scanline>> _entireImage;

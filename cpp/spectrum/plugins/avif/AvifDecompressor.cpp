@@ -41,9 +41,43 @@ std::vector<std::uint8_t> readEntireImageSource(io::IImageSource& source) {
 AvifDecompressor::AvifDecompressor(io::IImageSource& source)
     : _source(source) {}
 
+AvifDecompressor::~AvifDecompressor() {
+  if (_decoder) {
+    avifDecoderDestroy(_decoder);
+  }
+}
+
 //
 // Private
 //
+
+void AvifDecompressor::_parseContainer() {
+  if (_decoder) {
+    return;
+  }
+
+  const auto payload{readEntireImageSource(_source)};
+  avifROData input{payload.data(), payload.size()};
+
+  _decoder = avifDecoderCreate();
+  SPECTRUM_ERROR_CSTR_IF_NOT(
+      AVIF_RESULT_OK == avifDecoderParse(_decoder, &input) &&
+          _decoder->image != nullptr,
+      codecs::error::DecompressorFailure,
+      "failed avifDecoderParse");
+}
+
+void AvifDecompressor::_computeSpecifications() {
+  if (_imageSpecification) {
+    return;
+  }
+
+  _parseContainer();
+  _imageSpecification = image::Specification{
+      .size = image::Size{_decoder->image->width, _decoder->image->height},
+      .format = image::formats::Avif,
+      .pixelSpecification = image::pixel::specifications::RGB};
+}
 
 void AvifDecompressor::_ensureEntireImageIsRead() {
   if (_entireImageHasBeenRead) {
@@ -51,33 +85,19 @@ void AvifDecompressor::_ensureEntireImageIsRead() {
   }
   _entireImageHasBeenRead = true;
 
-  auto image{avifImageCreateEmpty()};
-  SCOPE_EXIT {
-    avifImageDestroy(image);
-  };
+  _parseContainer();
 
-  {
-    auto decoder{avifDecoderCreate()};
-    SCOPE_EXIT {
-      avifDecoderDestroy(decoder);
-    };
+  SPECTRUM_ERROR_CSTR_IF_NOT(
+      AVIF_RESULT_OK == avifDecoderNextImage(_decoder) && _decoder->image,
+      codecs::error::DecompressorFailure,
+      "failed avifDecoderNextImage");
 
-    const auto payload{readEntireImageSource(_source)};
-    avifROData input{payload.data(), payload.size()};
-    SPECTRUM_ERROR_CSTR_IF_NOT(
-        AVIF_RESULT_OK == avifDecoderRead(decoder, image, &input),
-        codecs::error::DecompressorFailure,
-        "failed avifDecoderRead");
-  }
+  const auto image = _decoder->image;
 
-  avifRGBImage rgb{
-      .width = image->width,
-      .height = image->height,
-      .depth = 8,
-      .format = AVIF_RGB_FORMAT_RGB,
-      .pixels = nullptr,
-      .rowBytes = 0,
-  };
+  avifRGBImage rgb;
+  avifRGBImageSetDefaults(&rgb, image);
+  rgb.depth = 8;
+  rgb.format = AVIF_RGB_FORMAT_RGB;
 
   avifRGBImageAllocatePixels(&rgb);
   SCOPE_EXIT {
@@ -106,6 +126,10 @@ void AvifDecompressor::_ensureEntireImageIsRead() {
     _entireImage.push_back(std::move(scanline));
   }
 
+  // We are done with the decoder, free it now to save memory
+  avifDecoderDestroy(_decoder);
+  _decoder = nullptr;
+
   _imageSpecification = image::Specification{
       .size = image::Size{image->width, image->height},
       .format = image::formats::Avif,
@@ -117,7 +141,7 @@ void AvifDecompressor::_ensureEntireImageIsRead() {
 //
 
 image::Specification AvifDecompressor::sourceImageSpecification() {
-  _ensureEntireImageIsRead();
+  _computeSpecifications();
   return *_imageSpecification;
 }
 
