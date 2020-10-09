@@ -34,6 +34,7 @@ class AvifDecompressor final : public codecs::IDecompressor {
 
  private:
   io::IImageSource& _source;
+  std::vector<std::uint8_t> _sourceData;
 
   avifDecoder* _decoder = nullptr;
   void _parseContainer();

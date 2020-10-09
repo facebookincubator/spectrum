@@ -56,8 +56,8 @@ void AvifDecompressor::_parseContainer() {
     return;
   }
 
-  const auto payload{readEntireImageSource(_source)};
-  avifROData input{payload.data(), payload.size()};
+  _sourceData = readEntireImageSource(_source);
+  avifROData input{_sourceData.data(), _sourceData.size()};
 
   _decoder = avifDecoderCreate();
   SPECTRUM_ERROR_CSTR_IF_NOT(
@@ -91,6 +91,7 @@ void AvifDecompressor::_ensureEntireImageIsRead() {
       AVIF_RESULT_OK == avifDecoderNextImage(_decoder) && _decoder->image,
       codecs::error::DecompressorFailure,
       "failed avifDecoderNextImage");
+  _sourceData.clear();
 
   const auto image = _decoder->image;
 
