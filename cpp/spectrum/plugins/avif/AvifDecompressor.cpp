@@ -126,14 +126,14 @@ void AvifDecompressor::_ensureEntireImageIsRead() {
     _entireImage.push_back(std::move(scanline));
   }
 
-  // We are done with the decoder, free it now to save memory
-  avifDecoderDestroy(_decoder);
-  _decoder = nullptr;
-
   _imageSpecification = image::Specification{
       .size = image::Size{image->width, image->height},
       .format = image::formats::Avif,
       .pixelSpecification = image::pixel::specifications::RGB};
+
+  // We are done with the decoder, free it now to save memory
+  avifDecoderDestroy(_decoder);
+  _decoder = nullptr;
 }
 
 //
