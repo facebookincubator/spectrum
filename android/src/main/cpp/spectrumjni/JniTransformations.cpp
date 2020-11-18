@@ -17,8 +17,8 @@ namespace spectrum {
 Transformations JTransformations::toNative() const {
   return Transformations{
       .resizeRequirement = resizeRequirement(),
-      .cropRequirement = cropRequirement(),
       .rotateRequirement = rotateRequirement(),
+      .cropRequirement = cropRequirement(),
   };
 }
 

@@ -39,8 +39,8 @@ int JEncode::JMode::value() const {
 Encode JEncode::toNative() const {
   return Encode{
       .format = format(),
-      .mode = mode(),
       .quality = quality(),
+      .mode = mode(),
   };
 }
 
