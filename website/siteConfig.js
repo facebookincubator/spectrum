@@ -15,6 +15,7 @@ const siteConfig = {
   url: 'https://libspectrum.io/',
   baseUrl: '/',
   repoUrl: 'https://github.com/facebookincubator/spectrum',
+  cname: "libspectrum.io",
 
   // Used for publishing and more
   projectName: 'spectrum',
