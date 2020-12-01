@@ -41,7 +41,7 @@ struct ColorModel final {
    */
   bool supportsExtraAlphaChannel;
 
-  constexpr explicit ColorModel(
+  constexpr ColorModel(
       const Identifier& identifier,
       const std::uint8_t numberOfColorComponents,
       const bool supportsExtraAlphaChannel)

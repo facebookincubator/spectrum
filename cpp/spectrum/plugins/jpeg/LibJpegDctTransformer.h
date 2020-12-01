@@ -35,9 +35,7 @@ namespace jpeg {
  */
 class LibJpegDctTransformer {
  public:
-  explicit LibJpegDctTransformer(
-      io::IImageSource& source,
-      io::IImageSink& sink);
+  LibJpegDctTransformer(io::IImageSource& source, io::IImageSink& sink);
 
   LibJpegDctTransformer(const LibJpegDctTransformer&) = delete;
   LibJpegDctTransformer(LibJpegDctTransformer&&) = default;

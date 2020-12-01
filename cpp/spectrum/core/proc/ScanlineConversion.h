@@ -48,7 +48,7 @@ struct Gray {
 
 class ScanlineConverter {
  public:
-  explicit ScanlineConverter(
+  ScanlineConverter(
       const image::pixel::Specification& inputSpecification,
       const image::pixel::Specification& outputSpecification,
       const image::Color& backgroundColor);

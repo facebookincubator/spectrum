@@ -26,9 +26,7 @@ class Scanline {
   std::size_t _width;
 
  public:
-  explicit Scanline(
-      const pixel::Specification& specification,
-      const std::size_t width)
+  Scanline(const pixel::Specification& specification, const std::size_t width)
       : _specification(specification),
         _bytes(specification.bytesPerPixel * width),
         _width(width){};

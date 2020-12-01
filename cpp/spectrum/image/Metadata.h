@@ -26,12 +26,10 @@ class Metadata {
 
  public:
   Metadata() = default;
-  explicit Metadata(
+  Metadata(
       const std::vector<core::DataRange>& entriesDataRanges,
       const std::vector<core::DataRange>& iccProfileDataRanges);
-  explicit Metadata(
-      metadata::Entries&& entries,
-      metadata::ICCProfile&& iccProfile);
+  Metadata(metadata::Entries&& entries, metadata::ICCProfile&& iccProfile);
 
   const metadata::Entries& entries() const;
   const metadata::ICCProfile& iccProfile() const;
