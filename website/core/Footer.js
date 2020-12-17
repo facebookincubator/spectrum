@@ -60,6 +60,27 @@ class Footer extends React.Component {
             </a>
           </div>
           <div>
+            <h5>Legal</h5>
+            <a
+              href="https://opensource.facebook.com/legal/terms"
+              target="_blank"
+              rel="noreferrer noopener">
+              Terms of Use
+            </a>
+            <a
+              href="https://opensource.facebook.com/legal/data-policy"
+              target="_blank"
+              rel="noreferrer noopener">
+              Data Policy
+            </a>
+            <a
+              href="https://opensource.facebook.com/legal/cookie-policy"
+              target="_blank"
+              rel="noreferrer noopener">
+              Cookie Policy
+            </a>
+          </div>
+          <div>
             <h5>More</h5>
             <a href={this.props.config.repoUrl}>GitHub</a>
             <a
