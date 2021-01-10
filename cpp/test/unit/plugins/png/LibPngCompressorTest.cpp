@@ -4,6 +4,7 @@
 // LICENSE file in the root directory of this source tree.
 
 #include <spectrum/plugins/png/LibPngCompressor.h>
+
 #include <spectrum/Configuration.h>
 #include <spectrum/plugins/png/LibPngDecompressor.h>
 #include <spectrum/testutils/TestUtils.h>

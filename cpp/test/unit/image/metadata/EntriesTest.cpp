@@ -49,9 +49,10 @@ Entries makeEntries(
     const std::vector<Entry>& tiffEntries,
     const std::vector<Entry>& exifEntries = {},
     const std::vector<Entry>& gpsEntries = {}) {
-  return {makeTagMapFromEntriesVector(tiffEntries),
-          makeTagMapFromEntriesVector(exifEntries),
-          makeTagMapFromEntriesVector(gpsEntries)};
+  return {
+      makeTagMapFromEntriesVector(tiffEntries),
+      makeTagMapFromEntriesVector(exifEntries),
+      makeTagMapFromEntriesVector(gpsEntries)};
 }
 
 using EntriesDataPair = std::pair<Entries, std::vector<std::uint8_t>>;
@@ -84,9 +85,9 @@ TEST(image_metadata_Entries, whenExifHeaderDoesNotContainExif_thenThrows) {
 TEST(
     image_metadata_Entries,
     whenExifHeaderDoesNotContainValidEndianCode_thenThrows) {
-  const auto layout =
-      Entries::MemoryLayout{Entries::MemoryLayout::HEADER_VALUE,
-                            Entries::MemoryLayout::ENDIAN_CODE_CURRENT() - 1};
+  const auto layout = Entries::MemoryLayout{
+      Entries::MemoryLayout::HEADER_VALUE,
+      Entries::MemoryLayout::ENDIAN_CODE_CURRENT() - 1};
   ASSERT_THROW(
       layout.ensureExpectedLayout(sizeof(Entries::MemoryLayout)),
       SpectrumException);
@@ -95,10 +96,10 @@ TEST(
 TEST(
     image_metadata_Entries,
     whenExifHeaderDoesNotContainValidFixedValue_thenThrows) {
-  const auto layout =
-      Entries::MemoryLayout{Entries::MemoryLayout::HEADER_VALUE,
-                            Entries::MemoryLayout::ENDIAN_CODE_CURRENT(),
-                            0};
+  const auto layout = Entries::MemoryLayout{
+      Entries::MemoryLayout::HEADER_VALUE,
+      Entries::MemoryLayout::ENDIAN_CODE_CURRENT(),
+      0};
   ASSERT_THROW(
       layout.ensureExpectedLayout(sizeof(Entries::MemoryLayout)),
       SpectrumException);
@@ -107,15 +108,18 @@ TEST(
 TEST(image_metadata_Entries, whenMerging_thenAllEntriesGetMerged) {
   auto entries = Entries{};
   const auto other = makeEntries(
-      {Entry{Entry::Tag::MAKE,
-             Entry::Type::ASCII,
-             std::vector<std::uint8_t>{'B', '\0'}}},
-      {Entry{Entry::Tag::MODEL,
-             Entry::Type::ASCII,
-             std::vector<std::uint8_t>{'C', '\0'}}},
-      {Entry{Entry::Tag::COPYRIGHT,
-             Entry::Type::ASCII,
-             std::vector<std::uint8_t>{'D', '\0'}}});
+      {Entry{
+          Entry::Tag::MAKE,
+          Entry::Type::ASCII,
+          std::vector<std::uint8_t>{'B', '\0'}}},
+      {Entry{
+          Entry::Tag::MODEL,
+          Entry::Type::ASCII,
+          std::vector<std::uint8_t>{'C', '\0'}}},
+      {Entry{
+          Entry::Tag::COPYRIGHT,
+          Entry::Type::ASCII,
+          std::vector<std::uint8_t>{'D', '\0'}}});
 
   entries.merge(other);
   ASSERT_EQ(entries, other);
@@ -124,12 +128,14 @@ TEST(image_metadata_Entries, whenMerging_thenAllEntriesGetMerged) {
 TEST(
     image_metadata_Entries,
     whenMerging_thenEntriesFromThisAreOverridenByOthers) {
-  auto entries = makeEntries({Entry{Entry::Tag::MAKE,
-                                    Entry::Type::ASCII,
-                                    std::vector<std::uint8_t>{'A', '\0'}}});
-  const auto other = makeEntries({Entry{Entry::Tag::MAKE,
-                                        Entry::Type::ASCII,
-                                        std::vector<std::uint8_t>{'B', '\0'}}});
+  auto entries = makeEntries({Entry{
+      Entry::Tag::MAKE,
+      Entry::Type::ASCII,
+      std::vector<std::uint8_t>{'A', '\0'}}});
+  const auto other = makeEntries({Entry{
+      Entry::Tag::MAKE,
+      Entry::Type::ASCII,
+      std::vector<std::uint8_t>{'B', '\0'}}});
 
   entries.merge(other);
 
@@ -137,11 +143,11 @@ TEST(
 }
 
 TEST(image_metadata_Entries, whenFirstIfdOffsetPointsInsideTheMemoryLayout) {
-  const auto layout =
-      Entries::MemoryLayout{Entries::MemoryLayout::HEADER_VALUE,
-                            Entries::MemoryLayout::ENDIAN_CODE_CURRENT(),
-                            Entries::MemoryLayout::FIXED_VALUE,
-                            Entries::MemoryLayout::DEFAULT_OFFSET - 1};
+  const auto layout = Entries::MemoryLayout{
+      Entries::MemoryLayout::HEADER_VALUE,
+      Entries::MemoryLayout::ENDIAN_CODE_CURRENT(),
+      Entries::MemoryLayout::FIXED_VALUE,
+      Entries::MemoryLayout::DEFAULT_OFFSET - 1};
   ASSERT_THROW(
       layout.ensureExpectedLayout(sizeof(Entries::MemoryLayout)),
       SpectrumException);
@@ -173,9 +179,10 @@ TEST(
     image_metadata_Entries,
     whenTiffContainsOffsetButTheIfdHasNoData_thenTheyAreNotWritten) {
   const auto entries = makeEntriesData({
-      Entry{Entry::IMAGE_DESCRIPTION,
-            Entry::ASCII,
-            std::vector<std::uint8_t>{'W', 'o', 'w', '\0'}},
+      Entry{
+          Entry::IMAGE_DESCRIPTION,
+          Entry::ASCII,
+          std::vector<std::uint8_t>{'W', 'o', 'w', '\0'}},
       Entry{Entry::EXIF_IFD_POINTER, Entry::LONG, std::uint32_t{0x8BADF00D}},
       Entry{
           Entry::GPS_INFO_IFD_POINTER, Entry::LONG, std::uint32_t{0xDEADBEEF}},
@@ -197,9 +204,10 @@ TEST(
 TEST(image_metadata_Entries, whenExifDataPresent_thenOffsetAndEntriesAdded) {
   const auto entries = makeEntriesData(
       {
-          Entry{Entry::IMAGE_DESCRIPTION,
-                Entry::ASCII,
-                std::vector<std::uint8_t>{'W', 'o', 'w', '\0'}},
+          Entry{
+              Entry::IMAGE_DESCRIPTION,
+              Entry::ASCII,
+              std::vector<std::uint8_t>{'W', 'o', 'w', '\0'}},
       },
       {
           Entry{Entry::EXIF_VERSION, Entry::LONG, std::uint32_t{0x8BADF00D}},
@@ -220,9 +228,10 @@ TEST(image_metadata_Entries, whenExifDataPresent_thenOffsetAndEntriesAdded) {
 TEST(image_metadata_Entries, whenGpsDataPresent_thenOffsetAndEntriesAdded) {
   const auto entries = makeEntriesData(
       {
-          Entry{Entry::IMAGE_DESCRIPTION,
-                Entry::ASCII,
-                std::vector<std::uint8_t>{'W', 'o', 'w', '\0'}},
+          Entry{
+              Entry::IMAGE_DESCRIPTION,
+              Entry::ASCII,
+              std::vector<std::uint8_t>{'W', 'o', 'w', '\0'}},
       },
       {},
       {
@@ -246,27 +255,31 @@ TEST(
     whenExifAndGpsIfdReferenceValues_thenItCorrectlySerialisesTheValues) {
   const auto entries = makeEntriesData(
       {
-          Entry{Entry::IMAGE_DESCRIPTION,
-                Entry::ASCII,
-                std::vector<std::uint8_t>{'W', 'o', 'w', '\0'}},
-          Entry{Entry::ARTIST,
-                Entry::ASCII,
-                std::vector<std::uint8_t>{
-                    'W', 'o', 'w', ' ', 'c', 'r', 'a', 'z', 'y', '\0'}},
+          Entry{
+              Entry::IMAGE_DESCRIPTION,
+              Entry::ASCII,
+              std::vector<std::uint8_t>{'W', 'o', 'w', '\0'}},
+          Entry{
+              Entry::ARTIST,
+              Entry::ASCII,
+              std::vector<std::uint8_t>{
+                  'W', 'o', 'w', ' ', 'c', 'r', 'a', 'z', 'y', '\0'}},
       },
       {
           Entry{Entry::USER_COMMENT, Entry::LONG, std::uint32_t{0x8F00DBAD}},
-          Entry{Entry::MAKER_NOTE,
-                Entry::ASCII,
-                std::vector<std::uint8_t>{
-                    'W', 'u', 'w', ' ', 'c', 'r', 'a', 'z', 'y', '\0'}},
+          Entry{
+              Entry::MAKER_NOTE,
+              Entry::ASCII,
+              std::vector<std::uint8_t>{
+                  'W', 'u', 'w', ' ', 'c', 'r', 'a', 'z', 'y', '\0'}},
       },
       {
           Entry{Entry::GPS_SPEED, Entry::LONG, std::uint32_t{0x8BADF00D}},
-          Entry{Entry::GPS_STATUS,
-                Entry::ASCII,
-                std::vector<std::uint8_t>{
-                    'W', 'a', 'w', ' ', 'c', 'r', 'a', 'z', 'y', '\0'}},
+          Entry{
+              Entry::GPS_STATUS,
+              Entry::ASCII,
+              std::vector<std::uint8_t>{
+                  'W', 'a', 'w', ' ', 'c', 'r', 'a', 'z', 'y', '\0'}},
       });
 
   const auto newEntries = Entries{entries.second.data(), entries.second.size()};

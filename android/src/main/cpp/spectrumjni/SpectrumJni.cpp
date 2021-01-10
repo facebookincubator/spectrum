@@ -37,11 +37,11 @@ Spectrum makeSpectrum(
     auto plugin = plugins->getElement(i);
     Plugin* nativePluginPtr = reinterpret_cast<Plugin*>(plugin->getPlugin());
 
-    nativePlugins.push_back(
-        Plugin{std::move(nativePluginPtr->rules),
-               std::move(nativePluginPtr->compressorProviders),
-               std::move(nativePluginPtr->decompressorProviders),
-               std::move(nativePluginPtr->encodedImageFormatDetectorHandlers)});
+    nativePlugins.push_back(Plugin{
+        std::move(nativePluginPtr->rules),
+        std::move(nativePluginPtr->compressorProviders),
+        std::move(nativePluginPtr->decompressorProviders),
+        std::move(nativePluginPtr->encodedImageFormatDetectorHandlers)});
 
     delete nativePluginPtr;
   }

@@ -186,8 +186,9 @@ void LibJpegDctTransformer::applyCroppingToTransformInfo() {
 
 image::Size LibJpegDctTransformer::getOutputSize() const {
   SPECTRUM_ENFORCE_IF_NOT(isFinished);
-  return image::Size{(std::uint32_t)libJpegTransformInfo.output_width,
-                     (std::uint32_t)libJpegTransformInfo.output_height};
+  return image::Size{
+      (std::uint32_t)libJpegTransformInfo.output_width,
+      (std::uint32_t)libJpegTransformInfo.output_height};
 }
 
 void LibJpegDctTransformer::ensureNotFinished() {

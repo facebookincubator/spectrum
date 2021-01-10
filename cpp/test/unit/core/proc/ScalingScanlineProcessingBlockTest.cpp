@@ -279,31 +279,36 @@ TEST(ScalingScanlineProcessingBlock, whenDownscaleAllWhite_thenEqualRgb) {
       outputSize,
       Configuration::General::SamplingMethod::Bicubic);
 
-  block.consume(image::testutils::makeScanlineRgb({{100, 90, 80},
-                                                   {100, 90, 80},
-                                                   {100, 90, 80},
-                                                   {100, 90, 80},
-                                                   {100, 90, 80}}));
-  block.consume(image::testutils::makeScanlineRgb({{100, 90, 80},
-                                                   {100, 90, 80},
-                                                   {100, 90, 80},
-                                                   {100, 90, 80},
-                                                   {100, 90, 80}}));
-  block.consume(image::testutils::makeScanlineRgb({{100, 90, 80},
-                                                   {100, 90, 80},
-                                                   {100, 90, 80},
-                                                   {100, 90, 80},
-                                                   {100, 90, 80}}));
-  block.consume(image::testutils::makeScanlineRgb({{100, 90, 80},
-                                                   {100, 90, 80},
-                                                   {100, 90, 80},
-                                                   {100, 90, 80},
-                                                   {100, 90, 80}}));
-  block.consume(image::testutils::makeScanlineRgb({{100, 90, 80},
-                                                   {100, 90, 80},
-                                                   {100, 90, 80},
-                                                   {100, 90, 80},
-                                                   {100, 90, 80}}));
+  block.consume(image::testutils::makeScanlineRgb(
+      {{100, 90, 80},
+       {100, 90, 80},
+       {100, 90, 80},
+       {100, 90, 80},
+       {100, 90, 80}}));
+  block.consume(image::testutils::makeScanlineRgb(
+      {{100, 90, 80},
+       {100, 90, 80},
+       {100, 90, 80},
+       {100, 90, 80},
+       {100, 90, 80}}));
+  block.consume(image::testutils::makeScanlineRgb(
+      {{100, 90, 80},
+       {100, 90, 80},
+       {100, 90, 80},
+       {100, 90, 80},
+       {100, 90, 80}}));
+  block.consume(image::testutils::makeScanlineRgb(
+      {{100, 90, 80},
+       {100, 90, 80},
+       {100, 90, 80},
+       {100, 90, 80},
+       {100, 90, 80}}));
+  block.consume(image::testutils::makeScanlineRgb(
+      {{100, 90, 80},
+       {100, 90, 80},
+       {100, 90, 80},
+       {100, 90, 80},
+       {100, 90, 80}}));
 
   ASSERT_TRUE(image::testutils::assertScanlineRgb(
       {{100, 90, 80}, {100, 90, 80}, {100, 90, 80}}, block.produce().get()));

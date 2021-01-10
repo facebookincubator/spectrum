@@ -55,8 +55,9 @@ namespace utils {
 template <typename B, typename T = image::metadata::RationalBase<B>>
 image::metadata::RationalBase<B> swapValueByteOrder(
     image::metadata::RationalBase<B> value) {
-  return T{swapValueByteOrder(value.numerator),
-           swapValueByteOrder(value.denominator)};
+  return T{
+      swapValueByteOrder(value.numerator),
+      swapValueByteOrder(value.denominator)};
 }
 
 } // namespace utils

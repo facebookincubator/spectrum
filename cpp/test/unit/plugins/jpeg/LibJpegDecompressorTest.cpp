@@ -4,6 +4,7 @@
 // LICENSE file in the root directory of this source tree.
 
 #include <spectrum/plugins/jpeg/LibJpegDecompressor.h>
+
 #include <spectrum/Configuration.h>
 #include <spectrum/io/FileImageSource.h>
 #include <spectrum/testutils/TestUtils.h>
@@ -267,10 +268,11 @@ TEST(
     whenOverridingToGray8_thenMatchesGetInputPixelSpecificationAndReads) {
   io::FileImageSource source{
       testdata::paths::jpeg::s16x16_cABCDF0_Q75.normalized()};
-  auto decompressor = LibJpegDecompressor{source,
-                                          Configuration(),
-                                          LIBJPEG_SCALE_DEFAULT,
-                                          image::pixel::specifications::Gray};
+  auto decompressor = LibJpegDecompressor{
+      source,
+      Configuration(),
+      LIBJPEG_SCALE_DEFAULT,
+      image::pixel::specifications::Gray};
 
   ASSERT_EQ(
       image::pixel::specifications::Gray,
@@ -287,10 +289,11 @@ TEST(
     whenOverridingToRgb8_thenMatchesGetInputPixelSpecificationAndReads) {
   io::FileImageSource source{
       testdata::paths::jpeg::s16x16_WHITE_Q75_GRAYSCALE.normalized()};
-  auto decompressor = LibJpegDecompressor{source,
-                                          Configuration(),
-                                          LIBJPEG_SCALE_DEFAULT,
-                                          image::pixel::specifications::RGB};
+  auto decompressor = LibJpegDecompressor{
+      source,
+      Configuration(),
+      LIBJPEG_SCALE_DEFAULT,
+      image::pixel::specifications::RGB};
 
   ASSERT_EQ(
       image::pixel::specifications::RGB,

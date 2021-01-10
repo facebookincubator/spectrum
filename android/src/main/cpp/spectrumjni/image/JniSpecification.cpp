@@ -40,12 +40,13 @@ int JChromaSamplingMode::value() const {
 //
 
 image::Specification JSpecification::toNative() const {
-  return image::Specification{size(),
-                              format(),
-                              pixelSpecification(),
-                              orientation(),
-                              chromaSamplingMode(),
-                              metadata()};
+  return image::Specification{
+      size(),
+      format(),
+      pixelSpecification(),
+      orientation(),
+      chromaSamplingMode(),
+      metadata()};
 }
 
 facebook::jni::local_ref<JSpecification> JSpecification::fromNative(

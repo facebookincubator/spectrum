@@ -145,8 +145,9 @@ Size Size::scaled(
       core::numeric::rounded(width * ratio.value(), roundingMode);
   const auto scaledHeight =
       core::numeric::rounded(height * ratio.value(), roundingMode);
-  return Size{.width = SPECTRUM_CONVERT_OR_THROW(scaledWidth, std::uint32_t),
-              .height = SPECTRUM_CONVERT_OR_THROW(scaledHeight, std::uint32_t)};
+  return Size{
+      .width = SPECTRUM_CONVERT_OR_THROW(scaledWidth, std::uint32_t),
+      .height = SPECTRUM_CONVERT_OR_THROW(scaledHeight, std::uint32_t)};
 }
 
 Size Size::downscaledToFit(const Size& other) const {

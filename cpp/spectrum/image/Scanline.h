@@ -74,8 +74,8 @@ class Scanline {
    * Returns a raw pointer that is offsetted at the given pixel index. It is
    * safe to read `_specification.bytesPerPixel` bytes from there.
    */
-  inline const std::uint8_t* dataAtPixel(const std::size_t index) const
-      noexcept {
+  inline const std::uint8_t* dataAtPixel(
+      const std::size_t index) const noexcept {
     return _bytes.data() + (index * _specification.bytesPerPixel);
   }
 

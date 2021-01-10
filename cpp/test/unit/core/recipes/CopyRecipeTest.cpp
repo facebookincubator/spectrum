@@ -4,6 +4,7 @@
 // LICENSE file in the root directory of this source tree.
 
 #include <spectrum/core/recipes/CopyRecipe.h>
+
 #include <spectrum/codecs/Repository.h>
 #include <spectrum/core/Constants.h>
 #include <spectrum/testutils/TestUtils.h>

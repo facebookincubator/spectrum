@@ -15,9 +15,10 @@ namespace spectrum {
 namespace image {
 
 image::Color JColor::toNative() const {
-  return Color{static_cast<std::uint8_t>(red()),
-               static_cast<std::uint8_t>(green()),
-               static_cast<std::uint8_t>(blue())};
+  return Color{
+      static_cast<std::uint8_t>(red()),
+      static_cast<std::uint8_t>(green()),
+      static_cast<std::uint8_t>(blue())};
 }
 
 facebook::jni::local_ref<JColor> JColor::fromNative(const image::Color& color) {

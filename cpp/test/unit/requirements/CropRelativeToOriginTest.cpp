@@ -4,6 +4,7 @@
 // LICENSE file in the root directory of this source tree.
 
 #include <spectrum/requirements/CropRelativeToOrigin.h>
+
 #include <spectrum/core/SpectrumEnforce.h>
 
 #include <gtest/gtest.h>
@@ -18,11 +19,11 @@ namespace requirements {
 namespace test {
 namespace {
 
-static constexpr auto defaultValues =
-    CropRelativeToOrigin::Values{.top = 0.5f,
-                                 .left = 0.1f,
-                                 .bottom = 0.75f,
-                                 .right = 0.8f};
+static constexpr auto defaultValues = CropRelativeToOrigin::Values{
+    .top = 0.5f,
+    .left = 0.1f,
+    .bottom = 0.75f,
+    .right = 0.8f};
 
 static constexpr auto defaultImageSize = image::Size{10, 20};
 

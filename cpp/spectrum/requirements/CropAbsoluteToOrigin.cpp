@@ -56,20 +56,23 @@ CropAbsoluteToOrigin::Values CropAbsoluteToOrigin::Values::rotate(
     case 0:
       return *this;
     case 90:
-      return {.top = left,
-              .left = size.height - bottom,
-              .bottom = right,
-              .right = size.height - top};
+      return {
+          .top = left,
+          .left = size.height - bottom,
+          .bottom = right,
+          .right = size.height - top};
     case 180:
-      return {.top = size.height - bottom,
-              .left = size.width - right,
-              .bottom = size.height - top,
-              .right = size.width - left};
+      return {
+          .top = size.height - bottom,
+          .left = size.width - right,
+          .bottom = size.height - top,
+          .right = size.width - left};
     case 270:
-      return {.top = size.width - right,
-              .left = top,
-              .bottom = size.width - left,
-              .right = bottom};
+      return {
+          .top = size.width - right,
+          .left = top,
+          .bottom = size.width - left,
+          .right = bottom};
     default:
       SPECTRUM_ERROR_STRING(
           error::CropCannotRotateWithRequirement, rotateRequirement.string());
@@ -87,15 +90,16 @@ CropAbsoluteToOrigin::Handler::Handler(const Values& values) : values(values) {
 image::Rect CropAbsoluteToOrigin::Handler::apply(
     const image::Size& size) const {
   SPECTRUM_ENFORCE_IF_NOT(values.validWithSize(size));
-  return {.topLeft =
-              image::Point{
-                  .x = values.left,
-                  .y = values.top,
-              },
-          .size = image::Size{
-              .width = values.right - values.left,
-              .height = values.bottom - values.top,
-          }};
+  return {
+      .topLeft =
+          image::Point{
+              .x = values.left,
+              .y = values.top,
+          },
+      .size = image::Size{
+          .width = values.right - values.left,
+          .height = values.bottom - values.top,
+      }};
 }
 
 std::unique_ptr<Crop::IHandler> CropAbsoluteToOrigin::Handler::rotated(

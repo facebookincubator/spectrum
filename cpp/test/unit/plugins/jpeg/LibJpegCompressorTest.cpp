@@ -235,30 +235,30 @@ TEST(
 
 TEST(plugins_jpeg_LibJpegCompressor, whenQualityLessThanMin_thenSanitizeToMin) {
   auto sink = io::testutils::FakeImageSink{};
-  auto compressor =
-      makeCompressor({.sink = sink,
-                      .encodeRequirement = requirements::Encode{
-                          .format = image::formats::Jpeg, .quality = 2}});
+  auto compressor = makeCompressor(
+      {.sink = sink,
+       .encodeRequirement =
+           requirements::Encode{.format = image::formats::Jpeg, .quality = 2}});
 
   ASSERT_EQ(LibJpegCompressor::QualityMin, compressor.quality);
 }
 
 TEST(plugins_jpeg_LibJpegCompressor, whenQualityMoreThanMax_thenSanitizeToMax) {
   auto sink = io::testutils::FakeImageSink{};
-  auto compressor =
-      makeCompressor({.sink = sink,
-                      .encodeRequirement = requirements::Encode{
-                          .format = image::formats::Jpeg, .quality = 101}});
+  auto compressor = makeCompressor(
+      {.sink = sink,
+       .encodeRequirement = requirements::Encode{
+           .format = image::formats::Jpeg, .quality = 101}});
 
   ASSERT_EQ(LibJpegCompressor::QualityMax, compressor.quality);
 }
 
 TEST(plugins_jpeg_LibJpegCompressor, whenQualityIsWithinBounds_thenSame) {
   auto sink = io::testutils::FakeImageSink{};
-  auto compressor =
-      makeCompressor({.sink = sink,
-                      .encodeRequirement = requirements::Encode{
-                          .format = image::formats::Jpeg, .quality = 42}});
+  auto compressor = makeCompressor(
+      {.sink = sink,
+       .encodeRequirement = requirements::Encode{
+           .format = image::formats::Jpeg, .quality = 42}});
 
   ASSERT_EQ(42, compressor.quality);
 }

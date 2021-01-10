@@ -4,6 +4,7 @@
 // LICENSE file in the root directory of this source tree.
 
 #include <spectrum/codecs/EncodedImageFormatDetectorHandlers.h>
+
 #include <spectrum/Spectrum.h>
 #include <spectrum/testutils/TestUtils.h>
 

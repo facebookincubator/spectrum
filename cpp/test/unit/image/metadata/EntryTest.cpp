@@ -76,21 +76,22 @@ TEST(image_metadata_Entry, whenByteVectorEntry_thenExtractedValueIsCorrect) {
 TEST(
     image_metadata_Entry,
     whenExtraNullTerminateAsciiEntry_thenExtractedStringIsCorrect) {
-  const auto entry =
-      Entry{Entry::IMAGE_DESCRIPTION,
-            Entry::ASCII,
-            6,
-            std::vector<std::uint8_t>{'t', 'e', 's', 't', '\0', '\0'}};
+  const auto entry = Entry{
+      Entry::IMAGE_DESCRIPTION,
+      Entry::ASCII,
+      6,
+      std::vector<std::uint8_t>{'t', 'e', 's', 't', '\0', '\0'}};
   ASSERT_EQ("test", entry.valueAsAsciiString());
 }
 
 TEST(
     image_metadata_Entry,
     whenNonNullTerminatedAsciiEntry_thenExtractedStringIsCorrect) {
-  const auto entry = Entry{Entry::IMAGE_DESCRIPTION,
-                           Entry::ASCII,
-                           4,
-                           std::vector<std::uint8_t>{'t', 'e', 's', 't'}};
+  const auto entry = Entry{
+      Entry::IMAGE_DESCRIPTION,
+      Entry::ASCII,
+      4,
+      std::vector<std::uint8_t>{'t', 'e', 's', 't'}};
   ASSERT_EQ("test", entry.valueAsAsciiString());
 }
 
@@ -101,10 +102,11 @@ TEST(image_metadata_Entry, whenEmptyAsciiEntry_thenExtractedStringIsCorrect) {
 }
 
 TEST(image_metadata_Entry, whenEntryValueIsOdd_thenOneByteOfPadding) {
-  const auto entry = Entry{Entry::IMAGE_DESCRIPTION,
-                           Entry::ASCII,
-                           5,
-                           std::vector<std::uint8_t>{'a', 'b', 'c', 'd', '\0'}};
+  const auto entry = Entry{
+      Entry::IMAGE_DESCRIPTION,
+      Entry::ASCII,
+      5,
+      std::vector<std::uint8_t>{'a', 'b', 'c', 'd', '\0'}};
   auto data = std::vector<std::uint8_t>{};
   auto valuesData = std::vector<std::uint8_t>{};
 
@@ -117,10 +119,11 @@ TEST(image_metadata_Entry, whenEntryValueIsOdd_thenOneByteOfPadding) {
 TEST(
     image_metadata_Entry,
     whenEmptyAsciiWithNullCharacterEntry_thenExtractedStringIsCorrect) {
-  const auto entry = Entry{Entry::IMAGE_DESCRIPTION,
-                           Entry::ASCII,
-                           1,
-                           std::vector<std::uint8_t>{'\0'}};
+  const auto entry = Entry{
+      Entry::IMAGE_DESCRIPTION,
+      Entry::ASCII,
+      1,
+      std::vector<std::uint8_t>{'\0'}};
   ASSERT_EQ("", entry.valueAsAsciiString());
 }
 
@@ -278,25 +281,26 @@ TEST(
 TEST(image_metadata_Entry, whenValidMemoryLayouts_thenParsedEntriesMatch) {
   const auto entries = parseEntriesFromLayouts(
       {
-          Entry::MemoryLayout{Entry::IMAGE_DESCRIPTION,
-                              Entry::SHORT,
-                              2,
-                              std::uint32_t{0xDEADBEEF}},
+          Entry::MemoryLayout{
+              Entry::IMAGE_DESCRIPTION,
+              Entry::SHORT,
+              2,
+              std::uint32_t{0xDEADBEEF}},
           Entry::MemoryLayout{
               Entry::EXIF_VERSION, Entry::SHORT, 2, std::uint32_t{0xABCD1234}},
       },
       2);
 
-  const auto expectedFirstEntry =
-      Entry{Entry::IMAGE_DESCRIPTION,
-            Entry::SHORT,
-            2,
-            std::vector<std::uint16_t>{0xBEEF, 0xDEAD}};
-  const auto expectedSecondEntry =
-      Entry{Entry::EXIF_VERSION,
-            Entry::SHORT,
-            2,
-            std::vector<std::uint16_t>{0x1234, 0xABCD}};
+  const auto expectedFirstEntry = Entry{
+      Entry::IMAGE_DESCRIPTION,
+      Entry::SHORT,
+      2,
+      std::vector<std::uint16_t>{0xBEEF, 0xDEAD}};
+  const auto expectedSecondEntry = Entry{
+      Entry::EXIF_VERSION,
+      Entry::SHORT,
+      2,
+      std::vector<std::uint16_t>{0x1234, 0xABCD}};
 
   ASSERT_EQ(2, entries.size());
   ASSERT_EQ(expectedFirstEntry, entries.find(Entry::IMAGE_DESCRIPTION)->second);
@@ -318,10 +322,11 @@ TEST(
       },
       2);
 
-  const auto expectedEntry = Entry{Entry::EXIF_VERSION,
-                                   Entry::SHORT,
-                                   2,
-                                   std::vector<std::uint16_t>{0x1234, 0xABCD}};
+  const auto expectedEntry = Entry{
+      Entry::EXIF_VERSION,
+      Entry::SHORT,
+      2,
+      std::vector<std::uint16_t>{0x1234, 0xABCD}};
   ASSERT_EQ(1, entries.size());
   ASSERT_EQ(expectedEntry, entries.find(Entry::EXIF_VERSION)->second);
 }
@@ -376,9 +381,10 @@ TEST(
     image_metadata_Entry,
     whenSerialisingBiggerThanValueOffsetSize_thenFieldsAreCorrect) {
   testSerialisation(
-      Entry{Entry::ORIENTATION,
-            Entry::LONG,
-            std::vector<std::uint32_t>{0x8BADF00D, 0xDEADBEEF, 0xABCD1234}},
+      Entry{
+          Entry::ORIENTATION,
+          Entry::LONG,
+          std::vector<std::uint32_t>{0x8BADF00D, 0xDEADBEEF, 0xABCD1234}},
       {
           0x12,
           0x01, // Tag

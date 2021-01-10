@@ -4,6 +4,7 @@
 // LICENSE file in the root directory of this source tree.
 
 #include <spectrum/image/Orientation.h>
+
 #include <spectrum/core/SpectrumEnforce.h>
 
 #include <gtest/gtest.h>

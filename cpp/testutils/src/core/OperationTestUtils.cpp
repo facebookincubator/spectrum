@@ -33,8 +33,9 @@ Operation makeOperationFromIO(io::IImageSource& source, io::IImageSink& sink) {
               .source = source,
               .sink = sink,
           },
-      .codecs = {.decompressorProvider = {.format = image::formats::Bitmap},
-                 .compressorProvider = {.format = image::formats::Bitmap}},
+      .codecs =
+          {.decompressorProvider = {.format = image::formats::Bitmap},
+           .compressorProvider = {.format = image::formats::Bitmap}},
       .parameters = makeDummyOperationParameters(),
       .configuration = Configuration(),
   };

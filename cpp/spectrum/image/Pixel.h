@@ -174,64 +174,78 @@ class Specification {
 };
 
 namespace specifications {
-static constexpr Specification Gray{colormodels::Gray,
-                                    1,
-                                    AlphaInfo::None,
-                                    ComponentsOrder::Natural};
-static constexpr Specification GrayA{colormodels::Gray,
-                                     2,
-                                     AlphaInfo::Last,
-                                     ComponentsOrder::Natural};
-static constexpr Specification AGray{colormodels::Gray,
-                                     2,
-                                     AlphaInfo::First,
-                                     ComponentsOrder::Natural};
-static constexpr Specification RGB{colormodels::RGB,
-                                   3,
-                                   AlphaInfo::None,
-                                   ComponentsOrder::Natural};
-static constexpr Specification RGBA{colormodels::RGB,
-                                    4,
-                                    AlphaInfo::Last,
-                                    ComponentsOrder::Natural};
-static constexpr Specification RGBX{colormodels::RGB,
-                                    4,
-                                    AlphaInfo::SkipLast,
-                                    ComponentsOrder::Natural};
-static constexpr Specification ARGB{colormodels::RGB,
-                                    4,
-                                    AlphaInfo::First,
-                                    ComponentsOrder::Natural};
-static constexpr Specification XRGB{colormodels::RGB,
-                                    4,
-                                    AlphaInfo::SkipFirst,
-                                    ComponentsOrder::Natural};
+static constexpr Specification Gray{
+    colormodels::Gray,
+    1,
+    AlphaInfo::None,
+    ComponentsOrder::Natural};
+static constexpr Specification GrayA{
+    colormodels::Gray,
+    2,
+    AlphaInfo::Last,
+    ComponentsOrder::Natural};
+static constexpr Specification AGray{
+    colormodels::Gray,
+    2,
+    AlphaInfo::First,
+    ComponentsOrder::Natural};
+static constexpr Specification RGB{
+    colormodels::RGB,
+    3,
+    AlphaInfo::None,
+    ComponentsOrder::Natural};
+static constexpr Specification RGBA{
+    colormodels::RGB,
+    4,
+    AlphaInfo::Last,
+    ComponentsOrder::Natural};
+static constexpr Specification RGBX{
+    colormodels::RGB,
+    4,
+    AlphaInfo::SkipLast,
+    ComponentsOrder::Natural};
+static constexpr Specification ARGB{
+    colormodels::RGB,
+    4,
+    AlphaInfo::First,
+    ComponentsOrder::Natural};
+static constexpr Specification XRGB{
+    colormodels::RGB,
+    4,
+    AlphaInfo::SkipFirst,
+    ComponentsOrder::Natural};
 
-static constexpr Specification BGR{colormodels::RGB,
-                                   3,
-                                   AlphaInfo::None,
-                                   ComponentsOrder::Reversed};
-static constexpr Specification BGRA{colormodels::RGB,
-                                    4,
-                                    AlphaInfo::First,
-                                    ComponentsOrder::Reversed};
-static constexpr Specification BGRX{colormodels::RGB,
-                                    4,
-                                    AlphaInfo::SkipFirst,
-                                    ComponentsOrder::Reversed};
+static constexpr Specification BGR{
+    colormodels::RGB,
+    3,
+    AlphaInfo::None,
+    ComponentsOrder::Reversed};
+static constexpr Specification BGRA{
+    colormodels::RGB,
+    4,
+    AlphaInfo::First,
+    ComponentsOrder::Reversed};
+static constexpr Specification BGRX{
+    colormodels::RGB,
+    4,
+    AlphaInfo::SkipFirst,
+    ComponentsOrder::Reversed};
 
-static constexpr Specification ABGR{colormodels::RGB,
-                                    4,
-                                    AlphaInfo::Last,
-                                    ComponentsOrder::Reversed};
-static constexpr Specification XBGR{colormodels::RGB,
-                                    4,
-                                    AlphaInfo::SkipLast,
-                                    ComponentsOrder::Reversed};
-static constexpr Specification yCbCr{colormodels::YCbCr,
-                                     3,
-                                     AlphaInfo::None,
-                                     ComponentsOrder::Natural};
+static constexpr Specification ABGR{
+    colormodels::RGB,
+    4,
+    AlphaInfo::Last,
+    ComponentsOrder::Reversed};
+static constexpr Specification XBGR{
+    colormodels::RGB,
+    4,
+    AlphaInfo::SkipLast,
+    ComponentsOrder::Reversed};
+static constexpr Specification yCbCr{
+    colormodels::YCbCr,
+    3,
+    AlphaInfo::None,
+    ComponentsOrder::Natural};
 } // namespace specifications
 
 } // namespace pixel

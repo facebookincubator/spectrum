@@ -4,6 +4,7 @@
 // LICENSE file in the root directory of this source tree.
 
 #include <spectrum/core/proc/ScanlinePump.h>
+
 #include <spectrum/core/proc/RotationScanlineProcessingBlock.h>
 #include <spectrum/image/Scanline.h>
 #include <spectrum/testutils/TestUtils.h>

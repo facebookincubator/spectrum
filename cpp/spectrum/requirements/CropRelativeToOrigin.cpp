@@ -63,20 +63,23 @@ CropRelativeToOrigin::Values CropRelativeToOrigin::Values::rotate(
     case 0:
       return *this;
     case 90:
-      return {.top = left,
-              .left = 1.0f - bottom,
-              .bottom = right,
-              .right = 1.0f - top};
+      return {
+          .top = left,
+          .left = 1.0f - bottom,
+          .bottom = right,
+          .right = 1.0f - top};
     case 180:
-      return {.top = 1.0f - bottom,
-              .left = 1.0f - right,
-              .bottom = 1.0f - top,
-              .right = 1.0f - left};
+      return {
+          .top = 1.0f - bottom,
+          .left = 1.0f - right,
+          .bottom = 1.0f - top,
+          .right = 1.0f - left};
     case 270:
-      return {.top = 1.0f - right,
-              .left = top,
-              .bottom = 1.0f - left,
-              .right = bottom};
+      return {
+          .top = 1.0f - right,
+          .left = top,
+          .bottom = 1.0f - left,
+          .right = bottom};
     default:
       SPECTRUM_ERROR_STRING(
           error::CropCannotRotateWithRequirement, rotateRequirement.string());
