@@ -9,8 +9,8 @@ package com.facebook.spectrum;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 import static org.fest.assertions.api.Assertions.fail;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -59,8 +59,8 @@ public class SpectrumLoggerTest {
         CALLER_CONTEXT);
 
     // assertions on logger
-    verify(mSpectrumLogger).onStart(any(Options.class), eq(CALLER_CONTEXT));
-    verify(mSpectrumLogger).onFinish(any(Object.class), any(SpectrumResult.class));
+    verify(mSpectrumLogger).onStart((Options) any(), eq(CALLER_CONTEXT));
+    verify(mSpectrumLogger).onFinish((Object) any(), (SpectrumResult) any());
   }
 
   @Test
@@ -87,8 +87,8 @@ public class SpectrumLoggerTest {
     }
 
     // assertions on logger
-    verify(mSpectrumLogger).onStart(any(Options.class), eq(CALLER_CONTEXT));
-    verify(mSpectrumLogger).onError(any(Object.class), any(IOException.class));
-    verify(mSpectrumLogger).onFinish(any(Object.class), any(SpectrumResult.class));
+    verify(mSpectrumLogger).onStart((Options) any(), eq(CALLER_CONTEXT));
+    verify(mSpectrumLogger).onError((Object) any(), (IOException) any());
+    verify(mSpectrumLogger).onFinish((Object) any(), (SpectrumResult) any());
   }
 }
