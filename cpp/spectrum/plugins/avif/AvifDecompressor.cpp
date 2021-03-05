@@ -57,11 +57,18 @@ void AvifDecompressor::_parseContainer() {
   }
 
   _sourceData = readEntireImageSource(_source);
-  avifROData input{_sourceData.data(), _sourceData.size()};
 
   _decoder = avifDecoderCreate();
+
   SPECTRUM_ERROR_CSTR_IF_NOT(
-      AVIF_RESULT_OK == avifDecoderParse(_decoder, &input) &&
+      AVIF_RESULT_OK ==
+          avifDecoderSetIOMemory(
+              _decoder, _sourceData.data(), _sourceData.size()),
+      codecs::error::DecompressorFailure,
+      "failed avifDecoderSetIOMemory");
+
+  SPECTRUM_ERROR_CSTR_IF_NOT(
+      AVIF_RESULT_OK == avifDecoderParse(_decoder) &&
           _decoder->image != nullptr,
       codecs::error::DecompressorFailure,
       "failed avifDecoderParse");
