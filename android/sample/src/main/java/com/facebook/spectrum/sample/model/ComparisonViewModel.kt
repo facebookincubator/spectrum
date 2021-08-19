@@ -9,14 +9,16 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 
 enum class ComparisonViewModel {
-    INSTANCE;
+  INSTANCE;
 
-    var outputBitmap: Bitmap? = null
-    var inputBitmap: Bitmap? = null
+  var outputBitmap: Bitmap? = null
+  var inputBitmap: Bitmap? = null
 
-    fun updateFromTranscodeModel(model: TranscodeViewModel) {
-        inputBitmap = model.inputImageBitmap
-        outputBitmap = model.outputImageBitmap
-                ?: BitmapFactory.decodeByteArray(model.outputImageBytes, 0, model.outputImageBytes!!.size)
-    }
+  fun updateFromTranscodeModel(model: TranscodeViewModel) {
+    inputBitmap = model.inputImageBitmap
+    outputBitmap =
+        model.outputImageBitmap
+            ?: BitmapFactory.decodeByteArray(
+                model.outputImageBytes, 0, model.outputImageBytes!!.size)
+  }
 }

@@ -6,8 +6,8 @@
 package com.facebook.spectrum.sample.model
 
 enum class TranscodeState {
-    NOT_STARTED,
-    RUNNING,
-    FINISHED_SUCCESS,
-    FINISHED_ERROR
+  NOT_STARTED,
+  RUNNING,
+  FINISHED_SUCCESS,
+  FINISHED_ERROR
 }

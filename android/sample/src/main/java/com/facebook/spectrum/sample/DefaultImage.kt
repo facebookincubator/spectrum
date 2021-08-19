@@ -13,14 +13,14 @@ import java.io.FileOutputStream
 private fun localFilePath(context: Context) = File(context.filesDir, "default_image.jpg")
 
 private fun ensureFileOnDisk(context: Context, localPath: File) {
-    if (!localPath.exists()) {
-        context.resources.openRawResource(R.raw.default_image).copyTo(FileOutputStream(localPath))
-    }
+  if (!localPath.exists()) {
+    context.resources.openRawResource(R.raw.default_image).copyTo(FileOutputStream(localPath))
+  }
 }
 
 @JvmName("getDefaultImageUri")
-fun defaultImageUri(context: Context) : Uri {
-    val localPath = localFilePath(context)
-    ensureFileOnDisk(context, localPath)
-    return Uri.fromFile(localPath)
+fun defaultImageUri(context: Context): Uri {
+  val localPath = localFilePath(context)
+  ensureFileOnDisk(context, localPath)
+  return Uri.fromFile(localPath)
 }
