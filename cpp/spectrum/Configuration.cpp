@@ -26,6 +26,8 @@ bool configurationCurrentPlatformValue(const bool android, const bool ios) {
 #elif defined(SPECTRUM_TARGET_XPLAT)
   // Returning android defaults as android/cxx link against the same libraries.
   return android;
+#elif defined(SPECTRUM_TARGET_FBCODE)
+  return android;
 #else
 #error Unknown platform
 #endif
