@@ -6,34 +6,43 @@
 #include "JniSpectrumPluginPlatform.h"
 #include "JniSpectrumPlatformDecompressor.h"
 
-#include <spectrum/image/Specification.h>
 #include <spectrum/Plugin.h>
+#include <spectrum/image/Specification.h>
 
 namespace facebook {
 namespace spectrum {
 namespace plugins {
 
-codecs::DecompressorProvider makeLibPlatformDecompressorProvider(const image::EncodedFormat& format) {
+codecs::DecompressorProvider makeLibPlatformDecompressorProvider(
+    const image::EncodedFormat& format) {
   return {
-          .format = format,
-          .supportedSamplingRatios = {},
-          .decompressorFactory = [](io::IImageSource& source,
-                                    const folly::Optional<image::Ratio>& samplingRatio,
-                                    const Configuration& /* unused */) {
-              return std::make_unique<platform::JniPlatformDecompressor>(source, samplingRatio);
+      .format = format,
+      .supportedSamplingRatios = {},
+      .decompressorFactory =
+          [](io::IImageSource& source,
+             const folly::Optional<image::Ratio>& samplingRatio,
+             const Configuration& /* unused */) {
+            return std::make_unique<platform::JniPlatformDecompressor>(
+                source, samplingRatio);
           },
   };
 }
 
 jlong JSpectrumPluginPlatform::nativeCreatePlugin() {
   const auto plugin = new Plugin{};
-  plugin->decompressorProviders.push_back(makeLibPlatformDecompressorProvider(image::formats::Gif));
-  plugin->decompressorProviders.push_back(makeLibPlatformDecompressorProvider(image::formats::Heif));
-  plugin->decompressorProviders.push_back(makeLibPlatformDecompressorProvider(image::formats::Jpeg));
-  plugin->decompressorProviders.push_back(makeLibPlatformDecompressorProvider(image::formats::Png));
-  plugin->decompressorProviders.push_back(makeLibPlatformDecompressorProvider(image::formats::Webp));
+  plugin->decompressorProviders.push_back(
+      makeLibPlatformDecompressorProvider(image::formats::Gif));
+  plugin->decompressorProviders.push_back(
+      makeLibPlatformDecompressorProvider(image::formats::Heif));
+  plugin->decompressorProviders.push_back(
+      makeLibPlatformDecompressorProvider(image::formats::Jpeg));
+  plugin->decompressorProviders.push_back(
+      makeLibPlatformDecompressorProvider(image::formats::Png));
+  plugin->decompressorProviders.push_back(
+      makeLibPlatformDecompressorProvider(image::formats::Webp));
 
-  static_assert(sizeof(void*) <= sizeof(jlong), "sizeof(void*) <= sizeof(jlong)");
+  static_assert(
+      sizeof(void*) <= sizeof(jlong), "sizeof(void*) <= sizeof(jlong)");
   return reinterpret_cast<jlong>(plugin);
 }
 

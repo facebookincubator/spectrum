@@ -28,7 +28,8 @@ jlong JSpectrumPluginWebp::nativeCreatePlugin() {
   nativePlugin->insert(std::move(webpEncodePlugin));
 #endif
 
-  static_assert(sizeof(void*) <= sizeof(jlong), "sizeof(void*) <= sizeof(jlong)");
+  static_assert(
+      sizeof(void*) <= sizeof(jlong), "sizeof(void*) <= sizeof(jlong)");
   return reinterpret_cast<jlong>(nativePlugin);
 }
 

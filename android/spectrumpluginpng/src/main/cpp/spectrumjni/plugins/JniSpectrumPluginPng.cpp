@@ -21,7 +21,7 @@ jlong JSpectrumPluginPng::nativeCreatePlugin() {
       std::move(pngPlugin.encodedImageFormatDetectorHandlers)};
 
   static_assert(
-          sizeof(void*) <= sizeof(jlong), "sizeof(void*) <= sizeof(jlong)");
+      sizeof(void*) <= sizeof(jlong), "sizeof(void*) <= sizeof(jlong)");
   return reinterpret_cast<jlong>(nativePlugin);
 }
 

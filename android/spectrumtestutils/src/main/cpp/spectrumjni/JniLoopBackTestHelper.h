@@ -23,27 +23,28 @@
 namespace facebook {
 namespace spectrum {
 
-#define SPECTRUM_MAKE_LOOPBACK_CLASS_WITH_INPUT_OUTPUT(                      \
-    ClassName, InputJniClass, OutputJniClass, TestClassDescriptor)           \
-  class ClassName : public facebook::jni::HybridClass<ClassName> {           \
-   public:                                                                   \
-    constexpr static auto kJavaDescriptor = TestClassDescriptor;             \
-                                                                             \
-    static facebook::jni::local_ref<jhybriddata> initHybrid(                 \
-        facebook::jni::alias_ref<jhybridobject>) {                           \
-      return makeCxxInstance();                                              \
-    }                                                                        \
-                                                                             \
-    facebook::jni::local_ref<OutputJniClass> loopback(                       \
-        facebook::jni::alias_ref<InputJniClass> jObject) {                   \
-      const auto twin = jObject->toNative();                                 \
-      return OutputJniClass::fromNative(twin);                               \
-    }                                                                        \
-                                                                             \
-    static void registerNatives() {                                          \
-      registerHybrid({makeNativeMethod("initHybrid", ClassName::initHybrid), \
-                      makeNativeMethod("loopback", ClassName::loopback)});   \
-    }                                                                        \
+#define SPECTRUM_MAKE_LOOPBACK_CLASS_WITH_INPUT_OUTPUT(            \
+    ClassName, InputJniClass, OutputJniClass, TestClassDescriptor) \
+  class ClassName : public facebook::jni::HybridClass<ClassName> { \
+   public:                                                         \
+    constexpr static auto kJavaDescriptor = TestClassDescriptor;   \
+                                                                   \
+    static facebook::jni::local_ref<jhybriddata> initHybrid(       \
+        facebook::jni::alias_ref<jhybridobject>) {                 \
+      return makeCxxInstance();                                    \
+    }                                                              \
+                                                                   \
+    facebook::jni::local_ref<OutputJniClass> loopback(             \
+        facebook::jni::alias_ref<InputJniClass> jObject) {         \
+      const auto twin = jObject->toNative();                       \
+      return OutputJniClass::fromNative(twin);                     \
+    }                                                              \
+                                                                   \
+    static void registerNatives() {                                \
+      registerHybrid(                                              \
+          {makeNativeMethod("initHybrid", ClassName::initHybrid),  \
+           makeNativeMethod("loopback", ClassName::loopback)});    \
+    }                                                              \
   };
 
 #define SPECTRUM_MAKE_LOOPBACK_CLASS(ClassName, JniClass, TestClassDescriptor) \
@@ -99,58 +100,58 @@ SPECTRUM_MAKE_LOOPBACK_CLASS(
 namespace requirements {
 
 SPECTRUM_MAKE_LOOPBACK_CLASS(
-        JniEncodeRequirementTest,
-        JEncode,
-        "Lcom/facebook/spectrum/requirements/JniEncodeRequirementTest;");
+    JniEncodeRequirementTest,
+    JEncode,
+    "Lcom/facebook/spectrum/requirements/JniEncodeRequirementTest;");
 
 SPECTRUM_MAKE_LOOPBACK_CLASS(
-        JniResizeRequirementTest,
-        JResize,
-        "Lcom/facebook/spectrum/requirements/JniResizeRequirementTest;");
+    JniResizeRequirementTest,
+    JResize,
+    "Lcom/facebook/spectrum/requirements/JniResizeRequirementTest;");
 
 } // namespace requirements
 
 namespace jni {
 
 SPECTRUM_MAKE_LOOPBACK_CLASS(
-        JniConfigurationTest,
-        JConfiguration,
-        "Lcom/facebook/spectrum/types/JniConfigurationTest;");
+    JniConfigurationTest,
+    JConfiguration,
+    "Lcom/facebook/spectrum/types/JniConfigurationTest;");
 
 } // namespace jni
 
 namespace options {
 
 SPECTRUM_MAKE_LOOPBACK_CLASS(
-        JniTransformationsTest,
-        JTransformations,
-        "Lcom/facebook/spectrum/options/JniTransformationsTest;");
+    JniTransformationsTest,
+    JTransformations,
+    "Lcom/facebook/spectrum/options/JniTransformationsTest;");
 
 SPECTRUM_MAKE_LOOPBACK_CLASS_WITH_INPUT_OUTPUT(
-        JniDecodeOptionsTest,
-        JDecodeOptions,
-        JOptions,
-        "Lcom/facebook/spectrum/options/JniDecodeOptionsTest;");
+    JniDecodeOptionsTest,
+    JDecodeOptions,
+    JOptions,
+    "Lcom/facebook/spectrum/options/JniDecodeOptionsTest;");
 
 SPECTRUM_MAKE_LOOPBACK_CLASS_WITH_INPUT_OUTPUT(
-        JniEncodeOptionsTest,
-        JEncodeOptions,
-        JOptions,
-        "Lcom/facebook/spectrum/options/JniEncodeOptionsTest;");
+    JniEncodeOptionsTest,
+    JEncodeOptions,
+    JOptions,
+    "Lcom/facebook/spectrum/options/JniEncodeOptionsTest;");
 
 SPECTRUM_MAKE_LOOPBACK_CLASS_WITH_INPUT_OUTPUT(
-        JniTranscodeOptionsTest,
-        JTranscodeOptions,
-        JOptions,
-        "Lcom/facebook/spectrum/options/JniTranscodeOptionsTest;");
+    JniTranscodeOptionsTest,
+    JTranscodeOptions,
+    JOptions,
+    "Lcom/facebook/spectrum/options/JniTranscodeOptionsTest;");
 
 SPECTRUM_MAKE_LOOPBACK_CLASS_WITH_INPUT_OUTPUT(
-        JniTransformOptionsTest,
-        JTransformOptions,
-        JOptions,
-        "Lcom/facebook/spectrum/options/JniTransformOptionsTest;");
+    JniTransformOptionsTest,
+    JTransformOptions,
+    JOptions,
+    "Lcom/facebook/spectrum/options/JniTransformOptionsTest;");
 
-} // namespace jni
+} // namespace options
 
 #undef SPECTRUM_MAKE_LOOPBACK_CLASS
 

@@ -3,10 +3,10 @@
 // This source code is licensed under the MIT license found in the
 // LICENSE file in the root directory of this source tree.
 
+#include "JniCropRequirementTest.h"
 #include "JniInputStreamImageSourceTest.h"
 #include "JniLoopBackTestHelper.h"
 #include "JniOutputStreamImageSinkTest.h"
-#include "JniCropRequirementTest.h"
 #include "JniSpectrumExceptionTest.h"
 
 #include <fbjni/fbjni.h>
