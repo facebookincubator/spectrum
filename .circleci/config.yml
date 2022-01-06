@@ -19,13 +19,13 @@ aliases:
 executors:
   spectrumandroid:
     docker:
-      - image: reactnativecommunity/react-native-android:2020-4-1
+      - image: reactnativecommunity/react-native-android:5.2
     working_directory: ~/react-native
     resource_class: "large"
     environment:
       - TERM: "dumb"
       - ADB_INSTALL_TIMEOUT: 20
-      - _JAVA_OPTIONS: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+      - _JAVA_OPTIONS: "-XX:+UnlockExperimentalVMOptions"
       - GRADLE_OPTS: '-Dorg.gradle.daemon=false -Dorg.gradle.jvmargs="-XX:+HeapDumpOnOutOfMemoryError"'
       - BUILD_THREADS: 2
 
