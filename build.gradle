@@ -10,21 +10,18 @@ buildscript {
         minSdkVersion = 15
         targetSdkVersion = 28
         compileSdkVersion = 28
-        kotlinVersion = '1.3.41'
-        buildToolsVersion = '29.0.1'
+        kotlinVersion = '1.6.10'
+        buildToolsVersion = '30.0.2'
         sourceCompatibilityVersion = JavaVersion.VERSION_1_7
         targetCompatibilityVersion = JavaVersion.VERSION_1_7
     }
     repositories {
         google()
-        mavenLocal()
         mavenCentral()
-        jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.2'
-        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:${GRADLE_BINTRAY_PLUGIN_VERSION}"
-        classpath "com.github.dcendents:android-maven-gradle-plugin:${ANDROID_MAVEN_GRADLE_PLUGIN_VERSION}"
+        classpath 'com.android.tools.build:gradle:7.0.4'
+        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.18.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
@@ -38,11 +35,10 @@ subprojects {
         google()
         mavenLocal()
         mavenCentral()
-        jcenter()
     }
 }
 
-ext.isRelease = { ['uploadArchives', 'bintrayUpload'].any { gradle.startParameter.taskNames.contains(it) } }
+ext.isRelease = { ['publish', 'publishToMaven'].any { gradle.startParameter.taskNames.contains(it) } }
 
 ext.deps = [
         // Android Support Libraries

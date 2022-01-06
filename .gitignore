@@ -8,3 +8,4 @@ build
 external
 androidLibs/third-party/*/merge
 ios/SpectrumKitSample/Pods
+.cxx
