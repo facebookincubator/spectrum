@@ -4,7 +4,6 @@
 // LICENSE file in the root directory of this source tree.
 
 apply plugin: 'com.android.library'
-apply plugin: 'maven'
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
@@ -53,11 +52,4 @@ dependencies {
     testImplementation deps.robolectric
 }
 
-apply from: rootProject.file('gradle/release.gradle')
-
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-
-artifacts.add('archives', sourcesJar)
+apply plugin: 'com.vanniktech.maven.publish'

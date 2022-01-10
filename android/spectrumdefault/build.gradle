@@ -23,11 +23,4 @@ dependencies {
     api project(':android:spectrumpluginwebp')
 }
 
-apply from: rootProject.file('gradle/release.gradle')
-
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-
-artifacts.add('archives', sourcesJar)
+apply plugin: 'com.vanniktech.maven.publish'
