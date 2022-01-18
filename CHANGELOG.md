@@ -1,3 +1,6 @@
+# 1.3.0 (Jan, 2022)
+Please see GitHub for detailed changes: https://github.com/facebookincubator/spectrum/compare/v1.2.0...v1.3.0
+
 # 1.2.0 (Jun 5, 2020)
 - Error is now reported for images with a pixel format kCGImagePixelFormatRGB555 (iOS)
 - Fixed an issue by which metadata wouldn't be added to the encoded image
