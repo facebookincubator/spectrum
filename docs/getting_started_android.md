@@ -14,7 +14,7 @@ Add the default Spectrum dependency that includes all image format plugins:
 ```groovy
 dependencies {
   // Spectrum with support for JPEG, PNG and WebP
-  implementation 'com.facebook.spectrum:spectrum-default:1.2.0+'
+  implementation 'com.facebook.spectrum:spectrum-default:1.3.0+'
 }
 ```
 
@@ -72,9 +72,9 @@ If you later decide that you only want to bundle with certain plugins, you can s
 
 ```groovy
 dependencies {
-  implementation 'com.facebook.spectrum:spectrum-core:1.2.0+'
-  implementation 'com.facebook.spectrum:spectrum-jpeg:1.2.0+'
-  implementation 'com.facebook.spectrum:spectrum-png:1.2.0+'
-  implementation 'com.facebook.spectrum:spectrum-webp:1.2.0+'
+  implementation 'com.facebook.spectrum:spectrum-core:1.3.0+'
+  implementation 'com.facebook.spectrum:spectrum-jpeg:1.3.0+'
+  implementation 'com.facebook.spectrum:spectrum-png:1.3.0+'
+  implementation 'com.facebook.spectrum:spectrum-webp:1.3.0+'
 }
 ```
