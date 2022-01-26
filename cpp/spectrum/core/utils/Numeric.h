@@ -42,6 +42,12 @@ double rounded(const double value, const RoundingMode roundingMode);
  */
 template <typename In, typename Out>
 Out convertOrThrow(const In& value, const char* location, const int line) {
+#ifdef __clang__
+#pragma clang diagnostic push
+#if __has_warning("-Wimplicit-const-int-float-conversion")
+#pragma clang diagnostic ignored "-Wimplicit-const-int-float-conversion"
+#endif // __has_warning
+#endif // __clang__
   if ((std::is_unsigned<Out>::value && value < 0) ||
       value < std::numeric_limits<Out>::lowest()) {
     SPECTRUM_ERROR_UNDERFLOW(In, Out, location, line);
@@ -50,6 +56,9 @@ Out convertOrThrow(const In& value, const char* location, const int line) {
   } else {
     return static_cast<Out>(value);
   }
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif // __clang__
 }
 
 /**
