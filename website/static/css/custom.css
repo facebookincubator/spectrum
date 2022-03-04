@@ -5,20 +5,15 @@
  *  file in the root directory of this source tree.
  */
 
-@media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
-}
+@media only screen and (min-device-width: 360px) and (max-device-width: 736px) {}
 
-@media only screen and (min-width: 1024px) {
-}
+@media only screen and (min-width: 1024px) {}
 
-@media only screen and (max-width: 1023px) {
-}
+@media only screen and (max-width: 1023px) {}
 
-@media only screen and (min-width: 1400px) {
-}
+@media only screen and (min-width: 1400px) {}
 
-@media only screen and (min-width: 1500px) {
-}
+@media only screen and (min-width: 1500px) {}
 
 .homeContainer {
   background: #B9459A;
@@ -56,7 +51,7 @@
   font-weight: 200;
 }
 
-.blockImage img{
+.blockImage img {
   width: 64px;
   height: 64px;
   fill: #5C224C;
@@ -85,6 +80,27 @@ a {
 }
 
 .buttons a:hover {
-    background: #FFF;
-    color: #B9459A;
-  }
+  background: #FFF;
+  color: #B9459A;
+}
+
+/* Social Banner */
+.SocialBannerWrapper {
+  padding: 0 0;
+  background-color: black;
+}
+
+.SocialBanner {
+  font-weight: bold;
+  font-size: 20px;
+  padding: 20px;
+  max-width: 768px;
+  margin: 0 auto;
+  color: white;
+  text-align: center;
+}
+
+.SocialBanner a {
+  text-decoration: underline;
+  color: white;
+}

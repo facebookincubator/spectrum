@@ -27,6 +27,20 @@ function pageUrl(page, language) {
   return siteConfig.baseUrl + (language ? `${language}/` : '') + page;
 }
 
+function SocialBanner() {
+  return (
+    <div className="SocialBannerWrapper">
+      <div className="SocialBanner">
+        Support Ukraine 🇺🇦{' '}
+        <a href="https://opensource.facebook.com/support-ukraine">
+          Help Provide Humanitarian Aid to Ukraine
+        </a>
+        .
+      </div>
+    </div>
+  );
+}
+
 const SplashContainer = props => (
   <div className="homeContainer shadow">
     <div className="homeSplashFade">
@@ -107,6 +121,7 @@ class Index extends React.Component {
     const language = this.props.language || '';
     return (
       <div>
+        <SocialBanner />
         <HomeSplash language={language} />
         <div className="mainContainer">
           <Features />
