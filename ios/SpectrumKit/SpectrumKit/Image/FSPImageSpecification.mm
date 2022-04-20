@@ -123,7 +123,7 @@ using namespace facebook::spectrum;
 
 + (instancetype)imageSpecificationFromImage:(UIImage *)image
 {
-  const auto imageSize = CGSizeMake(CGImageGetWidth(image.CGImage), CGImageGetHeight(image.CGImage));
+  const auto imageSize = CGSizeMake((CGFloat)CGImageGetWidth(image.CGImage), (CGFloat)CGImageGetHeight(image.CGImage));
   return [[self alloc] initWithSize:imageSize
                              format:FSPImageFormat.bitmap
                  pixelSpecification:[FSPImagePixelSpecification imagePixelSpecificationFromImage:image]
