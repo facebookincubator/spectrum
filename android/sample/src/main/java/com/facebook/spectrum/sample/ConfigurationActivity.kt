@@ -56,7 +56,8 @@ class ConfigurationActivity : AppCompatActivity() {
       parameter: EnumParameter<T>,
       model: ConfigurationViewModel
   ): View? {
-    return layoutInflater.inflate(R.layout.configuration_group_parameter_enum, groupLayout, false)
+    return layoutInflater
+        .inflate(R.layout.configuration_group_parameter_enum, groupLayout, false)
         .also {
           it.findViewById<TextView>(R.id.configuration_parameter_enum_text).text =
               parameter.description
@@ -74,8 +75,8 @@ class ConfigurationActivity : AppCompatActivity() {
       parameter: BooleanParameter,
       model: ConfigurationViewModel
   ): View? {
-    return layoutInflater.inflate(
-            R.layout.configuration_group_parameter_boolean, groupLayout, false)
+    return layoutInflater
+        .inflate(R.layout.configuration_group_parameter_boolean, groupLayout, false)
         .also {
           it.findViewById<TextView>(R.id.configuration_parameter_boolean_text).text =
               parameter.description

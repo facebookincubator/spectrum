@@ -86,7 +86,8 @@ class TranscodeAsyncTask(
     val inputStream = context.contentResolver.openInputStream(transcodeViewModel.inputImageUri!!)
     inputStream.use {
       val bitmapTarget = BitmapTarget()
-      return spectrum.decode(
+      return spectrum
+          .decode(
               EncodedImageSource.from(inputStream),
               bitmapTarget,
               optionsBuilder.build(),
@@ -100,7 +101,8 @@ class TranscodeAsyncTask(
     applyModelToOptions(optionsBuilder)
 
     val bitmapTarget = BitmapTarget()
-    return spectrum.transform(
+    return spectrum
+        .transform(
             transcodeViewModel.inputImageBitmap,
             bitmapTarget,
             optionsBuilder.build(),
