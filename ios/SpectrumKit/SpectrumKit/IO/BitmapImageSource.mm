@@ -38,11 +38,11 @@ BitmapImageSource::~BitmapImageSource() {
 void BitmapImageSource::_updateCurrentSubImage() {
   const CGFloat height = std::min(
       countOfLinesPerSubImage,
-      CGImageGetHeight(_image.CGImage) - ((double)_nextSubImageIndex * countOfLinesPerSubImage));
+      (CGFloat)CGImageGetHeight(_image.CGImage) - ((CGFloat)_nextSubImageIndex * countOfLinesPerSubImage));
   const CGRect rect = CGRectMake(
       0,
-      _nextSubImageIndex * countOfLinesPerSubImage,
-      CGImageGetWidth(_image.CGImage),
+      (CGFloat)_nextSubImageIndex * countOfLinesPerSubImage,
+      (CGFloat)CGImageGetWidth(_image.CGImage),
       height);
   CGImage *const subImage = CGImageCreateWithImageInRect(_image.CGImage, rect);
 
