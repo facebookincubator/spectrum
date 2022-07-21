@@ -84,8 +84,8 @@ TEST(core_matchers_Rotate, whenMultipleOf90Flip_thenSucceed) {
                   Rule::RotateSupport::MultipleOf90Flip,
                   requirements::Rotate(
                       {.degrees = 540,
-                       .flipVertically = true,
-                       .flipHorizontally = true}))
+                       .flipHorizontally = true,
+                       .flipVertically = true}))
                   .success());
 }
 

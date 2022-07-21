@@ -26,9 +26,9 @@ BitmapCompressor makeCompressor(
       .sink = options.sink,
       .imageSpecification =
           image::Specification{
-              .format = image::formats::Bitmap,
               .size = options.imageSize.value_or(
                   image::testutils::DefaultImageSize),
+              .format = image::formats::Bitmap,
               .pixelSpecification = options.pixelSpecification.value_or(
                   image::pixel::specifications::RGB),
               .metadata = options.metadata.value_or(image::Metadata{}),

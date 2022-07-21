@@ -60,11 +60,11 @@ TEST(
     whenLeftIsGreateOrEqualThanRight_thenThrows) {
   ASSERT_THROW(
       CropRelativeToOrigin(
-          {.left = 0.2f, .right = 0.1f, .top = 0.0f, .bottom = 1.0f}, false),
+          {.top = 0.0f, .left = 0.2f, .bottom = 1.0f, .right = 0.1f}, false),
       SpectrumException);
   ASSERT_THROW(
       CropRelativeToOrigin(
-          {.left = 0.5f, .right = 0.5f, .top = 0.0f, .bottom = 1.0f}, false),
+          {.top = 0.0f, .left = 0.5f, .bottom = 1.0f, .right = 0.5f}, false),
       SpectrumException);
 }
 
@@ -73,33 +73,33 @@ TEST(
     whenTopIsGreaterOrEqualThanBottom_thenThrows) {
   ASSERT_THROW(
       CropRelativeToOrigin(
-          {.left = 0.0f, .right = 1.0f, .top = 0.2f, .bottom = 0.1f}, false),
+          {.top = 0.2f, .left = 0.0f, .bottom = 0.1f, .right = 1.0f}, false),
       SpectrumException);
   ASSERT_THROW(
       CropRelativeToOrigin(
-          {.left = 0.0f, .right = 1.0f, .top = 0.5f, .bottom = 0.5f}, false),
+          {.top = 0.5f, .left = 0.0f, .bottom = 0.5f, .right = 1.0f}, false),
       SpectrumException);
 }
 
 TEST(requirements_CropRelativeToOrigin, whenValuesSmallerThanZero_thenThrows) {
   ASSERT_THROW(
       CropRelativeToOrigin(
-          {.left = -0.1f, .right = 1.0f, .top = 0.0f, .bottom = 1.0f}, false),
+          {.top = 0.0f, .left = -0.1f, .bottom = 1.0f, .right = 1.0f}, false),
       SpectrumException);
   ASSERT_THROW(
       CropRelativeToOrigin(
-          {.left = 0.0f, .right = 1.0f, .top = -0.1f, .bottom = 1.0f}, false),
+          {.top = -0.1f, .left = 0.0f, .bottom = 1.0f, .right = 1.0f}, false),
       SpectrumException);
 }
 
 TEST(requirements_CropRelativeToOrigin, whenValuesGreaterThanOne_thenThrows) {
   ASSERT_THROW(
       CropRelativeToOrigin(
-          {.left = 0.0f, .right = 1.1f, .top = 0.0f, .bottom = 1.0f}, false),
+          {.top = 0.0f, .left = 0.0f, .bottom = 1.0f, .right = 1.1f}, false),
       SpectrumException);
   ASSERT_THROW(
       CropRelativeToOrigin(
-          {.left = 0.0f, .right = 1.0f, .top = 0.0f, .bottom = 1.1f}, false),
+          {.top = 0.0f, .left = 0.0f, .bottom = 1.1f, .right = 1.0f}, false),
       SpectrumException);
 }
 

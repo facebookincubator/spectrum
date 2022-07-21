@@ -18,7 +18,7 @@ namespace test {
 namespace {
 
 static constexpr auto defaultValues =
-    CropAbsoluteToOrigin::Values{.left = 1, .right = 2, .top = 3, .bottom = 5};
+    CropAbsoluteToOrigin::Values{.top = 3, .left = 1, .bottom = 5, .right = 2};
 
 static constexpr auto defaultImageSize = image::Size{10, 20};
 
@@ -64,11 +64,11 @@ TEST(
     whenLeftIsGreateOrEqualThanRight_thenThrows) {
   ASSERT_THROW(
       CropAbsoluteToOrigin(
-          {.left = 1, .right = 0, .top = 0, .bottom = 1}, false),
+          {.top = 0, .left = 1, .bottom = 1, .right = 0}, false),
       SpectrumException);
   ASSERT_THROW(
       CropAbsoluteToOrigin(
-          {.left = 1, .right = 1, .top = 0, .bottom = 1}, false),
+          {.top = 0, .left = 1, .bottom = 1, .right = 1}, false),
       SpectrumException);
 }
 
@@ -77,11 +77,11 @@ TEST(
     whenTopIsGreaterOrEqualThanBottom_thenThrows) {
   ASSERT_THROW(
       CropAbsoluteToOrigin(
-          {.left = 0, .right = 1, .top = 2, .bottom = 1}, false),
+          {.top = 2, .left = 0, .bottom = 1, .right = 1}, false),
       SpectrumException);
   ASSERT_THROW(
       CropAbsoluteToOrigin(
-          {.left = 0, .right = 1, .top = 1, .bottom = 1}, false),
+          {.top = 1, .left = 0, .bottom = 1, .right = 1}, false),
       SpectrumException);
 }
 
@@ -89,7 +89,7 @@ TEST(
     requirements_CropAbsoluteToOrigin,
     whenBottomIsGreaterThanImageHeight_thenThrows) {
   const auto requirement = CropAbsoluteToOrigin(
-      {.left = 0, .right = 1, .top = 0, .bottom = 10}, false);
+      {.top = 0, .left = 0, .bottom = 10, .right = 1}, false);
 
   ASSERT_THROW(requirement.apply(image::Size{10, 9}), SpectrumException);
 }
@@ -98,7 +98,7 @@ TEST(
     requirements_CropAbsoluteToOrigin,
     whenRightIsGreaterThanImageWidth_thenThrows) {
   const auto requirement = CropAbsoluteToOrigin(
-      {.left = 0, .right = 10, .top = 0, .bottom = 1}, false);
+      {.top = 0, .left = 0, .bottom = 1, .right = 10}, false);
 
   ASSERT_THROW(requirement.apply(image::Size{9, 10}), SpectrumException);
 }
@@ -107,7 +107,7 @@ TEST(
     requirements_CropAbsoluteToOrigin,
     whenScaledDown_thenValuesCorrectlyScaled) {
   const auto requirement = CropAbsoluteToOrigin(
-      {.left = 3, .right = 6, .top = 9, .bottom = 12}, false);
+      {.top = 9, .left = 3, .bottom = 12, .right = 6}, false);
   _assertScaledCropRequirement(
       requirement.scaled({1, 3}),
       image::Size{3, 5},
@@ -118,7 +118,7 @@ TEST(
     requirements_CropAbsoluteToOrigin,
     whenScaledUp_thenValuesCorrectlyScaled) {
   const auto requirement = CropAbsoluteToOrigin(
-      {.left = 1, .right = 2, .top = 3, .bottom = 4}, false);
+      {.top = 3, .left = 1, .bottom = 4, .right = 2}, false);
   _assertScaledCropRequirement(
       requirement.scaled({3, 1}),
       image::Size{10, 22},
@@ -129,10 +129,10 @@ TEST(
     requirements_CropAbsoluteToOrigin,
     whenScaledUpBeyondMax_thenNoneReturned) {
   const auto requirement = CropAbsoluteToOrigin(
-      {.left = 0,
-       .right = 20,
-       .top = 30,
-       .bottom = std::numeric_limits<std::uint32_t>::max() / 2 + 1},
+      {.top = 30,
+       .left = 0,
+       .bottom = std::numeric_limits<std::uint32_t>::max() / 2 + 1,
+       .right = 20},
       false);
 
   ASSERT_ANY_THROW(requirement.scaled({2, 1}));
