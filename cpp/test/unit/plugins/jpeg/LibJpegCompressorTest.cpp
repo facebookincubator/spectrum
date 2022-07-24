@@ -47,8 +47,8 @@ LibJpegCompressor makeCompressor(
       .encodeRequirement =
           options.encodeRequirement.value_or(requirements::Encode{
               .format = image::formats::Jpeg,
-              .mode = requirements::Encode::Mode::Lossy,
               .quality = 80,
+              .mode = requirements::Encode::Mode::Lossy,
           }),
       .configuration = options.configuration,
   });
