@@ -5,6 +5,8 @@
 
 #pragma once
 
+#define PNG_TEXT_SUPPORTED
+
 #include <spectrum/codecs/IDecompressor.h>
 #include <spectrum/core/Constants.h>
 #include <spectrum/image/Scanline.h>

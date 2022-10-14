@@ -18,7 +18,8 @@ image::Metadata calculateOutputMetadata(
     const image::Specification& inputImageSpecification,
     const folly::Optional<image::Metadata>& extraMetadata,
     const image::Orientation& metadataOrientation,
-    const bool compressorSupportsSettingMetadata);
+    const bool compressorSupportsSettingMetadata,
+    const bool preserveXmpMetadata);
 
 } // namespace decisions
 } // namespace core

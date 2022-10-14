@@ -15,6 +15,7 @@
 
 #include <folly/Optional.h>
 
+#include <string.h>
 #include <csetjmp>
 #include <memory>
 #include <sstream>
@@ -241,6 +242,32 @@ void LibPngDecompressor::throwError(
 // Decompressor
 //
 
+image::Metadata readMetadata(
+    png_structp libPngReadStruct,
+    png_infop libPngInfoStruct) {
+  png_textp text_ptr;
+  int num_text = 0;
+  int xmp_index = -1;
+  std::string xmp = "";
+
+  std::vector<core::DataRange> empty1;
+  std::vector<core::DataRange> empty2;
+
+  png_get_text(libPngReadStruct, libPngInfoStruct, &text_ptr, &num_text);
+  for (auto i = 0; i < num_text; i++) {
+    if (0 == strcmp("XML:com.adobe.xmp", text_ptr[i].key)) {
+      xmp_index = i;
+      break;
+    }
+  }
+  if (xmp_index != -1 &&
+      PNG_ITXT_COMPRESSION_NONE == text_ptr[xmp_index].compression) {
+    xmp = text_ptr[xmp_index].text;
+  }
+
+  return image::Metadata{empty1, empty2, xmp};
+}
+
 image::Specification LibPngDecompressor::sourceImageSpecification() {
   if (_sourceImageSpecification.hasValue()) {
     return *_sourceImageSpecification;
@@ -252,6 +279,8 @@ image::Specification LibPngDecompressor::sourceImageSpecification() {
       png_get_color_type(libPngReadStruct, libPngInfoStruct),
       png_get_bit_depth(libPngReadStruct, libPngInfoStruct),
       png_get_channels(libPngReadStruct, libPngInfoStruct));
+
+  const auto metadata = readMetadata(libPngReadStruct, libPngInfoStruct);
 
   _sourceImageSpecification = image::Specification{
       .size =
@@ -265,6 +294,7 @@ image::Specification LibPngDecompressor::sourceImageSpecification() {
       .format = image::formats::Png,
       .pixelSpecification = pixelSpecification,
       .chromaSamplingMode = image::ChromaSamplingMode::S444,
+      .metadata = metadata,
   };
 
   return *_sourceImageSpecification;

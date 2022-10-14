@@ -23,24 +23,36 @@ namespace image {
 class Metadata {
   metadata::Entries _entries;
   metadata::ICCProfile _iccProfile;
+  std::string _xmp;
 
  public:
   Metadata() = default;
   Metadata(
       const std::vector<core::DataRange>& entriesDataRanges,
-      const std::vector<core::DataRange>& iccProfileDataRanges);
-  Metadata(metadata::Entries&& entries, metadata::ICCProfile&& iccProfile);
+      const std::vector<core::DataRange>& iccProfileDataRanges,
+      const std::string& xmp = "");
+  Metadata(
+      metadata::Entries&& entries,
+      metadata::ICCProfile&& iccProfile,
+      std::string&& xmp = "");
 
   const metadata::Entries& entries() const;
   const metadata::ICCProfile& iccProfile() const;
+  const std::string& xmp() const;
 
   metadata::Entries& entries();
   metadata::ICCProfile& iccProfile();
+  std::string& xmp();
 
   /**
    * @return true if no entries are contained within this metadata.
    */
   bool empty() const;
+
+  /**
+   * Clear the XMP string in case it had a value
+   */
+  void clearXMP();
 
   /**
    * Merges the "other" metadata into this object. Entries in the "other"

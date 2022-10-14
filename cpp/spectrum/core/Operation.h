@@ -41,6 +41,7 @@ struct Operation {
     folly::Optional<image::Metadata> extraMetadata;
     folly::Optional<image::pixel::Specification>
         outputPixelSpecificationRequirement;
+    bool preserveXmpMetadata;
   };
 
   IO io;

@@ -37,7 +37,8 @@ image::Specification _calculateOutputImageSpecification(
           parameters.inputImageSpecification,
           parameters.extraMetadata,
           orientation.metadataOrientation,
-          codecs.compressorProvider.supportsSettingMetadata),
+          codecs.compressorProvider.supportsSettingMetadata,
+          parameters.preserveXmpMetadata),
   };
 }
 } // namespace

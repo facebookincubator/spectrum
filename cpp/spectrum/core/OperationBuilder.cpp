@@ -86,6 +86,7 @@ Operation::Parameters OperationBuilder::_buildParameters(
       .extraMetadata = options.metadata,
       .outputPixelSpecificationRequirement =
           options.outputPixelSpecificationRequirement,
+      .preserveXmpMetadata = options.preserveXmpMetadata,
   };
 }
 

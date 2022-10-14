@@ -6,12 +6,34 @@
 #include "LibJpegUtilities.h"
 
 #include <spectrum/plugins/jpeg/LibJpegConstants.h>
+#include <string>
 
 namespace facebook {
 namespace spectrum {
 namespace plugins {
 namespace jpeg {
 namespace {
+
+constexpr int XMP_MAX_SIZE_IN_JPG = 65536;
+
+std::string extractXmp(jpeg_decompress_struct& libJpegDecompressInfo) {
+  for (auto currentMarker = libJpegDecompressInfo.marker_list;
+       currentMarker != nullptr;
+       currentMarker = currentMarker->next) {
+    if (currentMarker->data != nullptr && currentMarker->data_length > 29 &&
+        currentMarker->data_length < XMP_MAX_SIZE_IN_JPG) {
+      // XMP string has 29 bytes signature of null terminated
+      // ascii string (http://ns.adobe.com/xap/1.0/)
+      auto signature = std::string((char*)currentMarker->data, 29);
+      if (0 == strcmp("http://ns.adobe.com/xap/1.0/", signature.c_str())) {
+        auto xmp =
+            std::string((char*)currentMarker->data, currentMarker->data_length);
+        return xmp;
+      }
+    }
+  }
+  return std::string("");
+}
 
 std::vector<core::DataRange> extractDataRangesForMarker(
     jpeg_decompress_struct& libJpegDecompressInfo,
@@ -43,7 +65,8 @@ void saveMetadataMarkers(jpeg_decompress_struct& libJpegDecompressInfo) {
 image::Metadata readMetadata(jpeg_decompress_struct& libJpegDecompressInfo) {
   return image::Metadata{
       extractDataRangesForMarker(libJpegDecompressInfo, JPEG_APP1),
-      extractDataRangesForMarker(libJpegDecompressInfo, JPEG_APP2)};
+      extractDataRangesForMarker(libJpegDecompressInfo, JPEG_APP2),
+      extractXmp(libJpegDecompressInfo)};
 }
 
 void writeMetadata(
@@ -54,6 +77,13 @@ void writeMetadata(
   }
 
   const auto entriesData = metadata.entries().makeData();
+  if (!metadata.xmp().empty()) {
+    jpeg_write_marker(
+        &libJpegCompressInfo,
+        JPEG_APP1,
+        (unsigned char*)metadata.xmp().data(),
+        static_cast<unsigned int>(metadata.xmp().size()));
+  }
   if (!entriesData.empty()) {
     jpeg_write_marker(
         &libJpegCompressInfo,

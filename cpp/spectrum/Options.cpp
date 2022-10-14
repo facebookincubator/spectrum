@@ -22,8 +22,10 @@ Options::Options(
     const folly::Optional<image::Metadata>& metadata,
     const Configuration& configuration,
     const folly::Optional<image::pixel::Specification>&
-        outputPixelSpecificationRequirement)
-    : encodeRequirement(encodeRequirement),
+        outputPixelSpecificationRequirement,
+    const bool preserveXmpMetadata)
+    : preserveXmpMetadata(preserveXmpMetadata),
+      encodeRequirement(encodeRequirement),
       transformations(transformations),
       metadata(metadata),
       outputPixelSpecificationRequirement(outputPixelSpecificationRequirement),
@@ -75,13 +77,15 @@ TranscodeOptions::TranscodeOptions(
     const folly::Optional<image::Metadata>& metadata,
     const Configuration& configuration,
     const folly::Optional<image::pixel::Specification>&
-        outputPixelSpecificationRequirement)
+        outputPixelSpecificationRequirement,
+    const bool preserveXmpMetadata)
     : Options(
           encodeRequirement,
           transformations,
           metadata,
           configuration,
-          outputPixelSpecificationRequirement) {}
+          outputPixelSpecificationRequirement,
+          preserveXmpMetadata) {}
 
 TransformOptions::TransformOptions(
     const Transformations& transformations,

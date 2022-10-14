@@ -40,7 +40,13 @@ struct Options {
       const folly::Optional<image::Metadata>& metadata,
       const Configuration& configuration,
       const folly::Optional<image::pixel::Specification>&
-          outputPixelSpecificationRequirement);
+          outputPixelSpecificationRequirement,
+      const bool preserveXmpMetadata = false);
+
+  /**
+   * Flag to turn on the XMP preservation for image transcoding.
+   */
+  const bool preserveXmpMetadata;
 
   /**
    * The encode requirement to apply. Dictates the final image format. If none,
@@ -122,7 +128,8 @@ struct TranscodeOptions : public Options {
       const folly::Optional<image::Metadata>& metadata = folly::none,
       const Configuration& configuration = Configuration(),
       const folly::Optional<image::pixel::Specification>&
-          outputPixelSpecificationRequirement = folly::none);
+          outputPixelSpecificationRequirement = folly::none,
+      const bool preserveXmpMetadata = false);
 };
 
 /**

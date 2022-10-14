@@ -14,7 +14,8 @@ image::Metadata calculateOutputMetadata(
     const image::Specification& inputImageSpecification,
     const folly::Optional<image::Metadata>& extraMetadata,
     const image::Orientation& metadataOrientation,
-    const bool compressorSupportsSettingMetadata) {
+    const bool compressorSupportsSettingMetadata,
+    const bool preserveXmpMetadata) {
   if (compressorSupportsSettingMetadata) {
     auto metadata = inputImageSpecification.metadata;
 
@@ -24,6 +25,9 @@ image::Metadata calculateOutputMetadata(
 
     metadata.entries().setOrientation(metadataOrientation);
 
+    if (!preserveXmpMetadata) {
+      metadata.clearXMP();
+    }
     return metadata;
   } else {
     SPECTRUM_ENFORCE_IF_NOT(metadataOrientation == image::Orientation::Up);
