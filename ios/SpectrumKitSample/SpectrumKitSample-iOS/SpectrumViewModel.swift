@@ -6,7 +6,7 @@
 import Photos
 import UIKit.UIImage
 
-protocol SpectrumViewModelDelegate: class {
+protocol SpectrumViewModelDelegate: AnyObject {
   func viewModelDidUpdate(_ viewModel: SpectrumViewModel)
   func viewModel(_ viewModel: SpectrumViewModel, didFailTranscodingWith error: Swift.Error)
   func viewModelDidFinishTranscoding(_ viewModel: SpectrumViewModel)
@@ -149,17 +149,17 @@ final class SpectrumViewModel: NSObject {
                                  inputType: self.inputType,
                                  outputType: self.outputType,
                                  completion: { [weak self] result in
-                                   guard let strongSelf = self else { return }
-                                   strongSelf.isTranscoding = false
+                                  guard let strongSelf = self else { return }
+                                  strongSelf.isTranscoding = false
 
-                                   switch result {
-                                   case let .success(imageRepresentation):
-                                     strongSelf.transcodedImageRepresentation = imageRepresentation
-                                     strongSelf.delegate?.viewModelDidFinishTranscoding(strongSelf)
-                                   case let .error(error):
-                                     strongSelf.delegate?.viewModel(strongSelf, didFailTranscodingWith: error)
-                                   }
-    })
+                                  switch result {
+                                  case let .success(imageRepresentation):
+                                    strongSelf.transcodedImageRepresentation = imageRepresentation
+                                    strongSelf.delegate?.viewModelDidFinishTranscoding(strongSelf)
+                                  case let .error(error):
+                                    strongSelf.delegate?.viewModel(strongSelf, didFailTranscodingWith: error)
+                                  }
+                                 })
   }
 
   func makeConfigurationViewModel() -> ConfigurationViewModel {
@@ -172,7 +172,7 @@ final class SpectrumViewModel: NSObject {
       return try ImageDifferenceViewModel(sourceImage: self.source.image,
                                           transcodedImageData: data,
                                           imageFormat: self.outputFormat)
-    case .bitmap(_)?, nil:
+    case .bitmap, nil:
       throw Error.unsupportedBitmapOutput
     }
   }

@@ -5,7 +5,7 @@
 
 import UIKit
 
-protocol ImageDifferenceViewControllerDelegate: class {
+protocol ImageDifferenceViewControllerDelegate: AnyObject {
   func imageDifferenceViewControllerDidTapCloseButton(_ imageDifferenceViewController: ImageDifferenceViewController)
 }
 
