@@ -8,7 +8,7 @@
 package com.facebook.spectrum.testutils;
 
 import static com.facebook.spectrum.testutils.ImageComparison.ImageComparisonMethod.SSIM;
-import static org.fest.assertions.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import android.graphics.Bitmap;
 import com.facebook.spectrum.Spectrum;
@@ -21,7 +21,7 @@ import com.facebook.spectrum.testutils.ExecutingAssertion.ExecutionResult;
 import com.facebook.spectrum.utils.Preconditions;
 import java.io.IOException;
 import javax.annotation.Nullable;
-import org.fest.assertions.data.Offset;
+import org.assertj.core.data.Offset;
 
 public class SpectrumAssertUtils {
 

@@ -14,7 +14,7 @@ import com.facebook.spectrum.options.EncodeOptions;
 import com.facebook.spectrum.requirements.EncodeRequirement;
 import com.facebook.spectrum.testutils.SpectrumAssertUtils.Builder;
 import java.io.IOException;
-import org.fest.assertions.data.Offset;
+import org.assertj.core.data.Offset;
 import org.junit.Test;
 
 public class SpectrumAssertUtilsTest {

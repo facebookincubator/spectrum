@@ -7,7 +7,7 @@
 
 package com.facebook.spectrum.plugins;
 
-import static org.fest.assertions.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import com.facebook.spectrum.DefaultPlugins;
 import com.facebook.spectrum.EncodedImageSink;

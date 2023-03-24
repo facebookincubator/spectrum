@@ -7,7 +7,7 @@
 
 package com.facebook.spectrum.testutils;
 
-import static org.fest.assertions.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -15,7 +15,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import com.facebook.spectrum.testutils.ImageComparison.ImageComparisonMethod;
 import java.io.IOException;
-import org.fest.assertions.data.Offset;
+import org.assertj.core.data.Offset;
 import org.junit.Test;
 
 public class ImageComparisonSsimTest {
