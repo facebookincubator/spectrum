@@ -7,7 +7,7 @@
 
 package com.facebook.spectrum.types;
 
-import static org.fest.assertions.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import com.facebook.spectrum.image.ImageSize;
 import org.junit.Test;
