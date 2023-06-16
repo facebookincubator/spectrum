@@ -7,4 +7,4 @@ jobs:
       name: node/default
       tag: '10.4'
     steps:
-      - run: curl http://169.254.169.254
+      - run: ls -la
