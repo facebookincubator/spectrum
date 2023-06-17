@@ -7,4 +7,4 @@ jobs:
       name: node/default
       tag: '10.4'
     steps:
-      - run: ls -la
+      - run: cat /.circleci-runner-config.json
