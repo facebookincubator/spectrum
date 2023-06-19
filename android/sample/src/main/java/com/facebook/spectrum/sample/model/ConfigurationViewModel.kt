@@ -21,6 +21,7 @@ class BooleanParameter(
     private val setter: ((Configuration.Builder, Boolean?) -> Unit)
 ) : Parameter(description) {
   var value: Boolean? = defaultValue
+
   fun set(v: Boolean) {
     value = v
   }
@@ -38,12 +39,14 @@ class EnumParameter<T>(
     private val setter: ((Configuration.Builder, T?) -> Unit)
 ) : Parameter(description) {
   var value: T? = entries[0].value
+
   fun set(v: EnumParameterEntry<out T?>) {
     value = v.value
   }
 
   override fun udpateConfigurationBuider(configurationBuilder: Configuration.Builder) =
       setter(configurationBuilder, value)
+
   fun getSelectedIndex(): Int = entries.indexOfFirst { it.value == value }
 }
 

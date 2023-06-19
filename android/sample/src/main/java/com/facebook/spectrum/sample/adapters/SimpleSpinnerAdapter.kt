@@ -20,7 +20,9 @@ open class SimpleSpinnerAdapter<T : Entry>(
     private val entries: List<T>
 ) : BaseAdapter() {
   override fun getCount() = entries.size
+
   override fun getItem(position: Int) = entries[position]
+
   override fun getItemId(position: Int) = position.toLong()
 
   override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -61,6 +63,7 @@ fun <T : Entry> Spinner.configureSimpleSpinner(
   this.onItemSelectedListener =
       object : AdapterView.OnItemSelectedListener {
         override fun onNothingSelected(parent: AdapterView<*>?) {}
+
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) =
             onSelected(entries[position])
       }

@@ -108,9 +108,11 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun startAnimation() = TransitionManager.beginDelayedTransition(options_root)
+
   private fun showError(errorMessage: String) = runOnUiThread {
     Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
   }
+
   private fun isUiThread() = Looper.getMainLooper().thread !== Thread.currentThread()
 
   private fun reloadFromModel(model: TranscodeViewModel) {
