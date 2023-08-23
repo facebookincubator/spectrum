@@ -60,14 +60,10 @@ OrientationDecision OrientationDecision::calculate(
       rotateRequirement, orientation, configuration);
   const auto storeInMetadata = _shouldStoreOrientationInMetadata(
       rotateRequirement, configuration, compressorSupportsSettingMetadata);
-  return OrientationDecision{
-      .orientation =
-          storeInMetadata ? image::orientationDefault : finalOrientation,
-      .metadataOrientation =
-          storeInMetadata ? finalOrientation : image::orientationDefault,
-      .size =
-          storeInMetadata ? imageSize : imageSize.oriented(finalOrientation),
-  };
+  return OrientationDecision(
+      storeInMetadata ? image::orientationDefault : finalOrientation,
+      storeInMetadata ? finalOrientation : image::orientationDefault,
+      storeInMetadata ? imageSize : imageSize.oriented(finalOrientation));
 }
 
 } // namespace decisions

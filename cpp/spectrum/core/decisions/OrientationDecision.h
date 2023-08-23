@@ -63,7 +63,13 @@ struct OrientationDecision {
       const bool compressorSupportsSettingMetadata);
 
  private:
-  OrientationDecision() = default;
+  OrientationDecision(
+      image::Orientation orientation,
+      image::Orientation metadataOrientation,
+      image::Size size)
+      : orientation(orientation),
+        metadataOrientation(metadataOrientation),
+        size(size) {}
 };
 
 } // namespace decisions
