@@ -13,10 +13,12 @@ namespace facebook {
 namespace spectrum {
 namespace requirements {
 
+#if __cplusplus < 201703L
 constexpr Encode::Quality Encode::QualityUnset;
 constexpr Encode::Quality Encode::QualityMin;
 constexpr Encode::Quality Encode::QualityDefault;
 constexpr Encode::Quality Encode::QualityMax;
+#endif // #if __cplusplus < 201703L
 
 std::string Encode::modeStringFromValue(const Mode mode) {
   switch (mode) {
