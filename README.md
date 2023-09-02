@@ -10,6 +10,18 @@
   <a href="https://circleci.com/gh/facebookincubator/spectrum">
     <img src="https://circleci.com/gh/facebookincubator/spectrum.svg?style=svg" alt="CircleCI" />
   </a>
+  <a href="https://twitter.com/libspectrum">
+   <img src="https://img.shields.io/twitter/follow/libspectrum?style=social" alt="Follow @libspectrum" />
+  </a>
+  <a href="https://github.com/facebookincubator/spectrum/blob/master/LICENSE">
+    <img alt="GitHub" src="https://img.shields.io/github/license/facebookincubator/spectrum">
+  </a>
+  <a href="https://github.com/facebookincubator/spectrum/blob/master/CONTRIBUTING.md">
+    <img alt="GitHub" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg">
+  </a>
+   <a href="https://github.com/facebookincubator/spectrum/graphs/contributors">
+    <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/facebookincubator/spectrum">
+  </a>
 </p>
 
 Spectrum is a cross-platform image transcoding library that can easily be integrated into an Android or iOS project to efficiently perform common image operations.
