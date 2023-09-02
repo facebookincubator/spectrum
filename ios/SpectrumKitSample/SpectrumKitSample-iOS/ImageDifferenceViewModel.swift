@@ -6,7 +6,7 @@
 import Foundation
 import UIKit.UIImage
 
-protocol ImageDifferenceViewModelDelegate: class {
+protocol ImageDifferenceViewModelDelegate: AnyObject {
   func imageDifferenceViewModelDidChange(_ viewModel: ImageDifferenceViewModel)
 }
 

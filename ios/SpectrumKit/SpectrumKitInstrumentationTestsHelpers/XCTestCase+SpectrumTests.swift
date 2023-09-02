@@ -132,8 +132,8 @@ public extension XCTestCase {
 
     let transformations = options.transformations
     if transformations.resizeRequirement == nil && transformations.cropRequirement == nil &&
-      options.encodeRequirement?.mode != .lossy && transformations.rotateRequirement == nil &&
-      options.outputImageFormat == fromImageData.imageFormat {
+        options.encodeRequirement?.mode != .lossy && transformations.rotateRequirement == nil &&
+        options.outputImageFormat == fromImageData.imageFormat {
       XCTAssertEqual(fromImageData, toImageData)
     } else {
       XCTAssertNotEqual(fromImageData, toImageData)

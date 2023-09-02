@@ -5,7 +5,7 @@
 
 import UIKit
 
-protocol PickerButtonDelegate: class {
+protocol PickerButtonDelegate: AnyObject {
   func pickerButton(_ pickerButton: UIButton, didPick option: Int)
 }
 

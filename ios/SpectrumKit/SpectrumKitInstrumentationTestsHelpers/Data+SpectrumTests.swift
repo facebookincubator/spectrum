@@ -8,9 +8,9 @@ import Foundation
 public extension Data {
   public var imageFormat: ImageFormat? {
     switch self.first {
-    case 0xFF?:
+    case 0xFF:
       return EncodedImageFormat.jpeg
-    case 0x89?:
+    case 0x89:
       return EncodedImageFormat.png
     default:
       return nil

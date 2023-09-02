@@ -5,7 +5,7 @@
 
 import UIKit
 
-protocol ImagePickerCoordinatorDelegate: class {
+protocol ImagePickerCoordinatorDelegate: AnyObject {
   func imagePickerCoordinator(_ imagePickerCoordinator: ImagePickerCoordinator, didPickMedia source: ImageSource)
   func imagePickerCoordinator(_ imagePickerCoordinator: ImagePickerCoordinator, didFailToPickImageWith error: Swift.Error)
 }
