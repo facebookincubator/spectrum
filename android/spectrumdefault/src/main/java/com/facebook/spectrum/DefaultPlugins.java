@@ -14,7 +14,8 @@ import com.facebook.spectrum.plugins.SpectrumPluginWebp;
 
 public class DefaultPlugins {
 
-  private DefaultPlugins() {};
+  private DefaultPlugins() {}
+  ;
 
   public static SpectrumPlugin[] get() {
     return new SpectrumPlugin[] {
