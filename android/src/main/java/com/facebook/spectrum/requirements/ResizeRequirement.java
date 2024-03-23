@@ -103,7 +103,9 @@ public class ResizeRequirement {
       this.value = value;
     }
 
-    /** @return matching {@link Mode} for the given values. Throws otherwise */
+    /**
+     * @return matching {@link Mode} for the given values. Throws otherwise
+     */
     @DoNotStrip
     static Mode from(final int value) {
       for (Mode mode : Mode.values()) {

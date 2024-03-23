@@ -166,7 +166,9 @@ public class Configuration {
         .build();
   }
 
-  /** @return A new builder to be used for creating {@link Configuration} objects. */
+  /**
+   * @return A new builder to be used for creating {@link Configuration} objects.
+   */
   public static Builder Builder() {
     return new Builder();
   }
@@ -346,7 +348,9 @@ public class Configuration {
       this.value = value;
     }
 
-    /** @return matching {@link ImageHint} for the given values. Throws otherwise */
+    /**
+     * @return matching {@link ImageHint} for the given values. Throws otherwise
+     */
     @DoNotStrip
     static ImageHint from(final int value) {
       for (ImageHint imageHint : ImageHint.values()) {
@@ -376,7 +380,9 @@ public class Configuration {
       this.value = value;
     }
 
-    /** @return matching {@link SamplingMethod} for the given values. Throws otherwise */
+    /**
+     * @return matching {@link SamplingMethod} for the given values. Throws otherwise
+     */
     @DoNotStrip
     static SamplingMethod from(final int value) {
       for (SamplingMethod samplingMethod : SamplingMethod.values()) {

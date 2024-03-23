@@ -48,6 +48,7 @@ public class DestructorThread {
 
   /** A list to keep all active Destructors in memory confined to the Destructor thread. */
   private static DestructorList sDestructorList;
+
   /** A thread safe stack where new Destructors are placed before being add to sDestructorList. */
   private static DestructorStack sDestructorStack;
 

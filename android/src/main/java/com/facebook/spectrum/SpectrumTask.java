@@ -119,7 +119,8 @@ import javax.annotation.Nullable;
   }
 
   class Helper {
-    private Helper() {};
+    private Helper() {}
+    ;
 
     static void closeQuietly(@Nullable final Closeable closeable) {
       if (closeable == null) {

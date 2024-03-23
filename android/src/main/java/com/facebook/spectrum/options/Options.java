@@ -43,6 +43,7 @@ public class Options {
 
   /** Options in the configuration object will override default and app-wide settings. */
   @DoNotStrip @Nullable public final Configuration configuration;
+
   /**
    * If set, will dictate the pixel specification images should be converted to before being passed
    * to the compressor. An exception will be thrown if the pixel specification doesn't fit the image

@@ -82,7 +82,9 @@ public enum ImagePixelSpecification {
     }
   }
 
-  /** @return matching {@link ImagePixelSpecification} for the given values. Throws otherwise */
+  /**
+   * @return matching {@link ImagePixelSpecification} for the given values. Throws otherwise
+   */
   @DoNotStrip
   static ImagePixelSpecification from(
       final ColorModel colorModel,
@@ -116,7 +118,9 @@ public enum ImagePixelSpecification {
       this.value = value;
     }
 
-    /** @return matching {@link ComponentsOrder} for the given values. Throws otherwise */
+    /**
+     * @return matching {@link ComponentsOrder} for the given values. Throws otherwise
+     */
     @DoNotStrip
     static ComponentsOrder from(final int value) {
       for (ComponentsOrder componentsOrder : ComponentsOrder.values()) {
@@ -171,7 +175,9 @@ public enum ImagePixelSpecification {
       this.supportsExtraAlphaChannel = supportsExtraAlphaChannel;
     }
 
-    /** @return matching {@link ColorModel} for the given values. Throws otherwise */
+    /**
+     * @return matching {@link ColorModel} for the given values. Throws otherwise
+     */
     @DoNotStrip
     static ColorModel from(
         final String identifier,
@@ -187,6 +193,7 @@ public enum ImagePixelSpecification {
       throw new IllegalArgumentException("Unsupported PixelColorModel");
     }
   }
+
   /** The alpha info specifies the behaviour of the optional alpha channel */
   @DoNotStrip
   @Immutable
@@ -231,7 +238,9 @@ public enum ImagePixelSpecification {
       this.value = value;
     }
 
-    /** @return matching {@link AlphaInfo} for the given values. Throws otherwise */
+    /**
+     * @return matching {@link AlphaInfo} for the given values. Throws otherwise
+     */
     @DoNotStrip
     static AlphaInfo from(final int value) {
       for (AlphaInfo alphaInfo : AlphaInfo.values()) {
