@@ -68,14 +68,14 @@ std::uint8_t* Sharpener::getLine(std::uint8_t* pOutBuffer) {
     mOutBufferPtr = pOutBuffer;
   }
   if (!mValid) {
-    return NULL;
+    return nullptr;
   }
   if (mRow == mHeight) {
     ++mRow;
     mValid = true;
   } else {
     if (mRow > mHeight) {
-      putLine(NULL);
+      putLine(nullptr);
     }
     mValid = false;
   }
@@ -146,9 +146,9 @@ void Sharpener::sharpenX(const int32_t* pSrc) {
 // sharpen along y dimension
 void Sharpener::sharpenY() {
   // assign rows, handle edge cases
-  int32_t* pRow0 = NULL;
-  int32_t* pRow1 = NULL;
-  int32_t* pRow2 = NULL;
+  int32_t* pRow0 = nullptr;
+  int32_t* pRow1 = nullptr;
+  int32_t* pRow2 = nullptr;
   if (mRow == 2) {
     // first row
     pRow0 = (mIntermediateRows[0].data());

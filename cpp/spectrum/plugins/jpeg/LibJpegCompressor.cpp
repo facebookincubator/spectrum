@@ -147,7 +147,7 @@ void LibJpegCompressor::ensureReadyForWriteScanline() {
       jpeg_simple_progression(&libJpegCompressInfo);
     } else {
       libJpegCompressInfo.num_scans = 0;
-      libJpegCompressInfo.scan_info = NULL;
+      libJpegCompressInfo.scan_info = nullptr;
     }
 
     jpeg_start_compress(&libJpegCompressInfo, true);

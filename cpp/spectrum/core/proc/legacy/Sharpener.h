@@ -37,7 +37,7 @@ class Sharpener {
   virtual ~Sharpener() {}
 
   void putLine(const int32_t* pSrc);
-  std::uint8_t* getLine(std::uint8_t* pOutBuffer = NULL);
+  std::uint8_t* getLine(std::uint8_t* pOutBuffer = nullptr);
 
  private:
   // consts
