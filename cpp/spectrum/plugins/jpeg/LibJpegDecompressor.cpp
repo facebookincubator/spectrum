@@ -172,18 +172,27 @@ image::Specification LibJpegDecompressor::_imageSpecification(
     const image::pixel::Specification& pixelSpecification) {
   ensureHeaderIsRead();
 
-  const auto metadata = readMetadata(libJpegDecompressInfo);
-  const auto orientation =
-      metadata.entries().orientation().value_or(image::Orientation::Up);
+  try {
+      return image::Specification{
+          .size = size,
+          .format = image::formats::Jpeg,
+          .pixelSpecification = pixelSpecification,
+          .orientation = image::Orientation::Up,
+          .chromaSamplingMode = _chromaSamplingMode(),
+          .metadata = {},
+      };
+  } catch (const SpectrumException& e) {
+      return image::Specification{
+          .size = size,
+          .format = image::formats::Jpeg,
+          .pixelSpecification = pixelSpecification,
+          .orientation = image::Orientation::Up,
+          .chromaSamplingMode = _chromaSamplingMode(),
+          .metadata = {},
+      };
+  } catch (const std::exception& e) {
 
-  return image::Specification{
-      .size = size,
-      .format = image::formats::Jpeg,
-      .pixelSpecification = pixelSpecification,
-      .orientation = orientation,
-      .chromaSamplingMode = _chromaSamplingMode(),
-      .metadata = metadata,
-  };
+  }
 }
 
 std::unique_ptr<image::Scanline> LibJpegDecompressor::readScanline() {
