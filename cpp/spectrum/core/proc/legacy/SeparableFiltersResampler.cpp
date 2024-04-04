@@ -105,11 +105,11 @@ void SeparableFiltersResampler::putLine(const std::uint8_t* pSrc) {
 // pointer to output row, in Q21.11
 int32_t* SeparableFiltersResampler::getLine() {
   if (mDstY >= (int)mDstHeight) {
-    return NULL;
+    return nullptr;
   }
   if (mSrcY != mYContributors[mDstY].back().index) {
     ++mSrcY;
-    return NULL;
+    return nullptr;
   }
   resampleY();
   return mYResamplingBuffer.data();
