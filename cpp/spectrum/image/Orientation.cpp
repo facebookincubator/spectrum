@@ -19,7 +19,7 @@ Orientation orientationFromValue(const std::uint16_t value) {
 
   if (value < static_cast<std::uint16_t>(Orientation::Up) ||
       value > static_cast<std::uint16_t>(Orientation::Left)) {
-    SPECTRUM_UNREACHABLE_IMAGE_ORIENTATION(orientation);
+      return static_cast<Orientation>(Orientation::Up);
   } else {
     return orientation;
   }

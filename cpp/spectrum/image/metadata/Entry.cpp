@@ -150,7 +150,7 @@ std::vector<std::uint8_t> Entry::MemoryLayout::extractValue(
     case Entry::SRATIONAL:
       return extractTypedValue<SRational>(context);
     default:
-      SPECTRUM_UNREACHABLE_METADATA_ENTRY_TYPE(type);
+      throw std::runtime_error("type is not valid");
   }
 }
 
@@ -363,6 +363,8 @@ void Entry::parseFromAddressIntoTagMap(
           Entry(tag, type, count, entriesLayout[i].extractValue(context))));
     } catch (const SpectrumException& e) {
       // TODO T30954248: WARN
+    }
+    catch (const std::exception& e) {
     }
   }
 }

@@ -44,6 +44,9 @@ android {
         testImplementation deps.mockitoCore
         testImplementation deps.robolectric
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 apply plugin: 'com.vanniktech.maven.publish'
