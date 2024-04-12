@@ -5,11 +5,11 @@
 
 import Foundation
 
-protocol ConfigurationViewModelDelegate: class {
+protocol ConfigurationViewModelDelegate: AnyObject {
   func viewModelDidUpdate(_ viewModel: ConfigurationViewModel)
 }
 
-protocol ConfigurationViewModelInternalDelegate: class {
+protocol ConfigurationViewModelInternalDelegate: AnyObject {
   func internalViewModelDidUpdate(_ viewModel: Any)
 }
 
@@ -132,7 +132,7 @@ final class ConfigurationViewModel: ConfigurationViewModelInternalDelegate {
         self.delegate?.internalViewModelDidUpdate(self)
       }
     }
-    
+
     var compressionLevel: CompressionLevel {
       get { return CompressionLevel(rawValue: self.configuration.compressionLevel)! }
       set {

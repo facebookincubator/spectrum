@@ -110,7 +110,7 @@ final class ConfigurationViewController: UIViewController, ConfigurationViewMode
     self.jpegUseOptimizeScanSwitch.isOn = viewModel.jpeg.useOptimizeScan
     self.jpegUseDcScanOptionSwitch.isOn = viewModel.jpeg.useCompatibleDCScanOption
     self.jpegUsePsnrQuantTableSwitch.isOn = viewModel.jpeg.usePSNRQuantTable
-    
+
     self.pngUseInterlacingSwitch.isOn = viewModel.png.useInterlacing
     self.pngCompressionLevelButton.setTitle(viewModel.png.compressionLevel.title, for: .normal)
 

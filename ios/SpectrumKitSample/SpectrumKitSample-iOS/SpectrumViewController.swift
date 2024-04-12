@@ -69,7 +69,7 @@ final class SprectrumViewController: UIViewController, SpectrumViewModelDelegate
     super.prepare(for: segue, sender: sender)
 
     switch segue.identifier.flatMap(Segue.init(rawValue:)) {
-    case .showImageDifference?:
+    case .showImageDifference:
       guard
         let viewController = segue.destination as? ImageDifferenceViewController,
         let viewModel = sender as? ImageDifferenceViewModel
@@ -80,7 +80,7 @@ final class SprectrumViewController: UIViewController, SpectrumViewModelDelegate
       viewController.viewModel = viewModel
       viewController.delegate = self
 
-    case .showConfiguration?:
+    case .showConfiguration:
       guard let viewController = segue.destination as? ConfigurationViewController else {
         fatalError("Unexpected viewController for: \(String(describing: segue.identifier))")
       }
