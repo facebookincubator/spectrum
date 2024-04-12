@@ -51,7 +51,7 @@ ext.deps = [
         jsr305: 'com.google.code.findbugs:jsr305:3.0.1',
 
         // First-party
-        soloader: 'com.facebook.soloader:soloader:0.10.4',
+        soloader: 'com.facebook.soloader:soloader:0.11.0+',
 
         // Third-party
         dexmaker: 'com.google.dexmaker:dexmaker:1.2',
